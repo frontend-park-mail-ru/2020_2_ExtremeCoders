@@ -1,0 +1,82 @@
+button{
+    height: 40px;
+    font-size: 20px;
+
+    padding: 0 20px;
+    border-radius: 10px;
+    background: #ceff00;
+    color: black;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+button:hover{
+    background: #6365ab;
+}
+
+button:active{
+    background: #4aff8f;
+}
+
+button:focus{
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #4aff8f;
+    outline: none;
+}
+button[disabled]{
+
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+}
+
+button.secondary{
+    background: greenyellow;
+}
+
+button.secondary:hover{
+    background: #8e90ff;
+}
+
+button.secondary:active{
+    background: rgba(74,255,143,0.77);
+}
+
+button.secondary:focus{
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #4aff8f;
+    outline: none;
+}
+
+input {
+    height: 30px;
+    font-size: 20px;
+    padding: 0 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid black;
+    box-shadow:  0 0 0 2px #4aff8f;
+    margin: 4px;
+}
+
+input:focus{
+    box-shadow:  0 0 0 4px #8e90ff;
+}
+
+input:-webkit-autofill{
+    border: 2px dotted #4aff8f;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.error{
+    color: red;
+}
