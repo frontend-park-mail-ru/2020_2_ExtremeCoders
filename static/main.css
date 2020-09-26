@@ -1,72 +1,76 @@
+
+
+:root {
+    --buttonView: #52B788;
+    --buttonHover: #498467;
+    --buttonActive: #B2D3A8;
+    --inputFocus: #592941;
+    --error: red;
+    --font-size: 20px;
+    --usualborder:2px solid black;
+    --mainBackGround:#EDE5A6;
+    --buttonHeigh:40px;
+    --inputHeigh:30px
+}
+
 button{
-    height: 40px;
-    font-size: 20px;
+    height: var(--buttonHeigh);
+    font-size: var(--font-size);
 
     padding: 0 20px;
     border-radius: 10px;
-    background: #ceff00;
+    background: var(--buttonView);
     color: black;
     cursor: pointer;
-    border: 2px solid black;
+    border: var(--usualborder);
 }
 
 button:hover{
-    background: #6365ab;
+    background: var(--buttonHover);
 }
 
 button:active{
-    background: #4aff8f;
+    background: var(--buttonActive);
 }
 
-button:focus{
-    box-shadow: 0 0 0 2px white, 0 0 0 4px #4aff8f;
-    outline: none;
-}
+
 button[disabled]{
-
     opacity: 0.5;
     pointer-events: none;
     user-select: none;
 }
 
 button.secondary{
-    background: greenyellow;
+    background: var(--buttonView);
 }
 
 button.secondary:hover{
-    background: #8e90ff;
+    background: var(--buttonHover);
 }
 
 button.secondary:active{
-    background: rgba(74,255,143,0.77);
-}
-
-button.secondary:focus{
-    box-shadow: 0 0 0 2px white, 0 0 0 4px #4aff8f;
-    outline: none;
+    background: var(--buttonActive);
 }
 
 input {
-    height: 30px;
-    font-size: 20px;
+    height: var(--inputHeigh);
+    font-size: var(--font-size);
     padding: 0 10px;
     border-radius: 10px;
     outline: none;
-    border: 2px solid black;
-    box-shadow:  0 0 0 2px #4aff8f;
+    border: var(--usualborder);
+    box-shadow:  0 0 0 2px var(--buttonView);
     margin: 4px;
 }
 
 input:focus{
-    box-shadow:  0 0 0 4px #8e90ff;
+    box-shadow:  0 0 0 4px var(--inputFocus);
 }
 
-input:-webkit-autofill{
-    border: 2px dotted #4aff8f;
-}
 
 body{
     font-family: Arial, Helvetica, sans-serif;
+    background: var(--mainBackGround);
 }
 
 a{
@@ -78,5 +82,5 @@ a:hover{
 }
 
 .error{
-    color: red;
+    color: var(--error);
 }
