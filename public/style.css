@@ -1,0 +1,38 @@
+.Wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.Login{
+    border: 1px solid black; /* Параметры рамки */
+    border-radius: 5px;
+    padding: 30px;
+    min-width: 500px;
+
+}
+
+.InputField{
+    margin: 2px;
+    width: 100%;
+}
+
+.ButtonsWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.button{
+    border: 1px solid #333;
+    background-color: mediumblue;
+    border-radius: 5px ;
+    text-decoration: none;
+    color: yellow;
+    padding: 8px;
+    font-size: 11pt;
+}
