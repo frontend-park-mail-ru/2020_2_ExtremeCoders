@@ -4,7 +4,6 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-
 }
 
 .login-form{
@@ -12,7 +11,6 @@
     border-radius: 5px;
     padding: 30px;
     min-width: 500px;
-
 }
 
 .login-form_input{
@@ -24,7 +22,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
 }
 
 .login-form_button{
