@@ -7,7 +7,7 @@
 
 }
 
-.Login{
+.login-form{
     border: 1px solid black; /* Параметры рамки */
     border-radius: 5px;
     padding: 30px;
@@ -15,19 +15,19 @@
 
 }
 
-.InputField{
+.login-form_input{
     margin: 2px;
     width: 100%;
 }
 
-.ButtonsWrapper{
+.buttonsWrapper{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 
 }
 
-.button{
+.login-form_button{
     border: 1px solid #333;
     background-color: mediumblue;
     border-radius: 5px ;
