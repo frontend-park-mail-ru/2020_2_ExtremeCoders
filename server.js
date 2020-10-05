@@ -1,32 +1,22 @@
-const fs = require('fs');
-const http = require('http');
-const debug = require('debug')('http')
+const express = require("express");
 
-const server = http.createServer((req, res) => {
-    debug('requested', req.url);
+const app = express();
 
-    const path = `./static${req.url === '/' ? '/index.html' : req.url}`;
+app.use(express.static(__dirname + "/public"));
 
-    const ip = res.socket.remoteAddress;
-    const port = res.socket.remotePort;
-    debug(`Your IP address is ${ip} and your source port is ${port}.`);
+app.get("/", function(request, response){
+    response.redirect("public/index.html")
+    console.log(request.url)
 
-    fs.readFile(path, (err, file) => {
-        if (err) {
-            debug('file read error', path, err);
-            res.write('error');
-            res.end();
-
-            return;
-        }
-
-        debug('file read', path);
-
-        res.write(file);
-        res.end();
-    });
-
-    debug('after read file');
+   // response.send(request.url)
 });
 
-server.listen(3000);
+
+app.post(/.*$/, function(request, response){
+    console.log("POST", console.log(request.url))
+    //response.send("POST " + request.url)
+    response.redirect("http://localhost:8080/")
+
+});
+
+app.listen(3000);
