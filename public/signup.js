@@ -43,7 +43,7 @@ class Signup {
         const image = this.createInput('file', 'Выберете аватар', 'imgGetter');
         const data = this.createInput('date', 'Введите свою дату рождения', 'dateGetter');
 
-        const confirmButton = createButton('secondary', 'Зарегистрироваться', 'confirmSignupButton');
+        const confirmButton = this.createButton('secondary', 'Зарегистрироваться', 'confirmSignupButton');
 
         form.appendChild(title);
         form.appendChild(login);
