@@ -43,8 +43,8 @@ class Signup {
         const image = this.createInput('file', 'Выберете аватар', 'imgGetter');
         const data = this.createInput('date', 'Введите свою дату рождения', 'dateGetter');
 
-        const confirmButton = this.createButton('secondary', 'Зарегистрироваться', 'confirmSignupButton');
-
+        const confirmButton = this.createButton('submit', 'Зарегистрироваться', 'confirmSignupButton');
+        const backButton = this.createButton('cancel', 'Зарегистрироваться', 'confirmSignupButton');
         form.appendChild(title);
         form.appendChild(login);
         form.appendChild(password1);
@@ -52,6 +52,7 @@ class Signup {
         form.appendChild(data);
         form.appendChild(image);
         form.appendChild(confirmButton);
+        form.appendChild(backButton)
         return form;
     }
 }

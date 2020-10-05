@@ -91,3 +91,15 @@ a:hover{
 .error{
     color: var(--error);
 }
+
+
+.login-form_button{
+    height: var(--buttonHeigh);
+    font-size: var(--font-size);
+    padding: 0 20px;
+    border-radius: 10px;
+    background: var(--buttonView);
+    color: black;
+    cursor: pointer;
+    border: var(--usualborder);
+}
