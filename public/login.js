@@ -1,8 +1,11 @@
 class Login {
   constructor(props) {
     //super(props);
+  }
 
-    let wrapper = document.getElementsByTagName("div").item(0)
+  createSignInForm() {
+    let wrapper=document.createElement("div")
+    // let wrapper = document.getElementsByTagName("div").item(0)
 
     let header = document.createElement("h1")
     wrapper.append(header)
@@ -43,7 +46,7 @@ class Login {
     buttonSignUp.className = "login-form_button"
     buttonSignUp.text = "Sign Up"
 
-
+    return wrapper
   }
 }
 

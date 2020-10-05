@@ -1,4 +1,4 @@
-console.log('topkek');
+
 
 const application = document.getElementById('app');
 
@@ -14,7 +14,7 @@ const config = {
     open: signupPage,
   },
   login: {
-    href: '/login',
+    href: '/signin',
     text: 'Авторизоваться',
     open: loginPage,
   },
@@ -34,6 +34,7 @@ function menuPage() {
 
         const menuItem = document.createElement('a');
         menuItem.href = href;
+        menuItem.className='login-form_button'
         menuItem.textContent = text;
         menuItem.dataset.section = menuKey;
 
@@ -65,53 +66,37 @@ function ajax(method, url, body = null, callback) {
 }
 
 function signupPage() {
-  application.innerHTML = '';
+  application.innerHTML=''
+  let hui=new Signup()
+  let form=hui.createSignUpForm()
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
 
-  const form = document.createElement('form');
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    const name ="hui";
+    ajax(
+        'POST',
+        '/login',
+        {email, password},
+        (status, response) => {
+          if (status === 200) {
+            profilePage();
+          } else {
+            const {error} = JSON.parse(response);
+            alert(error);
+          }
+        }
+    )
 
-  const emailInput = createInput('email', 'Емайл', 'email');
-  const passwordInput = createInput('password', 'Пароль', 'password');
-  const ageInput = createInput('number', 'Возраст', 'age');
-
-  const submitBtn = document.createElement('input');
-  submitBtn.type = 'submit';
-  submitBtn.value = 'Зарегистрироваться!';
-
-  const back = document.createElement('a');
-  back.href = '/menu';
-  back.textContent = 'Назад';
-  back.dataset.section = 'menu';
-
-  form.appendChild(emailInput);
-  form.appendChild(passwordInput);
-  form.appendChild(ageInput);
-  form.appendChild(submitBtn);
-  form.appendChild(back);
-
+  });
   application.appendChild(form);
 }
 
 function loginPage() {
   application.innerHTML = '';
-  const form = document.createElement('form');
-
-  const emailInput = createInput('email', 'Емайл', 'email');
-  const passwordInput = createInput('password', 'Пароль', 'password');
-
-  const submitBtn = document.createElement('input');
-  submitBtn.type = 'submit';
-  submitBtn.value = 'Авторизироваться!';
-
-  const back = document.createElement('a');
-  back.href = '/menu';
-  back.textContent = 'Назад';
-  back.dataset.section = 'menu';
-
-  form.appendChild(emailInput);
-  form.appendChild(passwordInput);
-  form.appendChild(submitBtn);
-  form.appendChild(back);
-
+  let hui=new Login()
+  let form =hui.createSignInForm()
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -133,8 +118,6 @@ function loginPage() {
     )
 
   });
-
-
   application.appendChild(form);
 }
 
@@ -184,15 +167,6 @@ function profilePage() {
     alert('АХТУНГ, нет авторизации');
     loginPage();
   });
-}
-
-function createInput(type, text, name) {
-  const input = document.createElement('input');
-  input.type = type;
-  input.name = name;
-  input.placeholder = text;
-
-  return input;
 }
 
 application.addEventListener('click', (evt) => {
