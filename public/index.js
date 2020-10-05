@@ -23,15 +23,10 @@ const config = {
     text: 'Профиль',
     open: profilePage,
   },
-  about: {
-    href: '/about',
-    text: 'Контакты',
-  },
 };
 
 function menuPage() {
   application.innerHTML = '';
-
   Object
       .keys(config)
       .map((menuKey) => {
@@ -66,7 +61,6 @@ function ajax(method, url, body = null, callback) {
     xhr.send(JSON.stringify(body));
     return;
   }
-
   xhr.send();
 }
 
