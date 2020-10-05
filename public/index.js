@@ -34,7 +34,7 @@ function menuPage() {
 
         const menuItem = document.createElement('a');
         menuItem.href = href;
-        menuItem.className='login-form_button'
+        menuItem.className='submit-form_button'
         menuItem.textContent = text;
         menuItem.dataset.section = menuKey;
 
@@ -95,8 +95,8 @@ function signupPage() {
 
 function loginPage() {
   application.innerHTML = '';
-  let hui=new Login()
-  let form =hui.createSignInForm()
+  let hui=new SignIn()
+  let form=hui.createSignInForm()
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -164,14 +164,13 @@ function profilePage() {
       return;
     }
 
-    alert('АХТУНГ, нет авторизации');
+    alert('Эта страница доступна только для авторизированных пользователей');
     loginPage();
   });
 }
 
 application.addEventListener('click', (evt) => {
   const {target} = evt;
-
   if (target instanceof HTMLAnchorElement) {
     evt.preventDefault();
     config[target.dataset.section].open();
