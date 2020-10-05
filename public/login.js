@@ -14,6 +14,7 @@ class Login {
     wrapper.append(divForm)
 
     let form = document.createElement('form')
+    form.method ="POST"
     divForm.append(form)
 
     let loginInput = document.createElement("input")
