@@ -1,23 +1,34 @@
 const express = require("express");
 
 const app = express();
+const req = require('request');
+fetch = require('node-fetch')
+
 
 app.use(express.static(__dirname + "/public"));
 
-app.get("/", function(request, response){
+app.get("/", function (request, response) {
+    console.log(request.method, request.url)
     response.redirect("public/index.html")
-    console.log("Get:",request.url)
 
-   // response.send(request.url)
+
+    // response.send(request.url)
 });
 
-
-app.post(/.*$/, function(request, response){
-
-    //response.send("POST " + request.url)
-    let redirectUrl = "http://127.0.0.1:8000" + request.url;
-    console.log(request.method, redirectUrl);
-    response.redirect(redirectUrl);
+app.post(/.*$/, (request, response) => {
+    req.post( {
+            url:'http://localhost:8080' + request.url,
+            form: {
+                login: 'login1',
+                password: 'password1',
+            }
+        }
+        , (err, resp, body) => {
+            console.log(request.method, request.url, request)
+            if (err)
+                return response.status(500).send({message: err})
+            response.send(body)
+        })
 });
 
 app.listen(3000);

@@ -1,9 +1,3 @@
-
-const application = document.getElementById('app')
-const dummyProfile = `{"login": "johnappleseed", "firstName" : "John", "lastName" : "Appleseed", "imageSource":"https://picsum.photos/50", "birthDate":"${new Date('1995-12-17').toJSON()}"}`
-application.innerHTML = '';
-application.appendChild(createProfileForm(dummyProfile));
-
 /**
  * Creates image with specified parameters and returns it as an object
  * @param {string} src - image source path
@@ -31,16 +25,14 @@ function createProfileForm(data) {
   const birthDate = createText('h2', `Ваша дата рождения: ${profileInfo.birthDate}`, 'profile_birthDate');
   const avatar = createImage(profileInfo.imageSource, 50, 50);
   const edit = createButton('primary', 'Редактировать', 'editButton');
-  edit.addEventListener('click', () => {
-    application.innerHTML = '';
-    application.appendChild(createProfileEditForm(data));
-  });
+  const back=createHref('tmp-form_button', 'Назад', 'menu');
   form.appendChild(title);
   form.appendChild(name);
   form.appendChild(login);
   form.appendChild(birthDate);
   form.appendChild(avatar);
   form.appendChild(edit);
+  form.appendChild(back);
   return form;
 }
 
@@ -62,6 +54,7 @@ function createProfileEditForm(data) {
   const avatar = createImage(profileInfo.imageSource, 50, 50);
   const changeAvatarButton = createInput('file', 'Заменить', 'changeAvatarButton');
   const save = createButton('primary', 'Применить', 'saveButton');
+  const back=createHref('tmp-form_button', 'Назад', 'profile');
   form.appendChild(title);
   form.appendChild(firstNameLabel);
   form.appendChild(firstName);
@@ -73,5 +66,6 @@ function createProfileEditForm(data) {
   form.appendChild(avatar);
   form.appendChild(changeAvatarButton);
   form.appendChild(save);
+  form.appendChild(back);
   return form;
 }

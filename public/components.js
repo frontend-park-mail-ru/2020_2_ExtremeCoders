@@ -1,3 +1,12 @@
+let user={
+    name:"",
+    surname:"",
+    email:"",
+    password:"",
+    date:"",
+    img:"",
+}
+
 
 function createInput(type, text, name) {
 

@@ -1,5 +1,3 @@
-
-
 const application = document.getElementById('app');
 
 const config = {
@@ -17,7 +15,7 @@ const config = {
     href: '/signin',
     text: 'Авторизоваться',
     open: loginPage,
-  },
+},
   profile: {
     href: '/profile',
     text: 'Профиль',
@@ -56,7 +54,7 @@ function ajax(method, url, body = null, callback) {
 
     callback(xhr.status, xhr.responseText);
   });
-
+  console.log("HUI:::::", body)
   if (body) {
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf8');
     xhr.send(JSON.stringify(body));
@@ -69,17 +67,32 @@ function signupPage() {
   application.innerHTML=''
   let hui=new Signup()
   let form=hui.createSignUpForm()
+
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
-    const name ="hui";
+    if (form.password1.value !== form.password2.value){
+      alert('Пароли не совпадают');
+      return;
+    }
+    // const email =
+    // const password = passwordInput.value.trim();
+
+    user.imya=form.imya.value.trim();
+    user.surname=form.surname.value.trim();
+    user.email=form.email.value.trim();
+    user.date=form.date.value.trim();
+    user.img=form.img.value.trim();
+    user.password=form.password1.value.trim();
+    let body_form=JSON.stringify(user);
+    let a="qwerty";
+
     ajax(
         'POST',
-        '/login',
-        {email, password},
+        '/signup',
+        {a},
         (status, response) => {
+          console.log(body_form);
           if (status === 200) {
             profilePage();
           } else {
@@ -100,12 +113,12 @@ function loginPage() {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
-    const email = emailInput.value.trim();
-    const password = passwordInput.value.trim();
+    const email = form.email.value.trim();
+    const password = form.password1.value.trim();
 
     ajax(
         'POST',
-        '/login',
+        '/signin',
         {email, password},
         (status, response) => {
           if (status === 200) {
@@ -124,43 +137,21 @@ function loginPage() {
 function profilePage() {
   application.innerHTML = '';
 
-  ajax('GET', '/me', null, (status, responseText) => {
+  ajax('GET', '/profile', null, (status, responseText) => {
     let isAuthorized = false;
-
     if (status === 200) {
       isAuthorized = true;
     }
-
     if (status === 401) {
       isAuthorized = false;
     }
-
-
     if (isAuthorized) {
-      const responseBody = JSON.parse(responseText);
-
-      const span = document.createElement('span');
-      span.textContent = `Мне ${responseBody.age} и я крутой на ${responseBody.score} очков`;
-      application.appendChild(span);
-
-      const back = document.createElement('a');
-      back.href = '/menu';
-      back.textContent = 'Назад';
-      back.dataset.section = 'menu';
-
-      application.appendChild(back);
-
-      const {images} = responseBody;
-
-      if (images && Array.isArray(images)) {
-        const div = document.createElement('div');
-        application.appendChild(div);
-
-        images.forEach((imageSrc) => {
-          div.innerHTML += `<img src="${imageSrc}" />`;
-        });
-      }
-
+     let form= createProfileForm(responseText);
+      application.appendChild(form)
+      edit.addEventListener('click', () => {
+        application.innerHTML = '';
+        application.appendChild(createProfileEditForm(data));
+      });
       return;
     }
 
