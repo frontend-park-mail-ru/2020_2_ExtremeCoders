@@ -24,7 +24,7 @@
     justify-content: space-around;
 }
 
-.login-form_button{
+.submit-form_button{
     border: 1px solid #333;
     background-color: mediumblue;
     border-radius: 5px ;
