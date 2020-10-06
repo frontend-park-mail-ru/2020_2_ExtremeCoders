@@ -51,6 +51,9 @@ function send(method, url, data = null, callback) {
   fetch(rawUrl,
       {
         method: method,
+          headers:{
+            'Content-Type': 'application/json'
+          },
         body: JSON.stringify(data)
       }
   )
@@ -63,6 +66,7 @@ function send(method, url, data = null, callback) {
       .catch(function (error) {
         console.log('error', error)
       });
+
 }
 
 function signupPage() {

@@ -1,6 +1,7 @@
 const express = require("express");
 
 const app = express();
+app.use(express.json());
 const req = require('request');
 fetch = require('node-fetch')
 
@@ -16,7 +17,7 @@ app.get("/", function (request, response) {
 });
 
 app.post(/.*$/, (request, response) => {
-    console.log("HUI::::::::::::",request.method, request.url, request)
+    console.log("HUI::::::::::::",request.method, request.url, request.body)
     req.post( {
             url:'http://localhost:8080' + request.url,
             form: request.body
