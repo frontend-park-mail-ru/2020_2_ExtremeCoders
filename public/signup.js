@@ -30,7 +30,8 @@ class Signup {
         form.appendChild(date);
         form.appendChild(image);
         form.appendChild(confirmButton);
-        form.appendChild(backButton)
+        form.appendChild(backButton);
+        form.method='POST'
         return form;
     }
 }

@@ -33,6 +33,7 @@ function createProfileForm(data) {
   form.appendChild(avatar);
   form.appendChild(edit);
   form.appendChild(back);
+  form.method='POST'
   return form;
 }
 

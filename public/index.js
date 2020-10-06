@@ -44,23 +44,25 @@ function menuPage() {
   ;
 }
 
-function ajax(method, url, body = null, callback) {
-  const xhr = new XMLHttpRequest();
-  xhr.open(method, url, true);
-  xhr.withCredentials = true;
+function send(method, url, data = null, callback) {
 
-  xhr.addEventListener('readystatechange', function() {
-    if (xhr.readyState !== XMLHttpRequest.DONE) return;
-
-    callback(xhr.status, xhr.responseText);
-  });
-  console.log("HUI:::::", body)
-  if (body) {
-    xhr.setRequestHeader('Content-type', 'application/json; charset=utf8');
-    xhr.send(JSON.stringify(body));
-    return;
-  }
-  xhr.send();
+  let rawUrl='http://localhost:3000'+url;
+  console.log("KEK:::::::::",JSON.stringify(data), rawUrl)
+  fetch(rawUrl,
+      {
+        method: method,
+        body: JSON.stringify(data)
+      }
+  )
+      .then(function (response) {
+        return response.text()
+      })
+      .then(function (data) {
+        return data
+      })
+      .catch(function (error) {
+        console.log('error', error)
+      });
 }
 
 function signupPage() {
@@ -78,19 +80,18 @@ function signupPage() {
     // const email =
     // const password = passwordInput.value.trim();
 
-    user.imya=form.imya.value.trim();
+    user.name=form.imya.value.trim();
     user.surname=form.surname.value.trim();
     user.email=form.email.value.trim();
     user.date=form.date.value.trim();
     user.img=form.img.value.trim();
     user.password=form.password1.value.trim();
     let body_form=JSON.stringify(user);
-    let a="qwerty";
 
-    ajax(
+    send(
         'POST',
         '/signup',
-        {a},
+        {body_form},
         (status, response) => {
           console.log(body_form);
           if (status === 200) {
@@ -116,7 +117,7 @@ function loginPage() {
     const email = form.email.value.trim();
     const password = form.password1.value.trim();
 
-    ajax(
+    send(
         'POST',
         '/signin',
         {email, password},
@@ -137,7 +138,7 @@ function loginPage() {
 function profilePage() {
   application.innerHTML = '';
 
-  ajax('GET', '/profile', null, (status, responseText) => {
+  send('GET', '/profile', null, (status, responseText) => {
     let isAuthorized = false;
     if (status === 200) {
       isAuthorized = true;

@@ -20,7 +20,8 @@ class SignIn {
     form.appendChild(email);
     form.appendChild(password1);
     form.appendChild(confirmButton);
-    form.appendChild(backButton)
+    form.appendChild(backButton);
+    form.method='POST';
     return form;
   }
 }

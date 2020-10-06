@@ -16,15 +16,13 @@ app.get("/", function (request, response) {
 });
 
 app.post(/.*$/, (request, response) => {
+    console.log("HUI::::::::::::",request.method, request.url, request)
     req.post( {
             url:'http://localhost:8080' + request.url,
-            form: {
-                login: 'login1',
-                password: 'password1',
-            }
+            form: request.body
         }
         , (err, resp, body) => {
-            console.log(request.method, request.url, request)
+
             if (err)
                 return response.status(500).send({message: err})
             response.send(body)
