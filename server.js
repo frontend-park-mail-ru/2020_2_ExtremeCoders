@@ -1,3 +1,4 @@
+
 const express = require("express");
 
 const app = express();
@@ -8,22 +9,21 @@ fetch = require('node-fetch')
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", function (request, response) {
+    console.log(request.method, request.url)
     response.redirect("public/index.html")
-    console.log("Get:", request.url)
+
 
     // response.send(request.url)
 });
 
 app.post(/.*$/, (request, response) => {
+    console.log("HUI::::::::::::",request.method, request.url, request)
     req.post( {
             url:'http://localhost:8080' + request.url,
-            form: {
-                login: 'login1',
-                password: 'password1',
-            }
+            form: request.body
         }
         , (err, resp, body) => {
-            console.log(request.body)
+
             if (err)
                 return response.status(500).send({message: err})
             response.send(body)

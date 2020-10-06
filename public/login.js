@@ -1,54 +1,28 @@
-class Login {
-  constructor(props) {
-    //super(props);
+class SignIn {
+    constructor(props) {
+    }
 
-    let wrapper = document.getElementsByTagName("div").item(0)
+    render() {
+        const application = document.getElementById('app')
+        application.appendChild(this.createSignInForm());
+    }
 
-    let header = document.createElement("h1")
-    wrapper.append(header)
-    header.textContent = "Welcome!"
+    createSignInForm() {
+        const form = document.createElement('form');
 
+        const title = createText('h1', 'Вход', 'signup_title');
+        const email = createInput('email', 'Введите логин', 'email');
+        const password1 = createInput('password', 'Введите пароль', 'password1');
 
-    let divForm = document.createElement("div")
-    divForm.className = "login-form"
-    wrapper.append(divForm)
-
-    let form = document.createElement('form')
-    form.method ="POST"
-    divForm.append(form)
-
-    let loginInput = document.createElement("input")
-    form.append(loginInput)
-    loginInput.className = "login-form_input"
-    loginInput.type = "text"
-    loginInput.placeholder = "Введите логин"
-
-    let passwordInput = loginInput.cloneNode()
-    form.append(passwordInput)
-    passwordInput.type = "password"
-    passwordInput.placeholder = "Введите пароль"
-
-    let divButtonWrapper = document.createElement("div")
-    form.append(divButtonWrapper)
-    divButtonWrapper.className = "buttonsWrapper"
-
-    let buttonSubmit = document.createElement("input")
-    divButtonWrapper.append(buttonSubmit)
-    buttonSubmit.type = "submit"
-    buttonSubmit.value = "Sign In"
-    buttonSubmit.className = "login-form_button"
-
-    let buttonSignUp = document.createElement("a")
-    divButtonWrapper.append(buttonSignUp)
-    buttonSignUp.href = "index.html"
-    buttonSignUp.className = "login-form_button"
-    buttonSignUp.text = "Sign Up"
-
-
-  }
+        const confirmButton = createButton('submit', 'Войти', 'confirmSignupButton');
+        const backButton = createHref('tmp-form_button', 'Регистрация', 'signup');
+        form.appendChild(title);
+        form.appendChild(email);
+        form.appendChild(password1);
+        form.appendChild(confirmButton);
+        form.appendChild(backButton);
+        form.method='POST';
+        return form;
+    }
 }
-
-
-
-
 

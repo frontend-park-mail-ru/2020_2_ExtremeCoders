@@ -4,54 +4,34 @@ class Signup {
 
     render() {
         const application = document.getElementById('app')
-
         application.appendChild(this.createSignUpForm());
-
     }
-    createInput(type, text, name) {
-
-        const input = document.createElement('input');
-        input.type = type;
-        input.name = name;
-        input.placeholder = text;
-        return input;
-    }
-
-    createText(tag, text, name) {
-        const someText = document.createElement(tag);
-        someText.name = name;
-        someText.textContent = text;
-        return someText;
-    }
-
-    createButton(className, text, name) {
-        const button = document.createElement('button');
-        button.className = className;
-        button.textContent = text;
-        button.name = name;
-        return button;
-    }
-
 
     createSignUpForm() {
         const form = document.createElement('form');
 
-        const title = this.createText('h1', 'Регистрация', 'signup_title');
-        const login = this.createInput('login', 'Введите логин', 'login');
-        const password1 = this.createInput('password', 'Введите пароль', 'password1');
-        const password2 = this.createInput('password', 'Повторите пароль', 'password2');
-        const image = this.createInput('file', 'Выберете аватар', 'imgGetter');
-        const data = this.createInput('date', 'Введите свою дату рождения', 'dateGetter');
+        const title = createText('h1', 'Регистрация', 'signup_title');
+        const imya = createInput('name', 'Введите имя', 'imya');
+        const surname=createInput('surname', 'Введите фамилию', 'surname');
+        const email = createInput('email', 'Введите email', 'email');
+        const password1 = createInput('password', 'Введите пароль', 'password1');
+        const password2 = createInput('password', 'Повторите пароль', 'password2');
+        const image = createInput('file', 'Выберете аватар', 'img');
+        const date = createInput('date', 'Введите свою дату рождения', 'date');
 
-        const confirmButton = createButton('secondary', 'Зарегистрироваться', 'confirmSignupButton');
-
+        const confirmButton = createButton('submit', 'Зарегистрироваться', 'confirmSignupButton');
+        const backButton = createHref('tmp-form_button', 'Назад', 'menu');
         form.appendChild(title);
-        form.appendChild(login);
+        form.appendChild(imya);
+        form.appendChild(surname);
+        form.appendChild(email);
         form.appendChild(password1);
         form.appendChild(password2);
-        form.appendChild(data);
+        form.appendChild(date);
         form.appendChild(image);
         form.appendChild(confirmButton);
+        form.appendChild(backButton);
+        form.method='POST'
         return form;
     }
 }
