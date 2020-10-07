@@ -53,11 +53,12 @@ function menuPage() {
  * @param url of our request
  * @param data of our request
  * @param callback of our request
+ * @param contentType
  * @returns {Promise<Response>}
  */
-function send(method, url, data, callback) {
+function send(method, url, data, callback ) {
     // 95.163.209.195
-  let rawUrl='http://95.163.209.195:8080'+url;
+  let rawUrl='http://localhost:8080'+url;
   console.log("KEK:::::::::",JSON.stringify(data), rawUrl)
     if(method==='POST'){
         return fetch(rawUrl,
@@ -65,10 +66,7 @@ function send(method, url, data, callback) {
                 method: method,
                 mode: 'cors',
                 credentials: 'include',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+                body: data
             }
         )
     } else{
@@ -153,14 +151,14 @@ function signupPage() {
     send(
         'POST',
         '/signup',
-        {
+        JSON.stringify({
             Name:user.name,
             Surname: user.surname,
             Email:user.email,
             //Date:user.date,
             Img:user.img,
             Password:user.password
-        },
+        }),
         (status, response) => {
           console.log(user);
           if (status === 200) {
@@ -212,7 +210,7 @@ function loginPage() {
     send(
         'POST',
         '/signin',
-        {email, password},
+        JSON.stringify({email, password}),
         (status, response) => {
           if (status === 200) {
             profilePage();
@@ -278,9 +276,8 @@ function profilePage() {
 
 function profilePageEdit(user){
     application.innerHTML = '';
-    let form=createProfileEditForm(user)
+    let form = createProfileEditForm(user)
     application.appendChild(form);
-
     form.addEventListener('submit', (evt) => {
         evt.preventDefault();
         if(!validateData(form.profile_firstName.value.trim())){
@@ -294,18 +291,18 @@ function profilePageEdit(user){
             return;
         }
         console.log("HEEEEEEEEREEEEEEE:::::::::::::::")
-        let name=form.profile_firstName.value.trim();
+        let name=form.changeAvatarButton.value.trim();
         let surname=form.profile_lastName.value.trim();
             send(
                 'POST',
                 '/profile',
-                {
+                JSON.stringify({
                     Name:name,
                     Surname: surname,
                     //Date:form.profile_birthDate.value.trim(),
                     // Img:user.form.profile_birthDate.value.trim(),
                     // Password:user.password
-                },
+                }),
                 (status, response) => {
                     console.log(user);
                     if (status === 200) {
@@ -325,6 +322,43 @@ function profilePageEdit(user){
                 console.log('error', error)
             });
     });
+
+    let avatarForm = createChangeAvatarForm()
+    application.appendChild(avatarForm);
+    avatarForm.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        let data = document.getElementById("avatarBtn").files[0]
+        let f =  new FormData(avatarForm)
+        console.log("SEEEND AVATAAR:::::::::::::::",f, "SUUUUUUCK")
+
+       let promise =  fetch(
+            'http://localhost:8080/sendimg',
+            {
+                method:'POST',
+                mode: 'cors',
+                credentials: 'include',
+                body: f
+                // Password:user.password
+            })
+
+
+        promise.then(function (response) {
+            console.log("sendimg ",user);
+            if (response.status === 200) {
+            } else {
+                const {error} = JSON.parse(response);
+                alert(error);
+            }
+            return response.text()
+        })
+            .then(function (data) {
+                console.log("SEEEND AVATAAR DATA::::::::::::", data)
+                profilePage()
+            }).catch(function (error) {
+            console.log('error', error)
+        });
+     });
+
 }
 
 
