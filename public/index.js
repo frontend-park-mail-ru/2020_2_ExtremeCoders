@@ -57,7 +57,7 @@ function menuPage() {
  */
 function send(method, url, data, callback) {
     // 95.163.209.195
-  let rawUrl='http://127.0.0.1:8080'+url;
+  let rawUrl='http://95.163.209.195:8080'+url;
   console.log("KEK:::::::::",JSON.stringify(data), rawUrl)
     if(method==='POST'){
         return fetch(rawUrl,
