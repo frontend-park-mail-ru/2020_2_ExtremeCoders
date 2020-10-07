@@ -7,7 +7,13 @@ let user={
     img:"",
 }
 
-
+/**
+ * create input with entered params
+ * @param type
+ * @param text
+ * @param name
+ * @returns {HTMLInputElement}
+ */
 function createInput(type, text, name) {
 
     const input = document.createElement('input');
@@ -17,6 +23,13 @@ function createInput(type, text, name) {
     return input;
 }
 
+/**
+ * create text with entered params
+ * @param tag
+ * @param text
+ * @param name
+ * @returns {*}
+ */
 function createText(tag, text, name) {
     const someText = document.createElement(tag);
     someText.name = name;
@@ -24,6 +37,13 @@ function createText(tag, text, name) {
     return someText;
 }
 
+/**
+ * create Button with entered params
+ * @param className
+ * @param text
+ * @param name
+ * @returns {HTMLButtonElement}
+ */
 function createButton(className, text, name) {
     const button = document.createElement('button');
     button.className = className;
@@ -32,6 +52,13 @@ function createButton(className, text, name) {
     return button;
 }
 
+/**
+ * create Href with entered params
+ * @param className
+ * @param text
+ * @param section
+ * @returns {HTMLAnchorElement}
+ */
 function createHref(className, text, section) {
     const button = document.createElement('a');
     button.className = className;
