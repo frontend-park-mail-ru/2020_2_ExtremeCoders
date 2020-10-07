@@ -1,12 +1,22 @@
+/**
+ * Implementation of signin
+ */
 class SignIn {
   constructor(props) {
   }
 
+  /**
+   * adding signin form to our page
+   */
   render() {
     const application = document.getElementById('app')
     application.appendChild(this.createSignInForm());
   }
 
+  /**
+   * Generation of signin form
+   * @returns {HTMLFormElement}
+   */
   createSignInForm() {
     const form = document.createElement('form');
 

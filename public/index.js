@@ -23,6 +23,9 @@ const config = {
   },
 };
 
+/**
+ * rendering mainPage on page
+ */
 function menuPage() {
   application.innerHTML = '';
   Object
@@ -44,6 +47,14 @@ function menuPage() {
   ;
 }
 
+/**
+ * Send requests to go server
+ * @param method of our request
+ * @param url of our request
+ * @param data of our request
+ * @param callback of our request
+ * @returns {Promise<Response>}
+ */
 function send(method, url, data, callback) {
 
   let rawUrl='http://localhost:8080'+url;
@@ -74,6 +85,9 @@ function send(method, url, data, callback) {
     }
 }
 
+/**
+ * full implementation of signup page
+ */
 function signupPage() {
   application.innerHTML=''
   let hui=new Signup()
@@ -125,6 +139,9 @@ function signupPage() {
   application.appendChild(form);
 }
 
+/**
+ * full implementation of signin page
+ */
 function loginPage() {
   application.innerHTML = '';
   let hui=new SignIn()
@@ -153,6 +170,9 @@ function loginPage() {
   application.appendChild(form);
 }
 
+/**
+ * full implementation of profilePage
+ */
 function profilePage() {
   application.innerHTML = '';
 
@@ -194,6 +214,9 @@ function profilePage() {
       // });
 }
 
+/**
+ * adding eventlistener on click action
+ */
 application.addEventListener('click', (evt) => {
   const {target} = evt;
   if (target instanceof HTMLAnchorElement) {

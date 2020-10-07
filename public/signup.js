@@ -1,12 +1,26 @@
+/**
+ * implementation of signup form
+ */
 class Signup {
+    /**
+     * constructor
+     * @param props
+     */
     constructor(props) {
     }
 
+    /**
+     * adding signup form to our page
+     */
     render() {
         const application = document.getElementById('app')
         application.appendChild(this.createSignUpForm());
     }
 
+    /**
+     * Generation of signup form
+     * @returns {HTMLFormElement}
+     */
     createSignUpForm() {
         const form = document.createElement('form');
 
