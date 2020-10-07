@@ -12,14 +12,18 @@ let user={
  * @param type
  * @param text
  * @param name
+ * @param value
  * @returns {HTMLInputElement}
  */
-function createInput(type, text, name) {
+function createInput(type, text, name, value) {
 
     const input = document.createElement('input');
     input.type = type;
     input.name = name;
     input.placeholder = text;
+    if (value !==undefined){
+        input.value=value;
+    }
     return input;
 }
 

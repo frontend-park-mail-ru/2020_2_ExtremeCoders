@@ -21,8 +21,8 @@ class SignIn {
     const form = document.createElement('form');
 
     const title = createText('h1', 'Вход', 'signup_title');
-    const email = createInput('email', 'Введите логин', 'email');
-    const password1 = createInput('password', 'Введите пароль', 'password1');
+    const email = createInput('email', 'Введите логин', 'email', "");
+    const password1 = createInput('password', 'Введите пароль', 'password1', "");
 
     const confirmButton = createButton('submit', 'Войти', 'confirmSignupButton');
     const backButton = createHref('tmp-form_button', 'Регистрация', 'signup');
