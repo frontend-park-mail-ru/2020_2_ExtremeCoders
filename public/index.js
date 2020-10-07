@@ -57,7 +57,7 @@ function menuPage() {
  */
 function send(method, url, data, callback) {
 
-  let rawUrl='http://localhost:8080'+url;
+  let rawUrl='http://95.163.209.195:8080'+url;
   console.log("KEK:::::::::",JSON.stringify(data), rawUrl)
     if(method==='POST'){
         return fetch(rawUrl,
@@ -109,14 +109,21 @@ function signupPage() {
     user.date=form.date.value.trim();
     user.img=form.img.value.trim();
     user.password=form.password1.value.trim();
-    let body_form=JSON.stringify(user);
+
 
     send(
         'POST',
         '/signup',
-        {body_form},
+        {
+            Name:user.name,
+            Surname: user.surname,
+            Email:user.email,
+            //Date:user.date,
+            Img:user.img,
+            Password:user.password
+        },
         (status, response) => {
-          console.log(body_form);
+          console.log(user);
           if (status === 200) {
             profilePage();
           } else {
@@ -164,7 +171,16 @@ function loginPage() {
             alert(error);
           }
         }
-    )
+    ).then(function (response) {
+        return response.text()
+    })
+        .then(function (data) {
+            console.log("DATA::::::::::::", data)
+            profilePage()
+        })
+        .catch(function (error) {
+            console.log('error', error)
+        });
 
   });
   application.appendChild(form);
@@ -196,12 +212,12 @@ function profilePage() {
           }
           if (isAuthorized) {
               console.log("WTF::::::::::::")
-              let form= createProfileForm(userData);
+              let form= createProfileForm(person.User);
               application.appendChild(form)
               form.addEventListener('submit', () => {
                   console.log("HERE_TOO::::::::::::")
                   application.innerHTML = '';
-                  application.appendChild(createProfileEditForm(userData));
+                  application.appendChild(createProfileEditForm(person.User));
               });
               return;
           }
