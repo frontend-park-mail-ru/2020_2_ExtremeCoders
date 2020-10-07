@@ -18,13 +18,13 @@ function createImage(src, width, height) {
  */
 function createProfileForm(data) {
   console.log("PROFILE_DATA:::::::", data)
-  const profileInfo = JSON.parse(data);
+  const profileInfo = data;
   const form = document.createElement('form');
   const title = createText('h1', 'Профиль', 'profile_title');
-  const name = createText('h1', `${profileInfo.firstName} ${profileInfo.lastName}`, 'profile_name');
-  const login = createText('h2', `Ваш логин: ${profileInfo.login}`, 'profile_login');
-  const birthDate = createText('h2', `Ваша дата рождения: ${profileInfo.birthDate}`, 'profile_birthDate');
-  const avatar = createImage(profileInfo.imageSource, 50, 50);
+  const name = createText('h1', `${profileInfo.Name} ${profileInfo.Surname}`, 'profile_name');
+  const login = createText('h2', `Ваш логин: ${profileInfo.Email}`, 'profile_login');
+  const birthDate = createText('h2', `Ваша дата рождения: ${profileInfo.Date}`, 'profile_birthDate');
+  const avatar = createImage(profileInfo.Img, 50, 50);
   const edit = createButton('submit', 'Редактировать', 'editButton');
   const back=createHref('tmp-form_button', 'Назад', 'menu');
   form.appendChild(title);
@@ -43,19 +43,19 @@ function createProfileForm(data) {
  * @param {string} data - profile data in JSON format
  */
 function createProfileEditForm(data) {
-  const profileInfo = JSON.parse(data);
+  const profileInfo = data;
   const form = document.createElement('form');
   const title = createText('h1', 'Редактирование профиля', 'profile_title');
   const firstNameLabel = createText('h2', 'Имя: ', '');
-  const firstName = createInput('text', `${profileInfo.firstName}`, 'profile_firstName');
+  const firstName = createInput('text', `${profileInfo.Name}`, 'profile_firstName', `${profileInfo.Name}`);
   const lastNameLabel = createText('h2', 'Фамилия: ', '');
-  const lastName = createInput('text', `${profileInfo.lastName}`, 'profile_lastName');
+  const lastName = createInput('text', `${profileInfo.Surname}`, 'profile_lastName',`${profileInfo.Surname}`);
   const birthDateLabel = createText('h2', 'Ваша дата рождения: ', '');
-  const birthDate = createInput('date', `${profileInfo.birthDate}`, 'profile_birthDate');
+  const birthDate = createInput('date', `${profileInfo.Date}`, 'profile_birthDate',`${profileInfo.Date}`);
   const avatarLabel = createText('h2', 'Аватар:  ', '');
-  const avatar = createImage(profileInfo.imageSource, 50, 50);
+  const avatar = createImage(profileInfo.Img, 50, 50);
   const changeAvatarButton = createInput('file', 'Заменить', 'changeAvatarButton');
-  const save = createButton('primary', 'Применить', 'saveButton');
+  const save = createButton('submit', 'Применить', 'saveButton');
   const back=createHref('tmp-form_button', 'Назад', 'profile');
   form.appendChild(title);
   form.appendChild(firstNameLabel);
@@ -69,5 +69,6 @@ function createProfileEditForm(data) {
   form.appendChild(changeAvatarButton);
   form.appendChild(save);
   form.appendChild(back);
+  form.method='POST';
   return form;
 }

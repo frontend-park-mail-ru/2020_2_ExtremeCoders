@@ -1,23 +1,37 @@
+/**
+ * implementation of signup form
+ */
 class Signup {
+    /**
+     * constructor
+     * @param props
+     */
     constructor(props) {
     }
 
+    /**
+     * adding signup form to our page
+     */
     render() {
         const application = document.getElementById('app')
         application.appendChild(this.createSignUpForm());
     }
 
+    /**
+     * Generation of signup form
+     * @returns {HTMLFormElement}
+     */
     createSignUpForm() {
         const form = document.createElement('form');
 
-        const title = createText('h1', 'Регистрация', 'signup_title');
-        const imya = createInput('name', 'Введите имя', 'imya');
-        const surname=createInput('surname', 'Введите фамилию', 'surname');
-        const email = createInput('email', 'Введите email', 'email');
-        const password1 = createInput('password', 'Введите пароль', 'password1');
-        const password2 = createInput('password', 'Повторите пароль', 'password2');
-        const image = createInput('file', 'Выберете аватар', 'img');
-        const date = createInput('date', 'Введите свою дату рождения', 'date');
+        const title = createText('h1', 'Регистрация', 'signup_title', "");
+        const imya = createInput('name', 'Введите имя', 'imya', "");
+        const surname=createInput('surname', 'Введите фамилию', 'surname', "");
+        const email = createInput('email', 'Введите email', 'email', "");
+        const password1 = createInput('password', 'Введите пароль', 'password1', "");
+        const password2 = createInput('password', 'Повторите пароль', 'password2', "");
+        const image = createInput('file', 'Выберете аватар', 'img', "");
+        const date = createInput('date', 'Введите свою дату рождения', 'date', "");
 
         const confirmButton = createButton('submit', 'Зарегистрироваться', 'confirmSignupButton');
         const backButton = createHref('tmp-form_button', 'Назад', 'menu');
