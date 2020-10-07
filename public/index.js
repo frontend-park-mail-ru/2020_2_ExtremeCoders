@@ -86,6 +86,26 @@ function send(method, url, data, callback) {
 }
 
 /**
+ * validation email
+ * @param email
+ * @returns {boolean}
+ */
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+/**
+ * validation for inputs
+ * @param data
+ * @returns {boolean}
+ */
+function validateData(data) {
+    var re = /[0-9a-z]+/i;
+    return re.test(data);
+}
+
+/**
  * full implementation of signup page
  */
 function signupPage() {
@@ -96,6 +116,25 @@ function signupPage() {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
+    if (!validateEmail(form.email.value.trim())){
+        alert('Не корректный email адрес');
+        return;
+    }
+    if(!validateData(form.imya.value.trim())){
+        alert('Не корректное имя\n' +
+            'Данные могу содержать: a-z, A-Z, 0-9');
+        return;
+    }
+      if(!validateData(form.surname.value.trim())){
+          alert('Не корректная фамилия\n' +
+              'Данные могу содержать: a-z, A-Z, 0-9');
+          return;
+      }
+      if(!validateData(form.password1.value.trim())){
+          alert('Не корректный пароль\n' +
+              'Данные могу содержать: a-z, A-Z, 0-9');
+          return;
+      }
     if (form.password1.value !== form.password2.value){
       alert('Пароли не совпадают');
       return;
@@ -106,7 +145,7 @@ function signupPage() {
     user.name=form.imya.value.trim();
     user.surname=form.surname.value.trim();
     user.email=form.email.value.trim();
-    user.date=form.date.value.trim();
+    //user.date=form.date.value.trim();
     user.img=form.img.value.trim();
     user.password=form.password1.value.trim();
 
@@ -156,6 +195,17 @@ function loginPage() {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
+      if(!validateEmail(form.email.value.trim())){
+          alert('Не корректный email\n' +
+              'Данные могу содержать: a-z, A-Z, 0-9');
+          return;
+      }
+      if(!validateData(form.password1.value.trim())){
+          alert('Не корректный пароль\n' +
+              'Данные могу содержать: a-z, A-Z, 0-9');
+          return;
+      }
+
     const email = form.email.value.trim();
     const password = form.password1.value.trim();
 
@@ -202,6 +252,7 @@ function profilePage() {
       .then(function (data) {
           let person = JSON.parse(data);
           let isAuthorized = false;
+
           if (person.Code === 200) {
               isAuthorized = true;
           }
@@ -232,6 +283,16 @@ function profilePageEdit(user){
 
     form.addEventListener('submit', (evt) => {
         evt.preventDefault();
+        if(!validateData(form.profile_firstName.value.trim())){
+            alert('Не корректное имя\n' +
+                'Данные могу содержать: a-z, A-Z, 0-9');
+            return;
+        }
+        if(!validateData(form.profile_lastName.value.trim())){
+            alert('Не корректная фамилия\n' +
+                'Данные могу содержать: a-z, A-Z, 0-9');
+            return;
+        }
         console.log("HEEEEEEEEREEEEEEE:::::::::::::::")
         let name=form.profile_firstName.value.trim();
         let surname=form.profile_lastName.value.trim();

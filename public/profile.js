@@ -30,7 +30,7 @@ function createProfileForm(data) {
   form.appendChild(title);
   form.appendChild(name);
   form.appendChild(login);
-  form.appendChild(birthDate);
+ // form.appendChild(birthDate);
   form.appendChild(avatar);
   form.appendChild(edit);
   form.appendChild(back);
@@ -63,7 +63,7 @@ function createProfileEditForm(data) {
   form.appendChild(lastNameLabel);
   form.appendChild(lastName);
   form.appendChild(birthDateLabel);
-  form.appendChild(birthDate);
+ // form.appendChild(birthDate);
   form.appendChild(avatarLabel);
   form.appendChild(avatar);
   form.appendChild(changeAvatarButton);
