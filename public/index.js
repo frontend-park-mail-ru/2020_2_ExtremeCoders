@@ -56,8 +56,8 @@ function menuPage() {
  * @returns {Promise<Response>}
  */
 function send(method, url, data, callback) {
-
-  let rawUrl='http://95.163.209.195:8080'+url;
+    // 95.163.209.195
+  let rawUrl='http://127.0.0.1:8080'+url;
   console.log("KEK:::::::::",JSON.stringify(data), rawUrl)
     if(method==='POST'){
         return fetch(rawUrl,
@@ -201,23 +201,18 @@ function profilePage() {
   })
       .then(function (data) {
           let person = JSON.parse(data);
-          console.log("LOLEZ::::::::::::", data, person.Code)
           let isAuthorized = false;
           if (person.Code === 200) {
-              console.log("HERE::::::::::::")
               isAuthorized = true;
           }
           if (person.Code === 401) {
               isAuthorized = false;
           }
           if (isAuthorized) {
-              console.log("WTF::::::::::::")
               let form= createProfileForm(person.User);
               application.appendChild(form)
               form.addEventListener('submit', () => {
-                  console.log("HERE_TOO::::::::::::")
-                  application.innerHTML = '';
-                  application.appendChild(createProfileEditForm(person.User));
+                    profilePageEdit(person.User);
               });
               return;
           }
@@ -229,6 +224,50 @@ function profilePage() {
       //     console.log('error', error)
       // });
 }
+
+function profilePageEdit(user){
+    application.innerHTML = '';
+    let form=createProfileEditForm(user)
+    application.appendChild(form);
+
+    form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        console.log("HEEEEEEEEREEEEEEE:::::::::::::::")
+        let name=form.profile_firstName.value.trim();
+        let surname=form.profile_lastName.value.trim();
+            send(
+                'POST',
+                '/profile',
+                {
+                    Name:name,
+                    Surname: surname,
+                    //Date:form.profile_birthDate.value.trim(),
+                    // Img:user.form.profile_birthDate.value.trim(),
+                    // Password:user.password
+                },
+                (status, response) => {
+                    console.log(user);
+                    if (status === 200) {
+                        profilePage();
+                    } else {
+                        const {error} = JSON.parse(response);
+                        alert(error);
+                    }
+                }
+            ).then(function (response) {
+                return response.text()
+            })
+                .then(function (data) {
+                    console.log("DATA::::::::::::", data)
+                    profilePage()
+                }).catch(function (error) {
+                console.log('error', error)
+            });
+    });
+}
+
+
+
 
 /**
  * adding eventlistener on click action
