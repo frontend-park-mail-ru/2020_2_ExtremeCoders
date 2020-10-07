@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 const app = express();
 app.use(express.json());
@@ -6,11 +6,11 @@ const req = require('request');
 fetch = require('node-fetch')
 
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + '/public'));
 /**
  * send get request
  */
-app.get("/", function (request, response) {
+app.get('/', function (request, response) {
     console.log(request.method, request.url)
     response.redirect("public/index.html")
     // response.send(request.url)
@@ -18,7 +18,7 @@ app.get("/", function (request, response) {
 /**
  * send get request with /profile url on go server
  */
-app.get("/profile", function (request, response){
+app.get('/profile', function (request, response){
     console.log("KEK::::::::::::",request.method, request.url, request.body)
     req.get( {
             url:'http://localhost:8080' + request.url,
@@ -34,7 +34,7 @@ app.get("/profile", function (request, response){
  * send post request on go server
  */
 app.post(/.*$/, (request, response) => {
-    console.log("KEK::::::::::::",request.method, request.url, request.body)
+    console.log('KEK::::::::::::',request.method, request.url, request.body)
     req.post( {
             url:'http://localhost:8080' + request.url,
             form: request.body
