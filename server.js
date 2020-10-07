@@ -8,13 +8,17 @@ fetch = require('node-fetch')
 
 
 app.use(express.static(__dirname + "/public"));
-
+/**
+ * send get request
+ */
 app.get("/", function (request, response) {
     console.log(request.method, request.url)
     response.redirect("public/index.html")
     // response.send(request.url)
 });
-
+/**
+ * send get request with /profile url on go server
+ */
 app.get("/profile", function (request, response){
     console.log("KEK::::::::::::",request.method, request.url, request.body)
     req.get( {
@@ -27,7 +31,9 @@ app.get("/profile", function (request, response){
             response.send(body)
         })
 });
-
+/**
+ * send post request on go server
+ */
 app.post(/.*$/, (request, response) => {
     console.log("KEK::::::::::::",request.method, request.url, request.body)
     req.post( {
