@@ -18,13 +18,13 @@ function createImage(src, width, height) {
  */
 function createProfileForm(data) {
   console.log("PROFILE_DATA:::::::", data)
-  const profileInfo = JSON.parse(data);
+  const profileInfo = data;
   const form = document.createElement('form');
   const title = createText('h1', 'Профиль', 'profile_title');
-  const name = createText('h1', `${profileInfo.firstName} ${profileInfo.lastName}`, 'profile_name');
-  const login = createText('h2', `Ваш логин: ${profileInfo.login}`, 'profile_login');
-  const birthDate = createText('h2', `Ваша дата рождения: ${profileInfo.birthDate}`, 'profile_birthDate');
-  const avatar = createImage(profileInfo.imageSource, 50, 50);
+  const name = createText('h1', `${profileInfo.Name} ${profileInfo.Surname}`, 'profile_name');
+  const login = createText('h2', `Ваш логин: ${profileInfo.Email}`, 'profile_login');
+  const birthDate = createText('h2', `Ваша дата рождения: ${profileInfo.Date}`, 'profile_birthDate');
+  const avatar = createImage(profileInfo.Img, 50, 50);
   const edit = createButton('submit', 'Редактировать', 'editButton');
   const back=createHref('tmp-form_button', 'Назад', 'menu');
   form.appendChild(title);
