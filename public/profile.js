@@ -23,7 +23,7 @@ function createProfileForm(data) {
   const title = createText('h1', 'Профиль', 'profile_title');
   const name = createText('h1', `${profileInfo.Name} ${profileInfo.Surname}`, 'profile_name');
   const login = createText('h2', `Ваш логин: ${profileInfo.Email}`, 'profile_login');
-  const birthDate = createText('h2', `Ваша дата рождения: ${profileInfo.Date}`, 'profile_birthDate');
+ // const birthDate = createText('h2', `Ваша дата рождения: ${profileInfo.Date}`, 'profile_birthDate');
   const avatar = createImage(profileInfo.Img, 50, 50);
   const edit = createButton('submit', 'Редактировать', 'editButton');
   const back=createHref('tmp-form_button', 'Назад', 'menu');
@@ -51,7 +51,7 @@ function createProfileEditForm(data) {
   const lastNameLabel = createText('h2', 'Фамилия: ', '');
   const lastName = createInput('text', `${profileInfo.Surname}`, 'profile_lastName',`${profileInfo.Surname}`);
   const birthDateLabel = createText('h2', 'Ваша дата рождения: ', '');
-  const birthDate = createInput('date', `${profileInfo.Date}`, 'profile_birthDate',`${profileInfo.Date}`);
+  //const birthDate = createInput('date', `${profileInfo.Date}`, 'profile_birthDate',`${profileInfo.Date}`);
   const avatarLabel = createText('h2', 'Аватар:  ', '');
   const avatar = createImage(profileInfo.Img, 50, 50);
   const changeAvatarButton = createInput('file', 'Заменить', 'changeAvatarButton');

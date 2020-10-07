@@ -31,7 +31,7 @@ class Signup {
         const password1 = createInput('password', 'Введите пароль', 'password1', "");
         const password2 = createInput('password', 'Повторите пароль', 'password2', "");
         const image = createInput('file', 'Выберете аватар', 'img', "");
-        const date = createInput('date', 'Введите свою дату рождения', 'date', "");
+        //const date = createInput('date', 'Введите свою дату рождения', 'date', "");
 
         const confirmButton = createButton('submit', 'Зарегистрироваться', 'confirmSignupButton');
         const backButton = createHref('tmp-form_button', 'Назад', 'menu');
@@ -41,7 +41,7 @@ class Signup {
         form.appendChild(email);
         form.appendChild(password1);
         form.appendChild(password2);
-        form.appendChild(date);
+        //form.appendChild(date);
         form.appendChild(image);
         form.appendChild(confirmButton);
         form.appendChild(backButton);
