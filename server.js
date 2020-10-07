@@ -11,13 +11,24 @@ app.use(express.static(__dirname + "/public"));
 app.get("/", function (request, response) {
     console.log(request.method, request.url)
     response.redirect("public/index.html")
-
-
     // response.send(request.url)
 });
 
+app.get("/profile", function (request, response){
+    console.log("KEK::::::::::::",request.method, request.url, request.body)
+    req.get( {
+            url:'http://localhost:8080' + request.url,
+        }
+        , (err, resp, body) => {
+
+            if (err)
+                return response.status(500).send({message: err})
+            response.send(body)
+        })
+});
+
 app.post(/.*$/, (request, response) => {
-    console.log("HUI::::::::::::",request.method, request.url, request.body)
+    console.log("KEK::::::::::::",request.method, request.url, request.body)
     req.post( {
             url:'http://localhost:8080' + request.url,
             form: request.body
@@ -26,7 +37,9 @@ app.post(/.*$/, (request, response) => {
 
             if (err)
                 return response.status(500).send({message: err})
+            // resp.setCookie()
             response.send(body)
+            //console.log("LOL::::::::::::",resp.cookie, body.cookie)
         })
 });
 

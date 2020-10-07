@@ -44,29 +44,34 @@ function menuPage() {
   ;
 }
 
-function send(method, url, data = null, callback) {
+function send(method, url, data, callback) {
 
-  let rawUrl='http://localhost:3000'+url;
+  let rawUrl='http://localhost:8080'+url;
   console.log("KEK:::::::::",JSON.stringify(data), rawUrl)
-  fetch(rawUrl,
-      {
-        method: method,
-          headers:{
-            'Content-Type': 'application/json'
-          },
-        body: JSON.stringify(data)
-      }
-  )
-      .then(function (response) {
-        return response.text()
-      })
-      .then(function (data) {
-        return data
-      })
-      .catch(function (error) {
-        console.log('error', error)
-      });
-
+    if(method==='POST'){
+        return fetch(rawUrl,
+            {
+                method: method,
+                mode: 'cors',
+                credentials: 'include',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+        )
+    } else{
+        return fetch(rawUrl,
+            {
+                method: method,
+                mode: 'cors',
+                credentials: 'include',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+            }
+        )
+    }
 }
 
 function signupPage() {
@@ -105,7 +110,16 @@ function signupPage() {
             alert(error);
           }
         }
-    )
+    ).then(function (response) {
+        return response.text()
+    })
+        .then(function (data) {
+            console.log("DATA::::::::::::", data)
+            profilePage()
+        })
+        .catch(function (error) {
+            console.log('error', error)
+        });
 
   });
   application.appendChild(form);
@@ -142,27 +156,42 @@ function loginPage() {
 function profilePage() {
   application.innerHTML = '';
 
+  let userData
   send('GET', '/profile', null, (status, responseText) => {
-    let isAuthorized = false;
-    if (status === 200) {
-      isAuthorized = true;
-    }
-    if (status === 401) {
-      isAuthorized = false;
-    }
-    if (isAuthorized) {
-     let form= createProfileForm(responseText);
-      application.appendChild(form)
-      edit.addEventListener('click', () => {
-        application.innerHTML = '';
-        application.appendChild(createProfileEditForm(data));
+      userData=responseText
+      console.log("SEND::::::::::", userData)
+  }).then(function (response) {
+      return response.text()
+  })
+      .then(function (data) {
+          let person = JSON.parse(data);
+          console.log("LOLEZ::::::::::::", data, person.Code)
+          let isAuthorized = false;
+          if (person.Code === 200) {
+              console.log("HERE::::::::::::")
+              isAuthorized = true;
+          }
+          if (person.Code === 401) {
+              isAuthorized = false;
+          }
+          if (isAuthorized) {
+              console.log("WTF::::::::::::")
+              let form= createProfileForm(userData);
+              application.appendChild(form)
+              form.addEventListener('submit', () => {
+                  console.log("HERE_TOO::::::::::::")
+                  application.innerHTML = '';
+                  application.appendChild(createProfileEditForm(userData));
+              });
+              return;
+          }
+          alert('Эта страница доступна только для авторизированных пользователей');
+          loginPage();
+          return data
       });
-      return;
-    }
-
-    alert('Эта страница доступна только для авторизированных пользователей');
-    loginPage();
-  });
+      // .catch(function (error) {
+      //     console.log('error', error)
+      // });
 }
 
 application.addEventListener('click', (evt) => {
