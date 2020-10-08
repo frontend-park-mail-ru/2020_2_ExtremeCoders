@@ -54,7 +54,7 @@ function createProfileEditForm(data) {
     //const birthDate = createInput('date', `${profileInfo.Date}`, 'profile_birthDate',`${profileInfo.Date}`);
     const avatarLabel = createText('h2', 'Аватар:  ', '');
     const avatar = createImage(profileInfo.Img, 50, 50);
-    // const changeAvatarButton = createInput('file', 'Заменить', 'changeAvatarButton');
+     const changeAvatarButton = createInput('file', 'Заменить', 'avatar');
     const save = createButton('submit', 'Применить', 'saveButton');
     const back = createHref('tmp-form_button', 'Назад', 'profile');
     form.appendChild(title);
@@ -66,21 +66,10 @@ function createProfileEditForm(data) {
     // form.appendChild(birthDate);
     form.appendChild(avatarLabel);
     form.appendChild(avatar);
-    //form.appendChild(changeAvatarButton);
-    form.appendChild(save);
-    form.appendChild(back);
-    form.method = 'POST';
-    return form;
-}
-
-function createChangeAvatarForm() {
-    const form = document.createElement('form');
-    let changeAvatarButton = createInput('file', 'Заменить', 'avatar');
-    changeAvatarButton.id = 'avatarBtn'
-    const save = createButton('submit', 'Изменить аватар', 'saveButton');
     form.appendChild(changeAvatarButton);
     form.appendChild(save);
-    form.method = 'POST';
+    form.appendChild(back);
     form.enctype = 'multipart/form-data';
+    form.method = 'POST';
     return form;
 }
