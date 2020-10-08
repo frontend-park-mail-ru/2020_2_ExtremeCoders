@@ -23,6 +23,9 @@ const config = {
   },
 };
 
+const serverUrl = 'http://localhost:8080'
+//const serverUrl = 'http://95.163.209.195:8080'
+
 /**
  * rendering mainPage on page
  */
@@ -52,13 +55,10 @@ function menuPage() {
  * @param method of our request
  * @param url of our request
  * @param data of our request
- * @param callback of our request
- * @param contentType
  * @returns {Promise<Response>}
  */
-function send(method, url, data, callback ) {
-    // 95.163.209.195
-  let rawUrl='http://localhost:8080'+url;
+function send(method, url, data) {
+  let rawUrl=serverUrl+url;
   console.log("KEK:::::::::",JSON.stringify(data), rawUrl)
     if(method==='POST'){
         return fetch(rawUrl,
@@ -158,16 +158,7 @@ function signupPage() {
             //Date:user.date,
             Img:user.img,
             Password:user.password
-        }),
-        (status, response) => {
-          console.log(user);
-          if (status === 200) {
-            profilePage();
-          } else {
-            const {error} = JSON.parse(response);
-            alert(error);
-          }
-        }
+        })
     ).then(function (response) {
         return response.text()
     })
@@ -210,15 +201,7 @@ function loginPage() {
     send(
         'POST',
         '/signin',
-        JSON.stringify({email, password}),
-        (status, response) => {
-          if (status === 200) {
-            profilePage();
-          } else {
-            const {error} = JSON.parse(response);
-            alert(error);
-          }
-        }
+        JSON.stringify({email, password})
     ).then(function (response) {
         return response.text()
     })
@@ -241,10 +224,8 @@ function profilePage() {
   application.innerHTML = '';
 
   let userData
-  send('GET', '/profile', null, (status, responseText) => {
-      userData=responseText
-      console.log("SEND::::::::::", userData)
-  }).then(function (response) {
+  send('GET', '/profile', null)
+      .then(function (response) {
       return response.text()
   })
       .then(function (data) {
@@ -268,10 +249,10 @@ function profilePage() {
           alert('Эта страница доступна только для авторизированных пользователей');
           loginPage();
           return data
+      })
+      .catch(function (error) {
+          console.log('error', error)
       });
-      // .catch(function (error) {
-      //     console.log('error', error)
-      // });
 }
 
 function profilePageEdit(user){
@@ -280,67 +261,17 @@ function profilePageEdit(user){
     application.appendChild(form);
     form.addEventListener('submit', (evt) => {
         evt.preventDefault();
-        if(!validateData(form.profile_firstName.value.trim())){
-            alert('Не корректное имя\n' +
-                'Данные могу содержать: a-z, A-Z, 0-9');
-            return;
-        }
-        if(!validateData(form.profile_lastName.value.trim())){
-            alert('Не корректная фамилия\n' +
-                'Данные могу содержать: a-z, A-Z, 0-9');
-            return;
-        }
-        console.log("HEEEEEEEEREEEEEEE:::::::::::::::")
-        let name=form.changeAvatarButton.value.trim();
-        let surname=form.profile_lastName.value.trim();
-            send(
-                'POST',
-                '/profile',
-                JSON.stringify({
-                    Name:name,
-                    Surname: surname,
-                    //Date:form.profile_birthDate.value.trim(),
-                    // Img:user.form.profile_birthDate.value.trim(),
-                    // Password:user.password
-                }),
-                (status, response) => {
-                    console.log(user);
-                    if (status === 200) {
-                        profilePage();
-                    } else {
-                        const {error} = JSON.parse(response);
-                        alert(error);
-                    }
-                }
-            ).then(function (response) {
-                return response.text()
-            })
-                .then(function (data) {
-                    console.log("DATA::::::::::::", data)
-                    profilePage()
-                }).catch(function (error) {
-                console.log('error', error)
-            });
-    });
-
-    let avatarForm = createChangeAvatarForm()
-    application.appendChild(avatarForm);
-    avatarForm.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-        let data = document.getElementById("avatarBtn").files[0]
-        let f =  new FormData(avatarForm)
-        console.log("SEEEND AVATAAR:::::::::::::::",f, "SUUUUUUCK")
+        let f =  new FormData(form)
+        console.log("SEEEND AVATAAR::::",f)
 
        let promise =  fetch(
-            'http://localhost:8080/sendimg',
+            serverUrl+'/profile',
             {
                 method:'POST',
                 mode: 'cors',
                 credentials: 'include',
                 body: f
-                // Password:user.password
             })
-
 
         promise.then(function (response) {
             console.log("sendimg ",user);
@@ -360,9 +291,6 @@ function profilePageEdit(user){
      });
 
 }
-
-
-
 
 /**
  * adding eventlistener on click action
