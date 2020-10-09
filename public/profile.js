@@ -25,6 +25,7 @@ function createProfileForm(data) {
     const login = createText('h2', `Ваш логин: ${profileInfo.Email}`, 'profile_login');
     // const birthDate = createText('h2', `Ваша дата рождения: ${profileInfo.Date}`, 'profile_birthDate');
     const avatar = createImage(profileInfo.Img, 50, 50);
+    avatar.id = "avatar"
     const edit = createButton('submit', 'Редактировать', 'editButton');
     const back = createHref('tmp-form_button', 'Назад', 'menu');
     form.appendChild(title);
