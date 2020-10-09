@@ -70,3 +70,15 @@ function createHref(className, text, section) {
     button.dataset.section = section;
     return button;
 }
+
+function createInvalidInput(className, type, text, name, value){
+    const input = document.createElement('input');
+    input.className=className;
+    input.type = type;
+    input.name = name;
+    input.placeholder = text;
+    if (value !==undefined){
+        input.value=value;
+    }
+    return input;
+}

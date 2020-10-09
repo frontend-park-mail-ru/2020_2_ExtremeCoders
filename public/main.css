@@ -8,6 +8,8 @@
     --error: red;
     --font-size: 20px;
     --usualborder:2px solid black;
+    --trueborder:2px solid green;
+    --errorborder:2px solid red;
     --mainBackGround:#EDE5A6;
     --buttonHeigh:40px;
     --inputHeigh:30px;
@@ -71,6 +73,27 @@ input:focus{
     box-shadow:  0 0 0 4px var(--inputFocus);
 }
 
+.inputValid{
+    height: var(--inputHeigh);
+    font-size: var(--font-size);
+    padding: 0 10px;
+    border-radius: 10px;
+    outline: none;
+    box-shadow:  0 0 0 2px var(--buttonView);
+    margin: 4px;
+    border: var(--trueborder);
+}
+
+.inputInvalid{
+    height: var(--inputHeigh);
+    font-size: var(--font-size);
+    padding: 0 10px;
+    border-radius: 10px;
+    outline: none;
+    box-shadow:  0 0 0 2px var(--buttonView);
+    margin: 4px;
+    border: var(--errorborder);
+}
 
 body{
     font-family: Arial, Helvetica, sans-serif;

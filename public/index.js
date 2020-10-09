@@ -57,7 +57,7 @@ function menuPage() {
  */
 function send(method, url, data, callback) {
     // 95.163.209.195
-  let rawUrl='http://95.163.209.195:8080'+url;
+  let rawUrl='http://localhost:8080'+url;
   console.log("KEK:::::::::",JSON.stringify(data), rawUrl)
     if(method==='POST'){
         return fetch(rawUrl,
@@ -115,33 +115,40 @@ function signupPage() {
 
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-
+    let stopSubmit=false
     if (!validateEmail(form.email.value.trim())){
-        alert('Не корректный email адрес');
-        return;
+
     }
-    if(!validateData(form.imya.value.trim())){
-        alert('Не корректное имя\n' +
-            'Данные могу содержать: a-z, A-Z, 0-9');
-        return;
+
+      if(!validateData(form.imya.value.trim())){
+          form.imya.className="inputInvalid"
+          form.imya.setCustomValidity('Не корректное имя\n' +
+                   'Данные могу содержать: a-z, A-Z, 0-9');
+          return ;
     }
+
       if(!validateData(form.surname.value.trim())){
-          alert('Не корректная фамилия\n' +
+          form.surname.className="inputInvalid"
+          form.surname.setCustomValidity('Не корректная фамилия\n' +
               'Данные могу содержать: a-z, A-Z, 0-9');
+          return;
+      }
+      if (form.password1.value !== form.password2.value){
+          form.password2.className="inputInvalid"
+          form.password2.setCustomValidity('Пароли не совпадают');
+          form.password1.className="inputInvalid"
+          form.password1.setCustomValidity('Пароли не совпадают');
           return;
       }
       if(!validateData(form.password1.value.trim())){
-          alert('Не корректный пароль\n' +
+          form.password2.className="inputInvalid"
+          form.password2.setCustomValidity('Не корректный пароль\n' +
+              'Данные могу содержать: a-z, A-Z, 0-9');
+          form.password1.className="inputInvalid"
+          form.password1.setCustomValidity('Не корректный пароль\n' +
               'Данные могу содержать: a-z, A-Z, 0-9');
           return;
       }
-    if (form.password1.value !== form.password2.value){
-      alert('Пароли не совпадают');
-      return;
-    }
-    // const email =
-    // const password = passwordInput.value.trim();
-
     user.name=form.imya.value.trim();
     user.surname=form.surname.value.trim();
     user.email=form.email.value.trim();
@@ -196,12 +203,14 @@ function loginPage() {
     evt.preventDefault();
 
       if(!validateEmail(form.email.value.trim())){
-          alert('Не корректный email\n' +
+          form.email.className="inputInvalid"
+          form.email.setCustomValidity('Не корректный email\n' +
               'Данные могу содержать: a-z, A-Z, 0-9');
           return;
       }
       if(!validateData(form.password1.value.trim())){
-          alert('Не корректный пароль\n' +
+          form.password1.className="inputInvalid"
+          form.password1.setCustomValidity('Не корректный пароль\n' +
               'Данные могу содержать: a-z, A-Z, 0-9');
           return;
       }
@@ -284,12 +293,14 @@ function profilePageEdit(user){
     form.addEventListener('submit', (evt) => {
         evt.preventDefault();
         if(!validateData(form.profile_firstName.value.trim())){
-            alert('Не корректное имя\n' +
+            form.profile_firstName.className="inputInvalid"
+            form.profile_firstName.setCustomValidity('Не корректное имя\n' +
                 'Данные могу содержать: a-z, A-Z, 0-9');
             return;
         }
         if(!validateData(form.profile_lastName.value.trim())){
-            alert('Не корректная фамилия\n' +
+            form.profile_lastName.className="inputInvalid"
+            form.profile_lastName.setCustomValidity('Не корректная фамилия\n' +
                 'Данные могу содержать: a-z, A-Z, 0-9');
             return;
         }
