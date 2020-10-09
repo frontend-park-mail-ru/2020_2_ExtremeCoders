@@ -25,12 +25,12 @@ class Signup {
         const form = document.createElement('form');
 
         const title = createText('h1', 'Регистрация', 'signup_title', "");
-        const imya = createInput('name', 'Введите имя', 'imya', "");
+        const imya = createInput('name', 'Введите имя', 'name', "");
         const surname=createInput('surname', 'Введите фамилию', 'surname', "");
         const email = createInput('email', 'Введите email', 'email', "");
         const password1 = createInput('password', 'Введите пароль', 'password1', "");
         const password2 = createInput('password', 'Повторите пароль', 'password2', "");
-        const image = createInput('file', 'Выберете аватар', 'img', "");
+        const image = createInput('file', 'Выберете аватар', 'avatar', "");
         //const date = createInput('date', 'Введите свою дату рождения', 'date', "");
 
         const confirmButton = createButton('submit', 'Зарегистрироваться', 'confirmSignupButton');
@@ -46,6 +46,7 @@ class Signup {
         form.appendChild(confirmButton);
         form.appendChild(backButton);
         form.method='POST'
+        form.enctype = 'multipart/form-data';
         return form;
     }
 }

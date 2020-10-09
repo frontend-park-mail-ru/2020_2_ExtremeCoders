@@ -108,17 +108,17 @@ function validateData(data) {
  */
 function signupPage() {
   application.innerHTML=''
-  let hui=new Signup()
-  let form=hui.createSignUpForm()
+  let signup=new Signup()
+  let form=signup.createSignUpForm()
 
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+   form.addEventListener('submit', (evt) => {
+   evt.preventDefault();
 
     if (!validateEmail(form.email.value.trim())){
         alert('Не корректный email адрес');
         return;
     }
-    if(!validateData(form.imya.value.trim())){
+    if(!validateData(form.name.value.trim())){
         alert('Не корректное имя\n' +
             'Данные могу содержать: a-z, A-Z, 0-9');
         return;
@@ -137,39 +137,34 @@ function signupPage() {
       alert('Пароли не совпадают');
       return;
     }
-    // const email =
-    // const password = passwordInput.value.trim();
-
-    user.name=form.imya.value.trim();
-    user.surname=form.surname.value.trim();
-    user.email=form.email.value.trim();
-    //user.date=form.date.value.trim();
-    user.img=form.img.value.trim();
-    user.password=form.password1.value.trim();
 
 
-    send(
-        'POST',
-        '/signup',
-        JSON.stringify({
-            Name:user.name,
-            Surname: user.surname,
-            Email:user.email,
-            //Date:user.date,
-            Img:user.img,
-            Password:user.password
-        })
-    ).then(function (response) {
-        return response.text()
-    })
-        .then(function (data) {
-            console.log("DATA::::::::::::", data)
-            profilePage()
-        })
-        .catch(function (error) {
-            console.log('error', error)
-        });
+      let f =  new FormData(form)
+      console.log("SEEEND AVATAAR::::",f)
+      let promise =  fetch(
+          serverUrl+'/signup',
+          {
+              method:'POST',
+              mode: 'cors',
+              credentials: 'include',
+              body: f
+          })
 
+      promise.then(function (response) {
+          console.log("signup ",user);
+          if (response.status === 200) {
+          } else {
+              const {error} = JSON.parse(response);
+              alert(error);
+          }
+          return response.text()
+      })
+          .then(function (data) {
+              console.log("signup SEEEND AVATAAR DATA::::::::::::", data)
+              profilePage()
+          }).catch(function (error) {
+          console.log('error', error)
+      });
   });
   application.appendChild(form);
 }
@@ -179,10 +174,13 @@ function signupPage() {
  */
 function loginPage() {
   application.innerHTML = '';
-  let hui=new SignIn()
-  let form=hui.createSignInForm()
+  let signIn=new SignIn()
+  let form=signIn.createSignInForm()
   form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+
+      evt.preventDefault();
+      let f =  new FormData(form)
+      console.log("SEEEND LOGIN::::",f)
 
       if(!validateEmail(form.email.value.trim())){
           alert('Не корректный email\n' +
@@ -274,6 +272,20 @@ function profilePageEdit(user){
     application.innerHTML = '';
     let form = createProfileEditForm(user)
     application.appendChild(form);
+    send('GET', '/getAvatar', null)
+        .then(function (response) {
+            console.log("COOOOONTENT TYPE IMG", response.statusCode)
+            return response.blob()
+        })
+        .then(function (myBlob) {
+            let objectURL = URL.createObjectURL(myBlob);
+            let  myImage = document.getElementById("avatar")
+            myImage.src = objectURL;
+        })
+        .catch(function (error) {
+            console.log('error', error)
+        });
+
     form.addEventListener('submit', (evt) => {
         evt.preventDefault();
         let f =  new FormData(form)
