@@ -253,6 +253,21 @@ function profilePage() {
       .catch(function (error) {
           console.log('error', error)
       });
+
+
+    send('GET', '/getAvatar', null)
+        .then(function (response) {
+            console.log("COOOOONTENT TYPE IMG", response.statusCode)
+            return response.blob()
+        })
+        .then(function (myBlob) {
+            let objectURL = URL.createObjectURL(myBlob);
+            let  myImage = document.getElementById("avatar")
+            myImage.src = objectURL;
+        })
+        .catch(function (error) {
+            console.log('error', error)
+        });
 }
 
 function profilePageEdit(user){
