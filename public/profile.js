@@ -55,7 +55,8 @@ function createProfileEditForm(data) {
     //const birthDate = createInput('date', `${profileInfo.Date}`, 'profile_birthDate',`${profileInfo.Date}`);
     const avatarLabel = createText('h2', 'Аватар:  ', '');
     const avatar = createImage(profileInfo.Img, 50, 50);
-     const changeAvatarButton = createInput('file', 'Заменить', 'avatar');
+    avatar.id = "avatar"
+    const changeAvatarButton = createInput('file', 'Заменить', 'avatar');
     const save = createButton('submit', 'Применить', 'saveButton');
     const back = createHref('tmp-form_button', 'Назад', 'profile');
     form.appendChild(title);
