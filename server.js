@@ -4,7 +4,6 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 const req = require('request');
-fetch = require('node-fetch');
 
 app.use(express.static(`${__dirname}/public`));
 /**

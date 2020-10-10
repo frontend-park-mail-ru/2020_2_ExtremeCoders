@@ -1,5 +1,5 @@
 import { User } from './components';
-import { Signup } from './signup';
+import Signup from './signup';
 import SignIn from './login';
 import { createProfileForm, createProfileEditForm } from './profile';
 
