@@ -1,3 +1,7 @@
+import {
+  createText, createButton, createHref, createInput,
+} from './components';
+
 /**
  * Creates image with specified parameters and returns it as an object
  * @param {string} src - image source path
@@ -16,14 +20,12 @@ function createImage(src, width, height) {
  * Creates form with profile-related data and returns it as an objct
  * @param {string} data - profile data in JSON format
  */
-function createProfileForm(data) {
-  console.log('PROFILE_DATA:::::::', data);
+export function createProfileForm(data) {
   const profileInfo = data;
   const form = document.createElement('form');
   const title = createText('h1', 'Профиль', 'profile_title');
   const name = createText('h1', `${profileInfo.Name} ${profileInfo.Surname}`, 'profile_name');
   const login = createText('h2', `Ваш логин: ${profileInfo.Email}`, 'profile_login');
-  // const birthDate = createText('h2', `Ваша дата рождения: ${profileInfo.Date}`, 'profile_birthDate');
   const avatar = createImage(profileInfo.Img, 50, 50);
   avatar.id = 'avatar';
   const edit = createButton('submit', 'Редактировать', 'editButton');
@@ -31,7 +33,6 @@ function createProfileForm(data) {
   form.appendChild(title);
   form.appendChild(name);
   form.appendChild(login);
-  // form.appendChild(birthDate);
   form.appendChild(avatar);
   form.appendChild(edit);
   form.appendChild(back);
@@ -43,7 +44,7 @@ function createProfileForm(data) {
  * Creates form for profile editing and returns it as an object
  * @param {string} data - profile data in JSON format
  */
-function createProfileEditForm(data) {
+export function createProfileEditForm(data) {
   const profileInfo = data;
   const form = document.createElement('form');
   const title = createText('h1', 'Редактирование профиля', 'profile_title');
@@ -52,7 +53,6 @@ function createProfileEditForm(data) {
   const lastNameLabel = createText('h2', 'Фамилия: ', '');
   const lastName = createInput('text', `${profileInfo.Surname}`, 'profile_lastName', `${profileInfo.Surname}`);
   const birthDateLabel = createText('h2', 'Ваша дата рождения: ', '');
-  // const birthDate = createInput('date', `${profileInfo.Date}`, 'profile_birthDate',`${profileInfo.Date}`);
   const avatarLabel = createText('h2', 'Аватар:  ', '');
   const avatar = createImage(profileInfo.Img, 50, 50);
   avatar.id = 'avatar';
@@ -65,7 +65,6 @@ function createProfileEditForm(data) {
   form.appendChild(lastNameLabel);
   form.appendChild(lastName);
   form.appendChild(birthDateLabel);
-  // form.appendChild(birthDate);
   form.appendChild(avatarLabel);
   form.appendChild(avatar);
   form.appendChild(changeAvatarButton);

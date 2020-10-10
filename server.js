@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const express = require('express');
 
 const app = express();
@@ -18,29 +19,25 @@ app.get('/', (request, response) => {
  * send get request with /profile url on go server
  */
 app.get('/profile', (request, response) => {
-  console.log('KEK::::::::::::', request.method, request.url, request.body);
   req.get({
     url: `http://localhost:8080${request.url}`,
   },
-  (err, resp, body) => {
-    if (err) return response.status(500).send({ message: err });
-    response.send(body);
+  (err, body) => {
+    if (err) response.status(500).send({ message: err });
+    else response.send(body);
   });
 });
 /**
  * send post request on go server
  */
 app.post(/.*$/, (request, response) => {
-  console.log('KEK::::::::::::', request.method, request.url, request.body);
   req.post({
     url: `http://localhost:8080${request.url}`,
     form: request.body,
   },
   (err, resp, body) => {
-    if (err) return response.status(500).send({ message: err });
-    // resp.setCookie()
-    response.send(body);
-    // console.log("LOL::::::::::::",resp.cookie, body.cookie)
+    if (err) response.status(500).send({ message: err });
+    else response.send(body);
   });
 });
 

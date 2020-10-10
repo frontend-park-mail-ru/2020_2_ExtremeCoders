@@ -1,14 +1,11 @@
+import {
+  createText, createInput, createButton, createHref,
+} from './components';
+
 /**
  * implementation of signup form
  */
-class Signup {
-  /**
-     * constructor
-     * @param props
-     */
-  constructor(props) {
-  }
-
+export default class Signup {
   /**
      * adding signup form to our page
      */
@@ -21,7 +18,7 @@ class Signup {
      * Generation of signup form
      * @returns {HTMLFormElement}
      */
-  createSignUpForm() {
+  static createSignUpForm() {
     const form = document.createElement('form');
 
     const title = createText('h1', 'Регистрация', 'signup_title', '');
