@@ -147,12 +147,6 @@ function signupPage() {
           return;
       }
 
-    user.name=form.imya.value.trim();
-    user.surname=form.surname.value.trim();
-    user.email=form.email.value.trim();
-    //user.date=form.date.value.trim();
-    user.img=form.img.value.trim();
-    user.password=form.password1.value.trim();
 
       let f =  new FormData(form)
       console.log("SEEEND AVATAAR::::",f)
