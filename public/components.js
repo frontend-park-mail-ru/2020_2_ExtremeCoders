@@ -1,10 +1,12 @@
-let user={
-    name:"",
-    surname:"",
-    email:"",
-    password:"",
-    date:"",
-    img:"",
+export class User {
+  constructor() {
+    this.name = '';
+    this.surname = '';
+    this.email = '';
+    this.password = '';
+    this.date = '';
+    this.img = '';
+  }
 }
 
 /**
@@ -15,16 +17,15 @@ let user={
  * @param value
  * @returns {HTMLInputElement}
  */
-function createInput(type, text, name, value) {
-
-    const input = document.createElement('input');
-    input.type = type;
-    input.name = name;
-    input.placeholder = text;
-    if (value !==undefined){
-        input.value=value;
-    }
-    return input;
+export function createInput(type, text, name, value) {
+  const input = document.createElement('input');
+  input.type = type;
+  input.name = name;
+  input.placeholder = text;
+  if (value !== undefined) {
+    input.value = value;
+  }
+  return input;
 }
 
 /**
@@ -34,11 +35,11 @@ function createInput(type, text, name, value) {
  * @param name
  * @returns {*}
  */
-function createText(tag, text, name) {
-    const someText = document.createElement(tag);
-    someText.name = name;
-    someText.textContent = text;
-    return someText;
+export function createText(tag, text, name) {
+  const someText = document.createElement(tag);
+  someText.name = name;
+  someText.textContent = text;
+  return someText;
 }
 
 /**
@@ -48,12 +49,12 @@ function createText(tag, text, name) {
  * @param name
  * @returns {HTMLButtonElement}
  */
-function createButton(className, text, name) {
-    const button = document.createElement('button');
-    button.className = className;
-    button.textContent = text;
-    button.name = name;
-    return button;
+export function createButton(className, text, name) {
+  const button = document.createElement('button');
+  button.className = className;
+  button.textContent = text;
+  button.name = name;
+  return button;
 }
 
 /**
@@ -63,22 +64,22 @@ function createButton(className, text, name) {
  * @param section
  * @returns {HTMLAnchorElement}
  */
-function createHref(className, text, section) {
-    const button = document.createElement('a');
-    button.className = className;
-    button.textContent = text;
-    button.dataset.section = section;
-    return button;
+export function createHref(className, text, section) {
+  const button = document.createElement('a');
+  button.className = className;
+  button.textContent = text;
+  button.dataset.section = section;
+  return button;
 }
 
-function createInvalidInput(className, type, text, name, value){
-    const input = document.createElement('input');
-    input.className=className;
-    input.type = type;
-    input.name = name;
-    input.placeholder = text;
-    if (value !==undefined){
-        input.value=value;
-    }
-    return input;
+export function createInvalidInput(className, type, text, name, value) {
+  const input = document.createElement('input');
+  input.className = className;
+  input.type = type;
+  input.name = name;
+  input.placeholder = text;
+  if (value !== undefined) {
+    input.value = value;
+  }
+  return input;
 }

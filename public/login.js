@@ -1,38 +1,21 @@
+import {
+  createText, createInput, createButton, createHref,
+} from './components';
+
 /**
  * Implementation of signin
  */
-class SignIn {
-    constructor(props) {
-    }
-
-    render() {
-        const application = document.getElementById('app')
-        application.appendChild(this.createSignInForm());
-    }
-
-    createSignInForm() {
-        const form = document.createElement('form');
-
-        const title = createText('h1', 'Вход', 'signup_title');
-        const email = createInput('email', 'Введите логин', 'email');
-        const password1 = createInput('password', 'Введите пароль', 'password1');
-
-        const confirmButton = createButton('submit', 'Войти', 'confirmSignupButton');
-        const backButton = createHref('tmp-form_button', 'Регистрация', 'signup');
-        form.appendChild(title);
-        form.appendChild(email);
-        form.appendChild(password1);
-        form.appendChild(confirmButton);
-        form.appendChild(backButton);
-        form.method='POST';
-        return form;
-    }
+export default class SignIn {
+  render() {
+    const application = document.getElementById('app');
+    application.appendChild(this.createSignInForm());
+  }
 
   /**
    * adding signin form to our page
    */
-  render() {
-    const application = document.getElementById('app')
+  static render() {
+    const application = document.getElementById('app');
     application.appendChild(this.createSignInForm());
   }
 
@@ -40,12 +23,12 @@ class SignIn {
    * Generation of signin form
    * @returns {HTMLFormElement}
    */
-  createSignInForm() {
+  static createSignInForm() {
     const form = document.createElement('form');
 
     const title = createText('h1', 'Вход', 'signup_title');
-    const email = createInput('email', 'Введите логин', 'email', "");
-    const password1 = createInput('password', 'Введите пароль', 'password1', "");
+    const email = createInput('email', 'Введите логин', 'email', '');
+    const password1 = createInput('password', 'Введите пароль', 'password1', '');
 
     const confirmButton = createButton('submit', 'Войти', 'confirmSignupButton');
     const backButton = createHref('tmp-form_button', 'Регистрация', 'signup');
@@ -54,8 +37,7 @@ class SignIn {
     form.appendChild(password1);
     form.appendChild(confirmButton);
     form.appendChild(backButton);
-    form.method='POST';
+    form.method = 'POST';
     return form;
   }
 }
-
