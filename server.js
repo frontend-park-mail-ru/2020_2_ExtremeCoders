@@ -12,7 +12,6 @@ app.use(express.static(`${__dirname}/public`));
 app.get('/', (request, response) => {
   console.log(request.method, request.url);
   response.redirect('public/index.html');
-  // response.send(request.url)
 });
 /**
  * send get request with /profile url on go server

@@ -30,7 +30,6 @@ const config = {
 };
 
 const serverUrl = 'http://localhost:8080';
-// const serverUrl = 'http://95.163.209.195:8080'
 
 /**
  * rendering mainPage on page

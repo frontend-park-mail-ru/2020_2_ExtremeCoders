@@ -1,6 +1,8 @@
 # 2020_2_ExtremeCoders
 Фронтенд команды "ExtremeCoders". Технопарк@mail.ru, осень, 2020
 
+[Деплой](https://95.163.209.195:3000)
+
 [Репозиторий бэка](https://github.com/go-park-mail-ru/2020_2_ExtremeCoders/)
 
 ## Состав
