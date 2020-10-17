@@ -1,6 +1,6 @@
 import {
   createText, createButton, createHref, createInput,
-} from './components';
+} from './components.js';
 
 /**
  * Creates image with specified parameters and returns it as an object

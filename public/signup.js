@@ -1,6 +1,6 @@
 import {
   createText, createInput, createButton, createHref,
-} from './components';
+} from './components.js';
 
 /**
  * implementation of signup form

@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define */
-import { User } from './components';
-import Signup from './signup';
-import SignIn from './login';
-import { createProfileForm, createProfileEditForm } from './profile';
+import { User } from './components.js';
+import Signup from './signup.js';
+import SignIn from './login.js';
+import { createProfileForm, createProfileEditForm } from './profile.js';
 
 const application = document.getElementById('app');
 
@@ -109,7 +109,7 @@ function validateData(data) {
 function loginPage() {
   application.innerHTML = '';
   const signIn = new SignIn();
-  const form = signIn.createSignInForm();
+  const form = SignIn.createSignInForm();
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     if (!validateEmail(form.email.value.trim())) {
@@ -184,7 +184,7 @@ function profilePage() {
 function signupPage() {
   application.innerHTML = '';
   const signup = new Signup();
-  const form = signup.createSignUpForm();
+  const form = Signup.createSignUpForm();
 
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -225,7 +225,7 @@ function signupPage() {
     user.name = form.name.value.trim();
     user.surname = form.surname.value.trim();
     user.email = form.email.value.trim();
-    user.img = form.img.value.trim();
+    user.img = form.avatar.value.trim();
     user.password = form.password1.value.trim();
 
     const f = new FormData(form);
