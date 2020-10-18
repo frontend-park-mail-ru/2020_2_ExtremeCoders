@@ -1,0 +1,45 @@
+button {
+  position: relative;
+  width: 284px;
+  height: 41px;
+}
+
+.button-content-container {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  /* Prussian Blue */
+
+  background: #003554;
+  /* Rich Black FOGRA 29 */
+
+  border: 1px solid #051923;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.button-caption {
+  position: absolute;
+  width: 55px;
+  height: 21px;
+  left: calc(50% - 55px / 2 + 0.5px);
+  top: calc(50% - 21px / 2);
+
+  /* Content */
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+
+  text-align: center;
+
+  /* Yellow Crayola */
+
+  color: #fff07c;
+}
