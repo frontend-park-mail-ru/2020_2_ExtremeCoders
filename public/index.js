@@ -145,6 +145,7 @@ function loginPage() {
  */
 function profilePage() {
   application.innerHTML = '';
+  application.innerHTML = '';
 
   send('GET', '/profile', null)
     .then((response) => response.text())

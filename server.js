@@ -5,13 +5,14 @@ const app = express();
 app.use(express.json());
 const req = require('request');
 
-app.use(express.static(`${__dirname}/public`));
+//app.use(express.static(`${__dirname}/public`));
+app.use(express.static(`${__dirname}/MVC`));
 /**
  * send get request
  */
 app.get('/', (request, response) => {
   console.log(request.method, request.url);
-  response.redirect('public/index.html');
+  response.redirect('MVC/index.html');
 });
 /**
  * send get request with /profile url on go server

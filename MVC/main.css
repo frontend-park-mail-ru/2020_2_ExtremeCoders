@@ -1,0 +1,165 @@
+
+
+:root {
+    --buttonView: #52B788;
+    --buttonHover: #498467;
+    --buttonActive: #B2D3A8;
+    --inputFocus: #592941;
+    --error: red;
+    --font-size: 20px;
+    --usualborder:2px solid black;
+    --trueborder:2px solid green;
+    --errorborder:2px solid red;
+    --mainBackGround:#EDE5A6;
+    --buttonHeigh:40px;
+    --inputHeigh:30px;
+
+    --secbuttonView: #7abf9f;
+    --secbuttonHover: #698878;
+    --secbuttonActive: #B2D3A8;
+}
+
+button{
+    height: var(--buttonHeigh);
+    font-size: var(--font-size);
+
+    padding: 0 20px;
+    border-radius: 10px;
+    background: var(--buttonView);
+    color: black;
+    cursor: pointer;
+    border: var(--usualborder);
+}
+
+button:hover{
+    background: var(--buttonHover);
+}
+
+button:active{
+    background: var(--buttonActive);
+}
+
+
+button[disabled]{
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+}
+
+button.secondary{
+    background: var(--buttonView);
+}
+
+button.secondary:hover{
+    background: var(--buttonHover);
+}
+
+button.secondary:active{
+    background: var(--buttonActive);
+}
+
+input {
+    height: var(--inputHeigh);
+    font-size: var(--font-size);
+    padding: 0 10px;
+    border-radius: 10px;
+    outline: none;
+    border: var(--usualborder);
+    box-shadow:  0 0 0 2px var(--buttonView);
+    margin: 4px;
+}
+
+input:focus{
+    box-shadow:  0 0 0 4px var(--inputFocus);
+}
+
+.inputValid{
+    height: var(--inputHeigh);
+    font-size: var(--font-size);
+    padding: 0 10px;
+    border-radius: 10px;
+    outline: none;
+    box-shadow:  0 0 0 2px var(--buttonView);
+    margin: 4px;
+    border: var(--trueborder);
+}
+
+.inputInvalid{
+    height: var(--inputHeigh);
+    font-size: var(--font-size);
+    padding: 0 10px;
+    border-radius: 10px;
+    outline: none;
+    box-shadow:  0 0 0 2px var(--buttonView);
+    margin: 4px;
+    border: var(--errorborder);
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--mainBackGround);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    cellspacing:0;
+    cellpadding:4;
+    align: right;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.error{
+    color: var(--error);
+}
+
+
+.submit-form_button{
+    text-decoration: none;
+    height: var(--buttonHeigh);
+    font-size: var(--font-size);
+    padding: 0 20px;
+    border-radius: 10px;
+    background: var(--buttonView);
+    color: black;
+    cursor: pointer;
+    border: var(--usualborder);
+}
+
+.submit-form_button:hover{
+    text-decoration: none;
+    background: var(--buttonHover);
+}
+
+.submit-form_button:active{
+    text-decoration: none;
+    background: var(--buttonActive);
+}
+
+.tmp-form_button{
+    text-decoration: none;
+    height: var(--buttonHeigh);
+    font-size: var(--font-size);
+    padding: 0 20px;
+    border-radius: 10px;
+    background: var(--secbuttonView);
+    color: black;
+    cursor: pointer;
+    border: var(--usualborder);
+}
+
+.tmp-form_button:hover{
+    text-decoration: none;
+    background: var(--secbuttonHover);
+}
+
+.tmp-form_button:active{
+    text-decoration: none;
+    background: var(--secbuttonActive);
+}
