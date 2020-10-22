@@ -16,7 +16,7 @@ export default class SignInView {
         this.element.innerHTML = '';
         const form = document.createElement('form');
         const title = createText('h1', 'Вход', 'signup_title');
-        const email = createInput('email', 'Введите логин', 'email', '');
+        const email = createInput('text', 'Введите логин', 'email', '');
         const password1 = createInput('password', 'Введите пароль', 'password', '');
         const confirmButton = createButton('submit', 'Войти', 'confirmSignupButton');
         const signUpButton = createButton('tmp-form_button', 'Регистрация', 'signup');
@@ -51,6 +51,17 @@ export default class SignInView {
     }
 
     showErrors(errors){
-        console.log("SIGN IN Errors", errors)
+        console.log("SIGN IN ERRORS SHOW", errors.errors)
+        let passwordField = document.getElementsByName('password')[0]
+        let emailField = document.getElementsByName('email')[0]
+        console.log(errors['password'])
+        if(errors['password']){
+            passwordField.value = '';
+            passwordField.placeholder = errors['password']
+        }
+        if(errors['email']){
+            emailField.value = '';
+            emailField.placeholder = errors['email']
+        }
     }
 }

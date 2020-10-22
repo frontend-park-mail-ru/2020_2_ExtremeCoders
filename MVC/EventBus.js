@@ -4,7 +4,7 @@ class EventBus {
      * menu.on('select', function(item) { ... }
      */
     on(eventName, handler) {
-        console.log("ON", eventName, handler, "EB", this);
+        // console.log("ON", eventName, handler, "EB", this);
         if (!this._eventHandlers) this._eventHandlers = {};
         if (!this._eventHandlers[eventName]) {
             this._eventHandlers[eventName] = [];

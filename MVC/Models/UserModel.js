@@ -1,5 +1,6 @@
 import {Pathes, Events} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
+import validator from "./Validator.js";
 
 export default class UserModel {
     //http://localhost:8080
@@ -13,6 +14,14 @@ export default class UserModel {
     }
 
     signIn(data) {
+        let errors = validator.checkSignInForm(data.data);
+        if (Object.keys(errors).length !== 0) {
+            console.log("ERRORS IN SIGN IN ", errors,);
+            globalEventBus.emit(Events.userModelEvents.signIn.fail,
+                errors
+            )
+            return;
+        }
         console.log("SIGN IN ", data, this.baseUrl + Pathes.signIn);
         let promise = fetch(this.baseUrl + Pathes.signIn,
             {
@@ -23,13 +32,24 @@ export default class UserModel {
             })
         promise.then((response) => response.json())
             .then((response) => {
-                console.log("RESP SIGN IN", response);
+                    // console.log("RESP SIGN IN", response);
                 if (response.Code === 200) {
                     this.getUserData(Events.userModelEvents.signIn);
                 } else {
-                    globalEventBus.emit(Events.userModelEvents.signIn.fail, {
-                        error: response.Description
-                    });
+                    if (response.Code === 401) {
+                        globalEventBus.emit(Events.userModelEvents.signIn.fail, {
+                            password: response.Description
+                        })
+
+                    } else if (response.Code === 404) {
+                        globalEventBus.emit(Events.userModelEvents.signIn.fail, {
+                            email: response.Description
+                        });
+                    } else {
+                        globalEventBus.emit(Events.userModelEvents.signIn.fail, {
+                             unknowError: response.Description
+                        });
+                    }
                 }
             })
             .catch((error) => {
@@ -38,7 +58,14 @@ export default class UserModel {
     }
 
     signUp(data) {
-        console.log("SIGN UP ", data, this.baseUrl + Pathes.signUp);
+        let errors = validator.checkSignUpForm(data.data)
+        if (Object.keys(errors).length !== 0) {
+            console.log("ERRORS IN SIGN UP ", errors);
+            globalEventBus.emit(Events.userModelEvents.signUp.fail,
+                errors
+            )
+            return;
+        }
         let promise = fetch(this.baseUrl + Pathes.signUp,
             {
                 method: 'POST',
@@ -53,7 +80,7 @@ export default class UserModel {
                     this.getUserData(Events.userModelEvents.signUp);
                 } else {
                     globalEventBus.emit(Events.userModelEvents.signUp.fail, {
-                        error: response.Description
+                        email: response.Description
                     });
                 }
             })
@@ -104,9 +131,7 @@ export default class UserModel {
                     this.user.surname = response.User.Surname;
                     this.user.avatar = "";
                 } else {
-                    // globalEventBus.emit(eventType.fail, {
-                    //     error: response.Description
-                    // })
+
                     throw new Error(response.Description);
                 }
             });
@@ -133,7 +158,7 @@ export default class UserModel {
             },
             (error) => {
                 globalEventBus.emit(eventType.fail, {
-                    error: error.message
+                    errors: error.message
                 });
             })
     }

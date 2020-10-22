@@ -15,7 +15,7 @@ export default class SignUpView {
         const title = createText('h1', 'Регистрация', 'signup_title', '');
         const imya = createInput('name', 'Введите имя', 'name', '');
         const surname = createInput('surname', 'Введите фамилию', 'surname', '');
-        const email = createInput('email', 'Введите email', 'email', '');
+        const email = createInput('text', 'Введите email', 'email', '');
         const password1 = createInput('password', 'Введите пароль', 'password1', '');
         const password2 = createInput('password', 'Повторите пароль', 'password2', '');
         const image = createInput('file', 'Выберете аватар', 'avatar', '');
@@ -40,13 +40,40 @@ export default class SignUpView {
             globalEventBus.emit(Events.signUpViewEvents.submit, {target: 'SignUpView', data: new FormData(form)});
         })
         backButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            globalEventBus.emit(Events.global.goBack);
+                event.preventDefault();
+                globalEventBus.emit(Events.global.goBack);
             }
         )
     }
 
     showErrors(errors) {
-        console.log("SIGN UP Errors", errors)
+        console.log("SIGN UP ERRORS SHOW", errors)
+        let emailField = document.getElementsByName('email')[0];
+        let passwordField1 = document.getElementsByName('password1')[0];
+        let passwordField2 = document.getElementsByName('password2')[0];
+        let nameField = document.getElementsByName('name')[0];
+        let surnameField = document.getElementsByName('surname')[0];
+
+        console.log(errors['password1'])
+        if (errors['password1']) {
+            passwordField1.value = '';
+            passwordField1.placeholder = errors['password1'];
+        }
+        else if(errors['password2']) {
+            passwordField2.value = '';
+            passwordField2.placeholder = errors['password2'];
+        }
+        if (errors['email']) {
+            emailField.value = '';
+            emailField.placeholder = errors['email'];
+        }
+        if (errors['name']) {
+            nameField.value = '';
+            nameField.placeholder = errors['name'];
+        }
+        if (errors['surname']) {
+            surnameField.value = '';
+            surnameField.placeholder = errors['surname'];
+        }
     }
 }
