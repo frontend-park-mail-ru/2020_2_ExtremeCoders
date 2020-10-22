@@ -1,77 +1,94 @@
+import {Pathes, Events} from "../Constants.js";
+import {globalEventBus} from "../EventBus.js";
+
 export default class UserModel {
+    //http://localhost:8080
     constructor(url) {
-        this.baseUrl = url
-        this.user = {}
+        this.baseUrl = url;
+        this.user = {};
+        globalEventBus.on(Events.signInViewEvents.submit, this.signIn.bind(this));
+        globalEventBus.on(Events.signUpViewEvents.submit, this.signUp.bind(this));
+        globalEventBus.on(Events.profileEditViewEvents.submit, this.editUser.bind(this));
     }
 
     signIn(data) {
-        let promise = fetch(this.baseUrl + 'signin',
+        console.log("SIGN IN ", data, this.baseUrl + Pathes.signIn);
+        let promise = fetch(this.baseUrl + Pathes.signIn,
             {
                 method: 'POST',
                 mode: 'cors',
                 credentials: 'include',
-                body: data,
+                body: data.data,
             })
         promise.then((response) => response.json())
             .then((response) => {
                 console.log("RESP SIGN IN", response);
                 if (response.Code === 200) {
-                    this.getUserData('signin');
+                    this.getUserData(Events.userModelEvents.signIn);
                 } else {
-                    this.emit('signin', {
-                        success: false, error: response.Description
+                    globalEventBus.emit(Events.userModelEvents.signIn.fail, {
+                        error: response.Description
                     });
                 }
+            })
+            .catch((error) => {
+                console.log("CAAAAAAAAAAAAAAAATCH", error)
             });
     }
 
     signUp(data) {
-        let promise = fetch(this.baseUrl + 'signup',
+        console.log("SIGN UP ", data, this.baseUrl + Pathes.signUp);
+        let promise = fetch(this.baseUrl + Pathes.signUp,
             {
                 method: 'POST',
                 mode: 'cors',
                 credentials: 'include',
-                body: data,
+                body: data.data,
             })
         promise.then((response) => response.json())
             .then((response) => {
                 console.log("RESP SIGN UP UP", response.Code, response);
                 if (response.Code === 200) {
-                    this.getUserData('signup');
+                    this.getUserData(Events.userModelEvents.signUp);
                 } else {
-                    this.emit('sinup', {
-                        success: false, error: response.Description
+                    globalEventBus.emit(Events.userModelEvents.signUp.fail, {
+                        error: response.Description
                     });
                 }
+            })
+            .catch((error) => {
+                console.log("CAAAAAAAAAAAAAAAATCH", error)
             });
     }
 
 
     editUser(data) {
-        let promise = fetch(this.baseUrl + 'profile',
+        let promise = fetch(this.baseUrl + Pathes.profile,
             {
                 method: 'POST',
                 mode: 'cors',
                 credentials: 'include',
-                body: data,
+                body: data.data,
             })
         promise.then((response) => response.json())
             .then((response) => {
                 console.log("RESP SIGN UP UP", response.Code, response);
                 if (response.Code === 200) {
-                    this.getUserData('signup');
+                    this.getUserData(Events.userModelEvents.profileEdit);
                 } else {
-                    this.emit('editUser', {
-                        success: false, error: response.Description
+                    globalEventBus.emit(Events.userModelEvents.profileEdit.fail, {
+                        error: response.Description
                     });
                 }
+            })
+            .catch((error) => {
+                console.log("CAAAAAAAAAAAAAAAATCH", error)
             });
     }
 
-    getUserData(event) {
-        let context = this;
-        console.log("GET USER DATA", event)
-        let promise1 = fetch(this.baseUrl + 'profile',
+    getUserData(eventType) {
+        console.log("GET USER DATA", eventType)
+        let promise1 = fetch(this.baseUrl + Pathes.profile,
             {
                 method: 'GET',
                 mode: 'cors',
@@ -86,13 +103,13 @@ export default class UserModel {
                     this.user.surname = response.User.Surname;
                     this.user.avatar = "";
                 } else {
-                    this.emit(event, {
-                        success: false, error: response.Description
+                    globalEventBus.emit(eventType.fail, {
+                        error: response.Description
                     })
                 }
             });
 
-        let promise2 = fetch(this.baseUrl + 'getAvatar',
+        let promise2 = fetch(this.baseUrl + '/getAvatar',
             {
                 method: 'GET',
                 mode: 'cors',
@@ -110,12 +127,11 @@ export default class UserModel {
             (result) => {
                 console.log("УСПЕХ");
                 console.log('USER', this.user);
-                this.emit(event, {success: true, user: this.user});
+                globalEventBus.emit(eventType.success, this.user);
             },
-
             (error) => {
-                this.emit(event, {
-                    success: false, error: error.message
+                globalEventBus.emit(eventType.fail, {
+                    error: error.message
                 });
             })
     }
@@ -124,6 +140,5 @@ export default class UserModel {
     }
 
     getLetterList() {
-
     }
 }

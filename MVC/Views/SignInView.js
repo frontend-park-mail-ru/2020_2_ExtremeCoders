@@ -1,8 +1,15 @@
 import {createButton, createHref, createInput, createText} from "./components.js";
 
+import {Events,Pathes} from "../Constants.js";
+import {globalEventBus} from "../EventBus.js";
+
+
 export default class SignInView {
+
     constructor(element) {
         this.element = element;
+        globalEventBus.on(Events.userModelEvents.signIn.fail, this.showErrors.bind(this));
+
     }
 
     render() {
@@ -24,21 +31,26 @@ export default class SignInView {
 
         form.method = 'POST';
         this.element.appendChild(form);
-        //кажется, тут не должно быть вообще обработчиков?
+
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             let formData = new FormData(form);
-            //console.log('FORMDATA', formData.get('email'));
-            this.emit('submit', {target: 'SignInView', data: formData});
+            globalEventBus.emit(Events.signInViewEvents.submit, {target: 'SignInView', data: formData});
         })
 
-        backButton.addEventListener('click', () => {
-                this.emit('goBack');
+        backButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            globalEventBus.emit(Events.global.goBack);
             }
         )
 
-        signUpButton.addEventListener('click', () => {
-            this.emit('goToPath', {path:'/signup'});
+        signUpButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            globalEventBus.emit(Events.global.redirect, {path: Pathes.signUp});
         })
+    }
+
+    showErrors(errors){
+        console.log("SIGN IN Errors", errors)
     }
 }

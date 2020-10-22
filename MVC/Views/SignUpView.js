@@ -1,8 +1,12 @@
 import {createButton, createHref, createInput, createText, createImage} from "./components.js";
+import {Pathes, Events} from "../Constants.js";
+import {globalEventBus} from "../EventBus.js";
+
 
 export default class SignUpView {
     constructor(element) {
         this.element = element;
+        globalEventBus.on(Events.userModelEvents.signUp.fail, this.showErrors.bind(this));
     }
 
     render() {
@@ -33,11 +37,16 @@ export default class SignUpView {
         //кажется, тут не должно быть вообще обработчиков?
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            this.emit('submit', {target: 'SignUpView', data: new FormData(form)});
+            globalEventBus.emit(Events.signUpViewEvents.submit, {target: 'SignUpView', data: new FormData(form)});
         })
-        backButton.addEventListener('click', () => {
-                this.emit('goBack');
+        backButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            globalEventBus.emit(Events.global.goBack);
             }
         )
+    }
+
+    showErrors(errors) {
+        console.log("SIGN UP Errors", errors)
     }
 }

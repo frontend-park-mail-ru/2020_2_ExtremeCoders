@@ -1,42 +1,41 @@
+import {Events, Pathes} from "../Constants.js";
+import {globalEventBus} from "../EventBus.js";
+
 export default class Router {
     constructor() {
         this.registeredPathes = {}
-        window.onpopstate = ((event)=>{
+        window.onpopstate = ((event) => {
+            event.preventDefault();
             console.log("HISTORY EVENT", event);
-            this.go(event.state.path, event.state.data);
+            //this.go(event.path, event.data);
         })
+        globalEventBus.on(Events.global.redirect, this.go.bind(this));
+        globalEventBus.on(Events.global.goBack, this.back.bind(this));
+
     }
 
     register(path, view) {
         this.registeredPathes[path] = view;
-        // view.on('goToPath', (path) => {
-        //         this.emit("")
-        //     }
-        // )
-        // view.on('goBack', ()=>{
-        //     this.back();
-        // })
     }
 
     // запустить роутер
     start(path, data) {
-        window.history.pushState({path:path, data:data}, 'Start', path);
-        // this.on('goToPath', (path, data) => {
-        //     console.log('GO TO PATH', path);
-        //     this.go(path, data);
-        // });
+        window.history.pushState({path: path, data: (data || 1)}, 'Start', path);
         this.registeredPathes[path].render(data);
     }
 
-    go(path, data) {
-        // window.history.pushState({path:path, data:data}, 'HZ', path);
-        this.registeredPathes[path].render(data);
-        window.history.pushState({path:path, data:data}, path, path);
+    go(event) {
+        console.log("GOOO", event);
+        if (event) {
+            this.registeredPathes[event.path].render(event.data || 1);
+            window.history.pushState({path: event.path, data: (event.data || 1)}, event.path, event.path);
+        }
     }
 
-    back(){
+    back() {
+        console.log("I'L BE BACK");
         window.history.back();
-    }
 
+    }
 
 }

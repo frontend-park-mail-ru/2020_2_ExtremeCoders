@@ -1,8 +1,11 @@
 import {createButton, createHref, createInput, createText, createImage} from "./components.js";
+import {globalEventBus} from "../EventBus.js";
+import {Events} from "../Constants.js";
 
 export default class ProfileEditView {
     constructor(element) {
         this.element = element;
+        globalEventBus.on(Events.userModelEvents.profileEdit.fail, this.showErrors.bind(this));
     }
 
     /**
@@ -19,9 +22,8 @@ export default class ProfileEditView {
         const lastName = createInput('text', `${data.surname}`, 'profile_lastName', `${data.surname}`);
         const birthDateLabel = createText('h2', 'Ваша дата рождения: ', '');
         const avatarLabel = createText('h2', 'Аватар:  ', '');
-        const avatar = createImage(data.Img, 50, 50);
+        const avatar = createImage(data.avatar, 50, 50);
         avatar.id = 'avatar';
-        avatar.src = data.avatar;
         const changeAvatarButton = createInput('file', 'Заменить', 'avatar');
         const save = createButton('button', 'Применить', 'saveButton');
         const backButton = createButton('tmp-form_button', 'Назад', 'back');
@@ -42,14 +44,21 @@ export default class ProfileEditView {
         //кажется, тут не должно быть вообще обработчиков?
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            this.emit('submit', {target: 'ProfileEditView', data: new FormData(form)});
+            globalEventBus.emit(Events.profileEditViewEvents.submit, {
+                target: 'ProfileEditView',
+                data: new FormData(form)
+            });
         })
 
-        backButton.addEventListener('click', () => {
-                this.emit('goBack');
+        backButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                globalEventBus.emit(Events.global.goBack);
             }
         )
+    }
 
+    showErrors(errors){
+        console.log("PROFILE EDIT Errors", errors)
     }
 
 }
