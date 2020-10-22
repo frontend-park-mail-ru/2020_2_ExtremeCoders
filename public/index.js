@@ -1,50 +1,89 @@
 const application = document.getElementById('app');
 
+let isLoggedIn = false
+
 const config = {
-  menu: {
-    href: '/menu',
-    text: 'Главная',
-    open: menuPage,
-  },
-  signup: {
-    href: '/signup',
-    text: 'Зарегистрироваться',
-    open: signupPage,
-  },
-  login: {
-    href: '/signin',
-    text: 'Авторизоваться',
-    open: loginPage,
-},
-  profile: {
-    href: '/profile',
-    text: 'Профиль',
-    open: profilePage,
-  },
+    menu: {
+        href: '/menu',
+        text: 'Главная',
+        open: menuPage,
+    },
+    signup: {
+        href: '/signup',
+        text: 'Зарегистрироваться',
+        open: signupPage,
+    },
+    login: {
+        href: '/signin',
+        text: 'Авторизоваться',
+        open: loginPage,
+    },
+    profile: {
+        href: '/profile',
+        text: 'Профиль',
+        open: profilePage,
+    },
+    logout: {
+        href: '/logout',
+        text: 'Выйти',
+        open: logout,
+    },
 };
 
 /**
  * rendering mainPage on page
  */
 function menuPage() {
-  application.innerHTML = '';
-  Object
-      .keys(config)
-      .map((menuKey) => {
-        const {href, text} = config[menuKey];
 
-        const menuItem = document.createElement('a');
-        menuItem.href = href;
-        menuItem.className='submit-form_button'
-        menuItem.textContent = text;
-        menuItem.dataset.section = menuKey;
+    isLoggedIn = checkLogin()
+    application.innerHTML = '';
+    // application.innerHTML+=inputTemplate({val:"kek"});
 
-        return menuItem;
-      })
-      .forEach((element) => {
-        application.appendChild(element);
-      })
-  ;
+    Object
+        .keys(config)
+        .map((menuKey) => {
+            const {href, text} = config[menuKey];
+
+            const menuItem = document.createElement('a');
+            menuItem.href = href;
+            menuItem.className = 'submit-form_button'
+            menuItem.textContent = text;
+            menuItem.dataset.section = menuKey;
+
+            return menuItem;
+        })
+        .forEach((element) => {
+            console.log(isLoggedIn)
+            if (isLoggedIn === true) {
+                if (element.text === 'Профиль') {
+                    application.appendChild(element);
+                } else if (element.text === 'Выйти') {
+                    application.appendChild(element);
+                }
+            } else {
+                if (element.text !== 'Профиль' && element.text !== 'Выйти') {
+                    application.appendChild(element);
+                }
+            }
+        })
+    ;
+}
+
+function checkLogin() {
+    send('GET', '/profile', null, (status, responseText) => {
+    }).then(function (response) {
+        return response.text()
+    })
+        .then(function (data) {
+            let person = JSON.parse(data);
+            console.log("PERSON:::::::", person);
+            if (person.Code === 200) {
+                return true;
+            }
+            if (person.Code === 401) {
+                return false;
+            }
+        });
 }
 
 /**
@@ -57,27 +96,27 @@ function menuPage() {
  */
 function send(method, url, data, callback) {
     // 95.163.209.195
-  let rawUrl='http://localhost:8080'+url;
-  console.log("KEK:::::::::",JSON.stringify(data), rawUrl)
-    if(method==='POST'){
+    let rawUrl = 'http://localhost:8080' + url;
+    console.log("KEK:::::::::", JSON.stringify(data), rawUrl)
+    if (method === 'POST') {
         return fetch(rawUrl,
             {
                 method: method,
                 mode: 'cors',
                 credentials: 'include',
-                headers:{
+                headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             }
         )
-    } else{
+    } else {
         return fetch(rawUrl,
             {
                 method: method,
                 mode: 'cors',
                 credentials: 'include',
-                headers:{
+                headers: {
                     'Content-Type': 'application/json'
                 },
             }
@@ -109,247 +148,292 @@ function validateData(data) {
  * full implementation of signup page
  */
 function signupPage() {
-  application.innerHTML=''
-  let hui=new Signup()
-  let form=hui.createSignUpForm()
+    application.innerHTML = ''
+    let hui = new Signup()
+    let form = hui.createSignUpForm()
 
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    let stopSubmit=false
-    if (!validateEmail(form.email.value.trim())){
+    form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+        let stopSubmit = false
+        if (!validateEmail(form.email.value.trim())) {
 
-    }
-
-      if(!validateData(form.imya.value.trim())){
-          form.imya.className="inputInvalid"
-          form.imya.setCustomValidity('Не корректное имя\n' +
-                   'Данные могу содержать: a-z, A-Z, 0-9');
-          return ;
-    }
-
-      if(!validateData(form.surname.value.trim())){
-          form.surname.className="inputInvalid"
-          form.surname.setCustomValidity('Не корректная фамилия\n' +
-              'Данные могу содержать: a-z, A-Z, 0-9');
-          return;
-      }
-      if (form.password1.value !== form.password2.value){
-          form.password2.className="inputInvalid"
-          form.password2.setCustomValidity('Пароли не совпадают');
-          form.password1.className="inputInvalid"
-          form.password1.setCustomValidity('Пароли не совпадают');
-          return;
-      }
-      if(!validateData(form.password1.value.trim())){
-          form.password2.className="inputInvalid"
-          form.password2.setCustomValidity('Не корректный пароль\n' +
-              'Данные могу содержать: a-z, A-Z, 0-9');
-          form.password1.className="inputInvalid"
-          form.password1.setCustomValidity('Не корректный пароль\n' +
-              'Данные могу содержать: a-z, A-Z, 0-9');
-          return;
-      }
-    user.name=form.imya.value.trim();
-    user.surname=form.surname.value.trim();
-    user.email=form.email.value.trim();
-    //user.date=form.date.value.trim();
-    user.img=form.img.value.trim();
-    user.password=form.password1.value.trim();
-
-
-    send(
-        'POST',
-        '/signup',
-        {
-            Name:user.name,
-            Surname: user.surname,
-            Email:user.email,
-            //Date:user.date,
-            Img:user.img,
-            Password:user.password
-        },
-        (status, response) => {
-          console.log(user);
-          if (status === 200) {
-            profilePage();
-          } else {
-            const {error} = JSON.parse(response);
-            alert(error);
-          }
         }
-    ).then(function (response) {
-        return response.text()
-    })
-        .then(function (data) {
-            console.log("DATA::::::::::::", data)
-            profilePage()
-        })
-        .catch(function (error) {
-            console.log('error', error)
-        });
 
-  });
-  application.appendChild(form);
+        if (!validateData(form.imya.value.trim())) {
+            form.imya.className = "inputInvalid"
+            form.imya.setCustomValidity('Не корректное имя\n' +
+                'Данные могу содержать: a-z, A-Z, 0-9');
+            return;
+        }
+
+        if (!validateData(form.surname.value.trim())) {
+            form.surname.className = "inputInvalid"
+            form.surname.setCustomValidity('Не корректная фамилия\n' +
+                'Данные могу содержать: a-z, A-Z, 0-9');
+            return;
+        }
+        if (form.password1.value !== form.password2.value) {
+            form.password2.className = "inputInvalid"
+            form.password2.setCustomValidity('Пароли не совпадают');
+            form.password1.className = "inputInvalid"
+            form.password1.setCustomValidity('Пароли не совпадают');
+            return;
+        }
+        if (!validateData(form.password1.value.trim())) {
+            form.password2.className = "inputInvalid"
+            form.password2.setCustomValidity('Не корректный пароль\n' +
+                'Данные могу содержать: a-z, A-Z, 0-9');
+            form.password1.className = "inputInvalid"
+            form.password1.setCustomValidity('Не корректный пароль\n' +
+                'Данные могу содержать: a-z, A-Z, 0-9');
+            return;
+        }
+        user.name = form.imya.value.trim();
+        user.surname = form.surname.value.trim();
+        user.email = form.email.value.trim();
+        //user.date=form.date.value.trim();
+        user.img = form.img.value.trim();
+        user.password = form.password1.value.trim();
+
+
+        send(
+            'POST',
+            '/signup',
+            {
+                Name: user.name,
+                Surname: user.surname,
+                Email: user.email,
+                //Date:user.date,
+                Img: user.img,
+                Password: user.password
+            },
+            (status, response) => {
+                console.log(user);
+                if (status === 200) {
+                    profilePage();
+                } else {
+                    const {error} = JSON.parse(response);
+                    alert(error);
+                }
+            }
+        ).then(function (response) {
+            return response.text()
+        })
+            .then(function (data) {
+                console.log("DATA::::::::::::", data)
+                isLoggedIn = true;
+                profilePage()
+            })
+            .catch(function (error) {
+                console.log('error', error)
+            });
+
+    });
+
+    let menuButton = createButton('submit', 'Меню', 'confirmSignupButton')
+    menuButton.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        menuPage();
+    });
+    application.appendChild(menuButton);
+    application.appendChild(form);
 }
 
 /**
  * full implementation of signin page
  */
 function loginPage() {
-  application.innerHTML = '';
-  let hui=new SignIn()
-  let form=hui.createSignInForm()
-  form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
+    application.innerHTML = '';
+    let hui = new SignIn()
+    let form = hui.createSignInForm()
+    form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
 
-      if(!validateEmail(form.email.value.trim())){
-          form.email.className="inputInvalid"
-          form.email.setCustomValidity('Не корректный email\n' +
-              'Данные могу содержать: a-z, A-Z, 0-9');
-          return;
-      }
-      if(!validateData(form.password1.value.trim())){
-          form.password1.className="inputInvalid"
-          form.password1.setCustomValidity('Не корректный пароль\n' +
-              'Данные могу содержать: a-z, A-Z, 0-9');
-          return;
-      }
-
-    const email = form.email.value.trim();
-    const password = form.password1.value.trim();
-
-    send(
-        'POST',
-        '/signin',
-        {email, password},
-        (status, response) => {
-          if (status === 200) {
-            profilePage();
-          } else {
-            const {error} = JSON.parse(response);
-            alert(error);
-          }
+        if (!validateEmail(form.email.value.trim())) {
+            form.email.className = "inputInvalid"
+            form.email.setCustomValidity('Не корректный email\n' +
+                'Данные могу содержать: a-z, A-Z, 0-9');
+            return;
         }
-    ).then(function (response) {
-        return response.text()
-    })
-        .then(function (data) {
-            console.log("DATA::::::::::::", data)
-            profilePage()
-        })
-        .catch(function (error) {
-            console.log('error', error)
-        });
+        if (!validateData(form.password1.value.trim())) {
+            form.password1.className = "inputInvalid"
+            form.password1.setCustomValidity('Не корректный пароль\n' +
+                'Данные могу содержать: a-z, A-Z, 0-9');
+            return;
+        }
 
-  });
-  application.appendChild(form);
+        const email = form.email.value.trim();
+        const password = form.password1.value.trim();
+
+        send(
+            'POST',
+            '/signin',
+            {email, password},
+            (status, response) => {
+                if (status === 200) {
+                    profilePage();
+                } else {
+                    const {error} = JSON.parse(response);
+                    alert(error);
+                }
+            }
+        ).then(function (response) {
+            return response.text()
+        })
+            .then(function (data) {
+                console.log("DATA::::::::::::", data)
+                isLoggedIn = true;
+                profilePage()
+            })
+            .catch(function (error) {
+                console.log('error', error)
+            });
+
+    });
+    let menuButton = createButton('submit', 'Меню', 'confirmSignupButton')
+    menuButton.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        menuPage();
+    });
+    application.appendChild(menuButton);
+    application.appendChild(form);
 }
 
 /**
  * full implementation of profilePage
  */
 function profilePage() {
-  application.innerHTML = '';
+    application.innerHTML = '';
 
-  let userData
-  send('GET', '/profile', null, (status, responseText) => {
-      userData=responseText
-      console.log("SEND::::::::::", userData)
-  }).then(function (response) {
-      return response.text()
-  })
-      .then(function (data) {
-          let person = JSON.parse(data);
-          let isAuthorized = false;
+    let userData
+    send('GET', '/profile', null, (status, responseText) => {
+        userData = responseText
+        console.log("SEND::::::::::", userData)
+    }).then(function (response) {
+        return response.text()
+    })
+        .then(function (data) {
+            let person = JSON.parse(data);
+            let isAuthorized = false;
 
-          if (person.Code === 200) {
-              isAuthorized = true;
-          }
-          if (person.Code === 401) {
-              isAuthorized = false;
-          }
-          if (isAuthorized) {
-              let form= createProfileForm(person.User);
-              application.appendChild(form)
-              form.addEventListener('submit', () => {
+            if (person.Code === 200) {
+                isAuthorized = true;
+            }
+            if (person.Code === 401) {
+                isAuthorized = false;
+            }
+            if (isAuthorized) {
+                let form = createProfileForm(person.User);
+                application.appendChild(form)
+                form.addEventListener('submit', () => {
                     profilePageEdit(person.User);
-              });
-              return;
-          }
-          alert('Эта страница доступна только для авторизированных пользователей');
-          loginPage();
-          return data
-      });
-      // .catch(function (error) {
-      //     console.log('error', error)
-      // });
+                });
+                return;
+            }
+            alert('Эта страница доступна только для авторизированных пользователей');
+            loginPage();
+            return data
+        });
+    // .catch(function (error) {
+    //     console.log('error', error)
+    // });
 }
 
-function profilePageEdit(user){
+function profilePageEdit(user) {
     application.innerHTML = '';
-    let form=createProfileEditForm(user)
+    let form = createProfileEditForm(user)
     application.appendChild(form);
 
     form.addEventListener('submit', (evt) => {
         evt.preventDefault();
-        if(!validateData(form.profile_firstName.value.trim())){
-            form.profile_firstName.className="inputInvalid"
+        if (!validateData(form.profile_firstName.value.trim())) {
+            form.profile_firstName.className = "inputInvalid"
             form.profile_firstName.setCustomValidity('Не корректное имя\n' +
                 'Данные могу содержать: a-z, A-Z, 0-9');
             return;
         }
-        if(!validateData(form.profile_lastName.value.trim())){
-            form.profile_lastName.className="inputInvalid"
+        if (!validateData(form.profile_lastName.value.trim())) {
+            form.profile_lastName.className = "inputInvalid"
             form.profile_lastName.setCustomValidity('Не корректная фамилия\n' +
                 'Данные могу содержать: a-z, A-Z, 0-9');
             return;
         }
         console.log("HEEEEEEEEREEEEEEE:::::::::::::::")
-        let name=form.profile_firstName.value.trim();
-        let surname=form.profile_lastName.value.trim();
-            send(
-                'POST',
-                '/profile',
-                {
-                    Name:name,
-                    Surname: surname,
-                    //Date:form.profile_birthDate.value.trim(),
-                    // Img:user.form.profile_birthDate.value.trim(),
-                    // Password:user.password
-                },
-                (status, response) => {
-                    console.log(user);
-                    if (status === 200) {
-                        profilePage();
-                    } else {
-                        const {error} = JSON.parse(response);
-                        alert(error);
-                    }
+        let name = form.profile_firstName.value.trim();
+        let surname = form.profile_lastName.value.trim();
+        send(
+            'POST',
+            '/profile',
+            {
+                Name: name,
+                Surname: surname,
+                //Date:form.profile_birthDate.value.trim(),
+                // Img:user.form.profile_birthDate.value.trim(),
+                // Password:user.password
+            },
+            (status, response) => {
+                console.log(user);
+                if (status === 200) {
+                    profilePage();
+                } else {
+                    const {error} = JSON.parse(response);
+                    alert(error);
                 }
-            ).then(function (response) {
-                return response.text()
-            })
-                .then(function (data) {
-                    console.log("DATA::::::::::::", data)
-                    profilePage()
-                }).catch(function (error) {
-                console.log('error', error)
-            });
+            }
+        ).then(function (response) {
+            return response.text()
+        })
+            .then(function (data) {
+                console.log("DATA::::::::::::", data)
+                profilePage()
+            }).catch(function (error) {
+            console.log('error', error)
+        });
     });
+    let menuButton = createButton('submit', 'Меню', 'confirmSignupButton')
+    menuButton.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        menuPage();
+    });
+    application.appendChild(menuButton);
 }
 
 
+function logout() {
+    send(
+        'POST',
+        '/logout',
+        (status, response) => {
+            if (status === 200) {
+                profilePage();
+            } else {
+                const {error} = JSON.parse(response);
+                alert(error);
+            }
+        }
+    ).then(function (response) {
+        return response.text()
+    })
+        .then(function (data) {
+            console.log("DATA::::::::::::", data)
+            isLoggedIn = false;
+            menuPage()
+        })
+        .catch(function (error) {
+            console.log('error', error)
+        });
+}
 
 
 /**
  * adding eventlistener on click action
  */
 application.addEventListener('click', (evt) => {
-  const {target} = evt;
-  if (target instanceof HTMLAnchorElement) {
-    evt.preventDefault();
-    config[target.dataset.section].open();
-  }
+    const {target} = evt;
+    if (target instanceof HTMLAnchorElement) {
+        evt.preventDefault();
+        config[target.dataset.section].open();
+    }
 });
 
 menuPage();
