@@ -9,9 +9,9 @@ export default class MenuView {
 
     render() {
         this.element.innerHTML = '';
-        const signInPage = createButton('tmp-form_button', 'Войти', 'menu');
-        const signUpPage = createButton('tmp-form_button', 'Зарегистрироваться', 'menu');
-        const profilePage = createButton('tmp-form_button', 'Профиль', 'menu');
+        const signInPage = createButton('button-content-container', 'Войти', 'menu');
+        const signUpPage = createButton('button-content-container', 'Зарегистрироваться', 'menu');
+        const profilePage = createButton('button-content-container', 'Профиль', 'menu');
         this.element.appendChild(signInPage);
         this.element.appendChild(signUpPage);
         this.element.appendChild(profilePage);
