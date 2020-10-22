@@ -9,6 +9,7 @@ export default class UserModel {
         globalEventBus.on(Events.signInViewEvents.submit, this.signIn.bind(this));
         globalEventBus.on(Events.signUpViewEvents.submit, this.signUp.bind(this));
         globalEventBus.on(Events.profileEditViewEvents.submit, this.editUser.bind(this));
+        globalEventBus.on(Events.profileViewEvents.needUserData, this.getUserData.bind(this, Events.userModelEvents.profileGetData))
     }
 
     signIn(data) {
@@ -87,7 +88,7 @@ export default class UserModel {
     }
 
     getUserData(eventType) {
-        console.log("GET USER DATA", eventType)
+        console.log("GET USER DATA EVENT TYPE", eventType)
         let promise1 = fetch(this.baseUrl + Pathes.profile,
             {
                 method: 'GET',
@@ -103,9 +104,10 @@ export default class UserModel {
                     this.user.surname = response.User.Surname;
                     this.user.avatar = "";
                 } else {
-                    globalEventBus.emit(eventType.fail, {
-                        error: response.Description
-                    })
+                    // globalEventBus.emit(eventType.fail, {
+                    //     error: response.Description
+                    // })
+                    throw new Error(response.Description);
                 }
             });
 

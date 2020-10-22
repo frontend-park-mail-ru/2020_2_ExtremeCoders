@@ -5,6 +5,8 @@ import {globalEventBus} from "../EventBus.js";
 export default class ProfileView {
     constructor(element) {
         this.element = element;
+        globalEventBus.on(Events.userModelEvents.profileGetData.success, this.renderData.bind(this));
+        globalEventBus.on(Events.userModelEvents.profileGetData.fail, this.showErrors.bind(this));
     }
 
     /**
@@ -12,7 +14,9 @@ export default class ProfileView {
      * @param {string} data - profile data in JSON format
      */
     render(data) {
-        console.log("RENDER dATA", data);
+        if(!data){
+            globalEventBus.emit(Events.profileViewEvents.needUserData);
+        }
         this.element.innerHTML = '';
         const div = document.createElement('div');
         const title = createText('h1', 'Профиль', 'profile_title');
@@ -30,7 +34,6 @@ export default class ProfileView {
         div.appendChild(backButton);
         this.element.appendChild(div);
 
-        //кажется, тут не должно быть вообще обработчиков?
         edit.addEventListener('click', (event) => {
                 event.preventDefault();
                 globalEventBus.emit(Events.global.redirect, {path: Pathes.profileEdit, data: data});
@@ -41,5 +44,14 @@ export default class ProfileView {
                 globalEventBus.emit(Events.global.goBack);
             }
         )
+    }
+
+    renderData(data){
+        console.log('REnder data', data);
+        this.render(data);
+    }
+
+    showErrors(errors){
+        console.log('SHow Errors', errors)
     }
 }

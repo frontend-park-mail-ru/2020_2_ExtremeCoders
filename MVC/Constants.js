@@ -15,6 +15,11 @@ const Events = {
         submit: 'ProfileEdit-submit',
         errors: 'ProfileEdit-errors'
     },
+    profileViewEvents:{
+      needUserData: 'ProfileView-needUserData',
+
+
+    },
     userModelEvents: {
         signIn: {
             success: 'UserModel-authorizationSuccess',
@@ -27,6 +32,10 @@ const Events = {
         profileEdit: {
             success: 'UserModel-profileEditSuccess',
             fail: 'UserModel-profileEditFail'
+        },
+        profileGetData: {
+            success:'profile-successGetData',
+            fail:'fail-getData'
         }
     }
 }

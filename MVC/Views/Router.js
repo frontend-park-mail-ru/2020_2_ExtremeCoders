@@ -27,8 +27,8 @@ export default class Router {
     go(event) {
         console.log("GOOO", event);
         if (event) {
-            this.registeredPathes[event.path].render(event.data || 1);
-            window.history.pushState({path: event.path, data: (event.data || 1)}, event.path, event.path);
+            this.registeredPathes[event.path].render(event.data || 0);
+            window.history.pushState({path: event.path, data: (event.data || 0)}, event.path, event.path);
         }
     }
 
