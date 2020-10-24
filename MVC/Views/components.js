@@ -1,13 +1,15 @@
 /**
  * create input with entered params
  * @param type
+ * @param className
  * @param text
  * @param name
  * @param value
  * @returns {HTMLInputElement}
  */
-export function createInput(type, text, name, value) {
+export function createInput(type, className,text, name, value) {
     const input = document.createElement('input');
+    input.className=className;
     input.type = type;
     input.name = name;
     input.placeholder = text;

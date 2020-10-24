@@ -9,13 +9,16 @@ export default class MenuView {
 
     render() {
         this.element.innerHTML = '';
-        const signInPage = createButton('button-content-container', 'Войти', 'menu');
-        const signUpPage = createButton('button-content-container', 'Зарегистрироваться', 'menu');
-        const profilePage = createButton('button-content-container', 'Профиль', 'menu');
+        const signInPage = createButton('login-reg-button', 'Войти', 'menu');
+        const signUpPage = createButton('login-reg-button', 'Зарегистрироваться', 'menu');
+        const profilePage = createButton('login-reg-button', 'Профиль', 'menu');
+        const elem=createHref("login-reg-a", "huita", null)
+        const elem2=createInput("input", "login-reg-input", "HUI", "hui", "HUI");
         this.element.appendChild(signInPage);
         this.element.appendChild(signUpPage);
         this.element.appendChild(profilePage);
-
+        this.element.appendChild(elem);
+        this.element.appendChild(elem2);
         //кажется, тут не должно быть вообще обработчиков?
 
         signInPage.addEventListener('click', (event) => {
