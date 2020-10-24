@@ -2,7 +2,7 @@ import {createButton, createHref, createInput, createText} from "./components.js
 
 import {Events,Pathes} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
-
+import {template as tmp } from "./PugTemplates/BaseComponents/SignInForm.js" ;
 
 export default class SignInView {
 
@@ -14,23 +14,11 @@ export default class SignInView {
 
     render() {
         this.element.innerHTML = '';
-        const form = document.createElement('form');
-        const title = createText('h1', 'Вход', 'signup_title');
-        const email = createInput('text', 'Введите логин', 'email', '');
-        const password1 = createInput('password', 'Введите пароль', 'password', '');
-        const confirmButton = createButton('submit', 'Войти', 'confirmSignupButton');
-        const signUpButton = createButton('tmp-form_button', 'Регистрация', 'signup');
-        const backButton = createButton('tmp-form_button', 'Назад', 'back');
+        this.element.innerHTML = tmp();
 
-        form.appendChild(title);
-        form.appendChild(email);
-        form.appendChild(password1);
-        form.appendChild(confirmButton);
-        form.appendChild(signUpButton);
-        form.appendChild(backButton);
-
-        form.method = 'POST';
-        this.element.appendChild(form);
+        let form = document.getElementsByTagName('form')[0];
+        let signUpButton = document.getElementsByName('signup')[0];
+        let backButton = document.getElementsByName('back')[0];
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();

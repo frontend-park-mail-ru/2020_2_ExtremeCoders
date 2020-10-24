@@ -1,0 +1,12 @@
+h1 Профиль
+
+div
+    h1(name='profile_name') #{locals.name}  #{locals.surname}
+    h1 Email #{locals.email}
+    h1 Аватар
+    img(width=70, height=70, id='avatar', src=locals.avatar)
+    button( class='submit', name='editButton') Редактировать
+    button(name='back', class='mp-form_button') Назад
+
+
+//export {template}

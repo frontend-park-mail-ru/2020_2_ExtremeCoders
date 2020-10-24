@@ -1,0 +1,14 @@
+h1 Редактирование профиля
+
+form(method='POST', enctype = 'multipart/form-data')
+    h2 Имя
+    input(type='text', name='profile_firstName', value=locals.name)
+    h1 Фамилия
+    input(type='text', name='profile_lastName', value=locals.surname)
+    h1 Аватар
+    img(width=70, height=70, id='avatar', src=locals.avatar)
+    input(type='file', placeholder='Выберете аватар', name='avatar')
+    input(type='submit', value='Применить', class='submit')
+    button(name='back', class='mp-form_button') Назад
+
+//export {template}

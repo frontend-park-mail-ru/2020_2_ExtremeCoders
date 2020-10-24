@@ -11,7 +11,6 @@ export default class Router {
         })
         globalEventBus.on(Events.global.redirect, this.go.bind(this));
         globalEventBus.on(Events.global.goBack, this.back.bind(this));
-
     }
 
     register(path, view) {
@@ -22,6 +21,7 @@ export default class Router {
     start(path, data) {
         window.history.pushState({path: path, data: (data || 1)}, 'Start', path);
         this.registeredPathes[path].render(data);
+        window.history.replaceState()
     }
 
     go(event) {
@@ -35,7 +35,6 @@ export default class Router {
     back() {
         console.log("I'L BE BACK");
         window.history.back();
-
     }
 
 }

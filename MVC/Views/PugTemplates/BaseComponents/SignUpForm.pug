@@ -1,0 +1,19 @@
+h1 Зарегистрироваться
+
+form(method='POST', enctype = 'multipart/form-data')
+    h1 Имя
+    input(type='text', name='name')
+    h1 Фамилия
+    input(type='text', name='surname')
+    h1 Email
+    input(type='text', name='email')
+    h1 Введите пароль
+    input(type='password', name='password1')
+    h1 Повторите пароль
+    input(type='password', name='password2')
+    h1 Аватар
+    input(type='file', placeholder='Выберете аватар', name='avatar')
+    input(type='submit', value='Зарегистироваться', class='submit')
+    button(name='back', class='mp-form_button') Назад
+
+//export {template}
