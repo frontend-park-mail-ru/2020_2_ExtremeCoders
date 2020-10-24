@@ -10,14 +10,6 @@ export default class MenuView {
 
     render() {
         this.element.innerHTML = tmp();
-        // const signInPage = createButton('tmp-form_button', 'Войти', 'menu');
-        // const signUpPage = createButton('tmp-form_button', 'Зарегистрироваться', 'menu');
-        // const profilePage = createButton('tmp-form_button', 'Профиль', 'menu');
-        // this.element.appendChild(signInPage);
-        // this.element.appendChild(signUpPage);
-        // this.element.appendChild(profilePage);
-
-        //кажется, тут не должно быть вообще обработчиков?
 
         let signInButton = document.getElementsByName('signin')[0];
         let signUpButton = document.getElementsByName('signup')[0];
