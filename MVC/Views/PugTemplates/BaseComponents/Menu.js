@@ -18,7 +18,7 @@ function template(locals) {
     var pug_html = "", pug_mixins = {}, pug_interp;
     var pug_debug_filename, pug_debug_line;
     try {
-        var pug_debug_sources = {"Menu.pug": "h1 Меню\nbutton(class='tmp-form_button', name='signin') Войти\nbutton(class='tmp-form_button', name='signup') Регистрация\nbutton(class='tmp-form_button', name='profile') Профиль"};
+        var pug_debug_sources = {"Menu.pug": "h1 Меню\nbutton(class='tmp-form_button', name='signin') Войти\nbutton(class='tmp-form_button', name='signup') Регистрация\nbutton(class='tmp-form_button', name='profile.css') Профиль"};
         ;pug_debug_line = 1;
         pug_debug_filename = "Menu.pug";
         pug_html = pug_html + "\u003Ch1\u003E";
@@ -39,7 +39,7 @@ function template(locals) {
         pug_html = pug_html + "Регистрация\u003C\u002Fbutton\u003E";
         ;pug_debug_line = 4;
         pug_debug_filename = "Menu.pug";
-        pug_html = pug_html + "\u003Cbutton class=\"tmp-form_button\" name=\"profile\"\u003E";
+        pug_html = pug_html + "\u003Cbutton class=\"tmp-form_button\" name=\"profile.css\"\u003E";
         ;pug_debug_line = 4;
         pug_debug_filename = "Menu.pug";
         pug_html = pug_html + "Профиль\u003C\u002Fbutton\u003E";

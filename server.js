@@ -15,9 +15,9 @@ app.get('/', (request, response) => {
   response.redirect('MVC/index.html');
 });
 /**
- * send get request with /profile url on go server
+ * send get request with /profile.css url on go server
  */
-app.get('/profile', (request, response) => {
+app.get('/profile.css', (request, response) => {
   req.get({
     url: `http://localhost:8080${request.url}`,
   },

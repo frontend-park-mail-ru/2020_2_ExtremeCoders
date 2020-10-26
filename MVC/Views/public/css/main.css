@@ -5,11 +5,16 @@
     --hoverColor: #005991;
     --activeColor: #051923;
     --inputBackGround: #c3ad7b;
+    --backgroundColorForm: #4DA687;
+    --borderForm: 5px solid #051923;
+    --notMainButtonColor: #59ace3;
+    --notMainButtonColorHover: #98c7e5;
+    --notMainButtonColorActive: #0985e2;
 }
 
 body{
-    background: #BC982F;
-    --textColor: #10431F;
+    background: #7294b7;
+    --textColor: #000137;
     align-self: center;
 }
 
@@ -33,6 +38,8 @@ body{
     text-align: center;
     color: var(--textColor);
     align-self: center;
+    width: 0px;
+    height: 50px;
 }
 
 .text{
@@ -44,4 +51,10 @@ body{
     text-align: center;
     color: var(--textColor);
     align-self: center;
+}
+
+.inline{
+    display: inline-block;
+    margin: 0;
+    padding: 4px;
 }

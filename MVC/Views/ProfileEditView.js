@@ -10,8 +10,8 @@ export default class ProfileEditView {
     }
 
     /**
-     * Creates form for profile editing and returns it as an object
-     * @param {string} data - profile data in JSON format
+     * Creates form for profile.css editing and returns it as an object
+     * @param {string} data - profile.css data in JSON format
      */
     render(data) {
         this.element.innerHTML = tmp(data);

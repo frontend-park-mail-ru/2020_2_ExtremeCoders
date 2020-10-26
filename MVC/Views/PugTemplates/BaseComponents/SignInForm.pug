@@ -1,12 +1,17 @@
 h1(class='MainTitle') Войти
 
-form(method='POST' class='reg-form')
-    h2(class='InputTitle') Login
-    input(type='text', name='email')
-    h2(class='InputTitle') Password
-    input(type='password', name='password' class='login-reg-input')
-    input(type='submit', value='Войти', class='login-reg-input')
-    button(name='signup', class='login-reg-button') Регистрация
-    button(name='back', class='login-reg-button') Назад
+form(method='POST' class='login-form')
+    div(class='inline')
+        h2(class='InputTitle') Login
+        input(type='text', name='email' class='login-reg-input')
+    div(class='inline')
+        h2(class='InputTitle') Password
+        input(type='password', name='password' class='login-reg-input')
+    div(class='inline')
+        input(type='submit', value='Войти' class='login-button')
+    div(class='inline')
+        button(name='signup', class='reg-button') Регистрация
+    div(class='inline')
+        button(name='back', class='login-button') Назад
 
-//export {template}
+//export {signinformTemplate}

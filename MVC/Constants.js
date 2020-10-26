@@ -34,7 +34,7 @@ const Events = {
             fail: 'UserModel-profileEditFail'
         },
         profileGetData: {
-            success:'profile-successGetData',
+            success:'profile.css-successGetData',
             fail:'fail-getData'
         }
     }
@@ -44,7 +44,7 @@ const Pathes = {
     signIn: '/signin',
     menu: '/menu',
     signUp: '/signup',
-    profile: '/profile',
+    profile: '/profile.css',
     profileEdit: '/profileEdit'
 }
 

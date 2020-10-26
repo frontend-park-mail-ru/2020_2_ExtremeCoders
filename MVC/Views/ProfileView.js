@@ -11,8 +11,8 @@ export default class ProfileView {
     }
 
     /**
-     * Creates form with profile-related data and returns it as an objct
-     * @param {string} data - profile data in JSON format
+     * Creates form with profile.css-related data and returns it as an objct
+     * @param {string} data - profile.css data in JSON format
      */
     render(data) {
         if(!data){
