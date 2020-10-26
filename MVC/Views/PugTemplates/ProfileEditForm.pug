@@ -1,14 +1,19 @@
-h1 Редактирование профиля
+include  BaseComponents/button
+include BaseComponents/pageTitle
+include BaseComponents/Text
+include BaseComponents/avatar
+include BaseComponents/classNames
++pageTitle('Редактирование профиля')
 
 form(method='POST', enctype = 'multipart/form-data')
-    h2 Имя
-    input(type='text', name='profile_firstName', value=locals.name)
-    h1 Фамилия
-    input(type='text', name='profile_lastName', value=locals.surname)
-    h1 Аватар
-    img(width=70, height=70, id='avatar', src=locals.avatar)
-    input(type='file', placeholder='Выберете аватар', name='avatar')
-    input(type='submit', value='Применить', class='submit')
-    button(name='back', class='mp-form_button') Назад
+    +text('Имя')
+    input(type='text', name='profile_firstName', value=locals.name, class=classNames.inputClass)
+    +text('Фамилия')
+    input(type='text', name='profile_lastName', value=locals.surname, class=classNames.inputClass)
+    +text('Аватар')
+    +avatar(locals.avatar)
+    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)
+    input(type='submit', value='Применить', class=classNames.inputClass)
+    +button('Назад','back')
 
 //export {template}

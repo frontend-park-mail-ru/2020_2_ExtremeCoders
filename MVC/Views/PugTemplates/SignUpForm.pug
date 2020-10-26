@@ -1,19 +1,26 @@
-h1 Зарегистрироваться
+include  BaseComponents/button
+include  BaseComponents/button
+include BaseComponents/pageTitle
+include BaseComponents/Text
+include BaseComponents/avatar
+include BaseComponents/classNames
+
++pageTitle('Зарегистрироваться')
 
 form(method='POST', enctype = 'multipart/form-data')
-    h1 Имя
-    input(type='text', name='name')
-    h1 Фамилия
-    input(type='text', name='surname')
-    h1 Email
-    input(type='text', name='email')
+    +text('Имя')
+    input(type='text', name='name', class=classNames.inputClass)
+    +text('Фамилия')
+    input(type='text', name='surname', class=classNames.inputClass)
+    +text('Email')
+    input(type='text', name='email', class=classNames.inputClass)
     h1 Введите пароль
-    input(type='password', name='password1')
+    input(type='password', name='password1', class=classNames.inputClass)
     h1 Повторите пароль
-    input(type='password', name='password2')
+    input(type='password', name='password2', class=classNames.inputClass)
     h1 Аватар
-    input(type='file', placeholder='Выберете аватар', name='avatar')
-    input(type='submit', value='Зарегистироваться', class='submit')
-    button(name='back', class='mp-form_button') Назад
+    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)
+    input(type='submit', value='Зарегистироваться', class='submit', class=classNames.inputClass)
+    +button('Назад', 'back')
 
 //export {template}
