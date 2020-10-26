@@ -115,24 +115,16 @@ body{
 }
 
 .reg-form {
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-
-    padding: 10px 0px 0px 10px;
-
-    position: absolute;
-    width: 784px;
-    height: 485px;
-    left: 528px;
-    top: 300px;
-
-    /* Rich Black FOGRA 29 */
+    width: 20%;
+    height: 70%;
     border: var(--borderForm);
     box-sizing: border-box;
     border-radius: 20px;
     background: var(--backgroundColorForm);
     align-self: center;
+    margin-left: 40%;
 }
