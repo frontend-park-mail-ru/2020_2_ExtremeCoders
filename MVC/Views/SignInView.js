@@ -2,7 +2,7 @@ import {createButton, createHref, createInput, createText} from "./components.js
 
 import {Events,Pathes} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
-import {template as tmp } from "./PugTemplates/BaseComponents/SignInForm.js" ;
+import {signinformTemplate as tmp } from "./PugTemplates/BaseComponents/SignInForm.js" ;
 
 export default class SignInView {
 

@@ -2,6 +2,7 @@ body{
     --inputHeigh:30px;
     --font-size: 20px;
     --usualborder:2px solid black;
+    align-self: center;
 }
 
 .login-reg-input {
@@ -14,6 +15,8 @@ body{
     box-shadow:  0 0 0 2px var(--color);
     background: var(--inputBackGround);
     margin: 4px;
+    align-content: center;
+    align-self: center;
 }
 
 .login-reg-input:focus {
@@ -82,12 +85,17 @@ body{
 .reg-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 400px;
-    height: 487px;
-    padding: 10px 0;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    align-items: flex-start;
+    padding: 10px 0px 0px 10px;
+
+    position: absolute;
+    width: 384px;
+    height: 285px;
+    left: 528px;
+    top: 300px;
+
+    /* Rich Black FOGRA 29 */
+    border: 1px solid #051923;
+    box-sizing: border-box;
+    border-radius: 20px;
 }

@@ -8,12 +8,40 @@
 }
 
 body{
+    background: #BC982F;
+    --textColor: #10431F;
+    align-self: center;
+}
+
+.MainTitle{
     font-family: Staatliches, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 48px;
     line-height: 60px;
     text-align: center;
-    color: #10435F;
-    background: #BC982F;
+    color: var(--textColor);
+    align-self: center;
+}
+
+.InputTitle{
+    font-family: Staatliches, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 60px;
+    text-align: center;
+    color: var(--textColor);
+    align-self: center;
+}
+
+.text{
+    font-family: Staatliches, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 60px;
+    text-align: center;
+    color: var(--textColor);
+    align-self: center;
 }

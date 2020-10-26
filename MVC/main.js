@@ -30,4 +30,4 @@ router.register(Pathes.profile, profileView);
 router.register(Pathes.profileEdit, profileEditView);
 router.register(Pathes.menu, menuView);
 
-router.start(Pathes.menu);
+router.start(Pathes.signIn);
