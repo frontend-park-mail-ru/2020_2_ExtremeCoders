@@ -1,12 +1,17 @@
-h1(class='MainTitle') Войти
+include  BaseComponents/button
+include BaseComponents/pageTitle
+include BaseComponents/Text
+include BaseComponents/avatar
+include BaseComponents/classNames
 
-form(method='POST' class='reg-form')
-    h2(class='InputTitle') Login
++pageTitle('Войти')
+form(method='POST' class=classNames.formClass)
+    +text('Login')
     input(type='text', name='email')
-    h2(class='InputTitle') Password
-    input(type='password', name='password' class='login-reg-input')
-    input(type='submit', value='Войти', class='login-reg-input')
-    button(name='signup', class='login-reg-button') Регистрация
-    button(name='back', class='login-reg-button') Назад
+    +text('Password')
+    input(type='password', name='password' class=classNames.inputClass)
+    input(type='submit', value='Войти', class=classNames.inputClass)
+    +button('Регистрация','signup')
+    +button('Назад','back')
 
 //export {template}

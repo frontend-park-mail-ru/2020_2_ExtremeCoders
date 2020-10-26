@@ -1,7 +1,7 @@
 import {createButton, createHref, createInput, createText, createImage} from "./components.js";
 import {globalEventBus} from "../EventBus.js";
 import {Events} from "../Constants.js";
-import {template as tmp} from  './PugTemplates/BaseComponents/ProfileEditForm.js'
+import {template as tmp} from './PugTemplates/ProfileEditForm.js'
 
 export default class ProfileEditView {
     constructor(element) {

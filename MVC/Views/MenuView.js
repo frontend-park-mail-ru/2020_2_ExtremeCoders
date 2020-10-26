@@ -1,7 +1,7 @@
 import {createButton, createHref, createInput, createText} from "./components.js";
 import {globalEventBus} from "../EventBus.js";
 import {Events, Pathes} from "../Constants.js";
-import {template as tmp} from "./PugTemplates/BaseComponents/Menu.js";
+import {template as tmp} from "./PugTemplates/Menu.js";
 
 export default class MenuView {
     constructor(element) {

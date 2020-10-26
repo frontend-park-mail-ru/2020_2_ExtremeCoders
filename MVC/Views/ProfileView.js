@@ -1,7 +1,7 @@
 import {createButton, createHref, createInput, createText, createImage} from "./components.js";
 import {Events, Pathes} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
-import {template as tmp} from "./PugTemplates/BaseComponents/ProfilePage.js"
+import {template as tmp} from "./PugTemplates/ProfilePage.js"
 
 export default class ProfileView {
     constructor(element) {

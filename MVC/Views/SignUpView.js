@@ -1,7 +1,7 @@
 import {createButton, createHref, createInput, createText, createImage} from "./components.js";
 import {Pathes, Events} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
-import {template as tmp} from "./PugTemplates/BaseComponents/SignUpForm.js";
+import {template as tmp} from "./PugTemplates/SignUpForm.js";
 
 export default class SignUpView {
     constructor(element) {
