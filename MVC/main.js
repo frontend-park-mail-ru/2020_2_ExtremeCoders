@@ -29,4 +29,11 @@ router.register(Pathes.profile, profileView);
 router.register(Pathes.profileEdit, profileEditView);
 router.register(Pathes.menu, menuView);
 
-router.start(Pathes.signIn);
+console.log(location.pathname)
+try {
+    router.start(location.pathname);
+}
+catch (err){
+    console.log("CAtch pATH")
+    router.start(Pathes.signIn)
+}
