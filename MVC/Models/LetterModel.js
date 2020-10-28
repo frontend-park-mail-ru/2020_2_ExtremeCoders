@@ -1,10 +1,10 @@
 class LetterModel {
-    constructor() {
-    }
+  constructor() {
+  }
 
-    getLetter() {
-    }
+  getLetter() {
+  }
 
-    sendLetter() {
-    }
+  sendLetter() {
+  }
 }

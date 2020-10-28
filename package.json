@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "echo \"Start\" && node server.js"
+    "start": "echo \"Start\" && node server.js",
+    "lint": "eslint ./MVC",
+    "lint:fix": "eslint --fix ./MVC"
   },
   "keywords": [],
   "author": "",

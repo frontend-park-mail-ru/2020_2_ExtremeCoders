@@ -7,16 +7,16 @@
  * @param value
  * @returns {HTMLInputElement}
  */
-export function createInput(type, className,text, name, value) {
-    const input = document.createElement('input');
-    input.className=className;
-    input.type = type;
-    input.name = name;
-    input.placeholder = text;
-    if (value !== undefined) {
-        input.value = value;
-    }
-    return input;
+export function createInput(type, className, text, name, value) {
+  const input = document.createElement('input');
+  input.className = className;
+  input.type = type;
+  input.name = name;
+  input.placeholder = text;
+  if (value !== undefined) {
+    input.value = value;
+  }
+  return input;
 }
 
 /**
@@ -27,10 +27,10 @@ export function createInput(type, className,text, name, value) {
  * @returns {*}
  */
 export function createText(tag, text, name) {
-    const someText = document.createElement(tag);
-    someText.name = name;
-    someText.textContent = text;
-    return someText;
+  const someText = document.createElement(tag);
+  someText.name = name;
+  someText.textContent = text;
+  return someText;
 }
 
 /**
@@ -41,11 +41,11 @@ export function createText(tag, text, name) {
  * @returns {HTMLButtonElement}
  */
 export function createButton(className, text, name) {
-    const button = document.createElement('button');
-    button.className = className;
-    button.textContent = text;
-    button.name = name;
-    return button;
+  const button = document.createElement('button');
+  button.className = className;
+  button.textContent = text;
+  button.name = name;
+  return button;
 }
 
 /**
@@ -56,11 +56,11 @@ export function createButton(className, text, name) {
  * @returns {HTMLAnchorElement}
  */
 export function createHref(className, text, section) {
-    const button = document.createElement('a');
-    button.className = className;
-    button.textContent = text;
-    button.dataset.section = section;
-    return button;
+  const button = document.createElement('a');
+  button.className = className;
+  button.textContent = text;
+  button.dataset.section = section;
+  return button;
 }
 
 /**
@@ -70,21 +70,21 @@ export function createHref(className, text, section) {
  * @param {number} height - image height
  */
 export function createImage(src, width, height) {
-    const img = document.createElement('img');
-    img.src = src;
-    img.width = width;
-    img.height = height;
-    return img;
+  const img = document.createElement('img');
+  img.src = src;
+  img.width = width;
+  img.height = height;
+  return img;
 }
 
 export function createInvalidInput(className, type, text, name, value) {
-    const input = document.createElement('input');
-    input.className = className;
-    input.type = type;
-    input.name = name;
-    input.placeholder = text;
-    if (value !== undefined) {
-        input.value = value;
-    }
-    return input;
+  const input = document.createElement('input');
+  input.className = className;
+  input.type = type;
+  input.name = name;
+  input.placeholder = text;
+  if (value !== undefined) {
+    input.value = value;
+  }
+  return input;
 }
