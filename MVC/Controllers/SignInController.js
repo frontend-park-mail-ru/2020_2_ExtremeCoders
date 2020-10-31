@@ -1,5 +1,5 @@
 import SignInView from '../Views/SignInView.js'
-import {Pathes, Events} from "../Constants.js";
+import {Paths, Events} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
 
 export default class SignInController {
@@ -7,8 +7,8 @@ export default class SignInController {
         this.signInView = signInView;
         this.model = userModel;
         globalEventBus.on(Events.userModelEvents.signIn.success, (user)=>{
-            console.log({path: Pathes.profile, data:user});
-            globalEventBus.emit(Events.global.redirect, {path: Pathes.profile, data:user})
+            console.log({path: Paths.profile, data:user});
+            globalEventBus.emit(Events.global.redirect, {path: Paths.letters})
         })
     }
 }

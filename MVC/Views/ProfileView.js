@@ -1,5 +1,5 @@
 import {createButton, createHref, createInput, createText, createImage} from "./components.js";
-import {Events, Pathes} from "../Constants.js";
+import {Events, Paths} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
 import {template as tmp} from "./PugTemplates/ProfilePage.js"
 
@@ -26,7 +26,7 @@ export default class ProfileView {
 
         edit.addEventListener('click', (event) => {
                 event.preventDefault();
-                globalEventBus.emit(Events.global.redirect, {path: Pathes.profileEdit, data: data});
+                globalEventBus.emit(Events.global.redirect, {path: Paths.profileEdit, data: data});
             }
         )
         backButton.addEventListener('click', (event) => {

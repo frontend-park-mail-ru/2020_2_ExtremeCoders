@@ -11,15 +11,34 @@ const Events = {
         submit: 'SignUp-submit',
         errors: 'SignUp-errors'
     },
-    profileEditViewEvents:{
+    profileEditViewEvents: {
         submit: 'ProfileEdit-submit',
         errors: 'ProfileEdit-errors'
     },
-    profileViewEvents:{
-      needUserData: 'ProfileView-needUserData',
-
-
+    profileViewEvents: {
+        needUserData: 'ProfileView-needUserData',
     },
+    mainPageView: {
+        folders: {},
+        letterList: {
+            needGetLetterList: 'mainPageView-needGetLetterList'
+        },
+        letter: {
+            needGetLetter: 'mainPageView-getLetter'
+        },
+    },
+
+    letterModelEvents: {
+        getLetter: {
+            success: 'letterModelEvents-getLetter-success',
+            fail: 'letterModelEvents-getLetter-fail'
+        },
+        getLetterList: {
+            success: 'letterModelEvents-getLetterList-success',
+            fail: 'letterModelEvents-getLetterList-fail'
+        }
+    },
+
     userModelEvents: {
         signIn: {
             success: 'UserModel-authorizationSuccess',
@@ -34,19 +53,20 @@ const Events = {
             fail: 'UserModel-profileEditFail'
         },
         profileGetData: {
-            success:'profile-successGetData',
-            fail:'fail-getData'
+            success: 'profile-successGetData',
+            fail: 'fail-getData'
         }
     }
 }
 
-const Pathes = {
+const Paths = {
     signIn: '/signin',
     menu: '/menu',
     signUp: '/signup',
     profile: '/profile',
-    profileEdit: '/profileEdit'
+    profileEdit: '/profileEdit',
+    letters: '/letters'
 }
 
-export {Events, Pathes}
+export {Events, Paths}
 

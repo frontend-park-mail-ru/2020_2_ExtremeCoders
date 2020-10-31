@@ -20,11 +20,8 @@ class EventBus {
     off(eventName, handler) {
         let handlers = this._eventHandlers && this._eventHandlers[eventName];
         if (!handlers) return;
-        for (let i = 0; i < handlers.length; i++) {
-            if (handlers[i] === handler) {
-                handlers.splice(i--, 1);
-            }
-        }
+        handlers = handlers.filter((value)=>{return value===handler});
+        this._eventHandlers = handlers;
     }
 
     /**

@@ -1,4 +1,4 @@
-import {Pathes, Events} from "../Constants.js";
+import {Paths, Events} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
 
 export default class ProfileEditController{
@@ -6,8 +6,8 @@ export default class ProfileEditController{
         this.view = profileEditView;
         this.model = userModel;
         globalEventBus.on(Events.userModelEvents.profileEdit.success, (user)=>{
-            console.log({path: Pathes.profile, data:user});
-            globalEventBus.emit(Events.global.redirect, {path: Pathes.profile, data:user})
+            console.log({path: Paths.profile, data:user});
+            globalEventBus.emit(Events.global.redirect, {path: Paths.profile, data:user})
         })
     }
 }

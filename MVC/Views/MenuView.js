@@ -1,6 +1,6 @@
 import {createButton, createHref, createInput, createText} from "./components.js";
 import {globalEventBus} from "../EventBus.js";
-import {Events, Pathes} from "../Constants.js";
+import {Events, Paths} from "../Constants.js";
 import {menuTemplate as tmp} from "./PugTemplates/Menu.js";
 
 export default class MenuView {
@@ -17,17 +17,17 @@ export default class MenuView {
 
         signInButton.addEventListener('click', (event) => {
                 event.preventDefault();
-                globalEventBus.emit(Events.global.redirect, {path: Pathes.signIn});
+                globalEventBus.emit(Events.global.redirect, {path: Paths.signIn});
             }
         );
         signUpButton.addEventListener('click', (event) => {
                 event.preventDefault();
-                globalEventBus.emit(Events.global.redirect, {path: Pathes.signUp});
+                globalEventBus.emit(Events.global.redirect, {path: Paths.signUp});
             }
         );
         profileButton.addEventListener('click', (event) => {
                 event.preventDefault();
-                globalEventBus.emit(Events.global.redirect, {path: Pathes.profile});
+                globalEventBus.emit(Events.global.redirect, {path: Paths.profile});
             }
         );
     }

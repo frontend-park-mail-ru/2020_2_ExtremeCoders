@@ -1,4 +1,4 @@
-import {Pathes, Events} from "../Constants.js";
+import {Paths, Events} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
 import validator from "./Validator.js";
 
@@ -22,8 +22,8 @@ export default class UserModel {
             )
             return;
         }
-        console.log("SIGN IN ", data, this.baseUrl + Pathes.signIn);
-        let promise = fetch(this.baseUrl + Pathes.signIn,
+        console.log("SIGN IN ", data, this.baseUrl + Paths.signIn);
+        let promise = fetch(this.baseUrl + Paths.signIn,
             {
                 method: 'POST',
                 mode: 'cors',
@@ -66,7 +66,7 @@ export default class UserModel {
             )
             return;
         }
-        let promise = fetch(this.baseUrl + Pathes.signUp,
+        let promise = fetch(this.baseUrl + Paths.signUp,
             {
                 method: 'POST',
                 mode: 'cors',
@@ -91,7 +91,7 @@ export default class UserModel {
 
 
     editUser(data) {
-        let promise = fetch(this.baseUrl + Pathes.profile,
+        let promise = fetch(this.baseUrl + Paths.profile,
             {
                 method: 'POST',
                 mode: 'cors',
@@ -116,7 +116,7 @@ export default class UserModel {
 
     getUserData(eventType) {
         console.log("GET USER DATA EVENT TYPE", eventType)
-        let promise1 = fetch(this.baseUrl + Pathes.profile,
+        let promise1 = fetch(this.baseUrl + Paths.profile,
             {
                 method: 'GET',
                 mode: 'cors',
@@ -166,6 +166,4 @@ export default class UserModel {
     logout() {
     }
 
-    getLetterList() {
-    }
 }

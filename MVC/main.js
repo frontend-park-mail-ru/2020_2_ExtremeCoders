@@ -1,15 +1,18 @@
 import Router from "./Views/Router.js";
 import SignInView from "./Views/SignInView.js";
-import {globalEventBus} from "./EventBus.js";
-import {Events,Pathes} from "./Constants.js";
+import {Events, Paths} from "./Constants.js";
 import SignUpView from "./Views/SignUpView.js";
 import UserModel from "./Models/UserModel.js";
+import LetterModel from "./Models/LetterModel.js";
 import SignInController from "./Controllers/SignInController.js";
 import SignUpController from "./Controllers/SignUpController.js";
 import ProfileView from "./Views/ProfileView.js";
 import ProfileEditView from "./Views/ProfileEditView.js";
 import ProfileEditController from "./Controllers/ProfileEditController.js";
 import MenuView from "./Views/MenuView.js";
+import MainPageView from "./Views/MainPageView.js";
+import {globalEventBus} from "./EventBus.js";
+
 
 let router = new Router();
 let signInView = new SignInView(document.body);
@@ -17,18 +20,23 @@ let signUpView = new SignUpView(document.body);
 let profileView = new ProfileView(document.body);
 let profileEditView = new ProfileEditView(document.body);
 let menuView = new MenuView(document.body);
+let mainPageView = new MainPageView(document.body);
 
 let userModel = new UserModel('http://localhost:8080');
+let letterModel = new LetterModel('http://localhost:8080')
+
 let signInController = new SignInController(signInView, userModel);
 let signUpController = new SignUpController(signUpView,userModel);
 let profileEditController = new ProfileEditController(profileEditView,userModel);
 
 
-router.register(Pathes.signIn, signInView);
-router.register(Pathes.signUp, signUpView);
-router.register(Pathes.profile, profileView);
-router.register(Pathes.profileEdit, profileEditView);
-router.register(Pathes.menu, menuView);
+
+router.register(Paths.signIn, signInView);
+router.register(Paths.signUp, signUpView);
+router.register(Paths.profile, profileView);
+router.register(Paths.profileEdit, profileEditView);
+router.register(Paths.menu, menuView);
+router.register(Paths.letters, mainPageView);
 
 console.log(location.pathname)
 try {
@@ -36,5 +44,6 @@ try {
 }
 catch (err){
     console.log("CAtch pATH")
-    router.start(Pathes.signIn)
+    router.start(Paths.signIn)
 }
+

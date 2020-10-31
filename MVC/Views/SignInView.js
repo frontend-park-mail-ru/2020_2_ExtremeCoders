@@ -1,6 +1,6 @@
 import {createButton, createHref, createInput, createText} from "./components.js";
 
-import {Events,Pathes} from "../Constants.js";
+import {Events,Paths} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
 import {signinformTemplate as tmp } from "./PugTemplates/SignInForm.js" ;
 
@@ -9,7 +9,6 @@ export default class SignInView {
     constructor(element) {
         this.element = element;
         globalEventBus.on(Events.userModelEvents.signIn.fail, this.showErrors.bind(this));
-
     }
 
     render() {
@@ -34,7 +33,7 @@ export default class SignInView {
 
         signUpButton.addEventListener('click', (event) => {
             event.preventDefault();
-            globalEventBus.emit(Events.global.redirect, {path: Pathes.signUp});
+            globalEventBus.emit(Events.global.redirect, {path: Paths.signUp});
         })
     }
 

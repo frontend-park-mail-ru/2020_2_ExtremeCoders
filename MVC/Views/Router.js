@@ -1,4 +1,4 @@
-import {Events, Pathes} from "../Constants.js";
+import {Events, Paths} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
 
 export default class Router {
