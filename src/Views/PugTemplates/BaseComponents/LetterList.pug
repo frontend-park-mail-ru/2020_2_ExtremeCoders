@@ -1,0 +1,10 @@
+include LetterPreview
+mixin LetterList(letters)
+    ul
+    each letter in letters
+        li
+            div(id=letter.id)
+                p() #{letter.sender}
+                p() #{letter.dateTime}
+                p() #{letter.theme}
+

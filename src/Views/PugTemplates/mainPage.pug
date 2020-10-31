@@ -3,10 +3,12 @@ include BaseComponents/FolderList
 include BaseComponents/Letter
 
 div(class='folders')
-    +folders(location.folders)
+    +folders(locals.folderList)
 
 div(class='letterList')
-    +LetterList(location.letters)
+    +LetterList(locals.letterList)
 
 div(class='letter')
-    +Letter(location.letter)
+    +Letter(locals.letter)
+
+//export {template}

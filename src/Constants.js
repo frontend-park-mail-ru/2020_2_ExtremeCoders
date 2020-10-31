@@ -19,15 +19,12 @@ const Events = {
         needUserData: 'ProfileView-needUserData',
     },
     mainPageView: {
-        folders: {
-            needGetFolderList: "mainPageView-needGetFoldersList"
-        },
-        letterList: {
-            needGetLetterList: 'mainPageView-needGetLetterList'
-        },
-        letter: {
-            needGetLetter: 'mainPageView-getLetter'
-        },
+       needData: 'mainPageView-needData'
+    },
+    mainPageController:{
+        needGetFolderList: 'mainPageController-needGetFolderList',
+        needGetLetterList: 'mainPageController-needGetLetterList',
+        needGetLetter: 'mainPageController-needGetLetter'
     },
 
     letterModelEvents: {

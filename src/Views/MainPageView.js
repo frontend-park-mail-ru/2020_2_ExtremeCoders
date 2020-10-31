@@ -1,5 +1,6 @@
 import {globalEventBus} from "../EventBus.js";
 import {Events} from "../Constants.js";
+import {template} from "./PugTemplates/mainPage.js";
 
 export default class MainPageView {
     constructor(element) {
@@ -14,16 +15,18 @@ export default class MainPageView {
     }
 
     render(data){
+        console.log("RENDER MAIN PAGE DATA, dat", data)
         this.element.innerHTML = '';
         this.element.appendChild(this.letterListDiv);
         this.element.appendChild(this.letterDiv);
-        this.renderLetterListBlock(data.letterList);
-        this.renderLetterBlock(data.letter);
-        //this.renderFoldersBlock(data);
+        if(!data|| !data['letterList']|| !data['folderList']||!data['letter']){
+            globalEventBus.emit(Events.mainPageView.needData);
+            return;
+        }
+        this.element.innerHTML = template(data);
     }
 
     renderFoldersBlock(data) {
-
     }
 
     renderLetterListBlock(data) {
@@ -43,5 +46,4 @@ export default class MainPageView {
         }
         this.letterDiv.innerHTML = data.text;
     }
-
 }
