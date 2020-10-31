@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "echo \"Start\" && node server.js"
+    "start": "echo \"Start\" && node server.js",
+    "lint": "eslint ./MVC",
+    "lint:fix": "eslint --fix ./MVC"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +15,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
+    "pug": "^3.0.0",
     "request": "^2.88.2"
   },
   "devDependencies": {

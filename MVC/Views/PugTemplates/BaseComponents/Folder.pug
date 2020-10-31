@@ -1,0 +1,7 @@
+include button
+mixin folders(data)
+    ul() Почтовый ящик
+        li()
+            +button('Входящие', 'got', '')
+        li()
+            +button('Отправленные', 'sended', '')

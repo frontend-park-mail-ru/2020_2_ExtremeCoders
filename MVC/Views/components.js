@@ -1,24 +1,15 @@
-export class User {
-  constructor() {
-    this.name = '';
-    this.surname = '';
-    this.email = '';
-    this.password = '';
-    this.date = '';
-    this.img = '';
-  }
-}
-
 /**
  * create input with entered params
  * @param type
+ * @param className
  * @param text
  * @param name
  * @param value
  * @returns {HTMLInputElement}
  */
-export function createInput(type, text, name, value) {
+export function createInput(type, className, text, name, value) {
   const input = document.createElement('input');
+  input.className = className;
   input.type = type;
   input.name = name;
   input.placeholder = text;
@@ -70,6 +61,20 @@ export function createHref(className, text, section) {
   button.textContent = text;
   button.dataset.section = section;
   return button;
+}
+
+/**
+ * Creates image with specified parameters and returns it as an object
+ * @param {string} src - image source path
+ * @param {number} width - image width
+ * @param {number} height - image height
+ */
+export function createImage(src, width, height) {
+  const img = document.createElement('img');
+  img.src = src;
+  img.width = width;
+  img.height = height;
+  return img;
 }
 
 export function createInvalidInput(className, type, text, name, value) {
