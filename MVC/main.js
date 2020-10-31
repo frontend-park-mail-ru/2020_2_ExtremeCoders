@@ -12,6 +12,7 @@ import ProfileEditController from "./Controllers/ProfileEditController.js";
 import MenuView from "./Views/MenuView.js";
 import MainPageView from "./Views/MainPageView.js";
 import {globalEventBus} from "./EventBus.js";
+import MainPageController from "./Controllers/MainPageController.js";
 
 
 let router = new Router();
@@ -28,7 +29,7 @@ let letterModel = new LetterModel('http://localhost:8080')
 let signInController = new SignInController(signInView, userModel);
 let signUpController = new SignUpController(signUpView,userModel);
 let profileEditController = new ProfileEditController(profileEditView,userModel);
-
+let mainPageController = new MainPageController();
 
 
 router.register(Paths.signIn, signInView);

@@ -10,12 +10,14 @@
     --notMainButtonColor: #59ace3;
     --notMainButtonColorHover: #98c7e5;
     --notMainButtonColorActive: #0985e2;
+    --textColor: #000137;
 }
 
 body{
     background: #7294b7;
-    --textColor: #000137;
-    align-self: center;
+    font-family: Staatliches, sans-serif;
+    font-style: normal;
+    font-weight: normal;
 }
 
 .MainTitle{
@@ -43,9 +45,7 @@ body{
 }
 
 .text{
-    font-family: Staatliches, sans-serif;
-    font-style: normal;
-    font-weight: normal;
+
     font-size: 12px;
     line-height: 60px;
     text-align: center;

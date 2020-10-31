@@ -7,6 +7,7 @@ export default class LetterModel {
         this.Letters = {};
         globalEventBus.on(Events.mainPageView.letter.needGetLetter, this.getLetter.bind(this));
         globalEventBus.on(Events.mainPageView.letterList.needGetLetterList, this.getLetterList.bind(this));
+        globalEventBus.on(Events.mainPageView.folders.needGetFolderList, this.getFolders.bind(this))
     }
 
     getLetter() {
@@ -14,6 +15,10 @@ export default class LetterModel {
     }
 
     sendLetter() {
+    }
+
+    getFolders(){
+        globalEventBus.emit(Events.letterModelEvents.getFolderList, {text:'FolderrList'});
     }
 
     getLetterList() {

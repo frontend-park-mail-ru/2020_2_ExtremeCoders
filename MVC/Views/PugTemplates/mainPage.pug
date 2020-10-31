@@ -1,0 +1,12 @@
+include BaseComponents/LetterList
+include BaseComponents/FolderList
+include BaseComponents/Letter
+
+div(class='folders')
+    +folders(location.folders)
+
+div(class='letterList')
+    +LetterList(location.letters)
+
+div(class='letter')
+    +Letter(location.letter)

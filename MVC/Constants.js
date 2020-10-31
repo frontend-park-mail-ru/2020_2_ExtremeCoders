@@ -19,7 +19,9 @@ const Events = {
         needUserData: 'ProfileView-needUserData',
     },
     mainPageView: {
-        folders: {},
+        folders: {
+            needGetFolderList: "mainPageView-needGetFoldersList"
+        },
         letterList: {
             needGetLetterList: 'mainPageView-needGetLetterList'
         },
@@ -36,6 +38,10 @@ const Events = {
         getLetterList: {
             success: 'letterModelEvents-getLetterList-success',
             fail: 'letterModelEvents-getLetterList-fail'
+        },
+        getFolderList: {
+            success: 'letterModelEvents-getFolderList-success',
+            fail: 'letterModelEvents-getFolderList-fail',
         }
     },
 

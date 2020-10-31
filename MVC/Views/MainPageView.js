@@ -7,22 +7,19 @@ export default class MainPageView {
         this.foldersDiv = document.createElement('div');
         this.letterListDiv = document.createElement('div');
         this.letterDiv = document.createElement('div');
-
         this.foldersDiv.className = 'folders';
         this.letterListDiv.className = 'letterList';
         this.letterDiv.className = 'letter';
 
-        globalEventBus.on(Events.letterModelEvents.getLetter.success, this.renderLetterBlock.bind(this));
-        globalEventBus.on(Events.letterModelEvents.getLetterList.success, this.renderLetterListBlock.bind(this));
     }
 
     render(data){
         this.element.innerHTML = '';
         this.element.appendChild(this.letterListDiv);
         this.element.appendChild(this.letterDiv);
-        this.renderLetterBlock(data);
-        this.renderLetterListBlock(data);
-        this.renderFoldersBlock(data);
+        this.renderLetterListBlock(data.letterList);
+        this.renderLetterBlock(data.letter);
+        //this.renderFoldersBlock(data);
     }
 
     renderFoldersBlock(data) {
