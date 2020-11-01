@@ -68,7 +68,9 @@ const Paths = {
     signUp: '/signup',
     profile: '/profile',
     profileEdit: '/profileEdit',
-    letters: '/letters'
+    letters: '/letters',
+    sendLetter: '/sendLetter',
+    logout: '/logout'
 }
 
 export {Events, Paths}

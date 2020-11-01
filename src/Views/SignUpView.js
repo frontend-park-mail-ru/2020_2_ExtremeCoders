@@ -10,7 +10,6 @@ export default class SignUpView {
     }
 
     render() {
-        this.element.innerHTML = '';
         this.element.innerHTML = tmp();
         let form = document.getElementsByTagName('form')[0];
         let backButton = document.getElementsByName('back')[0];

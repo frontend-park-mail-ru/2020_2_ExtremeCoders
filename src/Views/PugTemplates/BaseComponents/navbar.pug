@@ -1,13 +1,16 @@
 include button
 include avatar
 mixin navbar(src)
-    ul(id = "navbar")
+    ul()
         li() LOGO
         li()
-            +button('Отправить', 'send', "")
+            +button('Отправить', 'navbar-send', "")
         li()
-            +avatar(src)
+            +avatar('')
         li()
-            +button('Профиль', 'profile', "")
+            +button('Профиль', 'navbar-profile', "")
         li()
-            +button('Выйти', 'exit', "")
+            +button('Выйти', 'navbar-exit', "")
+
++navbar(src)
+//export {template}

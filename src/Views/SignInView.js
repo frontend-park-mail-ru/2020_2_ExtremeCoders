@@ -2,7 +2,7 @@ import {createButton, createHref, createInput, createText} from "./components.js
 
 import {Events,Paths} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
-import {signinformTemplate as tmp } from "./PugTemplates/SignInForm.js" ;
+import {template as tmp } from "./PugTemplates/SignInForm.js" ;
 
 export default class SignInView {
 
@@ -12,7 +12,6 @@ export default class SignInView {
     }
 
     render() {
-        this.element.innerHTML = '';
         this.element.innerHTML = tmp();
 
         let form = document.getElementsByTagName('form')[0];

@@ -7,7 +7,6 @@ export default class SignInController {
         this.signInView = signInView;
         this.model = userModel;
         globalEventBus.on(Events.userModelEvents.signIn.success, (user)=>{
-            console.log({path: Paths.profile, data:user});
             globalEventBus.emit(Events.global.redirect, {path: Paths.letters})
         })
     }

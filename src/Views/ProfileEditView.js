@@ -2,6 +2,7 @@ import {createButton, createHref, createInput, createText, createImage} from "./
 import {globalEventBus} from "../EventBus.js";
 import {Events} from "../Constants.js";
 import {template as tmp} from './PugTemplates/ProfileEditForm.js'
+import Navbar from "./NavbarView.js";
 
 export default class ProfileEditView {
     constructor(element) {
@@ -14,7 +15,9 @@ export default class ProfileEditView {
      * @param {string} data - profile.css data in JSON format
      */
     render(data) {
-        this.element.innerHTML = tmp(data);
+        this.element.innerHTML = '';
+        Navbar.render(data.navbar)
+        this.element.innerHTML += tmp(data);
         let form = document.getElementsByTagName('form')[0];
         let backButton = document.getElementsByName('back')[0];
 
