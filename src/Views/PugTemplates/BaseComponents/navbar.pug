@@ -4,13 +4,13 @@ mixin navbar(src)
     ul()
         li() LOGO
         li()
-            +button('Отправить', 'navbar-send', "")
+            a(name = 'navbar-send') 'Отправить'
         li()
             +avatar('')
         li()
-            +button('Профиль', 'navbar-profile', "")
+            a(name = 'navbar-profile') 'Профиль'
         li()
-            +button('Выйти', 'navbar-exit', "")
+            a(name = 'navbar-exit') 'Выйти'
 
 +navbar(src)
 //export {template}
