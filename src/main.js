@@ -13,7 +13,7 @@ import MainPageView from "./Views/MainPageView.js";
 import {globalEventBus} from "./EventBus.js";
 import MainPageController from "./Controllers/MainPageController.js";
 import SendLetterView from "./Views/SendLetterView.js";
-
+import Navbar from "./Views/NavbarView.js";
 
 let router = new Router();
 let signInView = new SignInView(document.body);
@@ -40,6 +40,7 @@ router.register(Paths.profileEdit, profileEditView);
 router.register(Paths.letters, mainPageView);
 router.register(Paths.sendLetter, sendLetterView);
 
+// /sendLetter
 console.log(location.pathname)
 try {
     router.start(location.pathname);

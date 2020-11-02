@@ -8,7 +8,9 @@ export  default class SendLetterView{
         this.element = element;
     }
 
-    render(){
+    render(data){
+        data = data || {}
+        console.log("SEND LETTER VIEW RENDER");
         this.element.innerHTML = '';
         Navbar.render(data.navbar)
         this.element.innerHTML += tmp(data);
