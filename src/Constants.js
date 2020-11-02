@@ -26,6 +26,9 @@ const Events = {
         needGetLetterList: 'mainPageController-needGetLetterList',
         needGetLetter: 'mainPageController-needGetLetter'
     },
+    sendLetterView:{
+        sendLetter: 'sendLetterView-sendLetter'
+    },
 
     letterModelEvents: {
         getLetter: {
@@ -39,6 +42,10 @@ const Events = {
         getFolderList: {
             success: 'letterModelEvents-getFolderList-success',
             fail: 'letterModelEvents-getFolderList-fail',
+        },
+        sendLetter:{
+            success: 'letterModelEvents-sendLetter-success',
+            fail: 'letterModelEvents-sendLetter-fail'
         }
     },
 

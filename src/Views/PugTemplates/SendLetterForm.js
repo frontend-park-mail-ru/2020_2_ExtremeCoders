@@ -70,7 +70,7 @@ function template(locals) {
     var pug_debug_filename, pug_debug_line;
     try {
         var pug_debug_sources = {
-            "SendLetterForm.pug": "include BaseComponents\u002FclassNames\ninclude BaseComponents\u002FpageTitle\ninclude  BaseComponents\u002Fbutton\n\n+pageTitle('Отправить письмо')\n\nform(method='POST' class=classNames.formClass)\n    p(class='InputTitle') Получатель\n    input(type='text', name='receiver', class=classNames.inputClass)\n    p(class='InputTitle') Тема\n    input(type='text', name='theme', class=classNames.inputClass)\n    p(class='InputTitle') Текст\n    input(type='text', name='text', class=classNames.inputClass)\n    input(type='submit', value='Отправить письмо', class='submit', class=classNames.inputClass)\n    +button('Назад', 'back', classNames.regButton)\n\n\u002F\u002Fexport { template };",
+            "SendLetterForm.pug": "include BaseComponents\u002FclassNames\ninclude BaseComponents\u002FpageTitle\ninclude  BaseComponents\u002Fbutton\n\n+pageTitle('Отправить письмо')\n\nform(method='POST', name='sendLetterForm' class=classNames.formClass)\n    p(class='InputTitle') Получатель\n    input(type='text', name='to', class=classNames.inputClass)\n    p(class='InputTitle') Тема\n    input(type='text', name='theme', class=classNames.inputClass)\n    p(class='InputTitle') Текст\n    input(type='text', name='text', class=classNames.inputClass)\n    input(type='submit', value='Отправить письмо', class='submit', class=classNames.inputClass)\n    +button('Назад', 'back', classNames.regButton)\n\n\u002F\u002Fexport { template };",
             "BaseComponents\u002FclassNames.pug": "- var classNames ={inputClass:'login-reg-input',formClass:'login-form',regButton:'reg-button',loginButton:'login-button', sendLetterButton:'send-button'}",
             "BaseComponents\u002FpageTitle.pug": "mixin pageTitle(text, className)\n    h1(class=className) #{text}",
             "BaseComponents\u002Fbutton.pug": "mixin button(text, name, className)\n    button(class=className, name=name) #{text}"
@@ -111,7 +111,7 @@ function template(locals) {
         pug_mixins["pageTitle"]('Отправить письмо');
         ;pug_debug_line = 7;
         pug_debug_filename = "SendLetterForm.pug";
-        pug_html = pug_html + "\u003Cform" + (pug_attr("class", pug_classes([classNames.formClass], [true]), false, false) + " method=\"POST\"") + "\u003E";
+        pug_html = pug_html + "\u003Cform" + (pug_attr("class", pug_classes([classNames.formClass], [true]), false, false) + " method=\"POST\" name=\"sendLetterForm\"") + "\u003E";
         ;pug_debug_line = 8;
         pug_debug_filename = "SendLetterForm.pug";
         pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
@@ -120,7 +120,7 @@ function template(locals) {
         pug_html = pug_html + "Получатель\u003C\u002Fp\u003E";
         ;pug_debug_line = 9;
         pug_debug_filename = "SendLetterForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"receiver\"") + "\u002F\u003E";
+        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"to\"") + "\u002F\u003E";
         ;pug_debug_line = 10;
         pug_debug_filename = "SendLetterForm.pug";
         pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
@@ -155,5 +155,4 @@ function template(locals) {
     ;
     return pug_html;
 }
-
-export {template}
+export { template };

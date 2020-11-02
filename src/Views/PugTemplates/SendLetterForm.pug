@@ -4,9 +4,9 @@ include  BaseComponents/button
 
 +pageTitle('Отправить письмо')
 
-form(method='POST' class=classNames.formClass)
+form(method='POST', name='sendLetterForm' class=classNames.formClass)
     p(class='InputTitle') Получатель
-    input(type='text', name='receiver', class=classNames.inputClass)
+    input(type='text', name='to', class=classNames.inputClass)
     p(class='InputTitle') Тема
     input(type='text', name='theme', class=classNames.inputClass)
     p(class='InputTitle') Текст

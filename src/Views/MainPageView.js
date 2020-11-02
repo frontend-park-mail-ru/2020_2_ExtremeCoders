@@ -14,9 +14,11 @@ export default class MainPageView {
             return;
         }
         this.element.innerHTML = '';
-        Navbar.render(data.navbar)
         //Почему после Navbar.render не срабатывают обработчики кнопок navbar-send, navbar-profile, navbar-exit?
-        this.element.innerHTML += template(data);
+        Navbar.render(data.navbar)
+
+        this.element.appendChild(document.createTextNode('SUUUUUKA'))
+
     }
 
 }

@@ -14,6 +14,13 @@ export  default class SendLetterView{
         this.element.innerHTML = '';
         Navbar.render(data.navbar)
         this.element.innerHTML += tmp(data);
+        let form = document.getElementsByName('sendLetterForm')[0];
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            globalEventBus.emit(Events.sendLetterView.sendLetter, {
+                data: new FormData(form)
+            });
+        })
     }
 
 }

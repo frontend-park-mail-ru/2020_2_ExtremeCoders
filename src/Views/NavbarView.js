@@ -8,13 +8,14 @@ class NavbarView {
     }
 
     render(data) {
-        this.element.innerHTML = '';
+        //this.element.innerHTML = '';
         console.log("NAVBAR VIEW RENDER", data);
         let navDiv = document.getElementById('navbar') || document.createElement('div');
         navDiv.id = 'navbar';
         navDiv.innerHTML = template(data);
-        this.element.innerHTML += navDiv.innerHTML;
+       // this.element.innerHTML += navDiv.innerHTML;
 
+        this.element.appendChild(navDiv);
         let sendLetterHref = document.getElementsByName('navbar-send')[0];
         let profileHref = document.getElementsByName('navbar-profile')[0];
         let logoutHref = document.getElementsByName('navbar-exit')[0];
@@ -37,6 +38,12 @@ class NavbarView {
             console.log('CLICK');
             event.preventDefault();
             globalEventBus.emit(Events.global.redirect, {path: Paths.logout});
+        }
+
+        logoutHref.onsubmit = (event) => {
+            console.log('submint');
+            event.preventDefault();
+            //globalEventBus.emit(Events.global.redirect, {path: Paths.logout});
         }
     }
 

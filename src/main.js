@@ -46,7 +46,7 @@ try {
     router.start(location.pathname);
 }
 catch (err){
-    console.log("CAtch pATH")
+    console.log("CAtch pATH", err)
     router.start(Paths.signIn)
 }
 

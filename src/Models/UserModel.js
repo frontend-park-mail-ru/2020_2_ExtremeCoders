@@ -89,7 +89,6 @@ export default class UserModel {
             });
     }
 
-
     editUser(data) {
         let promise = fetch(this.baseUrl + Paths.profile,
             {
