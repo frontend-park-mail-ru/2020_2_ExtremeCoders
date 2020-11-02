@@ -1,23 +1,45 @@
 :root {
-    --color: #003554;
-    --borderColor: #051923;
-    --buttonTextColor:#FFF07C;
-    --hoverColor: #005991;
-    --activeColor: #051923;
-    --inputBackGround: #c3ad7b;
-    --backgroundColorForm: #4DA687;
-    --borderForm: 5px solid #051923;
-    --notMainButtonColor: #59ace3;
-    --notMainButtonColorHover: #98c7e5;
-    --notMainButtonColorActive: #0985e2;
-    --textColor: #000137;
+    /*TODO*/
+    /*STAR WARS THEME*/
+    /*--acceptColor:#850505;*/
+    /*--borderColor: #161616;*/
+    /*--backgroundColorForm: #373737;*/
+    /*--acceptColorHover: #600404;*/
+    /*--acceptColorActive: #9f1a1a;*/
+    /*--passiveColor: #792c2c;*/
+    /*--passiveColorHover: #672727;*/
+    /*--passiveColorActive: #8f4141;*/
+    /*--backgroundColorInput: #5f5f5f;*/
+    /*--backgroundColorPage: #242323;*/
+    /*--buttonBorderRadius: 10px;*/
+    /*--buttonPadding: 10px 8px;*/
+
+    /*--textColor: white;*/
+
+    --acceptColor:#A3D5AB;
+    --borderColor: #161616;
+    --backgroundColorForm: white;
+    --acceptColorHover: #90D59C;
+    --acceptColorActive: #A3D5AB;
+    --passiveColor: #EFD2B7;
+    --passiveColorHover: #EFC7A2;
+    --passiveColorActive: #EFD2B7;
+    --backgroundColorInput: white;
+    --backgroundColorPage: white;
+    --buttonBorderRadius: 0;
+    --buttonPadding: 10px 8px;
+
+    --textColor: black;
 }
 
 body{
-    background: #7294b7;
-    font-family: Staatliches, sans-serif;
+    background: var(--backgroundColorPage);
+    font-family: "Apple SD Gothic Neo", sans-serif;
     font-style: normal;
     font-weight: normal;
+    color: var(--textColor);
+    margin: 0;
+    padding: 0;
 }
 
 .MainTitle{
@@ -27,7 +49,7 @@ body{
     font-size: 48px;
     line-height: 60px;
     text-align: center;
-    color: var(--textColor);
+
     align-self: center;
 }
 
@@ -57,4 +79,15 @@ body{
     display: inline-block;
     margin: 0;
     padding: 4px;
+}
+
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.ItemsInline{
+    display: flex;
+    align-items: center;
 }

@@ -1,4 +1,64 @@
-.ImgView{
-    border: var(--borderForm);
-    border-radius: 20%;
+.Profile {
+    /*height: 50%;*/
+    /*width: 30%;*/
+    border: 10px solid var(--acceptColorHover);
+    border-radius: var(--buttonBorderRadius);
+    padding: var(--buttonPadding);
+    /*align-items: center;*/
+    /*position: relative;*/
+    /*margin: 0 auto;*/
+    /*top: 10%;*/
+
+    background: var(--backgroundColorForm);
+   /*// width: 40%;*/
+    display: grid;
+    margin: auto;
+    min-width: 430px;
+    min-height: 180px;
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 50% 1fr 0%;
+    grid-gap: 10px;
+    justify-items: center;
+    justify-content: space-between;
+    grid-template-areas:
+    "img img nameTitle name"
+    "img img surnameTitle surname"
+    "smth emailTitle email smth"
+    "smth smth smth buttons";
+}
+
+.img-Profile{
+    border: var(--acceptColorHover);
+    grid-area: img;
+}
+
+.nameTitle-Profile{
+    grid-area: nameTitle;
+}
+
+.name-Profile{
+    text: bold;
+    grid-area: name;
+}
+
+.surnameTitle-Profile{
+    grid-area: surnameTitle;
+}
+
+.surname-Profile{
+    text: bold;
+    grid-area: surname;
+}
+
+.emailTitle-Profile{
+    grid-area: emailTitle;
+}
+
+.email-Profile{
+    text: bold;
+    grid-area: email;
+}
+
+.buttons-ProfileForm {
+    grid-area: buttons;
 }
