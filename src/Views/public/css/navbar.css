@@ -1,0 +1,95 @@
+/*!*#navbar {*!*/
+/*!*    !*width: 100%;*!*!*/
+/*!*    display: flex;*!*/
+/*!*    list-style-type: none;*!*/
+/*!*    background-color: #33ADFF;*!*/
+/*!*    !*display: inline-block;*!*!*/
+/*!*}*!*/
+/*!*#navbar li { display: inline-block; }*!*/
+/*!*#navbar button {*!*/
+/*!*    color: #fff;*!*/
+
+/*!*    text-decoration: none;*!*/
+/*!*    font-weight: bold;*!*/
+/*!*    display: inline-block;*!*/
+/*!*    width: 100px;*!*/
+/*!*}*!*/
+/*!*#navbar button:hover {*!*/
+/*!*    border-radius: 20px 5px;*!*/
+/*!*    background-color: #0066FF;*!*/
+/*!*}*!*/
+
+
+/**, *:before, *:after { box-sizing: border-box; }*/
+/*body { background-color: #f5f5f5; color: #333; font-size: 14px; font-family: Verdana, Arial, sans-serif; line-height: 20px; }*/
+/*a { text-decoration: none; transition: all 0.3s linear 0s; }*/
+
+/*// Сетка*/
+/*   .area {*/
+/*   // Объявляем этот блок flex-контейнером*/
+/*   display: flex;*/
+/*   // Центрируем*/
+/*   margin-right: auto;*/
+/*       margin-left: auto;*/
+/*   // Устанавливаем главную ось и многострочность контейнера*/
+/*   flex-flow: row wrap; // строка многострочный*/
+/*   // Расположение элементов относительно поперечной оси на строке*/
+/*   align-items: stretch; // растягиваются*/
+
+/*// Медиавыражения для типовых размеров экранов*/
+/*@media (min-width: 768px) { width: 750px; }*/
+/*@media (min-width: 992px) { width: 970px; }*/
+/*@media (min-width: 1200px) { width: 1140px; }*/
+/*}*/
+
+/*// Component*/
+/*   .navbar-component {*/
+/*       background-color: @navbar-background; // 1*/
+/*   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12); // 2*/
+
+/*// Намекаем сетке, что*/
+/*  & > .navbar {*/
+/*   // Выравнивание относительно главной оси*/
+/*   justify-content: space-between; // равномерное*/
+/*   }*/
+/*}*/
+
+/*// Component*/
+/*   .navbar {*/
+/*// List of items*/
+/*  & > .list {*/
+/*       display: flex;*/
+/*       flex-flow: row nowrap;*/
+/*       align-items: center;*/
+/*   }*/
+
+/*& > .list > .item {*/
+/*      display: block;*/
+
+/*  // Возможность элемента сжиматься*/
+/*  flex-shrink: 0; // запрещено*/
+
+/*  // Выравнивание и отступы*/
+/*  height: @navbar-height;*/
+/*      line-height: @navbar-height;*/
+/*      padding-left: round((@navbar-height - 20) / 2);*/
+/*      padding-right: round((@navbar-height - 20) / 2);*/
+
+/*      text-transform: uppercase;*/
+/*      color: @navbar-item-color;*/
+/*      font-size: @navbar-item-font-size;*/
+/*  }*/
+
+/*& > .list > .item.-link {*/
+/*      line-height: (@navbar-height + @navbar-item-border-width);*/
+/*      color: @navbar-item-color;*/
+/*      border-bottom: @navbar-item-border-width solid @navbar-item-border;*/
+
+/*&.-active,*/
+/*&:hover,*/
+/*&:focus {*/
+/*     color: @navbar-item-active-color;*/
+/*     border-bottom-color: @navbar-item-active-border;*/
+/* }*/
+/*}*/
+/*}*/
