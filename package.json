@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "echo \"Start\" && node server.js",
-    "lint": "eslint ./MVC",
-    "lint:fix": "eslint --fix ./MVC"
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
+    "build": "NODE_ENV='production' webpack",
+    "start": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
@@ -19,11 +20,22 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^5.0.0",
     "eslint": "^7.11.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.21.3"
+    "eslint-plugin-react": "^7.21.3",
+    "style-loader": "^2.0.0",
+    "svg-inline-loader": "^0.8.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
