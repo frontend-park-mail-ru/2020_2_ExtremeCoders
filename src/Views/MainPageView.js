@@ -17,7 +17,7 @@ export default class MainPageView {
         //Почему после Navbar.render не срабатывают обработчики кнопок navbar-send, navbar-profile, navbar-exit?
         Navbar.render(data.navbar)
 
-        this.element.appendChild(document.createTextNode('SUUUUUKA'))
+        this.element.insertAdjacentHTML('beforeend', template(data))
 
     }
 

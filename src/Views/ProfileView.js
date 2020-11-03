@@ -22,7 +22,7 @@ export default class ProfileView {
 
         this.element.innerHTM = '';
         Navbar.render(data.navbar);
-        this.element.innerHTML += tmp(data);
+        this.element.insertAdjacentHTML('beforeend', tmp(data));
 
         let edit = document.getElementsByName('editButton')[0];
         let backButton = document.getElementsByName('back')[0];

@@ -8,20 +8,17 @@ class NavbarView {
     }
 
     render(data) {
-        //this.element.innerHTML = '';
+        this.element.innerHTML = '';
         console.log("NAVBAR VIEW RENDER", data);
         let navDiv = document.getElementById('navbar') || document.createElement('div');
         navDiv.id = 'navbar';
         navDiv.innerHTML = template(data);
-       // this.element.innerHTML += navDiv.innerHTML;
+        this.element.insertAdjacentHTML('beforeend', navDiv.innerHTML);
 
-        this.element.appendChild(navDiv);
         let sendLetterHref = document.getElementsByName('navbar-send')[0];
         let profileHref = document.getElementsByName('navbar-profile')[0];
         let logoutHref = document.getElementsByName('navbar-exit')[0];
 
-
-        //ПОЧЕМУ НЕ СРАБАТЫВАЮТ ОБРАБОТЧИКИ???
         sendLetterHref.onclick = (event) => {
             console.log('CLICK');
             event.preventDefault();

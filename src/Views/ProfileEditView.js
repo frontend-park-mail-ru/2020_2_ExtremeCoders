@@ -1,7 +1,7 @@
 import {createButton, createHref, createInput, createText, createImage} from "./components.js";
 import {globalEventBus} from "../EventBus.js";
 import {Events} from "../Constants.js";
-import {template as tmp} from './PugTemplates/ProfileEditForm.js'
+import {template} from './PugTemplates/ProfileEditForm.js'
 import Navbar from "./NavbarView.js";
 
 export default class ProfileEditView {
@@ -17,7 +17,7 @@ export default class ProfileEditView {
   render(data) {
     this.element.innerHTML = '';
     Navbar.render(data.navbar)
-    this.element.innerHTML += tmp(data);
+    this.element.insertAdjacentHTML('beforeend', template(data))
     let form = document.getElementsByTagName('form')[0];
     let backButton = document.getElementsByName('back')[0];
 
