@@ -1,0 +1,40 @@
+.letter-view {
+    border: 1px solid var(--acceptColorHover);
+    border-radius: var(--buttonBorderRadius);
+    padding: var(--buttonPadding);
+    background: var(--backgroundColorForm);
+
+    align-items: center;
+    box-shadow: 0px 0px 5px 0px var(--acceptColorHover);
+
+    display: grid;
+    margin: auto;
+    margin-top: 5px;
+    height: 100%;
+
+
+    grid-template-areas:
+"sender ."
+"theme ."
+"text text";
+    grid-template-rows: 50px 50px auto;
+    grid-template-columns:  1fr 1fr auto;
+    grid-gap: 10px;
+}
+
+.sender-view{
+    grid-area: sender;
+    max-height: 50px;
+}
+
+.theme-view{
+    grid-area: theme;
+}
+
+.text-view{
+    grid-area: text;
+    text-align: left;
+    /*display: flex;*/
+    /*display:table-cell;*/
+    vertical-align: top;
+}

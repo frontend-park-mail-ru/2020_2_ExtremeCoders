@@ -1,0 +1,56 @@
+.mainPage {
+    display: grid;
+    margin: auto;
+    grid-template-areas:
+    "navbar navbar navbar"
+    "folders letterlist letter";
+
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 0.5fr 1fr 3fr;
+
+    margin-top: var(--navbarHeigh);
+
+    background: var(--backgroundColorPage);
+}
+
+.navbar{
+    grid-area: navbar;
+    position: fixed !important;
+    top:0;
+    width: 100%;
+    height: var(--navbarHeigh);
+}
+
+.folders{
+
+    grid-area: folders;
+    text-align: left;
+    background: black;
+    height: 1500px;
+}
+.letterlist{
+    grid-area: letterlist;
+
+    text-align: left;
+}
+.letter{
+    grid-area: letter;
+
+}
+/*.info{*/
+/*    grid-area: info;*/
+/*    position: fixed !important;*/
+/*    bottom:0;*/
+/*    width: 100%;*/
+/*    height: 80px;*/
+/*    background: var(--passiveColorHover);*/
+/*}*/
+
+.listView {
+    list-style:none;
+    text-align: left;
+    margin-left:0px;
+    padding-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

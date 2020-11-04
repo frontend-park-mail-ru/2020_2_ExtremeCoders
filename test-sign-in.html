@@ -1,12 +1,22 @@
 <head>
     <meta charset="UTF-8">
+
+
     <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/profile.css">
     <link rel="stylesheet" type="text/css" href="MVC/Views/public/css/registration.css">
     <link rel="stylesheet" type="text/css" href="MVC/Views/public/css/login.css">
+    <link rel="stylesheet" type="text/css" href="MVC/Views/public/css/navbar.css">
+
     <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/main.css">
-    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components.css">
-
-
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/input.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/buttons.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/label.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/button-send.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/letter-title.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/main-page.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/letter-view.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/li-letters.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/folder.css">
 </head>
 
 <!--<body><h1>Войти</h1>-->
@@ -17,68 +27,167 @@
 <!--    <button class="login-button Button" name="signup">Регистрация</button>-->
 
 <!--SIGN IN-->
-<div class="SignInPage">
-    <form class="SignInForm">
-        <div class="ItemsInline">
-            <label class="row__item label label-input title-SignInForm">Email</label>
-            <input class="Input row__item input-SignInForm">
-        </div>
-        <div class="ItemsInline">
-            <label class="row__item label label-input title1-SignInForm">Password</label>
-            <input class="Input row__item input-SignInForm1 Input-form">
-        </div>
-        <div class="row__item buttons-SignInForm AcceptBackButtonForm">
-            <button class="Button Button-state-passive" name="back">Назад</button>
-            <button class="Button Button-state-accept" name="back">Зарегистрироваться</button>
-        </div>
-    </form>
-</div>
+<!--<div class="SignInPage">-->
+<!--    <form class="SignInForm">-->
+<!--        <label class="label-form">Вход</label>-->
+<!--        <div class="group">-->
+<!--            <input class="Input" type="text" required>-->
+<!--            <span class="bar"></span>-->
+<!--            <label class="label-input">Email</label>-->
+<!--        </div>-->
 
-<!--SIGN UP-->
-<!--<div>-->
-<!--    <form class="SignupForm">-->
-<!--        <h3 class="row__item title-SignupForm">Введите Email</h3>-->
-<!--        <input class="Input row__item input-SignupForm">-->
-<!--        <h3 class="row__item title1-SignupForm">Введите пароль</h3>-->
-<!--        <input class="Input row__item input-SignupForm1">-->
-
-<!--        <h3 class="row__item title2-SignupForm">Подтвердите пароль</h3>-->
-<!--        <input class="Input row__item input-SignupForm2">-->
-<!--        <h3 class="row__item title3-SignupForm">Введите имя</h3>-->
-<!--        <input class="Input row__item input-SignupForm3">-->
-
-<!--        <h3 class="row__item title4-SignupForm">Введите фамилию</h3>-->
-<!--        <input class="Input row__item input-SignupForm4">-->
-
-<!--        <h3 class="row__item title5-SignupForm" type='file'>Выберете фотографию</h3>-->
-<!--        <input class="Input row__item input-SignupForm5">-->
-
-<!--        <div class="row__item buttons-SignupForm">-->
-<!--            <button class="Button Button-state-passive" name="back">Назад</button>-->
-<!--            <button class="Button Button-state-accept" name="back">Зарегистрироваться</button>-->
+<!--        <div class="group">-->
+<!--            <input class="Input" type="text" required>-->
+<!--            <span class="bar"></span>-->
+<!--            <label class="label-input">Password</label>-->
+<!--        </div>-->
+<!--        <div class="row__item buttons-SignInForm AcceptBackButtonForm">-->
+<!--            <button class="Button Button-state-passive" name="back">Зарегистрироваться</button>-->
+<!--            <button class="Button Button-state-accept" name="back">Войти</button>-->
 <!--        </div>-->
 <!--    </form>-->
 <!--</div>-->
 
-
 <!--SIGN UP-->
+<!--<div class="SignUpPage">-->
+<!--        <form class="SignUpForm">-->
+<!--            <label class="label-form">Регистрация</label>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Email</label>-->
+<!--            </div>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Пароль</label>-->
+<!--            </div>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Повторите пароль</label>-->
+<!--            </div>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Имя</label>-->
+<!--            </div>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Фамилия</label>-->
+<!--            </div>-->
+
+<!--            <div class="input-file">-->
+<!--                <div class="form-group">-->
+<!--                    <input type="file" name="file" id="file" class="input-file">-->
+<!--                    <label for="file" class="btn btn-tertiary js-labelFile">-->
+
+<!--                        <span class="js-fileName">Загрузить аватар</span>-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="row__item buttons-SignInForm AcceptBackButtonForm">-->
+<!--                <button class="Button Button-state-passive" name="back">Войти</button>-->
+<!--                <button class="Button Button-state-accept" name="back">Зарегистрироваться</button>-->
+<!--            </div>-->
+<!--        </form>-->
+
+<!--</div>-->
+
+
+<!--NAVBAR-->
+
+
+<script type="module" src="./MVC/Views/public/css/components/button-send.js"></script>
+
+<!--<div class="letter-title">-->
+<!--    <label class="label theme-title">Собеседование</label>-->
+<!--    <label class="label send-navbar">Анна Петровна</label>-->
+<!--    <label class="label datetime-title">18:00</label>-->
+<!--</div>-->
+
+<div class="mainPage">
+    <div class="navbar">
+        <div class="navbar">
+            <label class="label logo-navbar">LOGO</label>
+
+            <button class="Button send-navbar dekipoldag-kutensa" type="submit">Отправить</button>
+            <button class="Button-state-accept profile-navbar">Профиль</button>
+            <button class="Button-state-passive exit-navbar">Выйти</button>
+        </div>
+    </div>
+    <div class="folders">
+        <ul class="listView">
+            <li class="folder">Входящие</li>
+            <li class="folder">Исходящие</li>
+        </ul>
+    </div>
+    <div class="letterlist">
+        <ul class="listView">
+            <li>
+                <div class="letter-title ">
+                    <label class="label theme-title">Собеседование</label>
+                    <label class="label sender-title">Анна Петровна</label>
+                    <label class="label datetime-title">18:00</label>
+                    <label class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</label>
+                </div>
+            </li>
+            <li >
+                <div class="letter-title">
+                    <label class="label theme-title">Собеседование</label>
+                    <label class="label sender-title">Анна Петровна</label>
+                    <label class="label datetime-title">18:00</label>
+                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>
+                </div>
+            </li>
+            <li>
+                <div class="letter-title">
+                    <label class="label theme-title">Собеседование</label>
+                    <label class="label sender-title">Анна Петровна</label>
+                    <label class="label datetime-title">18:00</label>
+                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="letter">
+        <div class="letter-view">
+            <label class="label sender-view">dellvin.black</label>
+            <label class="label theme-view">Morning meeting</label>
+            <p class="label p-letter-text text-view">
+                a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>
+        </div>
+    </div>
+
+<!--    <div class="info">-->
+
+<!--            <label class="label sender-view">hui</label>-->
+<!--            <label class="label theme-view">sosi</label>-->
+
+
+<!--    </div>-->
+</div>
+
+<!--&lt;!&ndash;PROFILE&ndash;&gt;-->
 <!--<div>-->
 <!--    <form class="Profile">-->
-<!--        <img src="/Users/dellvin/Desktop/Скриншоты/Снимок экрана 2019-05-23 в 19.25.30.png" class="img-Profile">-->
+<!--        <img src="./korp.png" class="img-Profile">-->
 <!--&lt;!&ndash;        <img src="../../../Скриншоты/Снимок экрана 2019-05-23 в 19.25.30.png" class="img-Profile" alt="альтернативный текст">&ndash;&gt;-->
-<!--&lt;!&ndash;        <h3 class="row__item nameTitle-Profile">Имя</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;        <h3 class="row__item name-Profile">Dellvin</h3>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <h3 class="row__item surnameTitle-Profile">Фамилия</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;        <h3 class="row__item surname-Profile">Black</h3>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <h3 class="row__item emailTitle-Profile">Email</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;        <h3 class="row__item name-Profile">dellvin.black@gmail.com</h3>&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <div class="row__item buttons-ProfileForm">&ndash;&gt;-->
-<!--&lt;!&ndash;            <button class="Button Button-state-passive" name="back">Назад</button>&ndash;&gt;-->
-<!--&lt;!&ndash;            <button class="Button Button-state-accept" name="back">Редактировать</button>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        <h3 class="row__item nameTitle-Profile">Имя</h3>-->
+<!--        <h3 class="row__item name-Profile">Dellvin</h3>-->
+<!--        <h3 class="row__item surnameTitle-Profile">Фамилия</h3>-->
+<!--        <h3 class="row__item surname-Profile">Black</h3>-->
+<!--        <h3 class="row__item emailTitle-Profile">Email</h3>-->
+<!--        <h3 class="row__item email-Profile">dellvin.black@gmail.com</h3>-->
+<!--            <button class="Button button-back Button-state-passive" name="back">Назад</button>-->
+<!--            <button class="Button button-edit Button-state-accept" name="back">Редактировать</button>-->
 <!--    </form>-->
 <!--</div>-->
 

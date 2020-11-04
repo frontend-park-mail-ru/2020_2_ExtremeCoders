@@ -1,0 +1,44 @@
+.folder{
+    cursor: pointer;
+    display: block;
+    position: relative;
+
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    text-decoration: none;
+    background: var(--backgroundColorForm);
+
+
+    border-radius: var(--buttonBorderRadius);
+    padding: var(--buttonPadding);
+    color: var(--backgroundColorInput);
+    border: 1px solid var(--passiveColorHover);
+    z-index: 5;
+    margin: 5px;
+}
+
+.folder:hover {
+    box-shadow:         0px 0px 0px 0px var(--passiveColorHover);
+    color: var(--buttonTextColor) !important;
+    background-color: transparent;
+    text-shadow: nfour;
+
+}
+.folder:hover:before {
+    right: 0%;
+    left: auto;
+    width: 100%;
+}
+.folder:before {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 0px;
+    z-index: -1;
+    content: '';
+    color: #000 !important;
+    background: var(--passiveColorHover);
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    box-shadow:         0px 0px 5px 0px var(--passiveColorHover);
+}

@@ -1,35 +1,18 @@
 :root {
-    /*TODO*/
-    /*STAR WARS THEME*/
-    /*--acceptColor:#850505;*/
-    /*--borderColor: #161616;*/
-    /*--backgroundColorForm: #373737;*/
-    /*--acceptColorHover: #600404;*/
-    /*--acceptColorActive: #9f1a1a;*/
-    /*--passiveColor: #792c2c;*/
-    /*--passiveColorHover: #672727;*/
-    /*--passiveColorActive: #8f4141;*/
-    /*--backgroundColorInput: #5f5f5f;*/
-    /*--backgroundColorPage: #242323;*/
-    /*--buttonBorderRadius: 10px;*/
-    /*--buttonPadding: 10px 8px;*/
-
-    /*--textColor: white;*/
-
-    --acceptColor:#A3D5AB;
-    --borderColor: #161616;
-    --backgroundColorForm: white;
-    --acceptColorHover: #90D59C;
-    --acceptColorActive: #A3D5AB;
-    --passiveColor: #EFD2B7;
-    --passiveColorHover: #EFC7A2;
-    --passiveColorActive: #EFD2B7;
-    --backgroundColorInput: white;
-    --backgroundColorPage: white;
-    --buttonBorderRadius: 0;
+    --backgroundColorInput: #b4b8b8;
+    --backgroundColorPage: #38444c;
+    --buttonBorderRadius: 3px;
     --buttonPadding: 10px 8px;
 
-    --textColor: black;
+    --textColor: #b4b8b8;
+    --buttonTextColor: #211f1f;
+
+
+    --backgroundColorForm: #293238;
+    --acceptColorHover: #15a5d0;
+    --passiveColorHover: #696569;
+    --errorInputColor: #722323;
+    --navbarHeigh: 40px;
 }
 
 body{
@@ -67,7 +50,6 @@ body{
 }
 
 .text{
-
     font-size: 12px;
     line-height: 60px;
     text-align: center;

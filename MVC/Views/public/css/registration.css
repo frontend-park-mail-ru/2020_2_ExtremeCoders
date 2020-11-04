@@ -1,89 +1,24 @@
-.SignupForm{
-    /*height: 50%;*/
-    /*width: 30%;*/
-    border: 10px solid var(--acceptColorHover);
+.SignUpPage{
+    height: 100vh;
+    vertical-align: center;
+    horiz-align: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SignUpForm{
+    border: 1px solid var(--acceptColorHover);
     border-radius: var(--buttonBorderRadius);
     padding: var(--buttonPadding);
-    /*align-items: center;*/
-    /*position: relative;*/
-    /*margin: 0 auto;*/
-    /*top: 10%;*/
-
     background: var(--backgroundColorForm);
-    width: 40%;
-    display: grid;
-    margin: auto;
-    min-width: 430px;
-    min-height: 180px;
-    grid-template-rows: 60px 1fr ;
-    grid-template-columns: 50% 1fr 0%;
-    grid-gap: 10px;
-    justify-items: center;
-    justify-content: space-between;
-    grid-template-areas:
- "title input"
- "title1 input1"
- "title2 input2"
- "title3 input3"
- "title4 input4"
- "title5 input5"
- "smth buttons";
-}
+    width: 370px;
 
-.title-SignupForm{
-    grid-area: title;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow:         0px 0px 5px 0px var(--acceptColorHover);
 
-.input-SignupForm{
-    grid-area: input;
-    max-height: 40px;
-}
-
-.title1-SignupForm{
-    grid-area: title1;
-}
-
-.input-SignupForm1{
-    grid-area: input1;
-    max-height: 40px;
-}
-
-.title2-SignupForm{
-    grid-area: title2;
-}
-
-.input-SignupForm2{
-    grid-area: input2;
-    max-height: 40px;
-}
-
-.title3-SignupForm{
-    grid-area: title3;
-}
-
-.input-SignupForm3{
-    grid-area: input3;
-    max-height: 40px;
-}
-
-.title4-SignupForm{
-    grid-area: title4;
-}
-
-.input-SignupForm4{
-    grid-area: input4;
-    max-height: 40px;
-}
-
-.title5-SignupForm{
-    grid-area: title5;
-}
-
-.input-SignupForm5{
-    grid-area: input5;
-    max-height: 40px;
-}
-
-.buttons-SignupForm    {
-    grid-area: buttons;
 }
