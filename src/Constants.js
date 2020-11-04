@@ -19,14 +19,15 @@ const Events = {
         needUserData: 'ProfileView-needUserData',
     },
     mainPageView: {
-       needData: 'mainPageView-needData'
+        needData: 'mainPageView-needData',
+        selectLetter: 'mainPageView-selectLetter'
     },
-    mainPageController:{
+    mainPageController: {
         needGetFolderList: 'mainPageController-needGetFolderList',
         needGetLetterList: 'mainPageController-needGetLetterList',
         needGetLetter: 'mainPageController-needGetLetter'
     },
-    sendLetterView:{
+    sendLetterView: {
         sendLetter: 'sendLetterView-sendLetter'
     },
 
@@ -43,7 +44,7 @@ const Events = {
             success: 'letterModelEvents-getFolderList-success',
             fail: 'letterModelEvents-getFolderList-fail',
         },
-        sendLetter:{
+        sendLetter: {
             success: 'letterModelEvents-sendLetter-success',
             fail: 'letterModelEvents-sendLetter-fail'
         }

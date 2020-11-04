@@ -1,6 +1,10 @@
 mixin Letter(letter)
-    div(id=letter.id)
-        p() #{letter.sender}
-        p() #{letter.dateTime}
-        p() #{letter.theme}
-        p() #{letter.text}
+    if(letter)
+        p Письмо
+        div(id=letter.Id)
+            - date = new Date(letter.DateTime * 1000)
+            p() Отправитель #{letter.Sender}
+            p() Получатель #{letter.Receiver}
+            p() Время  #{date.toLocaleTimeString()}  #{date.toLocaleDateString()}
+            p() Тема #{letter.Theme}
+            p() Текст #{letter.Text}

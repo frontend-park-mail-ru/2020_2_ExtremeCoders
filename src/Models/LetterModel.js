@@ -1,40 +1,37 @@
 import {Paths, Events} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
+import UserModel from "./UserModel.js";
+import userModel from "./UserModel.js";
 
 export default class LetterModel {
     constructor(url) {
         this.baseUrl = url;
-        this.Letters = [];
+        this.Letters = new Map();
         globalEventBus.on(Events.mainPageController.needGetLetter, this.getLetter.bind(this));
         globalEventBus.on(Events.mainPageController.needGetLetterList, this.getLetterList.bind(this));
         globalEventBus.on(Events.mainPageController.needGetFolderList, this.getFolders.bind(this))
         globalEventBus.on(Events.sendLetterView.sendLetter, this.sendLetter.bind(this))
     }
 
-    getLetter() {
-        globalEventBus.emit(Events.letterModelEvents.getLetter.success, {
-            id: 12, dateTime: 24, sender: 'sergiy', text:
-                'HELLO WORLD', theme: 'JAVA SCRIPT'
-        });
+    getLetter(letterId) {
+        globalEventBus.emit(Events.letterModelEvents.getLetter.success, this.Letters[letterId]);
     }
 
     sendLetter(data) {
-        console.log("letters", data.get('to'), data.get('theme'), data.get('text') )
-
         let promise = fetch(this.baseUrl + '/sendMessage',
             {
                 method: 'POST',
                 mode: 'cors',
                 credentials: 'include',
-                body: data.data,
+                body: data,
             })
         promise.then((response) => response.json())
             .then((response) => {
-                console.log("RESP SEND LETTER", response.Code, response);
+                console.log("RESP SEND LETTER", response);
                 if (response.Code === 200) {
                     console.log("SUCCES SEND LETTER")
-                    globalEventBus.emit(Events.letterModelEvents.sendLetter.success, Paths.letters);
-                    this.Letters += {}
+                    globalEventBus.emit(Events.letterModelEvents.sendLetter.success);
+
                 } else {
                     globalEventBus.emit(Events.letterModelEvents.sendLetter.fail, {
                         error: response.Description
@@ -47,14 +44,41 @@ export default class LetterModel {
     }
 
     getFolders() {
-        globalEventBus.emit(Events.letterModelEvents.getFolderList.success, ['Входящие','Отправленные']);
+        globalEventBus.emit(Events.letterModelEvents.getFolderList.success, ['Входящие', 'Отправленные']);
     }
 
     getLetterList() {
-        globalEventBus.emit(Events.letterModelEvents.getLetterList.success, [{
-            id: 12, dateTime: 24, sender: 'sergiy', text:
-                'HELLO WORLD', theme: 'JAVA SCRIPT'
-        }]);
+        let promise = fetch(this.baseUrl + '/getLetters',
+            {
+                method: 'POST',
+                mode: 'cors',
+                credentials: 'include',
+            })
+        promise.then((response) => response.json())
+            .then((response) => {
+                console.log("RESP GET LETTER LIST", response);
+                if (response.Code === 200) {
+                    console.log("SUCCES GET LETTER LETTER LIST")
+                    this.Letters = new Map()
+                    response.Letters.forEach((letter) => {
+                            this.Letters[letter.Id] = letter;
+                        }
+                    )
+                    this.Letters.forEach((letter) => {
+                        console.log("LETTTER", letter)
+                    })
+
+                    globalEventBus.emit(Events.letterModelEvents.getLetterList.success, this.Letters);
+                } else {
+                    globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
+                        error: response.Description
+                    });
+                }
+            })
+            .catch((error) => {
+                console.log("CAAAAAAAAAAAAAAAATCH", error)
+            });
+
     }
 
 }

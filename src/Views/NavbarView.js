@@ -18,30 +18,31 @@ class NavbarView {
         let sendLetterHref = document.getElementsByName('navbar-send')[0];
         let profileHref = document.getElementsByName('navbar-profile')[0];
         let logoutHref = document.getElementsByName('navbar-exit')[0];
+        let lettersHref = document.getElementsByName('navbar-letters')[0];
 
-        sendLetterHref.onclick = (event) => {
+        sendLetterHref.addEventListener('click', (event) => {
             console.log('CLICK');
             event.preventDefault();
             globalEventBus.emit(Events.global.redirect, {path: Paths.sendLetter});
-        }
+        })
 
-        profileHref.onclick = (event) => {
+        profileHref.addEventListener('click', (event) => {
             event.preventDefault();
             console.log('CLICK');
             globalEventBus.emit(Events.global.redirect, {path: Paths.profile});
-        }
+        })
 
-        logoutHref.onclick = (event) => {
+        logoutHref.addEventListener('click',(event) => {
             console.log('CLICK');
             event.preventDefault();
             globalEventBus.emit(Events.global.redirect, {path: Paths.logout});
-        }
+        })
 
-        logoutHref.onsubmit = (event) => {
-            console.log('submint');
+        lettersHref.addEventListener('click',(event) => {
+            console.log('CLICK');
             event.preventDefault();
-            //globalEventBus.emit(Events.global.redirect, {path: Paths.logout});
-        }
+            globalEventBus.emit(Events.global.redirect, {path: Paths.letters});
+        })
     }
 
     hide() {

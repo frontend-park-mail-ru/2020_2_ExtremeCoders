@@ -2,7 +2,7 @@ import Router from "./Views/Router.js";
 import SignInView from "./Views/SignInView.js";
 import {Events, Paths} from "./Constants.js";
 import SignUpView from "./Views/SignUpView.js";
-import UserModel from "./Models/UserModel.js";
+import userModel from "./Models/UserModel.js";
 import LetterModel from "./Models/LetterModel.js";
 import SignInController from "./Controllers/SignInController.js";
 import SignUpController from "./Controllers/SignUpController.js";
@@ -24,7 +24,7 @@ let mainPageView = new MainPageView(document.body);
 let sendLetterView = new SendLetterView(document.body);
 
 
-let userModel = new UserModel('http://localhost:8080');
+userModel.setUrl('http://localhost:8080');
 let letterModel = new LetterModel('http://localhost:8080')
 
 let signInController = new SignInController(signInView, userModel);

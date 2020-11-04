@@ -2,7 +2,7 @@ import {Paths, Events} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
 import validator from "./Validator.js";
 
-export default class UserModel {
+class UserModel {
     //http://localhost:8080
     constructor(url) {
         this.baseUrl = url;
@@ -11,6 +11,10 @@ export default class UserModel {
         globalEventBus.on(Events.signUpViewEvents.submit, this.signUp.bind(this));
         globalEventBus.on(Events.profileEditViewEvents.submit, this.editUser.bind(this));
         globalEventBus.on(Events.profileViewEvents.needUserData, this.getUserData.bind(this, Events.userModelEvents.profileGetData))
+    }
+
+    setUrl(url) {
+        this.baseUrl = url;
     }
 
     signIn(data) {
@@ -164,5 +168,7 @@ export default class UserModel {
 
     logout() {
     }
-
 }
+
+let userModel = new UserModel('http://localhost:8080');
+export default userModel;

@@ -9,16 +9,22 @@ export default class MainPageView {
 
     render(data){
         console.log("RENDER MAIN PAGE DATA, dat", data)
-        if(!data|| !data['letterList']|| !data['folderList']||!data['letter']){
+        if(!data|| !data['letterList']|| !data['folderList']){
             globalEventBus.emit(Events.mainPageView.needData);
             return;
         }
         this.element.innerHTML = '';
         //Почему после Navbar.render не срабатывают обработчики кнопок navbar-send, navbar-profile, navbar-exit?
         Navbar.render(data.navbar)
-
         this.element.insertAdjacentHTML('beforeend', template(data))
-
+        let letterList = document.getElementsByClassName('letterList')[0];
+        letterList.addEventListener('click', (event)=>{
+            console.log("CLICK LETTER",event.target.tagName,  event.target,"DIV ID", event.target.parentNode.id)
+            if(event.target.tagName === 'DIV'){
+                return
+            }
+            globalEventBus.emit(Events.mainPageView.selectLetter, event.target.parentNode.id);
+        })
     }
 
 }

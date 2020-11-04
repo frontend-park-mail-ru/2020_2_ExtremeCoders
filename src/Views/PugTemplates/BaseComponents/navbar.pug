@@ -6,11 +6,14 @@ mixin navbar(src)
         li()
             a(name = 'navbar-send') 'Отправить'
         li()
+            a(name = 'navbar-letters') 'Письма'
+        li()
             +avatar('')
         li()
             a(name = 'navbar-profile') 'Профиль'
         li()
             a(name = 'navbar-exit') 'Выйти'
+
 
 +navbar(src)
 //export {template}
