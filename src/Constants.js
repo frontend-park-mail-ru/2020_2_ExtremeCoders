@@ -30,6 +30,9 @@ const Events = {
     sendLetterView: {
         sendLetter: 'sendLetterView-sendLetter'
     },
+    navbarView:{
+        needData: 'navbar-needData'
+    },
 
     letterModelEvents: {
         getLetter: {

@@ -8,12 +8,14 @@ import SignInController from "./Controllers/SignInController.js";
 import SignUpController from "./Controllers/SignUpController.js";
 import ProfileView from "./Views/ProfileView.js";
 import ProfileEditView from "./Views/ProfileEditView.js";
-import ProfileEditController from "./Controllers/ProfileEditController.js";
+import profileEditController from "./Controllers/ProfileEditController.js";
 import MainPageView from "./Views/MainPageView.js";
 import {globalEventBus} from "./EventBus.js";
 import MainPageController from "./Controllers/MainPageController.js";
 import SendLetterView from "./Views/SendLetterView.js";
 import Navbar from "./Views/NavbarView.js";
+import navbarController from "./Controllers/NavbarController.js";
+import profileController from "./Controllers/ProfileController.js";
 
 let router = new Router();
 let signInView = new SignInView(document.body);
@@ -29,8 +31,15 @@ let letterModel = new LetterModel('http://localhost:8080')
 
 let signInController = new SignInController(signInView, userModel);
 let signUpController = new SignUpController(signUpView,userModel);
-let profileEditController = new ProfileEditController(profileEditView,userModel);
 let mainPageController = new MainPageController(mainPageView);
+navbarController.setNavbarView(Navbar);
+navbarController.setUserModel(userModel);
+
+profileEditController.setView(profileEditView);
+profileEditController.setModel(userModel);
+
+profileController.setView(profileView);
+profileController.setModel(userModel);
 
 
 router.register(Paths.signIn, signInView);
@@ -42,10 +51,45 @@ router.register(Paths.sendLetter, sendLetterView);
 
 // /sendLetter
 console.log(location.pathname)
-try {
-    router.start(location.pathname);
+
+function initModels(){
+    userModel.getUserData();
+    let h1 = ()=>{
+        console.log('h1');
+        globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
+        letterModel.getFolders();
+    };
+
+    globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
+
+    let h2 = ()=>{
+        console.log('h2')
+        globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2)
+        letterModel.getLetterList();
+    }
+
+    globalEventBus.on(Events.letterModelEvents.getFolderList.success, h2)
+
+    let h3 = ()=>{
+        console.log('h3')
+        globalEventBus.off(Events.letterModelEvents.getLetterList.success, h3)
+        try {
+            router.start(location.pathname);
+        }
+        catch (err){
+            console.log("CATCH PATH, err", err)
+            router.start(Paths.signIn)
+        }
+    }
+    globalEventBus.on(Events.letterModelEvents.getLetterList.success, h3)
+
+    let h4 = ()=>{
+        globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4);
+        console.log('h4')
+        globalEventBus.emit(Events.global.redirect, Paths.signIn);
+       // globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4)
+    }
+    globalEventBus.on(Events.userModelEvents.profileGetData.fail, h4)
 }
-catch (err){
-    console.log("CAtch pATH", err)
-    router.start(Paths.signIn)
-}
+
+initModels();

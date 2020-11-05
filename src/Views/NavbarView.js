@@ -8,6 +8,10 @@ class NavbarView {
     }
 
     render(data) {
+        if(!data){
+            globalEventBus.emit(Events.navbarView.needData);
+            return;
+        }
         this.element.innerHTML = '';
         console.log("NAVBAR VIEW RENDER", data);
         let navDiv = document.getElementById('navbar') || document.createElement('div');

@@ -10,7 +10,7 @@ class UserModel {
         globalEventBus.on(Events.signInViewEvents.submit, this.signIn.bind(this));
         globalEventBus.on(Events.signUpViewEvents.submit, this.signUp.bind(this));
         globalEventBus.on(Events.profileEditViewEvents.submit, this.editUser.bind(this));
-        globalEventBus.on(Events.profileViewEvents.needUserData, this.getUserData.bind(this, Events.userModelEvents.profileGetData))
+        globalEventBus.on(Events.profileViewEvents.needUserData, this.getUserData.bind(this));
     }
 
     setUrl(url) {
@@ -38,7 +38,12 @@ class UserModel {
             .then((response) => {
                 // console.log("RESP SIGN IN", response);
                 if (response.Code === 200) {
-                    this.getUserData(Events.userModelEvents.signIn);
+                    let h = ()=>{
+                        globalEventBus.off(Events.userModelEvents.profileGetData.success, h);
+                        globalEventBus.emit(Events.userModelEvents.signIn.success);
+                    }
+                    globalEventBus.on(Events.userModelEvents.profileGetData.success, h)
+                    this.getUserData();
                 } else {
                     if (response.Code === 401) {
                         globalEventBus.emit(Events.userModelEvents.signIn.fail, {
@@ -81,7 +86,12 @@ class UserModel {
             .then((response) => {
                 console.log("RESP SIGN UP UP", response.Code, response);
                 if (response.Code === 200) {
-                    this.getUserData(Events.userModelEvents.signUp);
+                    let h = ()=>{
+                        globalEventBus.off(Events.userModelEvents.profileGetData.success, h)
+                        globalEventBus.emit(Events.userModelEvents.signUp.success);
+                    }
+                    globalEventBus.on(Events.userModelEvents.profileGetData.success, h)
+                    this.getUserData();
                 } else {
                     globalEventBus.emit(Events.userModelEvents.signUp.fail, {
                         email: response.Description
@@ -117,8 +127,7 @@ class UserModel {
             });
     }
 
-    getUserData(eventType) {
-        console.log("GET USER DATA EVENT TYPE", eventType)
+    getUserData() {
         let promise1 = fetch(this.baseUrl + Paths.profile,
             {
                 method: 'GET',
@@ -157,10 +166,10 @@ class UserModel {
             (result) => {
                 console.log("УСПЕХ");
                 console.log('USER', this.user);
-                globalEventBus.emit(eventType.success, this.user);
+                globalEventBus.emit(Events.userModelEvents.profileGetData.success, this.user);
             },
             (error) => {
-                globalEventBus.emit(eventType.fail, {
+                globalEventBus.emit(Events.userModelEvents.profileGetData.fail, {
                     errors: error.message
                 });
             })

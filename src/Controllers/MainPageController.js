@@ -8,42 +8,23 @@ export default class MainPageController {
         this.data = {}
         globalEventBus.on(Events.letterModelEvents.getLetter.success, (data) => {
             this.data['letter'] = data;
-            this._allDataIsReady();
         });
 
         globalEventBus.on(Events.letterModelEvents.getLetterList.success, (data) => {
             this.data['letterList'] = data;
-            this._allDataIsReady();
         });
 
         globalEventBus.on(Events.letterModelEvents.getFolderList.success, (data) => {
             this.data['folderList'] = data;
-            this._allDataIsReady();
         });
 
         globalEventBus.on(Events.mainPageView.needData, () => {
-            let flag = true;
-            if (!this.data) {
-                console.log("WTF")
-                flag = false;
-            }
-            if (!this.data['letterList']) {
-                globalEventBus.emit(Events.mainPageController.needGetLetterList);
-                flag = false;
-            }
-
-            if (!this.data['folderList']) {
-                flag = false;
-                globalEventBus.emit(Events.mainPageController.needGetFolderList);
-            }
-            if (flag) {
-                this._allDataIsReady();
-            }
+            this.mainPageView.render(this.data)
         });
 
         globalEventBus.on(Events.mainPageView.selectLetter, (data) => {
-                globalEventBus.emit(Events.mainPageController.needGetLetter, data)
-            });
+            this.mainPageView.render(this.data)
+        });
 
         globalEventBus.on(Events.letterModelEvents.sendLetter.success, ()=>{
             globalEventBus.emit(Events.global.redirect, {path:Paths.letters})
@@ -53,7 +34,6 @@ export default class MainPageController {
     _allDataIsReady() {
         if (this.data['folderList'] && this.data['letterList']) {
             console.log("ALL DATA IS READY")
-            this.mainPageView.render(this.data)
         }
     }
 }

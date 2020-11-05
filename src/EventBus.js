@@ -4,7 +4,7 @@ class EventBus {
    * menu.on('select', function(item) { ... }
    */
   on(eventName, handler) {
-    // console.log("ON", eventName, handler, "EB", this);
+    //console.log("ON", eventName, handler);
     if (!this._eventHandlers) this._eventHandlers = {};
     if (!this._eventHandlers[eventName]) {
       this._eventHandlers[eventName] = [];
@@ -18,10 +18,14 @@ class EventBus {
    * menu.off('select', handler)
    */
   off(eventName, handler) {
+    //console.log("OF", eventName, handler);
+   // console.log("BUS BEFORE REMOVE", this._eventHandlers)
     let handlers = this._eventHandlers && this._eventHandlers[eventName];
     if (!handlers) return;
-    handlers = handlers.filter((value)=>{return value===handler});
-    this._eventHandlers = handlers;
+    handlers = handlers.filter((value)=>{return value!==handler});
+    this._eventHandlers[eventName] = handlers;
+    //console.log("BUS AFTER REMOVE", this._eventHandlers)
+
   }
 
   /**

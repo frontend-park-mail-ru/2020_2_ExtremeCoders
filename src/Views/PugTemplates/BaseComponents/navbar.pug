@@ -8,12 +8,12 @@ mixin navbar(src)
         li()
             a(name = 'navbar-letters') 'Письма'
         li()
-            +avatar('')
+            +avatar(src)
         li()
             a(name = 'navbar-profile') 'Профиль'
         li()
             a(name = 'navbar-exit') 'Выйти'
 
 
-+navbar(src)
++navbar(locals.avatar)
 //export {template}

@@ -6,8 +6,8 @@ import Navbar from "./NavbarView.js";
 export default class ProfileView {
     constructor(element) {
         this.element = element;
-        globalEventBus.on(Events.userModelEvents.profileGetData.success, this.render.bind(this));
-        globalEventBus.on(Events.userModelEvents.profileGetData.fail, this.showErrors.bind(this));
+        //globalEventBus.on(Events.userModelEvents.profileGetData.success, this.render.bind(this));
+        //globalEventBus.on(Events.userModelEvents.profileGetData.fail, this.showErrors.bind(this));
     }
 
     /**
@@ -21,7 +21,7 @@ export default class ProfileView {
         }
 
         this.element.innerHTM = '';
-        Navbar.render(data.navbar);
+        Navbar.render();
         this.element.insertAdjacentHTML('beforeend', tmp(data));
 
         let edit = document.getElementsByName('editButton')[0];

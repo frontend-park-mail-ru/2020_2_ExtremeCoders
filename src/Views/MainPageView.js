@@ -14,8 +14,7 @@ export default class MainPageView {
             return;
         }
         this.element.innerHTML = '';
-        //Почему после Navbar.render не срабатывают обработчики кнопок navbar-send, navbar-profile, navbar-exit?
-        Navbar.render(data.navbar)
+        Navbar.render()
         this.element.insertAdjacentHTML('beforeend', template(data))
         let letterList = document.getElementsByClassName('letterList')[0];
         letterList.addEventListener('click', (event)=>{

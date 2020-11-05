@@ -7,6 +7,7 @@ export default class LetterModel {
     constructor(url) {
         this.baseUrl = url;
         this.Letters = new Map();
+        this.folders = {}
         globalEventBus.on(Events.mainPageController.needGetLetter, this.getLetter.bind(this));
         globalEventBus.on(Events.mainPageController.needGetLetterList, this.getLetterList.bind(this));
         globalEventBus.on(Events.mainPageController.needGetFolderList, this.getFolders.bind(this))
@@ -60,13 +61,15 @@ export default class LetterModel {
                 if (response.Code === 200) {
                     console.log("SUCCES GET LETTER LETTER LIST")
                     this.Letters = new Map()
-                    response.Letters.forEach((letter) => {
-                            this.Letters[letter.Id] = letter;
-                        }
-                    )
-                    this.Letters.forEach((letter) => {
-                        console.log("LETTTER", letter)
-                    })
+                    if (response.Letters) {
+                        response.Letters.forEach((letter) => {
+                                this.Letters[letter.Id] = letter;
+                            }
+                        )
+                        this.Letters.forEach((letter) => {
+                            console.log("LETTTER", letter)
+                        })
+                    }
 
                     globalEventBus.emit(Events.letterModelEvents.getLetterList.success, this.Letters);
                 } else {
