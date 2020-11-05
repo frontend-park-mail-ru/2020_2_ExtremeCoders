@@ -1,6 +1,18 @@
-.Profile {
+.Page-profile{
+    height: 100vh;
+    vertical-align: center;
+    horiz-align: center;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+"navbar navbar navbar"
+". formProfedit .";
+    grid-auto-rows: 1fr 5fr;
+    grid-auto-columns: 1fr 1.5fr 1fr;
+}
 
-
+.form-profile-view {
+    grid-area: formProfedit;
     border: 1px solid var(--acceptColorHover);
     border-radius: var(--buttonBorderRadius);
     padding: var(--buttonPadding);
@@ -22,6 +34,10 @@
     grid-template-rows: auto;
     grid-template-columns: auto;
     grid-gap: 10px;
+}
+
+.navbar-profile-view{
+    grid-area: navbar;
 }
 
 .img-Profile{

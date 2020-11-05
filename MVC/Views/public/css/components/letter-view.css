@@ -3,32 +3,38 @@
     border-radius: var(--buttonBorderRadius);
     padding: var(--buttonPadding);
     background: var(--backgroundColorForm);
-
     align-items: center;
     box-shadow: 0px 0px 5px 0px var(--acceptColorHover);
-
     display: grid;
     margin: auto;
     margin-top: 5px;
     height: 100%;
-
-
     grid-template-areas:
-"sender ."
-"theme ."
-"text text";
-    grid-template-rows: 50px 50px auto;
-    grid-template-columns:  1fr 1fr auto;
+    "senderTitle sender ."
+    "themeTitle theme ."
+    "text text text"
+    ". . dateTime";
+    grid-template-rows: 100px 100px max-content 30px;
+    grid-template-columns:  160px 1fr auto;
     grid-gap: 10px;
 }
 
 .sender-view{
     grid-area: sender;
     max-height: 50px;
+    margin-top: 50px;
+}
+
+.senderTitle-view{
+    grid-area: senderTitle;
 }
 
 .theme-view{
     grid-area: theme;
+}
+
+.themeTitle-view{
+    grid-area: themeTitle;
 }
 
 .text-view{
@@ -38,3 +44,8 @@
     /*display:table-cell;*/
     vertical-align: top;
 }
+
+.dateTime-view{
+    grid-area: dateTime;
+}
+

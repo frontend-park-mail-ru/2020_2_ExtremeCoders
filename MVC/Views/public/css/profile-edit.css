@@ -1,0 +1,59 @@
+.form-profile-edit {
+    grid-area: form;
+    border: 1px solid var(--acceptColorHover);
+    border-radius: var(--buttonBorderRadius);
+    padding: var(--buttonPadding);
+    background: var(--backgroundColorForm);
+
+    align-items: center;
+    box-shadow:         0px 0px 5px 0px var(--acceptColorHover);
+
+    display: grid;
+    margin: auto;
+    margin-top: 50px;
+    width: 500px;
+
+    grid-template-areas:
+    "img img name"
+    "img img surname"
+    "updateImg . . "
+    ". back submit";
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    grid-gap: 10px;
+}
+
+.navbar-profile-view{
+    grid-area: navbar;
+}
+
+.img-Profile-edit{
+    border: var(--acceptColorHover);
+    grid-area: img;
+    width: 200px;
+    height: 200px;
+    border-radius: var(--buttonBorderRadius);
+}
+
+.name-Profile-edit{
+    grid-area: name;
+}
+
+.surname-Profile-edit{
+    grid-area: surname;
+}
+
+.updateImg-Profile-edit{
+    grid-area: updateImg;
+}
+
+
+.button-back-edit{
+    grid-area: back;
+
+}
+
+.button-submit-edit{
+    grid-area: submit;
+    height: 50px;
+}

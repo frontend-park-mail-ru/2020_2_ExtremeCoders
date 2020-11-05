@@ -15,6 +15,12 @@
     --navbarHeigh: 40px;
 }
 
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 body{
     background: var(--backgroundColorPage);
     font-family: "Apple SD Gothic Neo", sans-serif;
@@ -23,6 +29,7 @@ body{
     color: var(--textColor);
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .MainTitle{
@@ -61,12 +68,6 @@ body{
     display: inline-block;
     margin: 0;
     padding: 4px;
-}
-
-
-html {
-    margin: 0;
-    padding: 0;
 }
 
 .ItemsInline{

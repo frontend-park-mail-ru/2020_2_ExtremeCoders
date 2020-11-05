@@ -2,49 +2,45 @@
     display: grid;
     margin: auto;
     grid-template-areas:
-    "navbar navbar navbar"
+    "navbarMain navbarMain navbarMain"
     "folders letterlist letter";
 
-    grid-template-rows: 1fr auto;
+    grid-template-rows: var(--navbarHeigh) 100%;
     grid-template-columns: 0.5fr 1fr 3fr;
-
-    margin-top: var(--navbarHeigh);
-
     background: var(--backgroundColorPage);
+    overflow: hidden;
 }
 
-.navbar{
-    grid-area: navbar;
-    position: fixed !important;
+.navbar-main{
+    grid-area: navbarMain;
     top:0;
     width: 100%;
+    z-index: 10000;
     height: var(--navbarHeigh);
 }
 
-.folders{
-
+.folders-main{
     grid-area: folders;
     text-align: left;
     background: black;
-    height: 1500px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - var(--navbarHeigh));
 }
-.letterlist{
+.letterlist-main{
     grid-area: letterlist;
 
     text-align: left;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - var(--navbarHeigh));
 }
-.letter{
+.letter-main{
     grid-area: letter;
-
+    overflow-y: auto;
+    overflow-x: hidden;
 }
-/*.info{*/
-/*    grid-area: info;*/
-/*    position: fixed !important;*/
-/*    bottom:0;*/
-/*    width: 100%;*/
-/*    height: 80px;*/
-/*    background: var(--passiveColorHover);*/
-/*}*/
 
 .listView {
     list-style:none;
@@ -53,4 +49,6 @@
     padding-left: 0px;
     margin-top: 5px;
     margin-bottom: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
