@@ -1,0 +1,4 @@
+.ImgView{
+    border: var(--borderForm);
+    border-radius: 20%;
+}

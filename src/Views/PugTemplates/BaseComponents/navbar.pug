@@ -1,0 +1,19 @@
+include button
+include avatar
+mixin navbar(src)
+    ul()
+        li() LOGO
+        li()
+            a(name = 'navbar-send') 'Отправить'
+        li()
+            a(name = 'navbar-letters') 'Письма'
+        li()
+            +avatar(src)
+        li()
+            a(name = 'navbar-profile') 'Профиль'
+        li()
+            a(name = 'navbar-exit') 'Выйти'
+
+
++navbar(locals.avatar)
+//export {template}

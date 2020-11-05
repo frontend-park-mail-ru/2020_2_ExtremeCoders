@@ -1,0 +1,130 @@
+body{
+    --inputHeigh:30px;
+    --font-size: 20px;
+    --usualborder:2px solid black;
+    align-self: center;
+}
+
+.login-reg-input {
+    height: var(--inputHeigh);
+    font-size: var(--font-size);
+    padding: 0 10px;
+    border-radius: 10px;
+    outline: none;
+    border: var(--usualborder);
+    box-shadow:  0 0 0 2px var(--color);
+    background: var(--inputBackGround);
+    margin: 4px;
+    align-content: center;
+    align-self: center;
+}
+
+.login-reg-input:focus {
+    box-shadow:  0 0 0 4px var(--hoverColor);
+}
+
+.login-button {
+    width: 100%;
+    padding: 14px 14px;
+    /* Prussian Blue */
+    background: var(--color);
+    /* Rich Black FOGRA 29 */
+    border: 1px solid var(--borderColor);
+    box-sizing: border-box;
+    border-radius: 6px;
+    color: var(--buttonTextColor);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.reg-button{
+    width: 100%;
+    height: 100%;
+    padding: 14px 14px;
+    /* Prussian Blue */
+    background: var(--notMainButtonColor);
+    /* Rich Black FOGRA 29 */
+    border: 1px solid var(--borderColor);
+    box-sizing: border-box;
+    border-radius: 6px;
+    color: var(--buttonTextColor);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    align-content: center;
+    text-align: center;
+}
+
+.reg-button:hover{
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--notMainButtonColorHover);
+}
+
+.reg-button:active{
+    text-decoration: none;
+    background: var(--notMainButtonColorActive);
+}
+
+.login-button:hover{
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--hoverColor);
+}
+
+.login-button:active{
+    text-decoration: none;
+    background: var(--activeColor);
+}
+
+.login-reg-a {
+    text-decoration: underline;
+    color: #051923;
+}
+
+.login-reg-a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--color);
+}
+
+.login-reg-error {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    color: red;
+    margin-bottom: 5px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 20%;
+    height: 70%;
+    border: var(--borderForm);
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: var(--backgroundColorForm);
+    align-self: center;
+    margin-left: 40%;
+
+}
+
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 20%;
+    height: 70%;
+    border: var(--borderForm);
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: var(--backgroundColorForm);
+    align-self: center;
+    margin-left: 40%;
+}

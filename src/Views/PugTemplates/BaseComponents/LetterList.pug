@@ -1,0 +1,11 @@
+include LetterPreview
+mixin LetterList(letters)
+    ul
+    each letter in letters
+        li
+            div(id=letter.Id)
+                - date = new Date(letter.DateTime * 1000)
+                p() Отправитель #{letter.Sender}
+                p() Получатель #{letter.Receiver}
+                p() Время  #{date.toLocaleTimeString()}  #{date.toLocaleDateString()}
+                p() Тема #{letter.Theme}
