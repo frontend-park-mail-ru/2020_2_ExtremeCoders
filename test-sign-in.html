@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="MVC/Views/public/css/registration.css">
+    <link rel="stylesheet" type="text/css" href="MVC/Views/public/css/login.css">
+    <link rel="stylesheet" type="text/css" href="src/Views/public/css/components/navbar.css">
+
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/main.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/input.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/buttons.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/label.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/button-send.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/letter-title.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/main-page.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/letter-view.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/li-letters.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/components/folder.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/write-letter.css">
+    <link rel="stylesheet" type="text/css" href="./MVC/Views/public/css/profile-edit.css">
+</head>
+
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+
+<body>
+<!--<h1>Войти</h1>-->
+<!--<form class="login-form" method="POST"><p class="MainTitle">Login</p><input class="login-reg-input" type="text"-->
+<!--                                                                            name="email">-->
+<!--    <p class="MainTitle">Password</p><input class="login-reg-input" type="password" name="password"><input-->
+<!--            class="login-reg-input" type="submit" value="Войти">-->
+<!--    <button class="login-button Button" name="signup">Регистрация</button>-->
+
+
+<!--<div class="SignInPage">-->
+<!--    <form class="SignInForm">-->
+<!--        <label class="label-form">Вход</label>-->
+<!--        <div class="group">-->
+<!--            <input class="Input" type="text" required>-->
+<!--            <span class="bar"></span>-->
+<!--            <label class="label-input">Email</label>-->
+<!--        </div>-->
+
+<!--        <div class="group">-->
+<!--            <input class="Input" type="text" required>-->
+<!--            <span class="bar"></span>-->
+<!--            <label class="label-input">Password</label>-->
+<!--        </div>-->
+<!--        <div class="row__item buttons-SignInForm AcceptBackButtonForm">-->
+<!--            <button class="Button Button-state-passive" name="back">Зарегистрироваться</button>-->
+<!--            <button class="Button Button-state-accept" name="back">Войти</button>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
+
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+
+
+<!--SIGN UP-->
+<!--<div class="SignUpPage">-->
+<!--        <form class="SignUpForm">-->
+<!--            <label class="label-form">Регистрация</label>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Email</label>-->
+<!--            </div>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Пароль</label>-->
+<!--            </div>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Повторите пароль</label>-->
+<!--            </div>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Имя</label>-->
+<!--            </div>-->
+
+<!--            <div class="group">-->
+<!--                <input class="Input" type="text" required>-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Фамилия</label>-->
+<!--            </div>-->
+
+<!--            <div class="input-file">-->
+<!--                <div class="form-group">-->
+<!--                    <input type="file" name="file" id="file" class="input-file">-->
+<!--                    <label for="file" class="btn btn-tertiary js-labelFile">-->
+
+<!--                        <span class="js-fileName">Загрузить аватар</span>-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="row__item buttons-SignInForm AcceptBackButtonForm">-->
+<!--                <button class="Button Button-state-passive" name="back">Войти</button>-->
+<!--                <button class="Button Button-state-accept" name="back">Зарегистрироваться</button>-->
+<!--            </div>-->
+<!--        </form>-->
+
+<!--</div>-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+
+
+<!--NAVBAR-->
+
+
+<script type="module" src="./MVC/Views/public/css/components/button-send.js"></script>
+
+<!--    <div class="navbar-main">-->
+<!--        <div class="navbar ">-->
+<!--            <label class="label logo-navbar">LOGO</label>-->
+<!--            <button class="Button send-navbar button-send-navbar">Написать</button>-->
+<!--            <button class="Button-state-accept profile-navbar">Профиль</button>-->
+<!--            <button class="Button-state-passive exit-navbar">Выйти</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+
+
+<!--MAIN_PAGE-->
+
+<!--<div class="mainPage">-->
+<!--    <div class="navbar-main">-->
+<!--        <div class="navbar ">-->
+<!--            <label class="label logo-navbar">LOGO</label>-->
+<!--            <button class="Button send-navbar button-send-navbar">Написать</button>-->
+<!--            <button class="Button-state-accept profile-navbar">Профиль</button>-->
+<!--            <button class="Button-state-passive exit-navbar">Выйти</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="folders-main">-->
+<!--        <ul class="listView">-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+<!--            <li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li><li class="folder">Входящие</li>-->
+<!--            <li class="folder">Исходящие</li>-->
+
+
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="letterlist-main">-->
+<!--        <ul class="listView">-->
+<!--            <li>-->
+<!--                <div class="letter-title state-checked">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <label class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</label>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+
+
+<!--            <li>-->
+<!--                <div class="letter-title">-->
+<!--                    <label class="label theme-title">Собеседование</label>-->
+<!--                    <label class="label sender-title">Анна Петровна</label>-->
+<!--                    <label class="label datetime-title">18:00</label>-->
+<!--                    <p class="label text-title">a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja-->
+<!--                        ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd-->
+<!--                        jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</p>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--    <div class="letter-main">-->
+<!--        <div class="letter-view">-->
+<!--            <div class="senderTitle-view">-->
+<!--                <div class="group input-theme-writeLetter">-->
+<!--                    <input class="Input disabled-input" type="text" placeholder="dellvin.black@gmail.com">-->
+<!--                    <span class="bar"></span>-->
+<!--                    <label class="label-input">От</label>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="themeTitle-view">-->
+<!--                <div class="group input-theme-writeLetter">-->
+<!--                    <input class="Input disabled-input" type="text" placeholder="Morning meeting">-->
+<!--                    <span class="bar"></span>-->
+<!--                    <label class="label-input">Тема</label>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <label class="label dateTime-view">18:01 01/11/2020</label>-->
+<!--            <textarea class="textarea disabled-input p-letter-text text-view">-->
+<!--                a;lsdhjf;ajshdf;ajsdf;ksak;fa;skdfjkja ashdf;kahjsdklfja;dklsjfl;kasdkjfnaskdjbga djksf;adjsf;kajdsng;kjas d;gfkjasd;gjknads;kgj;akd jsgnf;askndv;aioefhj paoiweurfpaioweuhfpi uawehfpoiuahwepf o;ihawepifguh</textarea>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+
+<!--WRITE_LETTER-->
+<!--<div class="Page-WriteLetter">-->
+<!--    <div class="navbar-writeletter">-->
+<!--        <div class="navbar">-->
+<!--            <label class="label logo-navbar">LOGO</label>-->
+<!--            <button class="Button-state-accept profile-navbar">Профиль</button>-->
+<!--            <button class="Button-state-passive exit-navbar">Выйти</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="Form-WriteLetter">-->
+<!--                    <div class="group input-reciever-writeLetter">-->
+<!--                        <input class="Input" type="text" required>-->
+<!--                        <span class="bar"></span>-->
+<!--                        <label class="label-input">Кому</label>-->
+<!--                    </div>-->
+<!--        <div class="group input-theme-writeLetter">-->
+<!--            <input class="Input" type="text" required>-->
+<!--            <span class="bar"></span>-->
+<!--            <label class="label-input">Тема</label>-->
+<!--        </div>-->
+<!--        <div class="input-text-writeLetter">-->
+<!--            <textarea class="textarea input-letter-text" placeholder="Письмо" type="text" required></textarea>-->
+<!--        </div>-->
+<!--                    <div class="row__item buttons-writeLetter AcceptBackButtonForm">-->
+<!--                        <button class="Button Button-state-passive" name="back">Назад</button>-->
+<!--&lt;!&ndash;                        <button class="Button Button-state-accept" name="back">Отправить</button>&ndash;&gt;-->
+<!--                        <button class="Button dekipoldag-kutensa button-send-writeLetter" type="submit">Отправить</button>-->
+<!--                    </div>-->
+<!--    </div>-->
+
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+<!--&lt;!&ndash;PROFILE&ndash;&gt;-->
+<div>
+    <div class="Page-profile">
+        <div class="navbar-profile-view">
+            <div class="navbar ">
+                <label class="label logo-navbar">LOGO</label>
+                <button class="Button send-navbar button-send-navbar">Написать</button>
+                <button class="Button-state-accept profile-navbar">Профиль</button>
+                <button class="Button-state-passive exit-navbar">Выйти</button>
+            </div>
+        </div>
+        <form class="form-profile-view ">
+            <img src="./korp.png" class="img-Profile">
+            <!--        <img src="../../../Скриншоты/Снимок экрана 2019-05-23 в 19.25.30.png" class="img-Profile" alt="альтернативный текст">-->
+            <h3 class="row__item nameTitle-Profile">Имя</h3>
+            <h3 class="row__item name-Profile">Dellvin</h3>
+            <h3 class="row__item surnameTitle-Profile">Фамилия</h3>
+            <h3 class="row__item surname-Profile">Black</h3>
+            <h3 class="row__item emailTitle-Profile">Email</h3>
+            <h3 class="row__item email-Profile">dellvin.black@gmail.com</h3>
+            <button class="Button button-back Button-state-passive" name="back">Назад</button>
+            <button class="Button button-edit Button-state-accept" name="back">Редактировать</button>
+        </form>
+    </div>
+
+</div>
+
+
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+
+
+<!--PROFILE_EDIT-->
+<!--<div>-->
+<!--    <div class="Page-profile">-->
+<!--        <div class="navbar-profile-view">-->
+<!--            <div class="navbar ">-->
+<!--                <label class="label logo-navbar">LOGO</label>-->
+<!--                <button class="Button send-navbar button-send-navbar">Написать</button>-->
+<!--                <button class="Button-state-accept profile-navbar">Профиль</button>-->
+<!--                <button class="Button-state-passive exit-navbar">Выйти</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <form class="form-profile-edit">-->
+<!--            <img src="./korp.png" class="img-Profile">-->
+<!--            &lt;!&ndash;        <img src="../../../Скриншоты/Снимок экрана 2019-05-23 в 19.25.30.png" class="img-Profile" alt="альтернативный текст">&ndash;&gt;-->
+<!--            <div class="group name-Profile-edit">-->
+<!--                <input class="Input" type="text" required value="Dellvin">-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Имя</label>-->
+<!--            </div>-->
+<!--            <div class="group surname-Profile-edit">-->
+<!--                <input class="Input" type="text" required value="Black">-->
+<!--                <span class="bar"></span>-->
+<!--                <label class="label-input">Фамилия</label>-->
+<!--            </div>-->
+
+<!--            <div class="input-file updateImg-Profile-edit">-->
+<!--                <div class="form-group">-->
+<!--                    <input type="file" name="file" id="file" class="input-file">-->
+<!--                    <label for="file" class="btn btn-tertiary js-labelFile">-->
+<!--                        <span class="js-fileName">Обновить аватар</span>-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <button class="Button button-back-edit Button-state-passive" name="back">Назад</button>-->
+<!--            <button class="Button button-submit-edit Button-state-accept" name="back">Подтвердить</button>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+<!--====================================================================================================================================================================================-->
+
+
+<!--&lt;!&ndash;</form>&lt;!&ndash;export {signinformTemplate}&ndash;&gt;-->
+</body>
+</html>

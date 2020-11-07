@@ -1,4 +1,91 @@
-.ImgView{
-    border: var(--borderForm);
-    border-radius: 20%;
+.Page-profile{
+    height: 100vh;
+    vertical-align: center;
+    horiz-align: center;
+    margin: auto;
+    display: grid;
+    grid-template-areas:
+"navbar navbar navbar"
+". formProfedit .";
+    grid-auto-rows: 1fr 5fr;
+    grid-auto-columns: 1fr 1.5fr 1fr;
+}
+
+.form-profile-view {
+    grid-area: formProfedit;
+    border: 1px solid var(--acceptColorHover);
+    border-radius: var(--buttonBorderRadius);
+    padding: var(--buttonPadding);
+    background: var(--backgroundColorForm);
+
+    align-items: center;
+    box-shadow:         0px 0px 5px 0px var(--acceptColorHover);
+
+    display: grid;
+    margin: auto;
+    margin-top: 50px;
+    width: 500px;
+
+    grid-template-areas:
+    "img img nameTitle name"
+    "img img surnameTitle surname"
+    ". emailTitle email email"
+    ". . back edit";
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    grid-gap: 10px;
+}
+
+.navbar-profile-view{
+    grid-area: navbar;
+}
+
+.img-Profile{
+    border: var(--acceptColorHover);
+    grid-area: img;
+    width: 200px;
+    height: 200px;
+    border-radius: var(--buttonBorderRadius);
+}
+
+.nameTitle-Profile{
+    grid-area: nameTitle;
+    text-align: right;
+    margin-right: 40px;
+}
+
+.name-Profile{
+    text: bold;
+    grid-area: name;
+    text-align: left;
+}
+
+.surnameTitle-Profile{
+    grid-area: surnameTitle;
+    text-align: right;
+    margin-right: 40px;
+}
+
+.surname-Profile{
+    text: bold;
+    grid-area: surname;
+}
+
+.emailTitle-Profile{
+    grid-area: emailTitle;
+}
+
+.email-Profile{
+    text: bold;
+    grid-area: email;
+}
+
+.button-edit{
+    grid-area: edit;
+    width: 100px;
+}
+
+.button-back{
+    grid-area: back;
+    width: 55px;
 }

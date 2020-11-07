@@ -1,23 +1,35 @@
 :root {
-    --color: #003554;
-    --borderColor: #051923;
-    --buttonTextColor:#FFF07C;
-    --hoverColor: #005991;
-    --activeColor: #051923;
-    --inputBackGround: #c3ad7b;
-    --backgroundColorForm: #4DA687;
-    --borderForm: 5px solid #051923;
-    --notMainButtonColor: #59ace3;
-    --notMainButtonColorHover: #98c7e5;
-    --notMainButtonColorActive: #0985e2;
-    --textColor: #000137;
+    --backgroundColorInput: #b4b8b8;
+    --backgroundColorPage: #38444c;
+    --buttonBorderRadius: 3px;
+    --buttonPadding: 10px 8px;
+
+    --textColor: #b4b8b8;
+    --buttonTextColor: #211f1f;
+
+
+    --backgroundColorForm: #293238;
+    --acceptColorHover: #15a5d0;
+    --passiveColorHover: #696569;
+    --errorInputColor: #722323;
+    --navbarHeigh: 40px;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 body{
-    background: #7294b7;
-    font-family: Staatliches, sans-serif;
+    background: var(--backgroundColorPage);
+    font-family: "Apple SD Gothic Neo", sans-serif;
     font-style: normal;
     font-weight: normal;
+    color: var(--textColor);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 .MainTitle{
@@ -27,7 +39,7 @@ body{
     font-size: 48px;
     line-height: 60px;
     text-align: center;
-    color: var(--textColor);
+
     align-self: center;
 }
 
@@ -45,7 +57,6 @@ body{
 }
 
 .text{
-
     font-size: 12px;
     line-height: 60px;
     text-align: center;
@@ -57,4 +68,9 @@ body{
     display: inline-block;
     margin: 0;
     padding: 4px;
+}
+
+.ItemsInline{
+    display: flex;
+    align-items: center;
 }
