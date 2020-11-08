@@ -13,7 +13,7 @@ div(class="mainPage")
                 each letter in locals.letterList
                     - date = new Date(letter.DateTime * 1000)
                     li()
-                        if(locals.letter.Id===letter.Id)
+                        if(locals.letter & locals.letter.Id===letter.Id)
                             div(id=letter.Id class="letter-title state-checked")
                                 label(class="label theme-title") #{letter.Theme}
                                 label(class="label sender-title") #{letter.Sender}
