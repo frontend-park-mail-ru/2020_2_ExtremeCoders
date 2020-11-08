@@ -15,8 +15,12 @@ export default class ProfileEditView {
    * @param {string} data - profile.css data in JSON format
    */
   render(data) {
+    if(!data){
+      globalEventBus.emit(Events.profileEditViewEvents.needUserData);
+      return;
+    }
     this.element.innerHTML = '';
-    Navbar.render(data.navbar)
+    Navbar.render()
     this.element.insertAdjacentHTML('beforeend', template(data))
     let form = document.getElementsByTagName('form')[0];
     let backButton = document.getElementsByName('back')[0];

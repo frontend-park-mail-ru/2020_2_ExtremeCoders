@@ -5,21 +5,6 @@ function pug_attr(t, e, n, r) {
     return "object" !== f && "function" !== f || "function" != typeof e.toJSON || (e = e.toJSON()), "string" == typeof e || (e = JSON.stringify(e), n || -1 === e.indexOf('"')) ? (n && (e = pug_escape(e)), " " + t + '="' + e + '"') : " " + t + "='" + e.replace(/'/g, "&#39;") + "'"
 }
 
-function pug_classes(s, r) {
-    return Array.isArray(s) ? pug_classes_array(s, r) : s && "object" == typeof s ? pug_classes_object(s) : s || ""
-}
-
-function pug_classes_array(r, a) {
-    for (var s, e = "", u = "", c = Array.isArray(a), g = 0; g < r.length; g++) (s = pug_classes(r[g])) && (c && a[g] && (s = pug_escape(s)), e = e + u + s, u = " ");
-    return e
-}
-
-function pug_classes_object(r) {
-    var a = "", n = "";
-    for (var o in r) o && r[o] && pug_has_own_property.call(r, o) && (a = a + n + o, n = " ");
-    return a
-}
-
 function pug_escape(e) {
     var a = "" + e, t = pug_match_html.exec(a);
     if (!t) return e;
@@ -46,7 +31,6 @@ function pug_escape(e) {
     return c !== r ? s + a.substring(c, r) : s
 }
 
-var pug_has_own_property = Object.prototype.hasOwnProperty;
 var pug_match_html = /["&<>]/;
 
 function pug_rethrow(n, e, r, t) {
@@ -69,133 +53,207 @@ function template(locals) {
     var pug_html = "", pug_mixins = {}, pug_interp;
     var pug_debug_filename, pug_debug_line;
     try {
-        var pug_debug_sources = {
-            ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug": "include  BaseComponents\u002Fbutton\ninclude  BaseComponents\u002Fbutton\ninclude BaseComponents\u002FpageTitle\ninclude BaseComponents\u002FText\ninclude BaseComponents\u002Favatar\ninclude BaseComponents\u002FclassNames\n\n+pageTitle('Зарегистрироваться')\n\nform(method='POST', enctype = 'multipart\u002Fform-data', class='reg-form')\n    p(class='InputTitle') Имя\n    input(type='text', name='name', class=classNames.inputClass)\n    p(class='InputTitle') Фамилия\n    input(type='text', name='surname', class=classNames.inputClass)\n    p(class='InputTitle') Email\n    input(type='text', name='email', class=classNames.inputClass)\n    p(class='InputTitle') Введите Пароль\n    input(type='password', name='password1', class=classNames.inputClass)\n    p(class='InputTitle') Повторите пароль\n    input(type='password', name='password2', class=classNames.inputClass)\n    p(class='InputTitle') Аватар\n    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)\n    input(type='submit', value='Зарегистироваться', class='submit', class=classNames.inputClass)\n    +button('Назад', 'back', classNames.regButton)\n\n\u002F\u002Fexport {template}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug": "mixin button(text, name, className)\n    button(class=className, name=name) #{text}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug": "mixin pageTitle(text, className)\n    h1(class=className) #{text}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FText.pug": "mixin text(text, name)\n    p(class='MainTitle', name=name) #{text}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Favatar.pug": "mixin avatar(src)\n    img(width=70, height=70, id='avatar', src=src)",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FclassNames.pug": "- var classNames ={inputClass:'login-reg-input',formClass:'login-form',regButton:'reg-button',loginButton:'login-button', sendLetterButton:'send-button'}"
-        };
+        var pug_debug_sources = {"SignUpForm.pug": "\u002F\u002Finclude  BaseComponents\u002Fbutton\n\u002F\u002Finclude  BaseComponents\u002Fbutton\n\u002F\u002Finclude BaseComponents\u002FpageTitle\n\u002F\u002Finclude BaseComponents\u002FText\n\u002F\u002Finclude BaseComponents\u002Favatar\n\u002F\u002Finclude BaseComponents\u002FclassNames\n\u002F\u002F\n\u002F\u002F+pageTitle('Зарегистрироваться')\n\u002F\u002F\n\u002F\u002Fform(method='POST', enctype = 'multipart\u002Fform-data', class='reg-form')\n\u002F\u002F    p(class='InputTitle') Имя\n\u002F\u002F    input(type='text', name='name', class=classNames.inputClass)\n\u002F\u002F    p(class='InputTitle') Фамилия\n\u002F\u002F    input(type='text', name='surname', class=classNames.inputClass)\n\u002F\u002F    p(class='InputTitle') Email\n\u002F\u002F    input(type='text', name='email', class=classNames.inputClass)\n\u002F\u002F    p(class='InputTitle') Введите Пароль\n\u002F\u002F    input(type='password', name='password1', class=classNames.inputClass)\n\u002F\u002F    p(class='InputTitle') Повторите пароль\n\u002F\u002F    input(type='password', name='password2', class=classNames.inputClass)\n\u002F\u002F    p(class='InputTitle') Аватар\n\u002F\u002F    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)\n\u002F\u002F    input(type='submit', value='Зарегистироваться', class='submit', class=classNames.inputClass)\n\u002F\u002F    +button('Назад', 'back', classNames.regButton)\n\u002F\u002F\n\u002F\u002F\u002F\u002Fexport {template}\n\ndiv(class=\"SignUpPage\")\n    form(class=\"SignUpForm\")\n        label(class=\"label-form\") Регистрация\n\n        div(class=\"group\")\n            input(class=\"Input\" name='email' type=\"text\" required)\n            span(class=\"bar\")\n            label(class=\"label-input\") Email\n\n        div(class=\"group\")\n            input(class=\"Input\" name='password1' type=\"text\" required)\n            span(class=\"bar\")\n            label(class=\"label-input\") Пароль\n\n        div(class=\"group\")\n            input(class=\"Input\" name='password2' type=\"text\" required)\n            span(class=\"bar\")\n            label(class=\"label-input\") Повторите пароль\n\n        div(class=\"group\")\n            input(class=\"Input\" name='name' type=\"text\" required)\n            span(class=\"bar\")\n            label(class=\"label-input\") Имя\n\n        div(class=\"group\")\n            input(class=\"Input\" name='surname' type=\"text\" required)\n            span(class=\"bar\")\n            label(class=\"label-input\") Фамилия\n\n        div(class=\"input-file\")\n            div(class=\"form-group\")\n                input(type=\"file\" name=\"avatar\" id=\"file\" class=\"input-file\")\n                label(for=\"file\" class=\"btn btn-tertiary js-labelFile\")\n                span(class=\"js-fileName\") Загрузить аватар\n\n        div(class=\"row__item buttons-SignInForm AcceptBackButtonForm\")\n            button(class=\"Button Button-state-passive\" name=\"back\") Войти\n            button(class=\"Button Button-state-accept\" name=\"submit\") Зарегистрироваться\n\n\u002F\u002Fexport {template}\n"};
         ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-        pug_mixins["button"] = pug_interp = function (text, name, className) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-            pug_html = pug_html + "\u003Cbutton" + (pug_attr("class", pug_classes([className], [true]), false, false) + pug_attr("name", name, true, false)) + "\u003E";
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-            pug_html = pug_html + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Fbutton\u003E";
-        };
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-        pug_mixins["button"] = pug_interp = function (text, name, className) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-            pug_html = pug_html + "\u003Cbutton" + (pug_attr("class", pug_classes([className], [true]), false, false) + pug_attr("name", name, true, false)) + "\u003E";
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-            pug_html = pug_html + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Fbutton\u003E";
-        };
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug";
-        pug_mixins["pageTitle"] = pug_interp = function (text, className) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug";
-            pug_html = pug_html + "\u003Ch1" + (pug_attr("class", pug_classes([className], [true]), false, false)) + "\u003E";
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug";
-            pug_html = pug_html + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Fh1\u003E";
-        };
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FText.pug";
-
-
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Favatar.pug";
-
-
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FclassNames.pug";
-        var classNames = {
-                inputClass: 'login-reg-input',
-                formClass: 'login-form',
-                regButton: 'reg-button',
-                loginButton: 'login-button',
-                sendLetterButton: 'send-button'
-            }
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--include  BaseComponents\u002Fbutton--\u003E";
+        ;pug_debug_line = 2;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--include  BaseComponents\u002Fbutton--\u003E";
+        ;pug_debug_line = 3;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002FpageTitle--\u003E";
+        ;pug_debug_line = 4;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002FText--\u003E";
+        ;pug_debug_line = 5;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002Favatar--\u003E";
+        ;pug_debug_line = 6;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002FclassNames--\u003E";
+        ;pug_debug_line = 7;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!----\u003E";
         ;pug_debug_line = 8;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_mixins["pageTitle"]('Зарегистрироваться');
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--+pageTitle('Зарегистрироваться')--\u003E";
+        ;pug_debug_line = 9;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!----\u003E";
         ;pug_debug_line = 10;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cform class=\"reg-form\" method=\"POST\" enctype=\"multipart\u002Fform-data\"\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--form(method='POST', enctype = 'multipart\u002Fform-data', class='reg-form')--\u003E";
         ;pug_debug_line = 11;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
-        ;pug_debug_line = 11;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "Имя\u003C\u002Fp\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    p(class='InputTitle') Имя--\u003E";
         ;pug_debug_line = 12;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"name\"") + "\u002F\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='text', name='name', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 13;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
-        ;pug_debug_line = 13;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "Фамилия\u003C\u002Fp\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    p(class='InputTitle') Фамилия--\u003E";
         ;pug_debug_line = 14;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"surname\"") + "\u002F\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='text', name='surname', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 15;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
-        ;pug_debug_line = 15;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "Email\u003C\u002Fp\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    p(class='InputTitle') Email--\u003E";
         ;pug_debug_line = 16;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"email\"") + "\u002F\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='text', name='email', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 17;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
-        ;pug_debug_line = 17;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "Введите Пароль\u003C\u002Fp\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    p(class='InputTitle') Введите Пароль--\u003E";
         ;pug_debug_line = 18;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"password\" name=\"password1\"") + "\u002F\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='password', name='password1', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 19;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
-        ;pug_debug_line = 19;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "Повторите пароль\u003C\u002Fp\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    p(class='InputTitle') Повторите пароль--\u003E";
         ;pug_debug_line = 20;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"password\" name=\"password2\"") + "\u002F\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='password', name='password2', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 21;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
-        ;pug_debug_line = 21;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "Аватар\u003C\u002Fp\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    p(class='InputTitle') Аватар--\u003E";
         ;pug_debug_line = 22;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"file\" placeholder=\"Выберете аватар\" name=\"avatar\"") + "\u002F\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 23;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes(["submit", classNames.inputClass], [false, true]), false, false) + " type=\"submit\" value=\"Зарегистироваться\"") + "\u002F\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='submit', value='Зарегистироваться', class='submit', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 24;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
-        pug_mixins["button"]('Назад', 'back', classNames.regButton);
-        pug_html = pug_html + "\u003C\u002Fform\u003E";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--    +button('Назад', 'back', classNames.regButton)--\u003E";
+        ;pug_debug_line = 25;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!----\u003E";
         ;pug_debug_line = 26;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignUpForm.pug";
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003C!--\u002F\u002Fexport {template}--\u003E";
+        ;pug_debug_line = 28;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"SignUpPage\"\u003E";
+        ;pug_debug_line = 29;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cform class=\"SignUpForm\"\u003E";
+        ;pug_debug_line = 30;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-form\"\u003E";
+        ;pug_debug_line = 30;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "Регистрация\u003C\u002Flabel\u003E";
+        ;pug_debug_line = 32;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"group\"\u003E";
+        ;pug_debug_line = 33;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cinput" + (" class=\"Input\"" + " name=\"email\" type=\"text\"" + pug_attr("required", true, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 34;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
+        ;pug_debug_line = 35;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
+        ;pug_debug_line = 35;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "Email\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 37;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"group\"\u003E";
+        ;pug_debug_line = 38;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cinput" + (" class=\"Input\"" + " name=\"password1\" type=\"text\"" + pug_attr("required", true, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 39;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
+        ;pug_debug_line = 40;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
+        ;pug_debug_line = 40;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "Пароль\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 42;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"group\"\u003E";
+        ;pug_debug_line = 43;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cinput" + (" class=\"Input\"" + " name=\"password2\" type=\"text\"" + pug_attr("required", true, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 44;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
+        ;pug_debug_line = 45;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
+        ;pug_debug_line = 45;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "Повторите пароль\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 47;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"group\"\u003E";
+        ;pug_debug_line = 48;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cinput" + (" class=\"Input\"" + " name=\"name\" type=\"text\"" + pug_attr("required", true, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 49;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
+        ;pug_debug_line = 50;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
+        ;pug_debug_line = 50;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "Имя\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 52;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"group\"\u003E";
+        ;pug_debug_line = 53;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cinput" + (" class=\"Input\"" + " name=\"surname\" type=\"text\"" + pug_attr("required", true, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 54;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
+        ;pug_debug_line = 55;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
+        ;pug_debug_line = 55;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "Фамилия\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 57;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"input-file\"\u003E";
+        ;pug_debug_line = 58;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"form-group\"\u003E";
+        ;pug_debug_line = 59;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cinput class=\"input-file\" type=\"file\" name=\"avatar\" id=\"file\"\u002F\u003E";
+        ;pug_debug_line = 60;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"btn btn-tertiary js-labelFile\" for=\"file\"\u003E\u003C\u002Flabel\u003E";
+        ;pug_debug_line = 61;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"js-fileName\"\u003E";
+        ;pug_debug_line = 61;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "Загрузить аватар\u003C\u002Fspan\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 63;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"row__item buttons-SignInForm AcceptBackButtonForm\"\u003E";
+        ;pug_debug_line = 64;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cbutton class=\"Button Button-state-passive\" name=\"back\"\u003E";
+        ;pug_debug_line = 64;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "Войти\u003C\u002Fbutton\u003E";
+        ;pug_debug_line = 65;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "\u003Cbutton class=\"Button Button-state-accept\" name=\"submit\"\u003E";
+        ;pug_debug_line = 65;
+        pug_debug_filename = "SignUpForm.pug";
+        pug_html = pug_html + "Зарегистрироваться\u003C\u002Fbutton\u003E\u003C\u002Fdiv\u003E\u003C\u002Fform\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 67;
+        pug_debug_filename = "SignUpForm.pug";
         pug_html = pug_html + "\u003C!--export {template}--\u003E";
     } catch (err) {
         pug_rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
@@ -204,4 +262,4 @@ function template(locals) {
     return pug_html;
 }
 
-export {template};
+export {template}

@@ -12,9 +12,9 @@ export  default class SendLetterView{
         data = data || {}
         console.log("SEND LETTER VIEW RENDER");
         this.element.innerHTML = '';
-        Navbar.render(data.navbar)
+        Navbar.render()
         this.element.insertAdjacentHTML('beforeend', template(data))
-        let form = document.getElementsByName('sendLetterForm')[0];
+        let form = document.getElementsByTagName('FORM')[0];
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             globalEventBus.emit(Events.sendLetterView.sendLetter,

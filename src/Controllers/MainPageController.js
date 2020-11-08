@@ -19,10 +19,15 @@ export default class MainPageController {
         });
 
         globalEventBus.on(Events.mainPageView.needData, () => {
+            globalEventBus.emit(Events.mainPageController.needGetFolderList);
+            globalEventBus.emit(Events.mainPageController.needGetLetterList);
+            this.data['letter'] = this.data['letterList'][3541230504]
             this.mainPageView.render(this.data)
         });
 
-        globalEventBus.on(Events.mainPageView.selectLetter, (data) => {
+        globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
+            console.log("SELECT LETTER ", letterId, this.data['letterList'])
+            this.data['letter'] = this.data['letterList'][letterId]
             this.mainPageView.render(this.data)
         });
 

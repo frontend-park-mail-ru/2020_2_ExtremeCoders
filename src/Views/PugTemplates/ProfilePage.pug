@@ -1,18 +1,29 @@
-include  BaseComponents/button
-include BaseComponents/pageTitle
-include BaseComponents/Text
-include BaseComponents/avatar
-include BaseComponents/classNames
+//include  BaseComponents/button
+//include BaseComponents/pageTitle
+//include BaseComponents/Text
+//include BaseComponents/avatar
+//include BaseComponents/classNames
+//
+//+pageTitle('Профиль')
+//
+////div
+////    +text(locals.name + ' ' + locals.surname, 'profile_name')
+////    +text('Email: ' + locals.email)
+////    +text('Аватар')
+////    +avatar(locals.avatar)
+////    +button('Редактировать', name = 'editButton')
+////    +button('Назад' ,name='back')
 
-+pageTitle('Профиль')
-
-div
-    +text(locals.name + ' ' + locals.surname, 'profile_name')
-    +text('Email: ' + locals.email)
-    +text('Аватар')
-    +avatar(locals.avatar)
-    +button('Редактировать', 'editButton')
-    +button('Назад' ,name='back')
-
+div(class="Page-profile")
+    form(class="form-profile-view ")
+        img(src=locals.avatar class="img-Profile")
+        h3(class="row__item nameTitle-Profile") Имя
+        h3(class="row__item name-Profile") #{locals.name}
+        h3(class="row__item surnameTitle-Profile") Фамилия
+        h3(class="row__item surname-Profile") #{locals.surname}
+        h3(class="row__item emailTitle-Profile") Email
+        h3(class="row__item email-Profile") #{locals.email}
+        button(class="Button button-back Button-state-passive" name="back") Назад
+        button(class="Button button-edit Button-state-accept" name="editButton") Редактировать
 
 //export {template}

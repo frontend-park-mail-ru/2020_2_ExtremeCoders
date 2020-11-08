@@ -13,7 +13,8 @@ const Events = {
     },
     profileEditViewEvents: {
         submit: 'ProfileEdit-submit',
-        errors: 'ProfileEdit-errors'
+        errors: 'ProfileEdit-errors',
+        needUserData: 'ProfileEditView-needUserData',
     },
     profileViewEvents: {
         needUserData: 'ProfileView-needUserData',

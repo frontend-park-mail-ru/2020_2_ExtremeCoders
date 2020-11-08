@@ -5,21 +5,6 @@ function pug_attr(t, e, n, r) {
     return "object" !== f && "function" !== f || "function" != typeof e.toJSON || (e = e.toJSON()), "string" == typeof e || (e = JSON.stringify(e), n || -1 === e.indexOf('"')) ? (n && (e = pug_escape(e)), " " + t + '="' + e + '"') : " " + t + "='" + e.replace(/'/g, "&#39;") + "'"
 }
 
-function pug_classes(s, r) {
-    return Array.isArray(s) ? pug_classes_array(s, r) : s && "object" == typeof s ? pug_classes_object(s) : s || ""
-}
-
-function pug_classes_array(r, a) {
-    for (var s, e = "", u = "", c = Array.isArray(a), g = 0; g < r.length; g++) (s = pug_classes(r[g])) && (c && a[g] && (s = pug_escape(s)), e = e + u + s, u = " ");
-    return e
-}
-
-function pug_classes_object(r) {
-    var a = "", n = "";
-    for (var o in r) o && r[o] && pug_has_own_property.call(r, o) && (a = a + n + o, n = " ");
-    return a
-}
-
 function pug_escape(e) {
     var a = "" + e, t = pug_match_html.exec(a);
     if (!t) return e;
@@ -46,7 +31,6 @@ function pug_escape(e) {
     return c !== r ? s + a.substring(c, r) : s
 }
 
-var pug_has_own_property = Object.prototype.hasOwnProperty;
 var pug_match_html = /["&<>]/;
 
 function pug_rethrow(n, e, r, t) {
@@ -69,91 +53,137 @@ function template(locals) {
     var pug_html = "", pug_mixins = {}, pug_interp;
     var pug_debug_filename, pug_debug_line;
     try {
-        var pug_debug_sources = {
-            ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug": "include BaseComponents\u002FclassNames\ninclude BaseComponents\u002FpageTitle\ninclude  BaseComponents\u002Fbutton\n\n+pageTitle('Отправить письмо')\n\nform(method='POST', name='sendLetterForm' class=classNames.formClass)\n    p(class='InputTitle') Получатель\n    input(type='text', name='to', class=classNames.inputClass)\n    p(class='InputTitle') Тема\n    input(type='text', name='theme', class=classNames.inputClass)\n    p(class='InputTitle') Текст\n    input(type='text', name='text', class=classNames.inputClass)\n    input(type='submit', value='Отправить письмо', class='submit', class=classNames.inputClass)\n    +button('Назад', 'back', classNames.regButton)\n\n\u002F\u002Fexport { template };",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FclassNames.pug": "- var classNames ={inputClass:'login-reg-input',formClass:'login-form',regButton:'reg-button',loginButton:'login-button', sendLetterButton:'send-button'}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug": "mixin pageTitle(text, className)\n    h1(class=className) #{text}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug": "mixin button(text, name, className)\n    button(class=className, name=name) #{text}"
-        };
+        var pug_debug_sources = {"SendLetterForm.pug": "\u002F\u002Finclude BaseComponents\u002FclassNames\n\u002F\u002Finclude BaseComponents\u002FpageTitle\n\u002F\u002Finclude  BaseComponents\u002Fbutton\n\u002F\u002F\n\u002F\u002F+pageTitle('Отправить письмо')\n\u002F\u002F\n\u002F\u002Fform(method='POST', name='sendLetterForm' class=classNames.formClass)\n\u002F\u002F    p(class='InputTitle') Получатель\n\u002F\u002F    input(type='text', name='to', class=classNames.inputClass)\n\u002F\u002F    p(class='InputTitle') Тема\n\u002F\u002F    input(type='text', name='theme', class=classNames.inputClass)\n\u002F\u002F    p(class='InputTitle') Текст\n\u002F\u002F    input(type='text', name='text', class=classNames.inputClass)\n\u002F\u002F    input(type='submit', value='Отправить письмо', class='submit', class=classNames.inputClass)\n\u002F\u002F    +button('Назад', 'back', classNames.regButton)\n\u002F\u002F\n\u002F\u002F\u002F\u002Fexport { template };\n\ndiv(class=\"Page-WriteLetter\")\n\n    form(method='POST', name='sendLetterForm' class=\"Form-WriteLetter\")\n        div(class=\"group input-reciever-writeLetter\") \n            input(class=\"Input\" name='to' type=\"text\" required)\n            span(class=\"bar\") \n            label(class=\"label-input\") Кому\n        \n        div(class=\"group input-theme-writeLetter\") \n            input(class=\"Input\" name='theme' type=\"text\" required)\n            span(class=\"bar\") \n            label(class=\"label-input\") Тема\n        \n        div(class=\"input-text-writeLetter\") \n            textarea(class=\"textarea input-letter-text\" name='text' placeholder=\"Письмо\" type=\"text\" required)\n        \n        div(class=\"row__item buttons-writeLetter AcceptBackButtonForm\") \n            button(class=\"Button Button-state-passive\" name=\"back\") Назад\n            button(class=\"Button dekipoldag-kutensa button-send-writeLetter\" type=\"submit\") Отправить\n"};
         ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FclassNames.pug";
-        var classNames = {
-                inputClass: 'login-reg-input',
-                formClass: 'login-form',
-                regButton: 'reg-button',
-                loginButton: 'login-button',
-                sendLetterButton: 'send-button'
-            }
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug";
-        pug_mixins["pageTitle"] = pug_interp = function (text, className) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug";
-            pug_html = pug_html + "\u003Ch1" + (pug_attr("class", pug_classes([className], [true]), false, false)) + "\u003E";
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug";
-            pug_html = pug_html + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Fh1\u003E";
-        };
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-        pug_mixins["button"] = pug_interp = function (text, name, className) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-            pug_html = pug_html + "\u003Cbutton" + (pug_attr("class", pug_classes([className], [true]), false, false) + pug_attr("name", name, true, false)) + "\u003E";
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-            pug_html = pug_html + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Fbutton\u003E";
-        };
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002FclassNames--\u003E";
+        ;pug_debug_line = 2;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002FpageTitle--\u003E";
+        ;pug_debug_line = 3;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--include  BaseComponents\u002Fbutton--\u003E";
+        ;pug_debug_line = 4;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!----\u003E";
         ;pug_debug_line = 5;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_mixins["pageTitle"]('Отправить письмо');
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--+pageTitle('Отправить письмо')--\u003E";
+        ;pug_debug_line = 6;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!----\u003E";
         ;pug_debug_line = 7;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "\u003Cform" + (pug_attr("class", pug_classes([classNames.formClass], [true]), false, false) + " method=\"POST\" name=\"sendLetterForm\"") + "\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--form(method='POST', name='sendLetterForm' class=classNames.formClass)--\u003E";
         ;pug_debug_line = 8;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
-        ;pug_debug_line = 8;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "Получатель\u003C\u002Fp\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--    p(class='InputTitle') Получатель--\u003E";
         ;pug_debug_line = 9;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"to\"") + "\u002F\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='text', name='to', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 10;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
-        ;pug_debug_line = 10;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "Тема\u003C\u002Fp\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--    p(class='InputTitle') Тема--\u003E";
         ;pug_debug_line = 11;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"theme\"") + "\u002F\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='text', name='theme', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 12;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "\u003Cp class=\"InputTitle\"\u003E";
-        ;pug_debug_line = 12;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "Текст\u003C\u002Fp\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--    p(class='InputTitle') Текст--\u003E";
         ;pug_debug_line = 13;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"text\"") + "\u002F\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='text', name='text', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 14;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes(["submit", classNames.inputClass], [false, true]), false, false) + " type=\"submit\" value=\"Отправить письмо\"") + "\u002F\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='submit', value='Отправить письмо', class='submit', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 15;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_mixins["button"]('Назад', 'back', classNames.regButton);
-        pug_html = pug_html + "\u003C\u002Fform\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--    +button('Назад', 'back', classNames.regButton)--\u003E";
+        ;pug_debug_line = 16;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!----\u003E";
         ;pug_debug_line = 17;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FSendLetterForm.pug";
-        pug_html = pug_html + "\u003C!--export { template };--\u003E";
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003C!--\u002F\u002Fexport { template };--\u003E";
+        ;pug_debug_line = 19;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"Page-WriteLetter\"\u003E";
+        ;pug_debug_line = 21;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cform class=\"Form-WriteLetter\" method=\"POST\" name=\"sendLetterForm\"\u003E";
+        ;pug_debug_line = 22;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"group input-reciever-writeLetter\"\u003E";
+        ;pug_debug_line = 22;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + " ";
+        ;pug_debug_line = 23;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cinput" + (" class=\"Input\"" + " name=\"to\" type=\"text\"" + pug_attr("required", true, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 24;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E";
+        ;pug_debug_line = 24;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + " \u003C\u002Fspan\u003E";
+        ;pug_debug_line = 25;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
+        ;pug_debug_line = 25;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "Кому\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 27;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"group input-theme-writeLetter\"\u003E";
+        ;pug_debug_line = 27;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + " ";
+        ;pug_debug_line = 28;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cinput" + (" class=\"Input\"" + " name=\"theme\" type=\"text\"" + pug_attr("required", true, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 29;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E";
+        ;pug_debug_line = 29;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + " \u003C\u002Fspan\u003E";
+        ;pug_debug_line = 30;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
+        ;pug_debug_line = 30;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "Тема\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 32;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"input-text-writeLetter\"\u003E";
+        ;pug_debug_line = 32;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + " ";
+        ;pug_debug_line = 33;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Ctextarea" + (" class=\"textarea input-letter-text\"" + " name=\"text\" placeholder=\"Письмо\" type=\"text\"" + pug_attr("required", true, true, false)) + "\u003E\u003C\u002Ftextarea\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 35;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"row__item buttons-writeLetter AcceptBackButtonForm\"\u003E";
+        ;pug_debug_line = 35;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + " ";
+        ;pug_debug_line = 36;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cbutton class=\"Button Button-state-passive\" name=\"back\"\u003E";
+        ;pug_debug_line = 36;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "Назад\u003C\u002Fbutton\u003E";
+        ;pug_debug_line = 37;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "\u003Cbutton class=\"Button dekipoldag-kutensa button-send-writeLetter\" type=\"submit\"\u003E";
+        ;pug_debug_line = 37;
+        pug_debug_filename = "SendLetterForm.pug";
+        pug_html = pug_html + "Отправить\u003C\u002Fbutton\u003E\u003C\u002Fdiv\u003E\u003C\u002Fform\u003E\u003C\u002Fdiv\u003E";
     } catch (err) {
         pug_rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
     }
     ;
     return pug_html;
 }
-
-export {template};
+export { template };

@@ -5,21 +5,6 @@ function pug_attr(t, e, n, r) {
     return "object" !== f && "function" !== f || "function" != typeof e.toJSON || (e = e.toJSON()), "string" == typeof e || (e = JSON.stringify(e), n || -1 === e.indexOf('"')) ? (n && (e = pug_escape(e)), " " + t + '="' + e + '"') : " " + t + "='" + e.replace(/'/g, "&#39;") + "'"
 }
 
-function pug_classes(s, r) {
-    return Array.isArray(s) ? pug_classes_array(s, r) : s && "object" == typeof s ? pug_classes_object(s) : s || ""
-}
-
-function pug_classes_array(r, a) {
-    for (var s, e = "", u = "", c = Array.isArray(a), g = 0; g < r.length; g++) (s = pug_classes(r[g])) && (c && a[g] && (s = pug_escape(s)), e = e + u + s, u = " ");
-    return e
-}
-
-function pug_classes_object(r) {
-    var a = "", n = "";
-    for (var o in r) o && r[o] && pug_has_own_property.call(r, o) && (a = a + n + o, n = " ");
-    return a
-}
-
 function pug_escape(e) {
     var a = "" + e, t = pug_match_html.exec(a);
     if (!t) return e;
@@ -46,7 +31,6 @@ function pug_escape(e) {
     return c !== r ? s + a.substring(c, r) : s
 }
 
-var pug_has_own_property = Object.prototype.hasOwnProperty;
 var pug_match_html = /["&<>]/;
 
 function pug_rethrow(n, e, r, t) {
@@ -69,100 +53,132 @@ function template(locals) {
     var pug_html = "", pug_mixins = {}, pug_interp;
     var pug_debug_filename, pug_debug_line;
     try {
-        var pug_debug_sources = {
-            ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug": "include  BaseComponents\u002Fbutton\ninclude BaseComponents\u002FpageTitle\ninclude BaseComponents\u002FText\ninclude BaseComponents\u002Favatar\ninclude BaseComponents\u002FclassNames\n\n+pageTitle('Редактирование профиля')\n\nform(method='POST', enctype = 'multipart\u002Fform-data')\n    +text('Имя')\n    input(type='text', name='profile_firstName', value=locals.name, class=classNames.inputClass)\n    +text('Фамилия')\n    input(type='text', name='profile_lastName', value=locals.surname, class=classNames.inputClass)\n    +text('Аватар')\n    +avatar(locals.avatar)\n    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)\n    input(type='submit', value='Применить', class=classNames.inputClass)\n    +button('Назад','back')\n\n\u002F\u002Fexport {template}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug": "mixin button(text, name, className)\n    button(class=className, name=name) #{text}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug": "mixin pageTitle(text, className)\n    h1(class=className) #{text}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FText.pug": "mixin text(text, name)\n    p(class='MainTitle', name=name) #{text}",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Favatar.pug": "mixin avatar(src)\n    img(width=70, height=70, id='avatar', src=src)",
-            "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FclassNames.pug": "- var classNames ={inputClass:'login-reg-input',formClass:'login-form',regButton:'reg-button',loginButton:'login-button', sendLetterButton:'send-button'}"
-        };
+        var pug_debug_sources = {"ProfileEditForm.pug": "\u002F\u002Finclude  BaseComponents\u002Fbutton\n\u002F\u002Finclude BaseComponents\u002FpageTitle\n\u002F\u002Finclude BaseComponents\u002FText\n\u002F\u002Finclude BaseComponents\u002Favatar\n\u002F\u002Finclude BaseComponents\u002FclassNames\n\u002F\u002F\n\u002F\u002F+pageTitle('Редактирование профиля')\n\u002F\u002F\n\u002F\u002Fform(method='POST', enctype = 'multipart\u002Fform-data')\n\u002F\u002F    +text('Имя')\n\u002F\u002F    input(type='text', name='profile_firstName', value=locals.name, class=classNames.inputClass)\n\u002F\u002F    +text('Фамилия')\n\u002F\u002F    input(type='text', name='profile_lastName', value=locals.surname, class=classNames.inputClass)\n\u002F\u002F    +text('Аватар')\n\u002F\u002F    +avatar(locals.avatar)\n\u002F\u002F    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)\n\u002F\u002F    input(type='submit', value='Применить', class=classNames.inputClass)\n\u002F\u002F    +button('Назад','back')\n\n\ndiv(class=\"Page-profile\")\n\n    form(method='POST', enctype = 'multipart\u002Fform-data' class=\"form-profile-edit\")\n        img(src=locals.avatar class=\"img-Profile\")\n        div(class=\"group name-Profile-edit\")\n            input(class=\"Input\" name='profile_firstName' type=\"text\" required value=locals.name)\n            span(class=\"bar\")\n            label(class=\"label-input\") Имя\n\n        div(class=\"group surname-Profile-edit\")\n            input(class=\"Input\" type=\"text\" name='profile_lastName' required value=locals.surname)\n            span(class=\"bar\")\n            label(class=\"label-input\") Фамилия\n\n\n        div(class=\"input-file updateImg-Profile-edit\")\n            div(class=\"form-group\")\n                input(type=\"file\" name=\"avatar\" id=\"file\" class=\"input-file\")\n                label(for=\"file\" class=\"btn btn-tertiary js-labelFile\")\n                    span(class=\"js-fileName\") Обновить аватар\n\n        button(class=\"Button button-back-edit Button-state-passive\" name=\"back\") Назад\n        button(class=\"Button button-submit-edit Button-state-accept\" name=\"submit\") Подтвердить\n\n\u002F\u002Fexport {template}\n\n"};
         ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-        pug_mixins["button"] = pug_interp = function (text, name, className) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-            pug_html = pug_html + "\u003Cbutton" + (pug_attr("class", pug_classes([className], [true]), false, false) + pug_attr("name", name, true, false)) + "\u003E";
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Fbutton.pug";
-            pug_html = pug_html + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Fbutton\u003E";
-        };
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug";
-        pug_mixins["pageTitle"] = pug_interp = function (text, className) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug";
-            pug_html = pug_html + "\u003Ch1" + (pug_attr("class", pug_classes([className], [true]), false, false)) + "\u003E";
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FpageTitle.pug";
-            pug_html = pug_html + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Fh1\u003E";
-        };
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FText.pug";
-        pug_mixins["text"] = pug_interp = function (text, name) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FText.pug";
-            pug_html = pug_html + "\u003Cp" + (" class=\"MainTitle\"" + pug_attr("name", name, true, false)) + "\u003E";
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FText.pug";
-            pug_html = pug_html + (pug_escape(null == (pug_interp = text) ? "" : pug_interp)) + "\u003C\u002Fp\u003E";
-        };
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Favatar.pug";
-        pug_mixins["avatar"] = pug_interp = function (src) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002Favatar.pug";
-            pug_html = pug_html + "\u003Cimg" + (" width=\"70\" height=\"70\" id=\"avatar\"" + pug_attr("src", src, true, false)) + "\u002F\u003E";
-        };
-        ;pug_debug_line = 1;
-        pug_debug_filename = "src\u002FViews\u002FPugTemplates\u002FBaseComponents\u002FclassNames.pug";
-        var classNames = {
-                inputClass: 'login-reg-input',
-                formClass: 'login-form',
-                regButton: 'reg-button',
-                loginButton: 'login-button',
-                sendLetterButton: 'send-button'
-            }
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--include  BaseComponents\u002Fbutton--\u003E";
+        ;pug_debug_line = 2;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002FpageTitle--\u003E";
+        ;pug_debug_line = 3;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002FText--\u003E";
+        ;pug_debug_line = 4;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002Favatar--\u003E";
+        ;pug_debug_line = 5;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--include BaseComponents\u002FclassNames--\u003E";
+        ;pug_debug_line = 6;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!----\u003E";
         ;pug_debug_line = 7;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_mixins["pageTitle"]('Редактирование профиля');
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--+pageTitle('Редактирование профиля')--\u003E";
+        ;pug_debug_line = 8;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!----\u003E";
         ;pug_debug_line = 9;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_html = pug_html + "\u003Cform method=\"POST\" enctype=\"multipart\u002Fform-data\"\u003E";
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--form(method='POST', enctype = 'multipart\u002Fform-data')--\u003E";
         ;pug_debug_line = 10;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_mixins["text"]('Имя');
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--    +text('Имя')--\u003E";
         ;pug_debug_line = 11;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"profile_firstName\"" + pug_attr("value", locals.name, true, false)) + "\u002F\u003E";
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='text', name='profile_firstName', value=locals.name, class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 12;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_mixins["text"]('Фамилия');
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--    +text('Фамилия')--\u003E";
         ;pug_debug_line = 13;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"text\" name=\"profile_lastName\"" + pug_attr("value", locals.surname, true, false)) + "\u002F\u003E";
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='text', name='profile_lastName', value=locals.surname, class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 14;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_mixins["text"]('Аватар');
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--    +text('Аватар')--\u003E";
         ;pug_debug_line = 15;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_mixins["avatar"](locals.avatar);
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--    +avatar(locals.avatar)--\u003E";
         ;pug_debug_line = 16;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"file\" placeholder=\"Выберете аватар\" name=\"avatar\"") + "\u002F\u003E";
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 17;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_html = pug_html + "\u003Cinput" + (pug_attr("class", pug_classes([classNames.inputClass], [true]), false, false) + " type=\"submit\" value=\"Применить\"") + "\u002F\u003E";
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--    input(type='submit', value='Применить', class=classNames.inputClass)--\u003E";
         ;pug_debug_line = 18;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
-        pug_mixins["button"]('Назад', 'back');
-        pug_html = pug_html + "\u003C\u002Fform\u003E";
-        ;pug_debug_line = 20;
-        pug_debug_filename = ".\u002F\u002Fsrc\u002FViews\u002FPugTemplates\u002FProfileEditForm.pug";
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003C!--    +button('Назад','back')--\u003E";
+        ;pug_debug_line = 21;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"Page-profile\"\u003E";
+        ;pug_debug_line = 23;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cform class=\"form-profile-edit\" method=\"POST\" enctype=\"multipart\u002Fform-data\"\u003E";
+        ;pug_debug_line = 24;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cimg" + (" class=\"img-Profile\"" + pug_attr("src", locals.avatar, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 25;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"group name-Profile-edit\"\u003E";
+        ;pug_debug_line = 26;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cinput" + (" class=\"Input\"" + " name=\"profile_firstName\" type=\"text\"" + pug_attr("required", true, true, false) + pug_attr("value", locals.name, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 27;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
+        ;pug_debug_line = 28;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
+        ;pug_debug_line = 28;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "Имя\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 30;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"group surname-Profile-edit\"\u003E";
+        ;pug_debug_line = 31;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cinput" + (" class=\"Input\"" + " type=\"text\" name=\"profile_lastName\"" + pug_attr("required", true, true, false) + pug_attr("value", locals.surname, true, false)) + "\u002F\u003E";
+        ;pug_debug_line = 32;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
+        ;pug_debug_line = 33;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
+        ;pug_debug_line = 33;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "Фамилия\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 36;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"input-file updateImg-Profile-edit\"\u003E";
+        ;pug_debug_line = 37;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cdiv class=\"form-group\"\u003E";
+        ;pug_debug_line = 38;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cinput class=\"input-file\" type=\"file\" name=\"avatar\" id=\"file\"\u002F\u003E";
+        ;pug_debug_line = 39;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Clabel class=\"btn btn-tertiary js-labelFile\" for=\"file\"\u003E";
+        ;pug_debug_line = 40;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cspan class=\"js-fileName\"\u003E";
+        ;pug_debug_line = 40;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "Обновить аватар\u003C\u002Fspan\u003E\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 42;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cbutton class=\"Button button-back-edit Button-state-passive\" name=\"back\"\u003E";
+        ;pug_debug_line = 42;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "Назад\u003C\u002Fbutton\u003E";
+        ;pug_debug_line = 43;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "\u003Cbutton class=\"Button button-submit-edit Button-state-accept\" name=\"submit\"\u003E";
+        ;pug_debug_line = 43;
+        pug_debug_filename = "ProfileEditForm.pug";
+        pug_html = pug_html + "Подтвердить\u003C\u002Fbutton\u003E\u003C\u002Fform\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 45;
+        pug_debug_filename = "ProfileEditForm.pug";
         pug_html = pug_html + "\u003C!--export {template}--\u003E";
     } catch (err) {
         pug_rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
@@ -171,4 +187,4 @@ function template(locals) {
     return pug_html;
 }
 
-export {template};
+export {template}

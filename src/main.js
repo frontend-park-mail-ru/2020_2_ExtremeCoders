@@ -86,8 +86,8 @@ function initModels(){
     let h4 = ()=>{
         globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4);
         console.log('h4')
-        globalEventBus.emit(Events.global.redirect, Paths.signIn);
-       // globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4)
+        router.start(Paths.signIn)
+        // globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4)
     }
     globalEventBus.on(Events.userModelEvents.profileGetData.fail, h4)
 }

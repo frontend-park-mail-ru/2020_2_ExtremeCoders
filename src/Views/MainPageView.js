@@ -16,9 +16,9 @@ export default class MainPageView {
         this.element.innerHTML = '';
         Navbar.render()
         this.element.insertAdjacentHTML('beforeend', template(data))
-        let letterList = document.getElementsByClassName('letterList')[0];
+        let letterList = document.getElementsByName('letterList')[0];
         letterList.addEventListener('click', (event)=>{
-            console.log("CLICK LETTER",event.target.tagName,  event.target,"DIV ID", event.target.parentNode.id)
+            console.log("CLICK LETTER")
             if(event.target.tagName === 'DIV'){
                 return
             }

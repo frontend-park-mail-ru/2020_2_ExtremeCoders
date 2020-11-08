@@ -24,6 +24,7 @@ export default class Router {
 
     // запустить роутер
     start(path, data) {
+        console.log("START PATH", path)
         window.history.pushState({path: path, data: (data || 1)}, 'Start', path);
         this.registeredPathes[path].render(data);
     }

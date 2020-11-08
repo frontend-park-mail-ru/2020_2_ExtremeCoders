@@ -1,17 +1,37 @@
-include BaseComponents/classNames
-include BaseComponents/pageTitle
-include  BaseComponents/button
+//include BaseComponents/classNames
+//include BaseComponents/pageTitle
+//include  BaseComponents/button
+//
+//+pageTitle('Отправить письмо')
+//
+//form(method='POST', name='sendLetterForm' class=classNames.formClass)
+//    p(class='InputTitle') Получатель
+//    input(type='text', name='to', class=classNames.inputClass)
+//    p(class='InputTitle') Тема
+//    input(type='text', name='theme', class=classNames.inputClass)
+//    p(class='InputTitle') Текст
+//    input(type='text', name='text', class=classNames.inputClass)
+//    input(type='submit', value='Отправить письмо', class='submit', class=classNames.inputClass)
+//    +button('Назад', 'back', classNames.regButton)
+//
+////export { template };
 
-+pageTitle('Отправить письмо')
+div(class="Page-WriteLetter")
 
-form(method='POST', name='sendLetterForm' class=classNames.formClass)
-    p(class='InputTitle') Получатель
-    input(type='text', name='to', class=classNames.inputClass)
-    p(class='InputTitle') Тема
-    input(type='text', name='theme', class=classNames.inputClass)
-    p(class='InputTitle') Текст
-    input(type='text', name='text', class=classNames.inputClass)
-    input(type='submit', value='Отправить письмо', class='submit', class=classNames.inputClass)
-    +button('Назад', 'back', classNames.regButton)
-
-//export { template };
+    form(method='POST', name='sendLetterForm' class="Form-WriteLetter")
+        div(class="group input-reciever-writeLetter") 
+            input(class="Input" name='to' type="text" required)
+            span(class="bar") 
+            label(class="label-input") Кому
+        
+        div(class="group input-theme-writeLetter") 
+            input(class="Input" name='theme' type="text" required)
+            span(class="bar") 
+            label(class="label-input") Тема
+        
+        div(class="input-text-writeLetter") 
+            textarea(class="textarea input-letter-text" name='text' placeholder="Письмо" type="text" required)
+        
+        div(class="row__item buttons-writeLetter AcceptBackButtonForm") 
+            button(class="Button Button-state-passive" name="back") Назад
+            button(class="Button dekipoldag-kutensa button-send-writeLetter" type="submit") Отправить

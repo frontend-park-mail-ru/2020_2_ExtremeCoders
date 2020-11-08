@@ -1,26 +1,67 @@
-include  BaseComponents/button
-include  BaseComponents/button
-include BaseComponents/pageTitle
-include BaseComponents/Text
-include BaseComponents/avatar
-include BaseComponents/classNames
+//include  BaseComponents/button
+//include  BaseComponents/button
+//include BaseComponents/pageTitle
+//include BaseComponents/Text
+//include BaseComponents/avatar
+//include BaseComponents/classNames
+//
+//+pageTitle('Зарегистрироваться')
+//
+//form(method='POST', enctype = 'multipart/form-data', class='reg-form')
+//    p(class='InputTitle') Имя
+//    input(type='text', name='name', class=classNames.inputClass)
+//    p(class='InputTitle') Фамилия
+//    input(type='text', name='surname', class=classNames.inputClass)
+//    p(class='InputTitle') Email
+//    input(type='text', name='email', class=classNames.inputClass)
+//    p(class='InputTitle') Введите Пароль
+//    input(type='password', name='password1', class=classNames.inputClass)
+//    p(class='InputTitle') Повторите пароль
+//    input(type='password', name='password2', class=classNames.inputClass)
+//    p(class='InputTitle') Аватар
+//    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)
+//    input(type='submit', value='Зарегистироваться', class='submit', class=classNames.inputClass)
+//    +button('Назад', 'back', classNames.regButton)
+//
+////export {template}
 
-+pageTitle('Зарегистрироваться')
+div(class="SignUpPage")
+    form(class="SignUpForm")
+        label(class="label-form") Регистрация
 
-form(method='POST', enctype = 'multipart/form-data', class='reg-form')
-    p(class='InputTitle') Имя
-    input(type='text', name='name', class=classNames.inputClass)
-    p(class='InputTitle') Фамилия
-    input(type='text', name='surname', class=classNames.inputClass)
-    p(class='InputTitle') Email
-    input(type='text', name='email', class=classNames.inputClass)
-    p(class='InputTitle') Введите Пароль
-    input(type='password', name='password1', class=classNames.inputClass)
-    p(class='InputTitle') Повторите пароль
-    input(type='password', name='password2', class=classNames.inputClass)
-    p(class='InputTitle') Аватар
-    input(type='file', placeholder='Выберете аватар', name='avatar', class=classNames.inputClass)
-    input(type='submit', value='Зарегистироваться', class='submit', class=classNames.inputClass)
-    +button('Назад', 'back', classNames.regButton)
+        div(class="group")
+            input(class="Input" name='email' type="text" required)
+            span(class="bar")
+            label(class="label-input") Email
+
+        div(class="group")
+            input(class="Input" name='password1' type="text" required)
+            span(class="bar")
+            label(class="label-input") Пароль
+
+        div(class="group")
+            input(class="Input" name='password2' type="text" required)
+            span(class="bar")
+            label(class="label-input") Повторите пароль
+
+        div(class="group")
+            input(class="Input" name='name' type="text" required)
+            span(class="bar")
+            label(class="label-input") Имя
+
+        div(class="group")
+            input(class="Input" name='surname' type="text" required)
+            span(class="bar")
+            label(class="label-input") Фамилия
+
+        div(class="input-file")
+            div(class="form-group")
+                input(type="file" name="avatar" id="file" class="input-file")
+                label(for="file" class="btn btn-tertiary js-labelFile")
+                span(class="js-fileName") Загрузить аватар
+
+        div(class="row__item buttons-SignInForm AcceptBackButtonForm")
+            button(class="Button Button-state-passive" name="back") Войти
+            button(class="Button Button-state-accept" name="submit") Зарегистрироваться
 
 //export {template}

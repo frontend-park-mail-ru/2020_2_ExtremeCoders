@@ -19,16 +19,17 @@ export default class SignInView {
         let backButton = document.getElementsByName('back')[0];
 
         form.addEventListener('submit', (event) => {
+            console.log("FORM SUBMIT")
             event.preventDefault();
             let formData = new FormData(form);
             globalEventBus.emit(Events.signInViewEvents.submit, {target: 'SignInView', data: formData});
         })
 
-        backButton.addEventListener('click', (event) => {
-                event.preventDefault();
-                globalEventBus.emit(Events.global.goBack);
-            }
-        )
+        // backButton.addEventListener('click', (event) => {
+        //         event.preventDefault();
+        //         globalEventBus.emit(Events.global.goBack);
+        //     }
+        // )
 
         signUpButton.addEventListener('click', (event) => {
             event.preventDefault();

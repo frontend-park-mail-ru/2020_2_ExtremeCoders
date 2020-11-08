@@ -8,7 +8,7 @@ class ProfileEditController {
         globalEventBus.on(Events.userModelEvents.profileEdit.success, (user) => {
             globalEventBus.emit(Events.global.redirect, {path: Paths.profile, data: user})
         })
-        globalEventBus.on(Events.profileViewEvents.needUserData, () => {
+        globalEventBus.on(Events.profileEditViewEvents.needUserData, () => {
             this.view.render(this.model.user)
         })
     }

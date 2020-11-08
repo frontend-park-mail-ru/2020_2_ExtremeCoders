@@ -1,17 +1,17 @@
-include  BaseComponents/button
-include BaseComponents/pageTitle
-include BaseComponents/Text
-include BaseComponents/avatar
-include BaseComponents/classNames
+div(class="SignInPage")
+    form(class="SignInForm")
+        label(class="label-form") Вход
+        div(class="group")
+            input(class="Input" type="text" name='email' required)
+            span(class="bar")
+            label(class="label-input") Email
 
-+pageTitle('Войти')
-form(method='POST' class=classNames.formClass)
-    +text('Login')
-    input(type='text', name='email', class=classNames.inputClass)
-    +text('Password')
-    input(type='password', name='password', class=classNames.inputClass)
-    input(type='submit', value='Войти', class=classNames.inputClass)
-    +button('Регистрация','signup', classNames.loginButton)
-    +button('Назад','back', classNames.regButton)
+        div(class="group")
+            input(class="Input" type="text" name='password' required)
+            span(class="bar")
+            label(class="label-input") Password
+        div(class="row__item buttons-SignInForm AcceptBackButtonForm")
+            button(class="Button Button-state-passive" name="signup") Зарегистрироваться
+            button(class="Button Button-state-accept" name="submit") Войти
 
-//export {signinformTemplate}
+//export {template}
