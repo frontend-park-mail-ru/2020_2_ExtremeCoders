@@ -19,6 +19,7 @@ export default class MainPageController {
         });
 
         globalEventBus.on(Events.mainPageView.needData, () => {
+            this.data['letter'] = {}
             globalEventBus.emit(Events.mainPageController.needGetFolderList);
             globalEventBus.emit(Events.mainPageController.needGetLetterList);
             this.mainPageView.render(this.data)
