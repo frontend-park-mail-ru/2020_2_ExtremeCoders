@@ -116,6 +116,11 @@ class UserModel {
                 console.log("RESP SIGN UP UP", response.Code, response);
                 if (response.Code === 200) {
                     this.getUserData(Events.userModelEvents.profileEdit);
+                    let h1 = (event)=>{
+                        globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
+                        globalEventBus.emit(Events.userModelEvents.profileEdit.success);
+                    }
+                    globalEventBus.on(Events.userModelEvents.profileGetData.success, h1)
                 } else {
                     globalEventBus.emit(Events.userModelEvents.profileEdit.fail, {
                         error: response.Description
