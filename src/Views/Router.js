@@ -6,6 +6,7 @@ export default class Router {
         this.registeredPathes = {}
         window.onpopstate = ((event) => {
             event.preventDefault();
+            document.referrer = location.href
             console.log("HISTORY EVENT", event);
             try {
                 this.registeredPathes[event.state.path].render(event.state.data);
@@ -24,7 +25,7 @@ export default class Router {
 
     // запустить роутер
     start(path, data) {
-        console.log("START PATH", path)
+        console.log("START PATH", path, "PREV PAGE", document.referrer)
         window.history.pushState({path: path, data: (data || 1)}, 'Start', path);
         this.registeredPathes[path].render(data);
     }
