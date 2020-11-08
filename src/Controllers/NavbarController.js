@@ -1,9 +1,8 @@
 import globalEventBus from '../EventBus.js';
 import { Events } from '../Constants.js';
-import userModel from '../Models/UserModel.js';
 
 class NavbarController {
-  constructor(navbarView, userModel) {
+  constructor() {
     globalEventBus.on(Events.navbarView.needData, () => {
       this.navbarView.render({ avatar: this.userModel.user.avatar });
     });

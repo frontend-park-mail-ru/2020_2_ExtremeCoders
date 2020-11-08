@@ -4,18 +4,17 @@ import { Events, Paths } from './Constants.js';
 import SignUpView from './Views/SignUpView.js';
 import userModel from './Models/UserModel.js';
 import LetterModel from './Models/LetterModel.js';
-import signInController from './Controllers/SignInController.js';
-import SignUpController from './Controllers/SignUpController.js';
 import ProfileView from './Views/ProfileView.js';
 import ProfileEditView from './Views/ProfileEditView.js';
 import profileEditController from './Controllers/ProfileEditController.js';
 import MainPageView from './Views/MainPageView.js';
-import  globalEventBus  from './EventBus.js';
+import globalEventBus from './EventBus.js';
 import mainPageController from './Controllers/MainPageController.js';
 import SendLetterView from './Views/SendLetterView.js';
 import Navbar from './Views/NavbarView.js';
 import navbarController from './Controllers/NavbarController.js';
 import profileController from './Controllers/ProfileController.js';
+import signInController from './Controllers/SignInController.js';
 
 const router = new Router();
 const signInView = new SignInView(document.body);
@@ -46,13 +45,13 @@ router.register(Paths.profileEdit, profileEditView);
 router.register(Paths.letters, mainPageView);
 router.register(Paths.sendLetter, sendLetterView);
 
-console.log(location.pathname);
+console.log(window.location.pathname);
 function initModels() {
   userModel.getUserData();
   const h1 = () => {
     console.log('h1');
     globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
-    letterModel.getFolders();
+    LetterModel.getFolders();
   };
 
   globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
@@ -69,7 +68,7 @@ function initModels() {
     console.log('h3');
     globalEventBus.off(Events.letterModelEvents.getLetterList.success, h3);
     try {
-      router.start(location.pathname);
+      router.start(window.location.pathname);
     } catch (err) {
       console.log('CATCH PATH, err', err);
       router.start(Paths.signIn);

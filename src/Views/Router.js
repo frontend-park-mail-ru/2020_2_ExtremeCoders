@@ -6,12 +6,12 @@ export default class Router {
     this.registeredPathes = {};
     window.onpopstate = ((event) => {
       event.preventDefault();
-      document.referrer = location.href;
+      document.referrer = window.location.href;
       console.log('HISTORY EVENT', event);
       try {
         this.registeredPathes[event.state.path].render(event.state.data);
       } catch (err) {
-        location = location.href;
+        window.location = window.location.href;
       }
     });
     globalEventBus.on(Events.global.redirect, this.go.bind(this));
@@ -33,14 +33,15 @@ export default class Router {
     console.log('GOOO', event);
     if (event) {
       this.registeredPathes[event.path].render(event.data || 0);
-      window.history.pushState({ path: event.path, data: (event.data || 0) }, event.path, event.path);
+      window.history.pushState({ path: event.path, data: (event.data || 0) },
+        event.path, event.path);
     }
   }
 
   back() {
     console.log("I'L BE BACK");
     window.history.back();
-    console.log('href', location.pathname);
-    this.registeredPathes[location.pathname].render();
+    console.log('href', window.location.pathname);
+    this.registeredPathes[window.location.pathname].render();
   }
 }

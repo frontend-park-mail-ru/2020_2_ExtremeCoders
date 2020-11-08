@@ -45,7 +45,7 @@ class NavbarView {
     });
   }
 
-  hide() {
+  static hide() {
     document.getElementById('navbar').innerHTML = '';
   }
 }

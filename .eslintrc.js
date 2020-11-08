@@ -15,4 +15,5 @@ module.exports = {
     'import/extensions': 'off'
   },
   ignorePatterns: ['**/PugTemplates/**/*.js']
+
 };

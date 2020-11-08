@@ -1,4 +1,5 @@
 class EventBus {
+  /* eslint no-underscore-dangle: 0 */
   /**
    * Подписаться на событие, использование:
    * menu.on('select', function(item) { ... }
@@ -17,7 +18,7 @@ class EventBus {
    * menu.off('select', handler)
    */
   off(eventName, handler) {
-    let handlers = this._eventHandlers?.[eventName].filter((value) => value !== handler);
+    const handlers = this._eventHandlers?.[eventName].filter((value) => value !== handler);
     this._eventHandlers[eventName] = handlers;
   }
 
