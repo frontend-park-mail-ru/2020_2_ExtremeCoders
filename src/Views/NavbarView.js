@@ -25,25 +25,21 @@ class NavbarView {
         let lettersHref = document.getElementsByName('navbar-letters')[0];
 
         sendLetterHref.addEventListener('click', (event) => {
-            console.log('CLICK');
             event.preventDefault();
             globalEventBus.emit(Events.global.redirect, {path: Paths.sendLetter});
         })
 
         profileHref.addEventListener('click', (event) => {
             event.preventDefault();
-            console.log('CLICK');
             globalEventBus.emit(Events.global.redirect, {path: Paths.profile});
         })
 
         logoutHref.addEventListener('click',(event) => {
-            console.log('CLICK');
             event.preventDefault();
-            globalEventBus.emit(Events.global.redirect, {path: Paths.logout});
+            globalEventBus.emit(Events.global.logout);
         })
 
         lettersHref.addEventListener('click',(event) => {
-            console.log('CLICK');
             event.preventDefault();
             globalEventBus.emit(Events.global.redirect, {path: Paths.letters});
         })

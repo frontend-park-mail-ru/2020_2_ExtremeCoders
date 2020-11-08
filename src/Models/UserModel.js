@@ -11,6 +11,7 @@ class UserModel {
         globalEventBus.on(Events.signUpViewEvents.submit, this.signUp.bind(this));
         globalEventBus.on(Events.profileEditViewEvents.submit, this.editUser.bind(this));
         globalEventBus.on(Events.profileViewEvents.needUserData, this.getUserData.bind(this));
+        globalEventBus.on(Events.global.logout, this.logout.bind(this));
     }
 
     setUrl(url) {
@@ -181,6 +182,13 @@ class UserModel {
     }
 
     logout() {
+        console.log("LOGOUT")
+        let promise1 = fetch(this.baseUrl + Paths.logout,
+            {
+                method: 'POST',
+                mode: 'cors',
+                credentials: 'include',
+            })
     }
 }
 

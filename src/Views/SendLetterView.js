@@ -31,18 +31,23 @@ export  default class SendLetterView{
 
     showErrors(errors){
         console.log("SEND LETTER ERRORS SHOW", errors)
+        let reciever = document.getElementsByName('to')[0];
+        let theme = document.getElementsByName('theme')[0];
+        let text = document.getElementsByName('text')[0];
+        if(errors['to']){
+            reciever.value = '';
+            reciever.placeholder = errors['to']
+        }
+        if(errors['theme']){
+            theme.value = '';
+            theme.placeholder = errors['theme']
+        }
+        if(errors['text']){
+            text.value = '';
+            text.placeholder = errors['text']
+        }
 
-        // let passwordField = document.getElementsByName('password')[0]
-        // let emailField = document.getElementsByName('email')[0]
-        // console.log(errors['password'])
-        // if(errors['password']){
-        //     passwordField.value = '';
-        //     passwordField.placeholder = errors['password']
-        // }
-        // if(errors['email']){
-        //     emailField.value = '';
-        //     emailField.placeholder = errors['email']
-        // }
+
     }
 
 }

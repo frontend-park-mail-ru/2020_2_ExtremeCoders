@@ -1,7 +1,8 @@
 const Events = {
     global: {
         goBack: 'goBack',
-        redirect: 'redirect'
+        redirect: 'redirect',
+        logout: 'logout'
     },
     signInViewEvents: {
         submit: 'SignIn-submit',
