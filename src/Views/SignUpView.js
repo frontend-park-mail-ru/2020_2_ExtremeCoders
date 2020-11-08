@@ -20,7 +20,7 @@ export default class SignUpView {
     })
     backButton.addEventListener('click', (event) => {
           event.preventDefault();
-          globalEventBus.emit(Events.global.goBack);
+          globalEventBus.emit(Events.global.redirect, {path: Paths.signIn});
         }
     )
   }
