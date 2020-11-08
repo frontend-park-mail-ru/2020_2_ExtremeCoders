@@ -16,18 +16,4 @@ app.get(/.*$/, (request, response) => {
 
 });
 
-/**
- * send post request on go server
- */
-app.post(/.*$/, (request, response) => {
-  req.post({
-        url: `http://localhost:8080${request.url}`,
-        form: request.body,
-      },
-      (err, resp, body) => {
-        if (err) response.status(500).send({ message: err });
-        else response.send(body);
-      });
-});
-
 app.listen(3000);

@@ -60,8 +60,8 @@ class Validator {
     return errors;
   }
 
-  checkLetterForm(formData){
-    console.log('VALIDATOR SEND LETTER', formData.get('to'), formData.get('theme'), formData.get('text'))
+  checkLetterForm(formData) {
+    console.log('VALIDATOR SEND LETTER', formData.get('to'), formData.get('theme'), formData.get('text'));
     const errors = {};
     if (!this._checkEmail(formData.get('to'))) {
       errors.to = 'Некорректный email получателя';
@@ -76,5 +76,4 @@ class Validator {
   }
 }
 
-const validator = new Validator();
-export default validator;
+export default new Validator();

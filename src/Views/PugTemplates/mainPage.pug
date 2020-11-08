@@ -15,14 +15,12 @@ div(class="mainPage")
                     li()
                         if(locals.letter & locals.letter.Id===letter.Id)
                             conso
-                            - console.log("HUUUUUUUUUUUUUUUUUUUUUUEFLJW:LKWJE:FLJWE:LFJWE:LFGJWE:LGNAIEfl2iejgLEGIJDGOIWDOIWHRG[")
                             div(id=letter.Id class="letter-title state-checked")
                                 label(class="label theme-title") #{letter.Theme}
                                 label(class="label sender-title") #{letter.Sender}
                                 label(class="label datetime-title") #{date.toLocaleTimeString()}
                                 label(class="label text-title") #{letter.Text}
                         else
-                            - console.log("ELSE HUUUUUUUUUUUUUUUUUUUUUUEFLJW:LKWJE:FLJWE:LFJWE:LFGJWE:LGNAIEfl2iejgLEGIJDGOIWDOIWHRG[")
                             div(id=letter.Id class="letter-title")
                                 label(class="label theme-title") #{letter.Theme}
                                 label(class="label sender-title") #{letter.Sender}

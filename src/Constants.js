@@ -1,90 +1,89 @@
 const Events = {
-    global: {
-        goBack: 'goBack',
-        redirect: 'redirect',
-        logout: 'logout'
-    },
-    signInViewEvents: {
-        submit: 'SignIn-submit',
-        errors: 'SignIn-errors'
-    },
-    signUpViewEvents: {
-        submit: 'SignUp-submit',
-        errors: 'SignUp-errors'
-    },
-    profileEditViewEvents: {
-        submit: 'ProfileEdit-submit',
-        errors: 'ProfileEdit-errors',
-        needUserData: 'ProfileEditView-needUserData',
-    },
-    profileViewEvents: {
-        needUserData: 'ProfileView-needUserData',
-    },
-    mainPageView: {
-        needData: 'mainPageView-needData',
-        selectLetter: 'mainPageView-selectLetter'
-    },
-    mainPageController: {
-        needGetFolderList: 'mainPageController-needGetFolderList',
-        needGetLetterList: 'mainPageController-needGetLetterList',
-        needGetLetter: 'mainPageController-needGetLetter'
-    },
-    sendLetterView: {
-        sendLetter: 'sendLetterView-sendLetter'
-    },
-    navbarView:{
-        needData: 'navbar-needData'
-    },
+  global: {
+    goBack: 'goBack',
+    redirect: 'redirect',
+    logout: 'logout',
+  },
+  signInViewEvents: {
+    submit: 'SignIn-submit',
+    errors: 'SignIn-errors',
+  },
+  signUpViewEvents: {
+    submit: 'SignUp-submit',
+    errors: 'SignUp-errors',
+  },
+  profileEditViewEvents: {
+    submit: 'ProfileEdit-submit',
+    errors: 'ProfileEdit-errors',
+    needUserData: 'ProfileEditView-needUserData',
+  },
+  profileViewEvents: {
+    needUserData: 'ProfileView-needUserData',
+  },
+  mainPageView: {
+    needData: 'mainPageView-needData',
+    selectLetter: 'mainPageView-selectLetter',
+  },
+  mainPageController: {
+    needGetFolderList: 'mainPageController-needGetFolderList',
+    needGetLetterList: 'mainPageController-needGetLetterList',
+    needGetLetter: 'mainPageController-needGetLetter',
+  },
+  sendLetterView: {
+    sendLetter: 'sendLetterView-sendLetter',
+  },
+  navbarView: {
+    needData: 'navbar-needData',
+  },
 
-    letterModelEvents: {
-        getLetter: {
-            success: 'letterModelEvents-getLetter-success',
-            fail: 'letterModelEvents-getLetter-fail'
-        },
-        getLetterList: {
-            success: 'letterModelEvents-getLetterList-success',
-            fail: 'letterModelEvents-getLetterList-fail'
-        },
-        getFolderList: {
-            success: 'letterModelEvents-getFolderList-success',
-            fail: 'letterModelEvents-getFolderList-fail',
-        },
-        sendLetter: {
-            success: 'letterModelEvents-sendLetter-success',
-            fail: 'letterModelEvents-sendLetter-fail'
-        }
+  letterModelEvents: {
+    getLetter: {
+      success: 'letterModelEvents-getLetter-success',
+      fail: 'letterModelEvents-getLetter-fail',
     },
+    getLetterList: {
+      success: 'letterModelEvents-getLetterList-success',
+      fail: 'letterModelEvents-getLetterList-fail',
+    },
+    getFolderList: {
+      success: 'letterModelEvents-getFolderList-success',
+      fail: 'letterModelEvents-getFolderList-fail',
+    },
+    sendLetter: {
+      success: 'letterModelEvents-sendLetter-success',
+      fail: 'letterModelEvents-sendLetter-fail',
+    },
+  },
 
-    userModelEvents: {
-        signIn: {
-            success: 'UserModel-authorizationSuccess',
-            fail: 'UserModel-authorizationFail'
-        },
-        signUp: {
-            success: 'UserModel-signupSuccess',
-            fail: 'UserModel-signupFail'
-        },
-        profileEdit: {
-            success: 'UserModel-profileEditSuccess',
-            fail: 'UserModel-profileEditFail'
-        },
-        profileGetData: {
-            success: 'profile-successGetData',
-            fail: 'fail-getData'
-        }
-    }
-}
+  userModelEvents: {
+    signIn: {
+      success: 'UserModel-authorizationSuccess',
+      fail: 'UserModel-authorizationFail',
+    },
+    signUp: {
+      success: 'UserModel-signupSuccess',
+      fail: 'UserModel-signupFail',
+    },
+    profileEdit: {
+      success: 'UserModel-profileEditSuccess',
+      fail: 'UserModel-profileEditFail',
+    },
+    profileGetData: {
+      success: 'profile-successGetData',
+      fail: 'fail-getData',
+    },
+  },
+};
 
 const Paths = {
-    signIn: '/signin',
-    menu: '/menu',
-    signUp: '/signup',
-    profile: '/profile',
-    profileEdit: '/profileEdit',
-    letters: '/letters',
-    sendLetter: '/sendLetter',
-    logout: '/logout'
-}
+  signIn: '/signin',
+  menu: '/menu',
+  signUp: '/signup',
+  profile: '/profile',
+  profileEdit: '/profileEdit',
+  letters: '/letters',
+  sendLetter: '/sendLetter',
+  logout: '/logout',
+};
 
-export {Events, Paths}
-
+export { Events, Paths };
