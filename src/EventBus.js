@@ -17,9 +17,7 @@ class EventBus {
    * menu.off('select', handler)
    */
   off(eventName, handler) {
-    let handlers = this._eventHandlers && this._eventHandlers[eventName];
-    if (!handlers) return;
-    handlers = handlers.filter((value) => value !== handler);
+    let handlers = this._eventHandlers?.[eventName].filter((value) => value !== handler);
     this._eventHandlers[eventName] = handlers;
   }
 
