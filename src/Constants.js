@@ -23,6 +23,7 @@ const Events = {
   mainPageView: {
     needData: 'mainPageView-needData',
     selectLetter: 'mainPageView-selectLetter',
+    selectFolder: 'mainPageView-selectFolder',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -88,6 +89,8 @@ const Paths = {
   getLetterList: '/getLetters',
   sendMessageToServ: '/sendMessage',
   getAvatar: '/getAvatar',
+  receivedLetters: '/getRecvLetters',
+  sendedLetters: '/getSendLetters',
 };
 
 export { Events, Paths };

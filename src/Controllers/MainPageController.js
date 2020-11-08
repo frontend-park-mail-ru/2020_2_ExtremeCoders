@@ -20,7 +20,7 @@ class MainPageController {
     globalEventBus.on(Events.mainPageView.needData, () => {
       this.data.letter = {};
       globalEventBus.emit(Events.mainPageController.needGetFolderList);
-      globalEventBus.emit(Events.mainPageController.needGetLetterList);
+      globalEventBus.emit(Events.mainPageController.needGetLetterList, 'Входящие');
       this.mainPageView.render(this.data);
     });
 
@@ -32,6 +32,18 @@ class MainPageController {
 
     globalEventBus.on(Events.letterModelEvents.sendLetter.success, () => {
       globalEventBus.emit(Events.global.redirect, { path: Paths.letters });
+    });
+
+    globalEventBus.on(Events.mainPageView.selectFolder, (folder) => {
+      console.log('SELECT LETTER ', folder, this.data.letterList);
+      globalEventBus.emit(Events.mainPageController.needGetLetterList, folder);
+      const h = (data) => {
+        console.log('SELECTED LETTER');
+        globalEventBus.off(Events.letterModelEvents.getLetterList.success, h);
+        this.data.letterList = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.getLetterList.success, h);
     });
   }
 

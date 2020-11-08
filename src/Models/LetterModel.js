@@ -47,11 +47,19 @@ export default class LetterModel {
 
   static getFolders() {
     // Пока адекватной работы с папками нет, поэтому тут и такая кривоватая заглушка
-    globalEventBus.emit(Events.letterModelEvents.getFolderList.success, ['Входящие', 'Отправленные']);
+    globalEventBus.emit(Events.letterModelEvents.getFolderList.success, ['Входящие', 'Исходящие']);
   }
 
-  getLetterList() {
-    myFetch(Paths.getLetterList, 'POST')
+  getLetterList(folder) {
+    console.log('GET LETTER LIST FOLDER ', folder);
+    let path = '';
+    if (folder === 'Входящие') {
+      path = Paths.receivedLetters;
+    } else {
+      path = Paths.sendedLetters;
+    }
+
+    myFetch(path, 'POST')
       .then((response) => response.json())
       .then((response) => {
         console.log('RESP GET LETTER LIST', response);

@@ -11,13 +11,15 @@ export default class MainPageView {
   render(data) {
     console.log('RENDER MAIN PAGE DATA, dat', data);
     if (!data || !data.letterList || !data.folderList) {
-      globalEventBus.emit(Events.mainPageView.needData);
+      globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
       return;
     }
     this.element.innerHTML = '';
     Navbar.render();
     this.element.insertAdjacentHTML('beforeend', template(data));
     const letterList = document.getElementsByName('letterList')[0];
+    const folderList = document.getElementsByClassName('listView')[0];
+
     letterList.addEventListener('click', (event) => {
       console.log('CLICK LETTER', event.target);
       if (event.target.tagName === 'UL') {
@@ -29,6 +31,11 @@ export default class MainPageView {
         return;
       }
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.parentNode.id);
+    });
+
+    folderList.addEventListener('click', (event) => {
+      console.log('CLICK FOLDER', event.target.innerText);
+      globalEventBus.emit(Events.mainPageView.selectFolder, event.target.innerText);
     });
   }
 }

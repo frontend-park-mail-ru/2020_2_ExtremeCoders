@@ -53,9 +53,9 @@ function template(locals) {
     var pug_html = "", pug_mixins = {}, pug_interp;
     var pug_debug_filename, pug_debug_line;
     try {
-        var pug_debug_sources = {"mainPage.pug": "\ndiv(class=\"mainPage\")\n\n    if(locals.folderList)\n        div(class=\"folders-main\")\n            ul(class=\"listView\")\n                li(class=\"folder\") Входящие\n                li(class=\"folder\") Исходящие\n\n    if(locals.letterList)\n        div(class=\"letterlist-main\")\n            ul(class=\"listView\" name='letterList')\n                each letter in locals.letterList\n                    - date = new Date(letter.DateTime * 1000)\n                    li()\n                        if(locals.letter & locals.letter.Id===letter.Id)\n                            - console.log(\"HUUUUUUUUUUUUUUUUUUUUUUEFLJW:LKWJE:FLJWE:LFJWE:LFGJWE:LGNAIEfl2iejgLEGIJDGOIWDOIWHRG[\")\n                            div(id=letter.Id class=\"letter-title state-checked\")\n                                label(class=\"label theme-title\") #{letter.Theme}\n                                label(class=\"label sender-title\") #{letter.Sender}\n                                label(class=\"label datetime-title\") #{date.toLocaleTimeString()}\n                                label(class=\"label text-title\") #{letter.Text}\n                        else\n                            - console.log(\"ELSE HUUUUUUUUUUUUUUUUUUUUUUEFLJW:LKWJE:FLJWE:LFJWE:LFGJWE:LGNAIEfl2iejgLEGIJDGOIWDOIWHRG[\")\n                            div(id=letter.Id class=\"letter-title\")\n                                label(class=\"label theme-title\") #{letter.Theme}\n                                label(class=\"label sender-title\") #{letter.Sender}\n                                label(class=\"label datetime-title\") #{date.toLocaleTimeString()}\n                                label(class=\"label text-title\") #{letter.Text}\n\n\n\n    if(locals.letter)\n        - date = new Date(locals.letter.DateTime * 1000)\n\n        div(class=\"letter-main\")\n            div(class=\"letter-view\")\n                div(class=\"senderTitle-view\")\n                    div(class=\"group input-theme-writeLetter\")\n                        input(class=\"Input disabled-input\" type=\"text\" placeholder=locals.letter.Sender)\n                        span(class=\"bar\")\n                        label(class=\"label-input\") От\n\n                div(class=\"themeTitle-view\")\n                    div(class=\"group input-theme-writeLetter\")\n                        input(class=\"Input disabled-input\" type=\"text\" placeholder=locals.letter.Theme)\n                        span(class=\"bar\")\n                        label(class=\"label-input\") Тема\n\n                label(class=\"label dateTime-view\") #{date.toLocaleTimeString()}  #{date.toLocaleDateString()}\n                textarea(class=\"textarea disabled-input p-letter-text text-view\")  #{locals.letter.Text}\n\n\u002F\u002Fexport {template}"};
+        var pug_debug_sources = {"mainPage.pug": "\ndiv(class=\"mainPage\")\n\n    if(locals.folderList)\n        div(class=\"folders-main\")\n            ul(class=\"listView\")\n                each folder in locals.folderList\n                    li(class=\"folder\") #{folder}\n\n    if(locals.letterList)\n        div(class=\"letterlist-main\")\n            ul(class=\"listView\" name='letterList')\n                each letter in locals.letterList\n                    - date = new Date(letter.DateTime * 1000)\n                    li()\n                        if(locals.letter & locals.letter.Id===letter.Id)\n                            conso\n                            div(id=letter.Id class=\"letter-title state-checked\")\n                                label(class=\"label theme-title\") #{letter.Theme}\n                                label(class=\"label sender-title\") #{letter.Sender}\n                                label(class=\"label datetime-title\") #{date.toLocaleTimeString()}\n                                label(class=\"label text-title\") #{letter.Text}\n                        else\n                            div(id=letter.Id class=\"letter-title\")\n                                label(class=\"label theme-title\") #{letter.Theme}\n                                label(class=\"label sender-title\") #{letter.Sender}\n                                label(class=\"label datetime-title\") #{date.toLocaleTimeString()}\n                                label(class=\"label text-title\") #{letter.Text}\n\n\n\n    if(locals.letter)\n        - date = new Date(locals.letter.DateTime * 1000)\n\n        div(class=\"letter-main\")\n            div(class=\"letter-view\")\n                div(class=\"senderTitle-view\")\n                    div(class=\"group input-theme-writeLetter\")\n                        input(class=\"Input disabled-input\" type=\"text\" placeholder=locals.letter.Sender)\n                        span(class=\"bar\")\n                        label(class=\"label-input\") От\n\n                div(class=\"themeTitle-view\")\n                    div(class=\"group input-theme-writeLetter\")\n                        input(class=\"Input disabled-input\" type=\"text\" placeholder=locals.letter.Theme)\n                        span(class=\"bar\")\n                        label(class=\"label-input\") Тема\n\n                label(class=\"label dateTime-view\") #{date.toLocaleTimeString()}  #{date.toLocaleDateString()}\n                textarea(class=\"textarea disabled-input p-letter-text text-view\")  #{locals.letter.Text}\n\n\u002F\u002Fexport {template}"};
         ;var locals_for_with = (locals || {});
-        (function (Date, console, date) {
+        (function (Date, date) {
             ;pug_debug_line = 2;
             pug_debug_filename = "mainPage.pug";
             pug_html = pug_html + "\u003Cdiv class=\"mainPage\"\u003E";
@@ -70,16 +70,35 @@ function template(locals) {
                 pug_html = pug_html + "\u003Cul class=\"listView\"\u003E";
                 ;pug_debug_line = 7;
                 pug_debug_filename = "mainPage.pug";
-                pug_html = pug_html + "\u003Cli class=\"folder\"\u003E";
-                ;pug_debug_line = 7;
-                pug_debug_filename = "mainPage.pug";
-                pug_html = pug_html + "Входящие\u003C\u002Fli\u003E";
-                ;pug_debug_line = 8;
-                pug_debug_filename = "mainPage.pug";
-                pug_html = pug_html + "\u003Cli class=\"folder\"\u003E";
-                ;pug_debug_line = 8;
-                pug_debug_filename = "mainPage.pug";
-                pug_html = pug_html + "Исходящие\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003C\u002Fdiv\u003E";
+// iterate locals.folderList
+                ;(function () {
+                    var $$obj = locals.folderList;
+                    if ('number' == typeof $$obj.length) {
+                        for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
+                            var folder = $$obj[pug_index0];
+                            ;pug_debug_line = 8;
+                            pug_debug_filename = "mainPage.pug";
+                            pug_html = pug_html + "\u003Cli class=\"folder\"\u003E";
+                            ;pug_debug_line = 8;
+                            pug_debug_filename = "mainPage.pug";
+                            pug_html = pug_html + (pug_escape(null == (pug_interp = folder) ? "" : pug_interp)) + "\u003C\u002Fli\u003E";
+                        }
+                    } else {
+                        var $$l = 0;
+                        for (var pug_index0 in $$obj) {
+                            $$l++;
+                            var folder = $$obj[pug_index0];
+                            ;pug_debug_line = 8;
+                            pug_debug_filename = "mainPage.pug";
+                            pug_html = pug_html + "\u003Cli class=\"folder\"\u003E";
+                            ;pug_debug_line = 8;
+                            pug_debug_filename = "mainPage.pug";
+                            pug_html = pug_html + (pug_escape(null == (pug_interp = folder) ? "" : pug_interp)) + "\u003C\u002Fli\u003E";
+                        }
+                    }
+                }).call(this);
+
+                pug_html = pug_html + "\u003C\u002Ful\u003E\u003C\u002Fdiv\u003E";
             }
             ;pug_debug_line = 10;
             pug_debug_filename = "mainPage.pug";
@@ -96,8 +115,8 @@ function template(locals) {
                 ;(function () {
                     var $$obj = locals.letterList;
                     if ('number' == typeof $$obj.length) {
-                        for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
-                            var letter = $$obj[pug_index0];
+                        for (var pug_index1 = 0, $$l = $$obj.length; pug_index1 < $$l; pug_index1++) {
+                            var letter = $$obj[pug_index1];
                             ;pug_debug_line = 14;
                             pug_debug_filename = "mainPage.pug";
                             date = new Date(letter.DateTime * 1000)
@@ -109,7 +128,7 @@ function template(locals) {
                             if ((locals.letter & locals.letter.Id === letter.Id)) {
                                 ;pug_debug_line = 17;
                                 pug_debug_filename = "mainPage.pug";
-                                console.log("HUUUUUUUUUUUUUUUUUUUUUUEFLJW:LKWJE:FLJWE:LFJWE:LFGJWE:LGNAIEfl2iejgLEGIJDGOIWDOIWHRG[")
+                                pug_html = pug_html + "\u003Cconso\u003E\u003C\u002Fconso\u003E";
                                 ;pug_debug_line = 18;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Cdiv" + (" class=\"letter-title state-checked\"" + pug_attr("id", letter.Id, true, false)) + "\u003E";
@@ -140,32 +159,29 @@ function template(locals) {
                             } else {
                                 ;pug_debug_line = 24;
                                 pug_debug_filename = "mainPage.pug";
-                                console.log("ELSE HUUUUUUUUUUUUUUUUUUUUUUEFLJW:LKWJE:FLJWE:LFJWE:LFGJWE:LGNAIEfl2iejgLEGIJDGOIWDOIWHRG[")
+                                pug_html = pug_html + "\u003Cdiv" + (" class=\"letter-title\"" + pug_attr("id", letter.Id, true, false)) + "\u003E";
                                 ;pug_debug_line = 25;
                                 pug_debug_filename = "mainPage.pug";
-                                pug_html = pug_html + "\u003Cdiv" + (" class=\"letter-title\"" + pug_attr("id", letter.Id, true, false)) + "\u003E";
-                                ;pug_debug_line = 26;
-                                pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Clabel class=\"label theme-title\"\u003E";
-                                ;pug_debug_line = 26;
+                                ;pug_debug_line = 25;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + (pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-                                ;pug_debug_line = 27;
+                                ;pug_debug_line = 26;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Clabel class=\"label sender-title\"\u003E";
-                                ;pug_debug_line = 27;
+                                ;pug_debug_line = 26;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + (pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-                                ;pug_debug_line = 28;
+                                ;pug_debug_line = 27;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Clabel class=\"label datetime-title\"\u003E";
-                                ;pug_debug_line = 28;
+                                ;pug_debug_line = 27;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + (pug_escape(null == (pug_interp = date.toLocaleTimeString()) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-                                ;pug_debug_line = 29;
+                                ;pug_debug_line = 28;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Clabel class=\"label text-title\"\u003E";
-                                ;pug_debug_line = 29;
+                                ;pug_debug_line = 28;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + (pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
                             }
@@ -173,9 +189,9 @@ function template(locals) {
                         }
                     } else {
                         var $$l = 0;
-                        for (var pug_index0 in $$obj) {
+                        for (var pug_index1 in $$obj) {
                             $$l++;
-                            var letter = $$obj[pug_index0];
+                            var letter = $$obj[pug_index1];
                             ;pug_debug_line = 14;
                             pug_debug_filename = "mainPage.pug";
                             date = new Date(letter.DateTime * 1000)
@@ -187,7 +203,7 @@ function template(locals) {
                             if ((locals.letter & locals.letter.Id === letter.Id)) {
                                 ;pug_debug_line = 17;
                                 pug_debug_filename = "mainPage.pug";
-                                console.log("HUUUUUUUUUUUUUUUUUUUUUUEFLJW:LKWJE:FLJWE:LFJWE:LFGJWE:LGNAIEfl2iejgLEGIJDGOIWDOIWHRG[")
+                                pug_html = pug_html + "\u003Cconso\u003E\u003C\u002Fconso\u003E";
                                 ;pug_debug_line = 18;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Cdiv" + (" class=\"letter-title state-checked\"" + pug_attr("id", letter.Id, true, false)) + "\u003E";
@@ -218,32 +234,29 @@ function template(locals) {
                             } else {
                                 ;pug_debug_line = 24;
                                 pug_debug_filename = "mainPage.pug";
-                                console.log("ELSE HUUUUUUUUUUUUUUUUUUUUUUEFLJW:LKWJE:FLJWE:LFJWE:LFGJWE:LGNAIEfl2iejgLEGIJDGOIWDOIWHRG[")
+                                pug_html = pug_html + "\u003Cdiv" + (" class=\"letter-title\"" + pug_attr("id", letter.Id, true, false)) + "\u003E";
                                 ;pug_debug_line = 25;
                                 pug_debug_filename = "mainPage.pug";
-                                pug_html = pug_html + "\u003Cdiv" + (" class=\"letter-title\"" + pug_attr("id", letter.Id, true, false)) + "\u003E";
-                                ;pug_debug_line = 26;
-                                pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Clabel class=\"label theme-title\"\u003E";
-                                ;pug_debug_line = 26;
+                                ;pug_debug_line = 25;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + (pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-                                ;pug_debug_line = 27;
+                                ;pug_debug_line = 26;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Clabel class=\"label sender-title\"\u003E";
-                                ;pug_debug_line = 27;
+                                ;pug_debug_line = 26;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + (pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-                                ;pug_debug_line = 28;
+                                ;pug_debug_line = 27;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Clabel class=\"label datetime-title\"\u003E";
-                                ;pug_debug_line = 28;
+                                ;pug_debug_line = 27;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + (pug_escape(null == (pug_interp = date.toLocaleTimeString()) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-                                ;pug_debug_line = 29;
+                                ;pug_debug_line = 28;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + "\u003Clabel class=\"label text-title\"\u003E";
-                                ;pug_debug_line = 29;
+                                ;pug_debug_line = 28;
                                 pug_debug_filename = "mainPage.pug";
                                 pug_html = pug_html + (pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E";
                             }
@@ -254,86 +267,85 @@ function template(locals) {
 
                 pug_html = pug_html + "\u003C\u002Ful\u003E\u003C\u002Fdiv\u003E";
             }
-            ;pug_debug_line = 33;
+            ;pug_debug_line = 32;
             pug_debug_filename = "mainPage.pug";
             if ((locals.letter)) {
-                ;pug_debug_line = 34;
+                ;pug_debug_line = 33;
                 pug_debug_filename = "mainPage.pug";
                 date = new Date(locals.letter.DateTime * 1000)
-                ;pug_debug_line = 36;
+                ;pug_debug_line = 35;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Cdiv class=\"letter-main\"\u003E";
-                ;pug_debug_line = 37;
+                ;pug_debug_line = 36;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Cdiv class=\"letter-view\"\u003E";
-                ;pug_debug_line = 38;
+                ;pug_debug_line = 37;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Cdiv class=\"senderTitle-view\"\u003E";
+                ;pug_debug_line = 38;
+                pug_debug_filename = "mainPage.pug";
+                pug_html = pug_html + "\u003Cdiv class=\"group input-theme-writeLetter\"\u003E";
                 ;pug_debug_line = 39;
                 pug_debug_filename = "mainPage.pug";
-                pug_html = pug_html + "\u003Cdiv class=\"group input-theme-writeLetter\"\u003E";
+                pug_html = pug_html + "\u003Cinput" + (" class=\"Input disabled-input\"" + " type=\"text\"" + pug_attr("placeholder", locals.letter.Sender, true, false)) + "\u002F\u003E";
                 ;pug_debug_line = 40;
                 pug_debug_filename = "mainPage.pug";
-                pug_html = pug_html + "\u003Cinput" + (" class=\"Input disabled-input\"" + " type=\"text\"" + pug_attr("placeholder", locals.letter.Sender, true, false)) + "\u002F\u003E";
+                pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
                 ;pug_debug_line = 41;
                 pug_debug_filename = "mainPage.pug";
-                pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
-                ;pug_debug_line = 42;
-                pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
-                ;pug_debug_line = 42;
+                ;pug_debug_line = 41;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "От\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
-                ;pug_debug_line = 44;
+                ;pug_debug_line = 43;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Cdiv class=\"themeTitle-view\"\u003E";
-                ;pug_debug_line = 45;
+                ;pug_debug_line = 44;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Cdiv class=\"group input-theme-writeLetter\"\u003E";
-                ;pug_debug_line = 46;
+                ;pug_debug_line = 45;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Cinput" + (" class=\"Input disabled-input\"" + " type=\"text\"" + pug_attr("placeholder", locals.letter.Theme, true, false)) + "\u002F\u003E";
-                ;pug_debug_line = 47;
+                ;pug_debug_line = 46;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Cspan class=\"bar\"\u003E\u003C\u002Fspan\u003E";
-                ;pug_debug_line = 48;
+                ;pug_debug_line = 47;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Clabel class=\"label-input\"\u003E";
-                ;pug_debug_line = 48;
+                ;pug_debug_line = 47;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "Тема\u003C\u002Flabel\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
-                ;pug_debug_line = 50;
+                ;pug_debug_line = 49;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Clabel class=\"label dateTime-view\"\u003E";
-                ;pug_debug_line = 50;
+                ;pug_debug_line = 49;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + (pug_escape(null == (pug_interp = date.toLocaleTimeString()) ? "" : pug_interp));
-                ;pug_debug_line = 50;
+                ;pug_debug_line = 49;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "  ";
-                ;pug_debug_line = 50;
+                ;pug_debug_line = 49;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + (pug_escape(null == (pug_interp = date.toLocaleDateString()) ? "" : pug_interp)) + "\u003C\u002Flabel\u003E";
-                ;pug_debug_line = 51;
+                ;pug_debug_line = 50;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + "\u003Ctextarea class=\"textarea disabled-input p-letter-text text-view\"\u003E";
-                ;pug_debug_line = 51;
+                ;pug_debug_line = 50;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + " ";
-                ;pug_debug_line = 51;
+                ;pug_debug_line = 50;
                 pug_debug_filename = "mainPage.pug";
                 pug_html = pug_html + (pug_escape(null == (pug_interp = locals.letter.Text) ? "" : pug_interp)) + "\u003C\u002Ftextarea\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
             }
             pug_html = pug_html + "\u003C\u002Fdiv\u003E";
-            ;pug_debug_line = 53;
+            ;pug_debug_line = 52;
             pug_debug_filename = "mainPage.pug";
             pug_html = pug_html + "\u003C!--export {template}--\u003E";
-        }.call(this, "Date" in locals_for_with ? locals_for_with.Date : typeof Date !== "undefined" ? Date : undefined, "console" in locals_for_with ? locals_for_with.console : typeof console !== "undefined" ? console : undefined, "date" in locals_for_with ? locals_for_with.date : typeof date !== "undefined" ? date : undefined));
+        }.call(this, "Date" in locals_for_with ? locals_for_with.Date : typeof Date !== "undefined" ? Date : undefined, "date" in locals_for_with ? locals_for_with.date : typeof date !== "undefined" ? date : undefined));
     } catch (err) {
         pug_rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
     }
     ;
     return pug_html;
 }
-
 export {template}

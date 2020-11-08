@@ -4,8 +4,8 @@ div(class="mainPage")
     if(locals.folderList)
         div(class="folders-main")
             ul(class="listView")
-                li(class="folder") Входящие
-                li(class="folder") Исходящие
+                each folder in locals.folderList
+                    li(class="folder") #{folder}
 
     if(locals.letterList)
         div(class="letterlist-main")
