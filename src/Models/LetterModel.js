@@ -1,5 +1,6 @@
 import {Paths, Events} from "../Constants.js";
 import {globalEventBus} from "../EventBus.js";
+import validator from "./Validator.js";
 import UserModel from "./UserModel.js";
 import userModel from "./UserModel.js";
 
@@ -19,6 +20,14 @@ export default class LetterModel {
     }
 
     sendLetter(data) {
+        let errors=validator.checkLetterForm(data);
+        if (Object.keys(errors).length !== 0) {
+            console.log("ERRORS IN SEND LETTER ", errors,);
+            globalEventBus.emit(Events.letterModelEvents.sendLetter.fail,
+                errors
+            )
+            return;
+        }
         let promise = fetch(this.baseUrl + '/sendMessage',
             {
                 method: 'POST',

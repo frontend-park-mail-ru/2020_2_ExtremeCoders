@@ -59,6 +59,21 @@ class Validator {
     }
     return errors;
   }
+
+  checkLetterForm(formData){
+    console.log('VALIDATOR SEND LETTER', formData.get('to'), formData.get('theme'), formData.get('text'))
+    const errors = {};
+    if (!this._checkEmail(formData.get('to'))) {
+      errors.to = 'Некорректный email получателя';
+    }
+    if (!this._checkName(formData.get('theme'))) {
+      errors.theme = 'Не корректная тема сообщения';
+    }
+    if (!this._checkName(formData.get('text'))) {
+      errors.text = 'Не корректная текст сообщения';
+    }
+    return errors;
+  }
 }
 
 const validator = new Validator();
