@@ -6,6 +6,7 @@ import Navbar from "./NavbarView.js";
 export  default class SendLetterView{
     constructor(element) {
         this.element = element;
+        globalEventBus.on(Events.letterModelEvents.sendLetter.fail, this.showErrors.bind(this))
     }
 
     render(data){
@@ -26,6 +27,22 @@ export  default class SendLetterView{
             event.preventDefault();
             globalEventBus.emit(Events.global.goBack);
         })
+    }
+
+    showErrors(errors){
+        console.log("SEND LETTER ERRORS SHOW", errors)
+
+        // let passwordField = document.getElementsByName('password')[0]
+        // let emailField = document.getElementsByName('email')[0]
+        // console.log(errors['password'])
+        // if(errors['password']){
+        //     passwordField.value = '';
+        //     passwordField.placeholder = errors['password']
+        // }
+        // if(errors['email']){
+        //     emailField.value = '';
+        //     emailField.placeholder = errors['email']
+        // }
     }
 
 }
