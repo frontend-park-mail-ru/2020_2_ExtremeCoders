@@ -21,6 +21,11 @@ export  default class SendLetterView{
                 new FormData(form)
             );
         })
+        let backButton = document.getElementsByName('back')[0];
+        backButton.addEventListener('click', (event)=>{
+            event.preventDefault();
+            globalEventBus.emit(Events.global.goBack);
+        })
     }
 
 }
