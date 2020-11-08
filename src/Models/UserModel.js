@@ -4,7 +4,7 @@ import validator from './Validator.js';
 import myFetch from './myFetch.js';
 
 class UserModel {
-  // http://localhost:8080
+  //
   constructor(url) {
     this.baseUrl = url;
     this.user = {};
@@ -29,7 +29,7 @@ class UserModel {
       return;
     }
     console.log('SIGN IN ', data, this.baseUrl + Paths.signIn);
-    const promise = myFetch(this.baseUrl + Paths.signIn, 'POST', data.data)
+    myFetch(Paths.signIn, 'POST', data.data)
       .then((response) => response.json())
       .then((response) => {
         // console.log("RESP SIGN IN", response);
@@ -59,32 +59,6 @@ class UserModel {
       });
   }
 
-  editUser(data) {
-    const promise = fetch(this.baseUrl + Paths.profile,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        body: data.data,
-      });
-    promise.then((response) => response.json())
-      .then((response) => {
-        console.log('RESP SIGN UP UP', response.Code, response);
-        if (response.Code === 200) {
-          this.getUserData(Events.userModelEvents.profileEdit);
-          const h1 = () => {
-            globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
-            globalEventBus.emit(Events.userModelEvents.profileEdit.success);
-          };
-          globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
-        } else {
-          globalEventBus.emit(Events.userModelEvents.profileEdit.fail, {
-            error: response.Description,
-          });
-        }
-      });
-  }
-
   signUp(data) {
     const errors = validator.checkSignUpForm(data.data);
     if (Object.keys(errors).length !== 0) {
@@ -93,14 +67,9 @@ class UserModel {
         errors);
       return;
     }
-    const promise = fetch(this.baseUrl + Paths.signUp,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        body: data.data,
-      });
-    promise.then((response) => response.json())
+
+    myFetch(Paths.signUp, 'POST', data.data)
+      .then((response) => response.json())
       .then((response) => {
         console.log('RESP SIGN UP UP', response.Code, response);
         if (response.Code === 200) {
@@ -122,19 +91,13 @@ class UserModel {
   }
 
   editUser(data) {
-    const promise = fetch(this.baseUrl + Paths.profile,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        body: data.data,
-      });
-    promise.then((response) => response.json())
+    myFetch(Paths.profile, 'POST', data.data)
+      .then((response) => response.json())
       .then((response) => {
         console.log('RESP SIGN UP UP', response.Code, response);
         if (response.Code === 200) {
           this.getUserData(Events.userModelEvents.profileEdit);
-          const h1 = (event) => {
+          const h1 = () => {
             globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
             globalEventBus.emit(Events.userModelEvents.profileEdit.success);
           };
@@ -151,13 +114,8 @@ class UserModel {
   }
 
   getUserData() {
-    const promise1 = fetch(this.baseUrl + Paths.profile,
-      {
-        method: 'GET',
-        mode: 'cors',
-        credentials: 'include',
-      });
-    const p1 = promise1.then((response) => response.json())
+    const p1 = myFetch(Paths.profile, 'GET')
+      .then((response) => response.json())
       .then((response) => {
         console.log('RESP GET USER DATA', response.status, response);
         if (response.Code === 200) {
@@ -170,14 +128,7 @@ class UserModel {
         }
       });
 
-    const promise2 = fetch(`${this.baseUrl}/getAvatar`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        credentials: 'include',
-      });
-
-    const p2 = promise2
+    const p2 = myFetch(Paths.getAvatar, 'GET')
       .then((response) => response.blob())
       .then((myBlob) => {
         console.log('BLOB', myBlob);
@@ -185,7 +136,7 @@ class UserModel {
       });
 
     Promise.all([p1, p2]).then(
-      (result) => {
+      () => {
         console.log('УСПЕХ');
         console.log('USER', this.user);
         globalEventBus.emit(Events.userModelEvents.profileGetData.success, this.user);

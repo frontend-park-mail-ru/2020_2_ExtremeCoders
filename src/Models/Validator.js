@@ -1,4 +1,4 @@
-class Validator {
+export default class Validator {
   /* eslint no-underscore-dangle: 0 */
   static _checkEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -28,7 +28,7 @@ class Validator {
      * @param {FormData} formData
      * @return {errors} in format {email:'errorDescription', password: 'errorDescription'}
      */
-  checkSignInForm(formData) {
+  static checkSignInForm(formData) {
     const errors = {};
     if (!Validator._checkEmail(formData.get('email'))) {
       errors.email = 'Некорректный email';
@@ -39,7 +39,7 @@ class Validator {
     return errors;
   }
 
-  checkSignUpForm(formData) {
+  static checkSignUpForm(formData) {
     console.log('VALIDATOR SIGN UP', formData.get('email'), formData.get('password1'), formData.get('password2'),
       formData.get('name'), formData.get('surname'));
     const errors = {};
@@ -61,7 +61,7 @@ class Validator {
     return errors;
   }
 
-  checkLetterForm(formData) {
+  static checkLetterForm(formData) {
     console.log('VALIDATOR SEND LETTER', formData.get('to'), formData.get('theme'), formData.get('text'));
     const errors = {};
     if (!Validator._checkEmail(formData.get('to'))) {
@@ -76,5 +76,3 @@ class Validator {
     return errors;
   }
 }
-
-export default new Validator();

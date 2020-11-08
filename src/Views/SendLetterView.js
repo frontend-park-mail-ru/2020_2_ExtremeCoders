@@ -7,7 +7,7 @@ export default class SendLetterView {
   constructor(element) {
     this.element = element;
     globalEventBus.on(Events.letterModelEvents.sendLetter.fail,
-        SendLetterView.showErrors.bind(this));
+      SendLetterView.showErrors.bind(this));
   }
 
   render(data) {

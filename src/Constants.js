@@ -76,6 +76,7 @@ const Events = {
 };
 
 const Paths = {
+  baseUrl: 'http://localhost:8080',
   signIn: '/signin',
   menu: '/menu',
   signUp: '/signup',
@@ -84,6 +85,9 @@ const Paths = {
   letters: '/letters',
   sendLetter: '/sendLetter',
   logout: '/logout',
+  getLetterList: '/getLetters',
+  sendMessageToServ: '/sendMessage',
+  getAvatar: '/getAvatar',
 };
 
 export { Events, Paths };

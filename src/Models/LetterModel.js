@@ -1,24 +1,25 @@
-import { Events } from '../Constants.js';
+import { Events, Paths } from '../Constants.js';
 import globalEventBus from '../EventBus.js';
 import validator from './Validator.js';
 import myFetch from './myFetch.js';
 
 export default class LetterModel {
-  constructor(url) {
-    this.baseUrl = url;
+  constructor() {
     this.Letters = new Map();
     this.folders = {};
     globalEventBus.on(Events.mainPageController.needGetLetter, this.getLetter.bind(this));
     globalEventBus.on(Events.mainPageController.needGetLetterList, this.getLetterList.bind(this));
-    globalEventBus.on(Events.mainPageController.needGetFolderList, LetterModel.getFolders.bind(this));
-    globalEventBus.on(Events.sendLetterView.sendLetter, this.sendLetter.bind(this));
+    globalEventBus.on(Events.mainPageController.needGetFolderList,
+      LetterModel.getFolders.bind(this));
+    globalEventBus.on(Events.sendLetterView.sendLetter,
+      LetterModel.sendLetter.bind(this));
   }
 
   getLetter(letterId) {
     globalEventBus.emit(Events.letterModelEvents.getLetter.success, this.Letters[letterId]);
   }
 
-  sendLetter(data) {
+  static sendLetter(data) {
     const errors = validator.checkLetterForm(data);
     if (Object.keys(errors).length !== 0) {
       console.log('ERRORS IN SEND LETTER ', errors);
@@ -26,7 +27,7 @@ export default class LetterModel {
         errors);
       return;
     }
-    myFetch(`${this.baseUrl}/sendMessage`, 'POST', data)
+    myFetch(Paths.sendMessageToServ, 'POST', data)
       .then((response) => response.json())
       .then((response) => {
         console.log('RESP SEND LETTER', response);
@@ -45,11 +46,12 @@ export default class LetterModel {
   }
 
   static getFolders() {
+    // Пока адекватной работы с папками нет, поэтому тут и такая кривоватая заглушка
     globalEventBus.emit(Events.letterModelEvents.getFolderList.success, ['Входящие', 'Отправленные']);
   }
 
   getLetterList() {
-    myFetch(`${this.baseUrl}/getLetters`, 'POST')
+    myFetch(Paths.getLetterList, 'POST')
       .then((response) => response.json())
       .then((response) => {
         console.log('RESP GET LETTER LIST', response);

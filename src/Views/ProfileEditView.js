@@ -6,7 +6,8 @@ import Navbar from './NavbarView.js';
 export default class ProfileEditView {
   constructor(element) {
     this.element = element;
-    globalEventBus.on(Events.userModelEvents.profileEdit.fail, ProfileEditView.showErrors.bind(this));
+    globalEventBus.on(Events.userModelEvents.profileEdit.fail,
+      ProfileEditView.showErrors.bind(this));
   }
 
   /**
