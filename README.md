@@ -6,8 +6,6 @@
 [Репозиторий бэка](https://github.com/go-park-mail-ru/2020_2_ExtremeCoders/)
 
 ## Состав
-
-- [Николай Умрихин](https://github.com/lowsukuku)
 - [Даниил Чёрный](https://github.com/Dellvin)
 - [Сергий Чепурной](https://github.com/sergii1)
 
