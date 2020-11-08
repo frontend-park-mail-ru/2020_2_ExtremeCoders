@@ -22,4 +22,4 @@ class ProfileEditController {
   }
 }
 
-export default new ProfileEditController();;
+export default new ProfileEditController();

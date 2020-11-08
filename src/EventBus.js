@@ -1,4 +1,5 @@
 class EventBus {
+  /* eslint no-underscore-dangle: 0 */
   /**
    * Подписаться на событие, использование:
    * menu.on('select', function(item) { ... }

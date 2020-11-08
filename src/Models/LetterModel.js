@@ -49,7 +49,7 @@ export default class LetterModel {
       });
   }
 
-  getFolders() {
+  static getFolders() {
     globalEventBus.emit(Events.letterModelEvents.getFolderList.success, ['Входящие', 'Отправленные']);
   }
 
@@ -84,9 +84,9 @@ export default class LetterModel {
       })
       .catch((error) => {
         console.log('CAAAAAAAAAAAAAAAATCH', error);
-          globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
-              error: error,
-          });
+        globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
+          error,
+        });
       });
   }
 }

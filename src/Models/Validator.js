@@ -1,24 +1,25 @@
 class Validator {
-  _checkEmail(email) {
+  /* eslint no-underscore-dangle: 0 */
+  static _checkEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   }
 
-  _checkName(name) {
+  static _checkName(name) {
     const re = /[0-9a-z]+/i;
     return re.test(name);
   }
 
-  _checkSurname(surname) {
+  static _checkSurname(surname) {
     const re = /[0-9a-z]+/i;
     return re.test(surname);
   }
 
-  _checkPassword(pass) {
+  static _checkPassword(pass) {
     return pass.length > 3;
   }
 
-  _checkPasswordEqual(pass1, pass2) {
+  static _checkPasswordEqual(pass1, pass2) {
     return pass1 === pass2;
   }
 

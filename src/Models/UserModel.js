@@ -112,7 +112,7 @@ class UserModel {
         console.log('RESP SIGN UP UP', response.Code, response);
         if (response.Code === 200) {
           this.getUserData(Events.userModelEvents.profileEdit);
-          const h1 = (event) => {
+          const h1 = () => {
             globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
             globalEventBus.emit(Events.userModelEvents.profileEdit.success);
           };
@@ -163,7 +163,7 @@ class UserModel {
       });
 
     Promise.all([p1, p2]).then(
-      (result) => {
+      () => {
         console.log('УСПЕХ');
         console.log('USER', this.user);
         globalEventBus.emit(Events.userModelEvents.profileGetData.success, this.user);
@@ -178,7 +178,7 @@ class UserModel {
 
   logout() {
     console.log('LOGOUT');
-    const promise1 = fetch(this.baseUrl + Paths.logout,
+    fetch(this.baseUrl + Paths.logout,
       {
         method: 'POST',
         mode: 'cors',
@@ -187,4 +187,4 @@ class UserModel {
   }
 }
 
-export default new UserModel('http://localhost:8080');;
+export default new UserModel('http://localhost:8080');

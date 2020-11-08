@@ -39,7 +39,7 @@ export default class ProfileEditView {
     });
   }
 
-  showErrors(errors) {
+  static showErrors(errors) {
     console.log('PROFILE EDIT Errors', errors);
   }
 }

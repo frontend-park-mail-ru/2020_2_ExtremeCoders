@@ -10,11 +10,11 @@ export default class SendLetterView {
   }
 
   render(data) {
-    data = data || {};
+    const newdata = data || {};
     console.log('SEND LETTER VIEW RENDER');
     this.element.innerHTML = '';
     Navbar.render();
-    this.element.insertAdjacentHTML('beforeend', template(data));
+    this.element.insertAdjacentHTML('beforeend', template(newdata));
     const form = document.getElementsByTagName('FORM')[0];
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -28,7 +28,7 @@ export default class SendLetterView {
     });
   }
 
-  showErrors(errors) {
+  static showErrors(errors) {
     console.log('SEND LETTER ERRORS SHOW', errors);
     const reciever = document.getElementsByName('to')[0];
     const theme = document.getElementsByName('theme')[0];

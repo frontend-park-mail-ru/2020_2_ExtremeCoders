@@ -1,6 +1,5 @@
-
 import { Events, Paths } from '../Constants.js';
-import  globalEventBus  from '../EventBus.js';
+import globalEventBus from '../EventBus.js';
 import { template as tmp } from './PugTemplates/SignInForm.js';
 
 export default class SignInView {
@@ -22,14 +21,13 @@ export default class SignInView {
       globalEventBus.emit(Events.signInViewEvents.submit, { target: 'SignInView', data: formData });
     });
 
-
     signUpButton.addEventListener('click', (event) => {
       event.preventDefault();
       globalEventBus.emit(Events.global.redirect, { path: Paths.signUp });
     });
   }
 
-  showErrors(errors) {
+  static showErrors(errors) {
     console.log('SIGN IN ERRORS SHOW', errors.errors);
     const passwordField = document.getElementsByName('password')[0];
     const emailField = document.getElementsByName('email')[0];

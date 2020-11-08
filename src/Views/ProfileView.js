@@ -37,7 +37,7 @@ export default class ProfileView {
     });
   }
 
-  showErrors(errors) {
+  static showErrors(errors) {
     console.log('SHow Errors', errors);
   }
 }
