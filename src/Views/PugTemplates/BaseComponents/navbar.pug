@@ -1,27 +1,9 @@
 include button
 include avatar
-//mixin navbar(src)
-//    ul()
-//        li() LOGO
-//        li()
-//            a(name = 'navbar-send') 'Отправить'
-//        li()
-//            a(name = 'navbar-letters') 'Письма'
-//        li()
-//            +avatar(src)
-//        li()
-//            a(name = 'navbar-profile') 'Профиль'
-//        li()
-//            a(name = 'navbar-exit') 'Выйти'
-//
-//
-//+navbar(locals.avatar)
-
-//
 
 div(class="navbar-main")
     div(class="navbar ")
-        +avatar(locals.avatar)
+        //+avatar(locals.avatar)
         label(name = 'navbar-letters' class="label logo-navbar") LOGO
         button(name = 'navbar-send' class="Button send-navbar button-send-navbar") Написать
         button(name = 'navbar-profile' class="Button-state-accept profile-navbar") Профиль

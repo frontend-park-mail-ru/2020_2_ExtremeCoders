@@ -70,7 +70,7 @@ function template(locals) {
     var pug_debug_filename, pug_debug_line;
     try {
         var pug_debug_sources = {
-            "navbar.pug": "include button\ninclude avatar\n\u002F\u002Fmixin navbar(src)\n\u002F\u002F    ul()\n\u002F\u002F        li() LOGO\n\u002F\u002F        li()\n\u002F\u002F            a(name = 'navbar-send') 'Отправить'\n\u002F\u002F        li()\n\u002F\u002F            a(name = 'navbar-letters') 'Письма'\n\u002F\u002F        li()\n\u002F\u002F            +avatar(src)\n\u002F\u002F        li()\n\u002F\u002F            a(name = 'navbar-profile') 'Профиль'\n\u002F\u002F        li()\n\u002F\u002F            a(name = 'navbar-exit') 'Выйти'\n\u002F\u002F\n\u002F\u002F\n\u002F\u002F+navbar(locals.avatar)\n\u002F\u002F\u002F\u002Fexport {template}\n\u002F\u002F\n\ndiv(class=\"navbar-main\")\n    div(class=\"navbar \")\n        +avatar(locals.avatar)\n        label(name = 'navbar-letters' class=\"label logo-navbar\") LOGO\n        button(name = 'navbar-send' class=\"Button send-navbar button-send-navbar\") Написать\n        button(name = 'navbar-profile' class=\"Button-state-accept profile-navbar\") Профиль\n        button(name = 'navbar-exit' class=\"Button-state-passive exit-navbar\") Выйти\n",
+            "navbar.pug": "include button\ninclude avatar\n\ndiv(class=\"navbar-main\")\n    div(class=\"navbar \")\n        \u002F\u002F+avatar(locals.avatar)\n        label(name = 'navbar-letters' class=\"label logo-navbar\") LOGO\n        button(name = 'navbar-send' class=\"Button send-navbar button-send-navbar\") Написать\n        button(name = 'navbar-profile' class=\"Button-state-accept profile-navbar\") Профиль\n        button(name = 'navbar-exit' class=\"Button-state-passive exit-navbar\") Выйти\n\n\u002F\u002Fexport {template}\n",
             "button.pug": "mixin button(text, name, className)\n    button(class=className, name=name) #{text}",
             "avatar.pug": "mixin avatar(src)\n    img(width=70, height=70, id='avatar', src=src)"
         };
@@ -80,104 +80,48 @@ function template(locals) {
 
         ;pug_debug_line = 1;
         pug_debug_filename = "avatar.pug";
-        pug_mixins["avatar"] = pug_interp = function (src) {
-            var block = (this && this.block), attributes = (this && this.attributes) || {};
-            ;pug_debug_line = 2;
-            pug_debug_filename = "avatar.pug";
-            pug_html = pug_html + "\u003Cimg" + (" width=\"70\" height=\"70\" id=\"avatar\"" + pug_attr("src", src, true, false)) + "\u002F\u003E";
-        };
-        ;pug_debug_line = 3;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--mixin navbar(src)--\u003E";
+
+
         ;pug_debug_line = 4;
         pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--    ul()--\u003E";
+        pug_html = pug_html + "\u003Cdiv class=\"navbar-main\"\u003E";
         ;pug_debug_line = 5;
         pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--        li() LOGO--\u003E";
+        pug_html = pug_html + "\u003Cdiv class=\"navbar \"\u003E";
         ;pug_debug_line = 6;
         pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--        li()--\u003E";
+        pug_html = pug_html + "\u003C!--+avatar(locals.avatar)--\u003E";
         ;pug_debug_line = 7;
         pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--            a(name = 'navbar-send') 'Отправить'--\u003E";
-        ;pug_debug_line = 8;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--        li()--\u003E";
-        ;pug_debug_line = 9;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--            a(name = 'navbar-letters') 'Письма'--\u003E";
-        ;pug_debug_line = 10;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--        li()--\u003E";
-        ;pug_debug_line = 11;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--            +avatar(src)--\u003E";
-        ;pug_debug_line = 12;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--        li()--\u003E";
-        ;pug_debug_line = 13;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--            a(name = 'navbar-profile') 'Профиль'--\u003E";
-        ;pug_debug_line = 14;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--        li()--\u003E";
-        ;pug_debug_line = 15;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--            a(name = 'navbar-exit') 'Выйти'--\u003E";
-        ;pug_debug_line = 16;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!----\u003E";
-        ;pug_debug_line = 17;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!----\u003E";
-        ;pug_debug_line = 18;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--+navbar(locals.avatar)--\u003E";
-        ;pug_debug_line = 19;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!--\u002F\u002Fexport {template}--\u003E";
-        ;pug_debug_line = 20;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003C!----\u003E";
-        ;pug_debug_line = 22;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003Cdiv class=\"navbar-main\"\u003E";
-        ;pug_debug_line = 23;
-        pug_debug_filename = "navbar.pug";
-        pug_html = pug_html + "\u003Cdiv class=\"navbar \"\u003E";
-        ;pug_debug_line = 24;
-        pug_debug_filename = "navbar.pug";
-        pug_mixins["avatar"](locals.avatar);
-        ;pug_debug_line = 25;
-        pug_debug_filename = "navbar.pug";
         pug_html = pug_html + "\u003Clabel class=\"label logo-navbar\" name=\"navbar-letters\"\u003E";
-        ;pug_debug_line = 25;
+        ;pug_debug_line = 7;
         pug_debug_filename = "navbar.pug";
         pug_html = pug_html + "LOGO\u003C\u002Flabel\u003E";
-        ;pug_debug_line = 26;
+        ;pug_debug_line = 8;
         pug_debug_filename = "navbar.pug";
         pug_html = pug_html + "\u003Cbutton class=\"Button send-navbar button-send-navbar\" name=\"navbar-send\"\u003E";
-        ;pug_debug_line = 26;
+        ;pug_debug_line = 8;
         pug_debug_filename = "navbar.pug";
         pug_html = pug_html + "Написать\u003C\u002Fbutton\u003E";
-        ;pug_debug_line = 27;
+        ;pug_debug_line = 9;
         pug_debug_filename = "navbar.pug";
         pug_html = pug_html + "\u003Cbutton class=\"Button-state-accept profile-navbar\" name=\"navbar-profile\"\u003E";
-        ;pug_debug_line = 27;
+        ;pug_debug_line = 9;
         pug_debug_filename = "navbar.pug";
         pug_html = pug_html + "Профиль\u003C\u002Fbutton\u003E";
-        ;pug_debug_line = 28;
+        ;pug_debug_line = 10;
         pug_debug_filename = "navbar.pug";
         pug_html = pug_html + "\u003Cbutton class=\"Button-state-passive exit-navbar\" name=\"navbar-exit\"\u003E";
-        ;pug_debug_line = 28;
+        ;pug_debug_line = 10;
         pug_debug_filename = "navbar.pug";
         pug_html = pug_html + "Выйти\u003C\u002Fbutton\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E";
+        ;pug_debug_line = 12;
+        pug_debug_filename = "navbar.pug";
+        pug_html = pug_html + "\u003C!--export {template}--\u003E";
     } catch (err) {
         pug_rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
     }
     ;
     return pug_html;
 }
-
 export {template}

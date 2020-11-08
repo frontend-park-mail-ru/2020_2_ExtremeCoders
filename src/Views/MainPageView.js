@@ -20,7 +20,9 @@ export default class MainPageView {
         letterList.addEventListener('click', (event)=>{
             console.log("CLICK LETTER")
             if(event.target.tagName === 'DIV'){
-                return
+                console.log("DIV ID " , event.target.id)
+                globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
+                return;
             }
             globalEventBus.emit(Events.mainPageView.selectLetter, event.target.parentNode.id);
         })

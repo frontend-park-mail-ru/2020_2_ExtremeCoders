@@ -13,15 +13,24 @@ div(class="mainPage")
                 each letter in locals.letterList
                     - date = new Date(letter.DateTime * 1000)
                     li()
-                        div(id=letter.Id class="letter-title state-checked")
-                            label(class="label theme-title") #{letter.Theme}
-                            label(class="label sender-title") #{letter.Sender}
-                            label(class="label datetime-title") #{date.toLocaleTimeString()}
-                            label(class="label text-title") #{letter.Text}
+                        if(locals.letter.Id===letter.Id)
+                            div(id=letter.Id class="letter-title state-checked")
+                                label(class="label theme-title") #{letter.Theme}
+                                label(class="label sender-title") #{letter.Sender}
+                                label(class="label datetime-title") #{date.toLocaleTimeString()}
+                                label(class="label text-title") #{letter.Text}
+                        else
+                            div(id=letter.Id class="letter-title")
+                                label(class="label theme-title") #{letter.Theme}
+                                label(class="label sender-title") #{letter.Sender}
+                                label(class="label datetime-title") #{date.toLocaleTimeString()}
+                                label(class="label text-title") #{letter.Text}
+
 
 
     if(locals.letter)
         - date = new Date(locals.letter.DateTime * 1000)
+
         div(class="letter-main")
             div(class="letter-view")
                 div(class="senderTitle-view")
