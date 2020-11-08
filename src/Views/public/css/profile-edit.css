@@ -1,5 +1,5 @@
 .form-profile-edit {
-    grid-area: form;
+    grid-area: formProfedit;
     border: 1px solid var(--acceptColorHover);
     border-radius: var(--buttonBorderRadius);
     padding: var(--buttonPadding);
