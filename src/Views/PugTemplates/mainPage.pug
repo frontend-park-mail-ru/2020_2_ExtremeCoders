@@ -1,4 +1,3 @@
-
 div(class="mainPage")
 
     if(locals.folderList)
@@ -13,7 +12,7 @@ div(class="mainPage")
                 each letter in locals.letterList
                     - date = new Date(letter.DateTime * 1000)
                     li()
-                        if(locals.letter & locals.letter.Id===letter.Id)
+                        if(locals.letter & locals.letter.Id === letter.Id)
                             conso
                             div(id=letter.Id class="letter-title state-checked")
                                 label(class="label theme-title") #{letter.Theme}
@@ -29,9 +28,8 @@ div(class="mainPage")
 
 
 
-    if(locals.letter)
+    if(locals.letter && locals.letter.Id)
         - date = new Date(locals.letter.DateTime * 1000)
-
         div(class="letter-main")
             div(class="letter-view")
                 div(class="senderTitle-view")
