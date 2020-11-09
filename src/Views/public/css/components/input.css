@@ -151,7 +151,7 @@
 
 .textarea {
     display: block;
-    width: 100%;
+    width: 95%;
     border: 0;
     padding: 10px 5px;
     background: var(--backgroundColorForm) no-repeat;
@@ -160,6 +160,7 @@
     background-size: 0 2px, 100% 1px;
     background-position: 50% 100%, 50% 100%;
     transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    resize: none; /* Запрещаем изменять размер */
 
 }
 
