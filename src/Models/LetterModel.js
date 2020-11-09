@@ -55,12 +55,12 @@ export default class LetterModel {
     console.log('GET LETTER LIST FOLDER ', folder);
     let path = '';
     if (folder === 'Входящие') {
-      path = Paths.receivedLetters;
+      path = Paths.getReceivedLetters;
     } else {
-      path = Paths.sendedLetters;
+      path = Paths.getSendedLetters;
     }
 
-    myFetch(path, 'POST')
+    myFetch(path, 'GET')
       .then((response) => response.json())
       .then((response) => {
         console.log('RESP GET LETTER LIST', response);

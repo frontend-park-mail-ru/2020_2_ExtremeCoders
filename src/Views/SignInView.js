@@ -23,7 +23,7 @@ export default class SignInView {
 
     signUpButton.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.global.redirect, { path: Paths.signUp });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.signUpPage });
     });
   }
 
@@ -33,20 +33,20 @@ export default class SignInView {
     const emailField = document.getElementsByName('email')[0];
     console.log(errors.password);
     if (errors.password) {
-      this.createError(passwordField, 'passwordError', errors.password)
+      this.createError(passwordField, 'passwordError', errors.password);
     }
     if (errors.email) {
-      this.createError(emailField, 'emailError', errors.email)
+      this.createError(emailField, 'emailError', errors.email);
     }
   }
 
-  createError(input, msgBoxName, text){
-    let msgElem = document.getElementById(msgBoxName);
-    if(msgElem){
+  createError(input, msgBoxName, text) {
+    const msgElem = document.getElementById(msgBoxName);
+    if (msgElem) {
       msgElem.innerHTML = text;
     }
-    if(!msgElem){
-      let msgElem = document.createElement('span')
+    if (!msgElem) {
+      const msgElem = document.createElement('span');
       msgElem.id = msgBoxName;
       msgElem.innerHTML = text;
       input.parentNode.appendChild(msgElem);

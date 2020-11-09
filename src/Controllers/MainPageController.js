@@ -36,7 +36,7 @@ class MainPageController {
     });
 
     globalEventBus.on(Events.letterModelEvents.sendLetter.success, () => {
-      globalEventBus.emit(Events.global.redirect, { path: Paths.letters });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.mainPage });
     });
 
     globalEventBus.on(Events.mainPageView.selectFolder, (folder) => {

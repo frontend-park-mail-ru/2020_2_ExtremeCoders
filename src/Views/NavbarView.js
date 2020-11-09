@@ -26,12 +26,12 @@ class NavbarView {
 
     sendLetterHref.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.global.redirect, { path: Paths.sendLetter });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.sendLetterPage });
     });
 
     profileHref.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.global.redirect, { path: Paths.profile });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.profilePage });
     });
 
     logoutHref.addEventListener('click', (event) => {
@@ -41,7 +41,7 @@ class NavbarView {
 
     lettersHref.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.global.redirect, { path: Paths.letters });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.mainPage });
     });
   }
 

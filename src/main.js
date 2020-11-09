@@ -39,12 +39,12 @@ profileEditController.setModel(userModel);
 profileController.setView(profileView);
 profileController.setModel(userModel);
 
-router.register(Paths.signIn, signInView);
-router.register(Paths.signUp, signUpView);
-router.register(Paths.profile, profileView);
-router.register(Paths.profileEdit, profileEditView);
-router.register(Paths.letters, mainPageView);
-router.register(Paths.sendLetter, sendLetterView);
+router.register(Paths.signInPage, signInView);
+router.register(Paths.signUpPage, signUpView);
+router.register(Paths.profilePage, profileView);
+router.register(Paths.profileEditPage, profileEditView);
+router.register(Paths.mainPage, mainPageView);
+router.register(Paths.sendLetterPage, sendLetterView);
 
 console.log(window.location.pathname);
 function initModels() {
@@ -72,7 +72,7 @@ function initModels() {
       router.start(window.location.pathname);
     } catch (err) {
       console.log('CATCH PATH, err', err);
-      router.start(Paths.signIn);
+      router.start(Paths.signInPage);
     }
   };
   globalEventBus.on(Events.letterModelEvents.getLetterList.success, h3);
@@ -80,7 +80,7 @@ function initModels() {
   const h4 = () => {
     globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4);
     console.log('h4');
-    router.start(Paths.signIn);
+    router.start(Paths.signInPage);
   };
   globalEventBus.on(Events.userModelEvents.profileGetData.fail, h4);
 }
