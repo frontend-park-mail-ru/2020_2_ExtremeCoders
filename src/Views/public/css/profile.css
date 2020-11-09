@@ -27,10 +27,10 @@
     width: 500px;
 
     grid-template-areas:
-    "img img nameTitle name"
-    "img img surnameTitle surname"
-    ". emailTitle email email"
-    ". . back edit";
+    "img img name-prof-view"
+    "img img surname-prof-view"
+    ". . email-prof-view"
+    ". back edit";
     grid-template-rows: auto;
     grid-template-columns: auto;
     grid-gap: 10px;
@@ -48,36 +48,20 @@
     border-radius: var(--buttonBorderRadius);
 }
 
-.nameTitle-Profile{
-    grid-area: nameTitle;
-    text-align: right;
-    margin-right: 40px;
-}
-
 .name-Profile{
     text: bold;
-    grid-area: name;
+    grid-area: name-prof-view;
     text-align: left;
-}
-
-.surnameTitle-Profile{
-    grid-area: surnameTitle;
-    text-align: right;
-    margin-right: 40px;
 }
 
 .surname-Profile{
     text: bold;
-    grid-area: surname;
-}
-
-.emailTitle-Profile{
-    grid-area: emailTitle;
+    grid-area: surname-prof-view;
 }
 
 .email-Profile{
     text: bold;
-    grid-area: email;
+    grid-area: email-prof-view;
 }
 
 .button-edit{
