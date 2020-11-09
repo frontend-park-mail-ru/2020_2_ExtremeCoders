@@ -33,12 +33,23 @@ export default class SignInView {
     const emailField = document.getElementsByName('email')[0];
     console.log(errors.password);
     if (errors.password) {
-      passwordField.value = '';
-      passwordField.placeholder = errors.password;
+      this.createError(passwordField, 'passwordError', errors.password)
     }
     if (errors.email) {
-      emailField.value = '';
-      emailField.placeholder = errors.email;
+      this.createError(emailField, 'emailError', errors.email)
+    }
+  }
+
+  createError(input, msgBoxName, text){
+    let msgElem = document.getElementById(msgBoxName);
+    if(msgElem){
+      msgElem.innerHTML = text;
+    }
+    if(!msgElem){
+      let msgElem = document.createElement('span')
+      msgElem.id = msgBoxName;
+      msgElem.innerHTML = text;
+      input.parentNode.appendChild(msgElem);
     }
   }
 }
