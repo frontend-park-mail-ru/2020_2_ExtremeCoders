@@ -29,6 +29,7 @@
 
     overflow-y: auto;
     overflow-x: hidden;
+    width: 200px;
     height: calc(100vh - var(--navbarHeigh));
 }
 .letterlist-main{
