@@ -13,6 +13,7 @@ export default class LetterModel {
       LetterModel.getFolders.bind(this));
     globalEventBus.on(Events.sendLetterView.sendLetter,
       LetterModel.sendLetter.bind(this));
+    globalEventBus.on(Events.global.logout, this.logout.bind(this));
   }
 
   getLetter(letterId) {
@@ -88,5 +89,10 @@ export default class LetterModel {
           error,
         });
       });
+  }
+
+  logout() {
+    this.Letters = new Map();
+    this.folders = {};
   }
 }

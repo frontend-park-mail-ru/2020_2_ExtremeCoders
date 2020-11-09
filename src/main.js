@@ -15,6 +15,7 @@ import Navbar from './Views/NavbarView.js';
 import navbarController from './Controllers/NavbarController.js';
 import profileController from './Controllers/ProfileController.js';
 import signInController from './Controllers/SignInController.js';
+import signUpController from './Controllers/SignUpController.js';
 
 const router = new Router();
 const signInView = new SignInView(document.body);
@@ -59,7 +60,7 @@ function initModels() {
   const h2 = () => {
     console.log('h2');
     globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
-    letterModel.getLetterList();
+    letterModel.getLetterList('Входящие');
   };
 
   globalEventBus.on(Events.letterModelEvents.getFolderList.success, h2);

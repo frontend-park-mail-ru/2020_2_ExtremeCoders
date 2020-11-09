@@ -4,7 +4,6 @@ import validator from './Validator.js';
 import myFetch from './myFetch.js';
 
 class UserModel {
-  //
   constructor(url) {
     this.baseUrl = url;
     this.user = {};
@@ -32,7 +31,6 @@ class UserModel {
     myFetch(Paths.signIn, 'POST', data.data)
       .then((response) => response.json())
       .then((response) => {
-        // console.log("RESP SIGN IN", response);
         if (response.Code === 200) {
           const h = () => {
             globalEventBus.off(Events.userModelEvents.profileGetData.success, h);
@@ -154,6 +152,7 @@ class UserModel {
     globalEventBus.emit(Events.global.redirect, {
       path: Paths.signIn,
     });
+    this.user = {};
     fetch(this.baseUrl + Paths.logout,
       {
         method: 'POST',
