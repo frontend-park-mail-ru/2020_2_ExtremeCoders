@@ -1,0 +1,10 @@
+/node_modules/
+/.idea/
+
+node_modules
+.idea
+
+/dist/
+
+src/Views/PugTemplates/*.js
+./src/Views/PugTemplates/BaseComponents/*.js

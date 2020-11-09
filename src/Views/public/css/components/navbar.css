@@ -1,0 +1,33 @@
+.navbar {
+    list-style-type: none;
+    /*margin: 0;*/
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+
+    display: grid;
+    grid-template-areas:
+    "logo logo . send . profile exit";
+    grid-template-columns: 80px 80px 360px auto 360px 80px 80px;
+    z-index: 10000;
+}
+
+.logo-navbar{
+    grid-area: logo;
+    text-align: left;
+}
+
+.send-navbar{
+    grid-area: send;
+    text-align: center;
+}
+
+.profile-navbar{
+    grid-area: profile;
+
+}
+
+.exit-navbar{
+    grid-area: exit;
+
+}

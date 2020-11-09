@@ -1,0 +1,173 @@
+.Button{
+    border-radius: var(--buttonBorderRadius);
+    padding: var(--buttonPadding);
+    align-self: center;
+    alignment: center;
+    color: var(--backgroundColorInput);
+    border: 1px solid var(--backgroundColorInput);
+}
+
+.Button-state-accept {
+    cursor: pointer;
+    display: block;
+    position: relative;
+
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    text-decoration: none;
+    background: var(--backgroundColorPage);
+
+
+    border-radius: var(--buttonBorderRadius);
+    padding: var(--buttonPadding);
+    color: var(--backgroundColorInput);
+    border: 1px solid var(--acceptColorHover);
+    z-index: 5;
+    margin-left: 5px;
+}
+.Button-state-accept:hover {
+    /*color: var(--buttonTextColor) !important;*/
+    /*background-color: transparent;*/
+    /*!*text-shadow: none;*!*/
+    /*box-shadow:         0px 0px 0px 0px var(--acceptColorHover);*/
+
+    color: #000 !important;
+    background-color: transparent;
+    text-shadow: nthree;
+
+}
+.Button-state-accept:hover:before {
+    left: 0%;
+    right: auto;
+    width: 100%;
+}
+.Button-state-accept:before {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    width: 0px;
+    z-index: -1;
+    content: '';
+    color: #000 !important;
+    background: var(--acceptColorHover);
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    box-shadow:         0px 0px 5px 0px var(--acceptColorHover);
+}
+
+.Button-state-passive {
+    cursor: pointer;
+    display: block;
+    position: relative;
+
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    text-decoration: none;
+    background: var(--backgroundColorForm);
+
+
+    border-radius: var(--buttonBorderRadius);
+    padding: var(--buttonPadding);
+    color: var(--backgroundColorInput);
+    border: 1px solid var(--passiveColorHover);
+    z-index: 5;
+    margin-left: 5px;
+}
+.Button-state-passive:hover {
+    /*color: var(--buttonTextColor) !important;*/
+    /*background-color: transparent;*/
+    /*!*text-shadow: none;*!*/
+    box-shadow:         0px 0px 0px 0px var(--passiveColorHover);
+    color: var(--buttonTextColor) !important;
+    background-color: transparent;
+    text-shadow: nfour;
+}
+.Button-state-passive:hover:before {
+    right: 0%;
+    left: auto;
+    width: 100%;
+}
+.Button-state-passive:before {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 0px;
+    z-index: -1;
+    content: '';
+    color: #000 !important;
+    background: var(--passiveColorHover);
+    transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+    box-shadow:         0px 0px 5px 0px var(--passiveColorHover);
+}
+
+.AcceptBackButtonForm{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /*margin: 2% auto 0;*/
+    margin-top: 10px;
+}
+.pulse {
+    background-color: aqua;
+    border-radius: 50%;
+    animation: pulse 0.7s ease-out;
+    transform: scale(0);
+    position: absolute;
+}
+@keyframes pulse {
+    to {
+        transform: scale(2);
+        background-color: #fff;
+        opacity: 0;
+    }
+}
+
+.button-send-navbar{
+    cursor: pointer;
+    display: block;
+    position: relative;
+
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    text-decoration: none;
+    background: var(--backgroundColorForm);
+
+
+    border-radius: var(--buttonBorderRadius);
+    padding: var(--buttonPadding);
+    color: var(--backgroundColorInput);
+    border: 1px solid var(--passiveColorHover);
+    z-index: 5;
+    margin-left: 5px;
+}
+
+.button-send-navbar:hover{
+    color: var(--buttonTextColor) !important;
+    background-color: transparent;
+    /*text-shadow: none;*/
+    box-shadow:         0px 0px 0px 0px var(--passiveColorHover);
+}
+
+.button-send-navbar:hover:before {
+    top: 0%;
+    bottom: auto;
+    height: 100%;
+}
+
+.button-send-navbar:before {
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 0px;
+    width: 100%;
+    z-index: -1;
+    content: '';
+    color: #000 !important;
+    background: var(--passiveColorHover);
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    box-shadow:         0px 0px 5px 0px var(--passiveColorHover);
+}

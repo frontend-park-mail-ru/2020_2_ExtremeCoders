@@ -1,0 +1,26 @@
+div(class="Page-profile")
+
+    form(method='POST', enctype = 'multipart/form-data' class="form-profile-edit")
+        img(src=locals.avatar class="img-Profile")
+        div(class="group name-Profile-edit")
+            input(class="Input" name='profile_firstName' type="text" required value=locals.name)
+            span(class="bar")
+            label(class="label-input") Имя
+
+        div(class="group surname-Profile-edit")
+            input(class="Input" type="text" name='profile_lastName' required value=locals.surname)
+            span(class="bar")
+            label(class="label-input") Фамилия
+
+
+        div(class="input-file updateImg-Profile-edit")
+            div(class="form-group")
+                input(type="file" name="avatar" id="file" class="input-file" accept="image/jpeg")
+                label(for="file" class="btn btn-tertiary js-labelFile")
+                    span(class="js-fileName") Обновить аватар
+
+        button(class="Button button-back-edit Button-state-passive" name="back") Назад
+        button(class="Button button-submit-edit Button-state-accept" name="submit") Подтвердить
+
+//export {template}
+

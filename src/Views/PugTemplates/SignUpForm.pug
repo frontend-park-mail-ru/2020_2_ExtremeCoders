@@ -1,0 +1,40 @@
+div(class="SignUpPage")
+    form(class="SignUpForm")
+        label(class="label-form") Регистрация
+
+        div(class="group")
+            input(class="Input" name='email' type="text" required)
+            span(class="bar")
+            label(class="label-input") Email
+
+        div(class="group")
+            input(class="Input" name='password1' type="password" required)
+            span(class="bar")
+            label(class="label-input") Пароль
+
+        div(class="group")
+            input(class="Input" name='password2' type="password" required)
+            span(class="bar")
+            label(class="label-input") Повторите пароль
+
+        div(class="group")
+            input(class="Input" name='name' type="text" required)
+            span(class="bar")
+            label(class="label-input") Имя
+
+        div(class="group")
+            input(class="Input" name='surname' type="text" required)
+            span(class="bar")
+            label(class="label-input") Фамилия
+
+        div(class="input-file")
+            div(class="form-group")
+                input(type="file" name="avatar" id="file" class="input-file" accept="image/jpeg")
+                label(for="file" class="btn btn-tertiary js-labelFile")
+                    span(class="js-fileName") Загрузить аватар
+
+        div(class="row__item buttons-SignInForm AcceptBackButtonForm")
+            button(class="Button Button-state-passive" name="back") Войти
+            button(class="Button Button-state-accept" type="submit" name="submit") Зарегистрироваться
+
+//export {template}

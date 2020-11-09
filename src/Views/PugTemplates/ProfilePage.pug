@@ -1,0 +1,23 @@
+div(class="Page-profile")
+    form(class="form-profile-view ")
+        img(src=locals.avatar class="img-Profile")
+        div(class="name-Profile")
+            div(class="group")
+                input(class="Input disabled-input" type="text" placeholder=locals.name)
+                span(class="bar")
+                label(class="label-input") Имя
+        div(class="surname-Profile")
+            div(class="group surname-prof-view")
+                input(class="Input disabled-input" type="text" placeholder=locals.surname)
+                span(class="bar")
+                label(class="label-input") Фамилия
+        div(class="email-Profile")
+            div(class="group")
+                input(class="Input disabled-input" type="text" placeholder=locals.email)
+                span(class="bar")
+                label(class="label-input") Email
+
+        button(class="Button button-back Button-state-passive" name="back") Назад
+        button(class="Button button-edit Button-state-accept" name="editButton") Редактировать
+
+//export {template}
