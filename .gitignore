@@ -6,5 +6,5 @@ node_modules
 
 /dist/
 
-src/Views/PugTemplates/*.js
-src/Views/PugTemplates/BaseComponents/*.js
+#src/Views/PugTemplates/*.js
+#src/Views/PugTemplates/BaseComponents/*.js
