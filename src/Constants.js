@@ -77,20 +77,25 @@ const Events = {
 };
 
 const Paths = {
-  baseUrl: 'http://localhost:8080',
-  signIn: '/signin',
-  menu: '/menu',
-  signUp: '/signup',
-  profile: '/profile',
-  profileEdit: '/profileEdit',
-  letters: '/letters',
-  sendLetter: '/sendLetter',
+  baseUrl: 'http://localhost:8080/',
+  mainPage: '/letters',
+  signInPage: '/signin',
+  signUpPage: '/signup',
+  profilePage: '/profile',
+  profileEditPage: '/profileEdit',
+  sendLetterPage: '/sendLetter',
+
   logout: '/logout',
-  getLetterList: '/getLetters',
-  sendMessageToServ: '/sendMessage',
-  getAvatar: '/getAvatar',
-  receivedLetters: '/getRecvLetters',
-  sendedLetters: '/getSendLetters',
+
+  signInServ: '/session',
+  logoutServ: '/session',
+  signUpServ: '/user',
+  editUserServ: '/user',
+  sendMessageToServ: '/letter',
+  getUserData: '/user',
+  getAvatar: '/user/avatar',
+  getReceivedLetters: '/user/letter/received',
+  getSendedLetters: '/user/letter/sent',
 };
 
 export { Events, Paths };

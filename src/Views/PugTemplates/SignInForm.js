@@ -53,7 +53,7 @@ function template(locals) {
     var pug_html = "", pug_mixins = {}, pug_interp;
     var pug_debug_filename, pug_debug_line;
     try {
-        var pug_debug_sources = {".\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignInForm.pug": "div(class=\"SignInPage\")\n    form(class=\"SignInForm\")\n        label(class=\"label-form\") Вход\n        div(class=\"group\")\n            input(class=\"Input\" type=\"text\" name='email' required)\n            span(class=\"bar\")\n            label(class=\"label-input\") Email\n\n        div(class=\"group\")\n            input(class=\"Input\" type=\"password\" name='password' required)\n            span(class=\"bar\")\n            label(class=\"label-input\") Password\n        div(class=\"row__item buttons-SignInForm AcceptBackButtonForm\")\n            button(class=\"Button Button-state-passive\" name=\"signup\") Зарегистрироваться\n            button(class=\"Button Button-state-accept\" type=\"submit\" name=\"submit\") Войти\n\n\u002F\u002Fexport {template}"};
+        var pug_debug_sources = {".\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignInForm.pug": "div(class=\"SignInPage\")\n    form(class=\"SignInForm\")\n        label(class=\"label-form\") Вход\n        div(class=\"group\")\n            input(class=\"Input\" type=\"text\" name='email' required)\n            span(class=\"bar\")\n            label(class=\"label-input\") Email\n\n        div(class=\"group\")\n            input(class=\"Input\" type=\"password\" name='password' required)\n            span(class=\"bar\")\n            label(class=\"label-input\") Password\n        div(class=\"row__item buttons-SignInForm AcceptBackButtonForm\")\n            button(class=\"Button Button-state-passive\" formaction=\"none\" type=\"button\" name=\"signup\") Зарегистрироваться\n            button(class=\"Button Button-state-accept\" type=\"submit\" name=\"submit\") Войти\n\n\u002F\u002Fexport {template}"};
         ;pug_debug_line = 1;
         pug_debug_filename = ".\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignInForm.pug";
         pug_html = pug_html + "\u003Cdiv class=\"SignInPage\"\u003E";
@@ -101,7 +101,7 @@ function template(locals) {
         pug_html = pug_html + "\u003Cdiv class=\"row__item buttons-SignInForm AcceptBackButtonForm\"\u003E";
         ;pug_debug_line = 14;
         pug_debug_filename = ".\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignInForm.pug";
-        pug_html = pug_html + "\u003Cbutton class=\"Button Button-state-passive\" name=\"signup\"\u003E";
+        pug_html = pug_html + "\u003Cbutton class=\"Button Button-state-passive\" formaction=\"none\" type=\"button\" name=\"signup\"\u003E";
         ;pug_debug_line = 14;
         pug_debug_filename = ".\u002Fsrc\u002FViews\u002FPugTemplates\u002FSignInForm.pug";
         pug_html = pug_html + "Зарегистрироваться\u003C\u002Fbutton\u003E";
