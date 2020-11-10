@@ -27,8 +27,8 @@ class UserModel {
         errors);
       return;
     }
-    console.log('SIGN IN ', data, this.baseUrl + Paths.signIn);
-    myFetch(Paths.signIn, 'POST', data.data)
+    console.log('SIGN IN ', data, this.baseUrl + Paths.signInPage);
+    myFetch(Paths.signInServ, 'POST', data.data)
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
@@ -66,7 +66,7 @@ class UserModel {
       return;
     }
 
-    myFetch(Paths.signUp, 'POST', data.data)
+    myFetch(Paths.signUpServ, 'POST', data.data)
       .then((response) => response.json())
       .then((response) => {
         console.log('RESP SIGN UP UP', response.Code, response);
@@ -89,7 +89,7 @@ class UserModel {
   }
 
   editUser(data) {
-    myFetch(Paths.profile, 'POST', data.data)
+    myFetch(Paths.editUserServ, 'PUT', data.data)
       .then((response) => response.json())
       .then((response) => {
         console.log('RESP SIGN UP UP', response.Code, response);
@@ -112,7 +112,7 @@ class UserModel {
   }
 
   getUserData() {
-    const p1 = myFetch(Paths.profile, 'GET')
+    const p1 = myFetch(Paths.getUserData, 'GET')
       .then((response) => response.json())
       .then((response) => {
         console.log('RESP GET USER DATA', response.status, response);
@@ -150,15 +150,10 @@ class UserModel {
   logout() {
     console.log('LOGOUT');
     globalEventBus.emit(Events.global.redirect, {
-      path: Paths.signIn,
+      path: Paths.signInPage,
     });
     this.user = {};
-    fetch(this.baseUrl + Paths.logout,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-      });
+    myFetch(Paths.logoutServ, 'DELETE');
   }
 }
 

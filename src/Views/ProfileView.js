@@ -29,7 +29,7 @@ export default class ProfileView {
 
     edit.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.global.redirect, { path: Paths.profileEdit, data });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.profileEditPage, data });
     });
     backButton.addEventListener('click', (event) => {
       event.preventDefault();

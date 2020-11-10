@@ -77,7 +77,7 @@ const Events = {
 };
 
 const Paths = {
-  baseUrl: 'http://localhost:8080/',
+  baseUrl: 'http://localhost:8080',
   mainPage: '/letters',
   signInPage: '/signin',
   signUpPage: '/signup',
@@ -97,5 +97,15 @@ const Paths = {
   getReceivedLetters: '/user/letter/received',
   getSendedLetters: '/user/letter/sent',
 };
+
+// логин post /session
+// логаут delete /session
+// регистрация post /user
+// редактирование профиля put/user
+// получене аватарки get /user/avatar
+// получение данных юзера get /user
+// получение отправленных писем get /receivedLetters
+// получение полученных писем get /sendedLetters
+// отправка письма post /letter
 
 export { Events, Paths };
