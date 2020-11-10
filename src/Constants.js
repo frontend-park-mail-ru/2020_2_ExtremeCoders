@@ -94,16 +94,18 @@ const Paths = {
   sendMessageToServ: '/letter',
   getUserData: '/user',
   getAvatar: '/user/avatar',
-  getReceivedLetters: '/receivedLetters',
-  getSendedLetters: '/sendedLetters',
+  getReceivedLetters: '/user/letter/received',
+  getSendedLetters: '/user/letter/sent',
 };
-// регистрация post /user
+
 // логин post /session
 // логаут delete /session
+// регистрация post /user
 // редактирование профиля put/user
 // получене аватарки get /user/avatar
-// получение данных юзера get/user
-// получение писем get /user/letters
+// получение данных юзера get /user
+// получение отправленных писем get /receivedLetters
+// получение полученных писем get /sendedLetters
 // отправка письма post /letter
 
 export { Events, Paths };
