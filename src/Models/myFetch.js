@@ -6,6 +6,7 @@ export default function myFetch(url, method, body) {
       method,
       mode: 'cors',
       credentials: 'include',
+      csrf_token: document.cookie.match(/CSRF-TOKEN=([\w-]+)/),
       body,
     });
 }
