@@ -27,7 +27,7 @@ function pug_escape(e) {
                 continue
         }
         c !== r && (s += a.substring(c, r)), c = r + 1, s += n
-    }
+Я    }
     return c !== r ? s + a.substring(c, r) : s
 }
 
