@@ -74,6 +74,11 @@
     align-self: center;
     color: var(--textColor);
 }
+
+.Input::placeholder {
+    color: var(--textColor);
+}
+
 .Input:focus {
     outline: none;
     color: var(--textColor);
@@ -152,7 +157,9 @@
     color: var(--textColor);
     display: block;
     width: 95%;
-    border: 0;
+    height: 100%;
+    border: solid 2px;
+    border-radius: var(--buttonBorderRadius);
     padding: 10px 5px;
     background: var(--backgroundColorForm) no-repeat;
 
@@ -163,7 +170,21 @@
     resize: none; /* Запрещаем изменять размер */
 
     font-family: "Apple SD Gothic Neo", sans-serif;
+    font-size: 16px;
+    overflow-y: scroll;
+}
 
+.textarea::-webkit-scrollbar {
+    width: 1em;
+}
+
+.textarea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.textarea::-webkit-scrollbar-thumb {
+    background-color: var(--textColor);
+    outline: 1px solid slategrey;
 }
 
 .textarea:focus{
@@ -171,6 +192,9 @@
     background-size: 100% 2px, 100% 1px;
     outline: none;
     color: var(--textColor);
+
+    border: var(--acceptColorHover) solid 2px;
+    border-radius: var(--buttonBorderRadius);
 }
 
 .disabled-input{

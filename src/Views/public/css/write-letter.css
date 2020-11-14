@@ -12,6 +12,7 @@
 }
 
 .Form-WriteLetter{
+    height: 80%;
     grid-area: form;
     border: 1px solid var(--acceptColorHover);
     border-radius: var(--buttonBorderRadius);
@@ -27,8 +28,6 @@
     "text text text"
     ". . buttons";
     grid-auto-rows: 1fr 1fr 5fr;
-
-
 }
 
 .navbar-writeletter{
