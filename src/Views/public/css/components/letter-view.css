@@ -12,7 +12,7 @@
     "themeTitle theme ."
     "text text text"
     ". . dateTime";
-    grid-template-rows: 100px 100px max-content 150px;
+    grid-template-rows: 100px 100px max-content 30px;
     grid-template-columns:  160px 1fr auto;
 
     overflow: hidden;
