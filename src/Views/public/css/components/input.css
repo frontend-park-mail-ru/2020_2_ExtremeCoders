@@ -148,8 +148,8 @@
     height: 100%;
 }
 
-
 .textarea {
+    color: var(--textColor);
     display: block;
     width: 95%;
     border: 0;
@@ -162,6 +162,8 @@
     transition: background-size 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
     resize: none; /* Запрещаем изменять размер */
 
+    font-family: "Apple SD Gothic Neo", sans-serif;
+
 }
 
 .textarea:focus{
@@ -172,5 +174,5 @@
 }
 
 .disabled-input{
-    pointer-events:none;
+    pointer-events: none;
 }

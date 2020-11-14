@@ -5,8 +5,8 @@
     margin: auto;
     display: grid;
     grid-template-areas:
-"navbar navbar navbar"
-". form .";
+        "navbar navbar navbar"
+        ". form .";
     grid-auto-rows: 1fr 100%;
     grid-auto-columns: 1fr 1.5fr 1fr;
 }

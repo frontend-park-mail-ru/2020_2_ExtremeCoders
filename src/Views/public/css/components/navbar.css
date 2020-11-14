@@ -1,14 +1,14 @@
 .navbar {
     list-style-type: none;
     /*margin: 0;*/
-    padding: 0;
+    padding: 10px;
     overflow: hidden;
     background-color: #333;
 
     display: grid;
     grid-template-areas:
     "logo logo . send . profile exit";
-    grid-template-columns: 80px 80px 360px auto 360px 80px 80px;
+    grid-template-columns: 80px 80px 350px auto 350px 80px 80px;
     z-index: 10000;
 }
 
