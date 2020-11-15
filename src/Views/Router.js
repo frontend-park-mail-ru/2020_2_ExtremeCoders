@@ -6,7 +6,6 @@ export default class Router {
     this.registeredPathes = {};
     window.onpopstate = ((event) => {
       event.preventDefault();
-      document.referrer = window.location.href;
       console.log('HISTORY EVENT', event);
       try {
         this.registeredPathes[event.state.path].render(event.state.data);
