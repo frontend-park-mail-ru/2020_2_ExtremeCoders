@@ -33,10 +33,11 @@ div(class="mainPage")
         div(class="letter-main")
             div(class="letter-view")
                 div(class="senderTitle-view")
-                    div(class="group input-theme-writeLetter")
-                        input(class="Input disabled-input" type="text" readonly="readonly" placeholder=locals.letter.Sender)
-                        span(class="bar")
-                        label(class="label-input") От
+                    div(class="input-theme-writeLetter")
+                        p(class="Input-label") От
+                        p(class="Input-from") #{locals.letter.Sender}
+                        div(class="bar-p")
+
 
                 div(class="themeTitle-view")
                     div(class="group input-theme-writeLetter")

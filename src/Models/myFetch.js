@@ -6,11 +6,9 @@ export default function myFetch(url, method, body) {
     token = '';
   } else {
     token = String(token[0] || token[1]);
-    console.log(token);
     token = token.replace('token=', '');
-    console.log(token);
   }
-  console.log(token);
+
   return fetch(Paths.baseUrl + url,
     {
       method,
