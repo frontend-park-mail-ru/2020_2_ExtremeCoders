@@ -2,12 +2,11 @@ import { Paths } from '../Constants.js';
 
 export default function myFetch(url, method, body) {
   let token = document.cookie.match(/token=([\w-]+)/);
-  console.log("TOOOOOOKEEEEEENNNNN::::::::::",token);
   if (token === null) {
-    token === '';
+    token = '';
   } else {
-    token = String(token[0] || token[1]);
-    console.log(token);
+    token = String(token);
+    console.log("TOKEN:::",token);
     token = token.replace('token=', '');
     console.log(token);
   }
