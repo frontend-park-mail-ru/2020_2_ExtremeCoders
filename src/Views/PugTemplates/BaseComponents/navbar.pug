@@ -1,9 +1,15 @@
+header(class="s-header")
+    div(class="row s-header__content")
+        nav(class="s-header__nav-wrap")
+            h2(class="s-header__nav-heading h6") Навигация
+            ul(class="s-header__nav")
+                li
+                    a(name="navbar-letters") Письма
+                li
+                    a(name="navbar-send") Написать
+                li
+                    a(name="navbar-profile") Профиль
+                li
+                    a(name="navbar-exit") Выйти
 
-div(class="navbar-main")
-    div(class="navbar ")
-        img(name = 'navbar-letters' class="label logo-navbar" src='/LOGO.jpg' width='140px' height='140px' )
-        button(name = 'navbar-send' class="Button send-navbar button-send-navbar") Написать
-        button(name = 'navbar-profile' class="Button-state-accept profile-navbar") Профиль
-        button(name = 'navbar-exit' class="Button-state-passive exit-navbar") Выйти
-
-//export {template}
+                a(href="#" title="Close Menu" class="s-header__overlay-close close-mobile-menu") Выйти

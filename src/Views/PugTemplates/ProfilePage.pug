@@ -1,23 +1,27 @@
-div(class="Page-profile")
-    form(class="form-profile-view ")
-        img(src=locals.avatar class="img-Profile")
-        div(class="name-Profile")
-            div(class="group")
-                input(class="Input disabled-input" type="text" placeholder=locals.name)
-                span(class="bar")
-                label(class="label-input") Имя
-        div(class="surname-Profile")
-            div(class="group surname-prof-view")
-                input(class="Input disabled-input" type="text" placeholder=locals.surname)
-                span(class="bar")
-                label(class="label-input") Фамилия
-        div(class="email-Profile")
-            div(class="group")
-                input(class="Input disabled-input" type="text" placeholder=locals.email)
-                span(class="bar")
-                label(class="label-input") Email
+- var avatarUrl = "background: url(" + locals.avatar + ") no-repeat center center; background-size: cover; height: 300px;"
 
-        button(class="Button button-back Button-state-passive" name="back") Назад
-        button(class="Button button-edit Button-state-accept" name="editButton") Редактировать
+section(class="s-content site-page")
+    div(class="row")
+        div(class="column large-12 intro")
+            h1 Профиль
 
-//export {template}
+    div(class="row")
+        div(class="column large-4 tab-12")
+            h3(class="h-add-bottom") Аватар
+            div(style=avatarUrl)
+
+        div(class="column large-8 tab-12")
+            h3 Имя
+            p #{locals.name}
+            h3 Фамилия
+            p #{locals.surname}
+            h3 Email
+            p #{locals.email}
+
+    div(class="row")
+        div(class="column large-6")
+            button(name="back" class="submit btn btn--primary btn--medium h-full-width") Назад
+
+        div(class="column large-6")
+            button(name="editButton" class="submit btn btn--primary btn--medium h-full-width") Редактировать
+
