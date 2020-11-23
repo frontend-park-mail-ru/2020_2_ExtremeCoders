@@ -1,3 +1,19 @@
+import './Views/public/css/profile.css';
+import './Views/public/css/registration.css';
+import './Views/public/css/login.css';
+import './Views/public/css/components/navbar.css';
+import './Views/public/css/main.css';
+import './Views/public/css/components/input.css';
+import './Views/public/css/components/buttons.css';
+import './Views/public/css/components/label.css';
+import './Views/public/css/components/button-send.css';
+import './Views/public/css/components/letter-title.css';
+import './Views/public/css/main-page.css';
+import './Views/public/css/components/letter-view.css';
+import './Views/public/css/components/folder.css';
+import './Views/public/css/write-letter.css';
+import './Views/public/css/profile-edit.css';
+
 import Router from './Views/Router.js';
 import SignInView from './Views/SignInView.js';
 import { Events, Paths } from './Constants.js';
