@@ -77,7 +77,7 @@ const Events = {
 };
 
 const Paths = {
-  baseUrl: 'http://localhost:1323', // 'http://localhost:8080',
+  baseUrl: 'http://localhost:8080',//'http://localhost:1323', // 'http://localhost:8080',
   mainPage: '/letters',
   signInPage: '/signin',
   signUpPage: '/signup',
@@ -85,17 +85,17 @@ const Paths = {
   profileEditPage: '/profileEdit',
   sendLetterPage: '/sendLetter',
 
-  logout: '/logout',
+  logout: '/api/logout',
 
-  signInServ: '/session',
-  logoutServ: '/session',
-  signUpServ: '/user',
-  editUserServ: '/user',
-  sendMessageToServ: '/letter',
-  getUserData: '/user',
-  getAvatar: '/user/avatar',
-  getReceivedLetters: '/user/letter/received',
-  getSendedLetters: '/user/letter/sent',
+  signInServ: '/api/session',
+  logoutServ: '/api/session',
+  signUpServ: '/api/user',
+  editUserServ: '/api/user',
+  sendMessageToServ: '/api/letter',
+  getUserData: '/api/user',
+  getAvatar: '/api/user/avatar',
+  getReceivedLetters: '/api/user/letter/received',
+  getSendedLetters: '/api/user/letter/sent',
 };
 
 // логин post /session
