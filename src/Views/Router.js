@@ -5,8 +5,8 @@ export default class Router {
   constructor() {
     this.registeredPathes = {};
     window.onpopstate = ((event) => {
-      event.preventDefault();
-      document.referrer = window.location.href;
+      // event.preventDefault();
+      // document.referrer = window.location.href;
       console.log('HISTORY EVENT', event);
       try {
         this.registeredPathes[event.state.path].render(event.state.data);
@@ -15,7 +15,7 @@ export default class Router {
       }
     });
     globalEventBus.on(Events.global.redirect, this.go.bind(this));
-    globalEventBus.on(Events.global.goBack, this.back.bind(this));
+    // globalEventBus.on(Events.global.goBack, this.back.bind(this));
   }
 
   register(path, view) {
@@ -29,12 +29,25 @@ export default class Router {
     this.registeredPathes[path].render(data);
   }
 
+  /**
+   * https://developer.mozilla.org/en-US/docs/Web/API/Window/popstate_event
+   * Note that just calling history.pushState() or history.replaceState() 
+   * won't trigger a popstate event. 
+   * The popstate event will be triggered by doing 
+   * a browser action such as a click on the back or forward button 
+   * (or calling history.back() or history.forward() in JavaScript).
+   */
   go(event) {
     console.log('GOOO', event);
     if (event) {
       this.registeredPathes[event.path].render(event.data || 0);
+      // window.history.pushState({ path: event.path, data: (event.data || 0) },
+      //   event.path, event.path);
       window.history.pushState({ path: event.path, data: (event.data || 0) },
         event.path, event.path);
+      window.history.pushState({ path: event.path, data: (event.data || 0) },
+        event.path, event.path);
+      window.history.back();
     }
   }
 
