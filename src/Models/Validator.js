@@ -1,17 +1,22 @@
 export default class Validator {
   /* eslint no-underscore-dangle: 0 */
+  // static _checkEmail(email) {
+  //   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   return re.test(email);
+  // }
+
   static _checkEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /[0-9a-z]+/i;
     return re.test(email);
   }
 
   static _checkName(name) {
-    const re = /[0-9a-z]+/i;
+    const re = /[0-9a-zа-я]+/i;
     return re.test(name);
   }
 
   static _checkSurname(surname) {
-    const re = /[0-9a-z]+/i;
+    const re = /[0-9a-zа-я]+/i;
     return re.test(surname);
   }
 

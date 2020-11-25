@@ -66,6 +66,10 @@ class UserModel {
       return;
     }
 
+    let shortEmail = data.data.get('email');
+    shortEmail += '@mailer.ru.com ';
+    data.data.set('email', shortEmail);
+
     myFetch(Paths.signUpServ, 'POST', data.data)
       .then((response) => response.json())
       .then((response) => {
@@ -89,6 +93,19 @@ class UserModel {
   }
 
   editUser(data) {
+
+    const name = data.data.get('profile_firstName');
+    if (name === '') {
+      data.data.set('profile_firstName', data.tmpData.name);
+    }
+    const surname = data.data.get('profile_lastName');
+    if (surname === '') {
+      data.data.set('profile_lastName', data.tmpData.name);
+    }
+    const avatar = data.data.get('avatar');
+    if (avatar.name === '') {
+      data.data.delete('avatar');
+    }
     myFetch(Paths.editUserServ, 'PUT', data.data)
       .then((response) => response.json())
       .then((response) => {

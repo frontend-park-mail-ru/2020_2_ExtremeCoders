@@ -2012,6 +2012,11 @@ img,
  * # forms
  *
  * ------------------------------------------------------------------- */
+.form-field {
+    display: flex;
+    flex-direction: row;
+}
+
 fieldset {
     border: none;
 }

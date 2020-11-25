@@ -1,4 +1,4 @@
-- var avatarUrl = "background: url(" + locals.avatar + ") no-repeat center center; background-size: cover; height: 300px;"
+- var avatarUrl = "background: url(" + locals.avatar + ") no-repeat center center; background-size: cover; height: 310px;"
 
 section(class="s-content site-page")
     div(class="row")
@@ -9,6 +9,8 @@ section(class="s-content site-page")
         div(class="column large-4 tab-12")
             h3(class="h-add-bottom") Аватар
             div(style=avatarUrl)
+            div(class="form-field")
+                input(class="h-full-width" type="text" disabled)
 
         div(class="column large-8 tab-12")
             h3 Имя
@@ -20,7 +22,7 @@ section(class="s-content site-page")
 
     div(class="row")
         div(class="column large-6")
-            button(name="back" class="submit btn btn--primary btn--medium h-full-width") Назад
+            button(name="back" class="submit btn btn--medium h-full-width") Назад
 
         div(class="column large-6")
             button(name="editButton" class="submit btn btn--primary btn--medium h-full-width") Редактировать

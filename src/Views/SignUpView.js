@@ -53,10 +53,11 @@ export default class SignUpView {
       msgElem.innerHTML = text;
     }
     if (!msgElem) {
-      const msgElem = document.createElement('span');
+      const msgElem = document.createElement('label');
       msgElem.id = msgBoxName;
       msgElem.innerHTML = text;
-      input.parentNode.appendChild(msgElem);
+      // input.parentNode.appendChild(msgElem);
+      input.parentNode.before(msgElem);
     }
   }
 
