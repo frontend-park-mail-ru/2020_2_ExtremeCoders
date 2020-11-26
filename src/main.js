@@ -15,8 +15,6 @@ import Navbar from './Views/NavbarView.js';
 import navbarController from './Controllers/NavbarController.js';
 import profileController from './Controllers/ProfileController.js';
 
-import mobileMenu from './mobileMenu.js';
-
 const router = new Router();
 const signInView = new SignInView(document.body);
 const signUpView = new SignUpView(document.body);
@@ -25,8 +23,8 @@ const profileEditView = new ProfileEditView(document.body);
 const mainPageView = new MainPageView(document.body);
 const sendLetterView = new SendLetterView(document.body);
 
-userModel.setUrl('http://localhost:8080');
-const letterModel = new LetterModel('http://localhost:8080');
+userModel.setUrl('http://localhost:8000');
+const letterModel = new LetterModel('http://localhost:8000');
 
 mainPageController.setView(mainPageView);
 
@@ -86,6 +84,3 @@ function initModels() {
 }
 
 initModels();
-
-
-mobileMenu();

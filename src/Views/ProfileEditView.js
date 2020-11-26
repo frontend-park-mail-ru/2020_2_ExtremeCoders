@@ -31,6 +31,7 @@ export default class ProfileEditView {
       globalEventBus.emit(Events.profileEditViewEvents.submit, {
         target: 'ProfileEditView',
         data: new FormData(form),
+        tmpData: data,
       });
     });
 

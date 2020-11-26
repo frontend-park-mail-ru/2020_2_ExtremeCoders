@@ -1,40 +1,47 @@
 div(class="s-content site-page mainPage")
 
+    div(class="row tool-letter-menu")
+        a(class="letter__toggle-menu" title="Menu")
+            span Навигация
+
+        a(title="Close Menu" class="letter__overlay-close")
+
     div(class="row")
+        div(class="column large-4 tab-12 mob-12 folders-main letter-menu")
 
-        if(locals.folderList)
-            div(class="column large-3 tab-12 mob-12 folders-main")
-                ul(class="listView")
-                  each folder in locals.folderList
-                      li(class="btn btn--stroke h-full-width folder") #{folder}
+            ul(class="folders")
+                li(class="btn btn--stroke h-full-width folder") K
 
-        if(locals.letterList)
-            div(class="column large-4 tab-12 mob-12 letterlist-main")
-                ul(class="bricks-wrapper listView" name='letterList')
-                  each letter in locals.letterList
-                    - date = new Date(letter.DateTime * 1000)
-                    div(class="brick entry")
-                        if(locals.letter && locals.letter.Id === letter.Id)
-                            conso
-                            div(id=letter.Id class="entry__text letter-title state-checked")
-                                h1(class="entry__title label theme-title") #{letter.Theme}
-                                p(class="label sender-title") #{letter.Sender}
-                                div(class="entry__excerpt")
-                                    p(class="label datetime-title") #{date.toLocaleTimeString()}
-                                p(class="label text-title") #{letter.Text}
-                        else
-                            div(id=letter.Id class="entry__text letter-title")
-                                h1(class="entry__title label theme-title") #{letter.Theme}
-                                p(class="label sender-title") #{letter.Sender}
-                                div(class="entry__excerpt")
-                                    p(class="label datetime-title") #{date.toLocaleTimeString()}
-                                p(class="label text-title") #{letter.Text}
+            if(locals.folderList)
+                div(class="receive-send listView")
+                      each folder in locals.folderList
+                            a(id=folder) #{folder}
 
+            if(locals.letterList)
+                    ul(class="bricks-wrapper listView" name='letterList')
+                      each letter in locals.letterList
+                        - date = new Date(letter.DateTime * 1000)
+                        div(class="brick entry")
+                            if(locals.letter && locals.letter.Id === letter.Id)
+                                conso
+                                div(id=letter.Id class="entry__text letter-title state-checked")
+                                    h1(class="entry__title label theme-title") #{letter.Theme}
+                                    p(class="label sender-title") #{letter.Sender}
+                                    div(class="entry__excerpt")
+                                        p(class="label datetime-title") #{date.toLocaleTimeString()}
+                                    p(class="label text-title") #{letter.Text}
+                            else
+                                div(id=letter.Id class="entry__text letter-title")
+                                    h1(class="entry__title label theme-title") #{letter.Theme}
+                                    p(class="label sender-title") #{letter.Sender}
+                                    div(class="entry__excerpt")
+                                        p(class="label datetime-title") #{date.toLocaleTimeString()}
+                                    p(class="label text-title") #{letter.Text}
 
 
         if(locals.letter && locals.letter.Id)
             - date = new Date(locals.letter.DateTime * 1000)
-            div(class="column large-5 tab-12 mob-12 letter-view")
+            div(class="column large-7 tab-12 mob-12 letter-view")
                 h3 #{locals.letter.Theme}
                 p(class="lead") #{locals.letter.Sender}
                 p(class="lead") #{date.toLocaleDateString()}

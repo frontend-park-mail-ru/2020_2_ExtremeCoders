@@ -20,8 +20,11 @@ export default class MainPageView {
     const letterList = document.getElementsByName('letterList')[0];
     const folderList = document.getElementsByClassName('listView')[0];
 
+    const selectColumn = document.getElementById('select-column');
+
     letterList.addEventListener('click', (event) => {
       console.log('CLICK LETTER', event.target);
+      selectColumn.classList.add('select-column');
       if (event.target.tagName === 'UL') {
         return;
       }
@@ -34,8 +37,39 @@ export default class MainPageView {
     });
 
     folderList.addEventListener('click', (event) => {
-      console.log('CLICK FOLDER', event.target.innerText);
+      console.log('CLICK FOLDER', event.target.id);
       globalEventBus.emit(Events.mainPageView.selectFolder, event.target.innerText);
     });
+
+    // const navWrap = document.querySelector('.s-header__nav-wrap');
+    const menuToggle = document.querySelector('.letter__toggle-menu');
+    const menu = document.querySelector('.letter-menu');
+    const off = document.querySelector('.letter__overlay-close');
+
+    menuToggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      menu.style.display = 'block';
+      menuToggle.style.display = 'none';
+      off.style.display = 'block';
+    });
+
+    off.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      menu.style.display = 'none';
+      off.style.display = 'none';
+      menuToggle.style.display = 'block';
+    });
+
+    // closeNavWrap.addEventListener('click', (event) => {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    //   if (siteBody.classList.contains('nav-wrap-is-visible')) {
+    //     siteBody.classList.remove('nav-wrap-is-visible');
+    //   }
+    // });
+
+
   }
 }

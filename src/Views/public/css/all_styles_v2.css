@@ -1912,6 +1912,10 @@ img,
     margin-bottom: var(--vspace-1);
 }
 
+.folders {
+    padding: 0;
+    margin: 0;
+}
 
 
 /* ===================================================================
@@ -4179,7 +4183,7 @@ body.search-is-visible {
  * ------------------------------------------------------------------- */
 .s-content {
     --row-max-width: 1080px;
-    padding-top: var(--vspace-2_5);
+    padding-top: var(--vspace-1_5);
     padding-bottom: var(--vspace-3_5);
 }
 
@@ -5072,3 +5076,91 @@ body.search-is-visible {
     }
 }
 
+.receive-send {
+    display: flex;
+    justify-content: space-between;
+}
+
+.receive-send a {
+    display: block;
+    color: var(--color-gray-9);
+}
+
+@media screen and (max-width: 800px) {
+    .letter-menu {
+        margin-top: 60px;
+        display: none;
+    }
+}
+
+@media screen and (min-width: 801px) {
+    .tool-letter-menu {
+        display: none;
+    }
+}
+
+.letter__toggle-menu span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin-top: -1.5px;
+    position: absolute;
+    right: auto;
+    bottom: auto;
+    left: 50px;
+    background-color: black;
+    text-shadow: none;
+    color: transparent;
+}
+
+.letter__toggle-menu span::before,
+.letter__toggle-menu span::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: inherit;
+    left: 0;
+}
+
+.letter__toggle-menu span::before {
+    top: -10px;
+}
+
+.letter__toggle-menu span::after {
+    bottom: -10px;
+}
+
+.letter__overlay-close {
+    display: none;
+    text-shadow: none;
+    color: transparent;
+    width: 46px;
+    height: 46px;
+    margin-left: -23px;
+    position: absolute;
+    top: 160px;
+    left: 50%;
+}
+
+.letter__overlay-close::before,
+.letter__overlay-close::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 20px;
+    top: 12px;
+    left: 22px;
+    background-color: black;
+    position: absolute;
+}
+
+.letter__overlay-close::before {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.letter__overlay-close::after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}

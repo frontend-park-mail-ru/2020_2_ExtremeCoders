@@ -43,6 +43,25 @@ class NavbarView {
       event.preventDefault();
       globalEventBus.emit(Events.global.redirect, { path: Paths.mainPage });
     });
+
+    const navWrap = document.querySelector('.s-header__nav-wrap');
+    const menuToggle = document.querySelector('.s-header__toggle-menu');
+    const siteBody = document.querySelector('body');
+    const closeNavWrap = navWrap.querySelector('.s-header__overlay-close');
+
+    menuToggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      siteBody.classList.add('nav-wrap-is-visible');
+    });
+
+    closeNavWrap.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (siteBody.classList.contains('nav-wrap-is-visible')) {
+        siteBody.classList.remove('nav-wrap-is-visible');
+      }
+    });
   }
 
   static hide() {
