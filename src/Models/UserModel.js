@@ -93,7 +93,6 @@ class UserModel {
   }
 
   editUser(data) {
-
     const name = data.data.get('profile_firstName');
     if (name === '') {
       data.data.set('profile_firstName', data.tmpData.name);
@@ -174,4 +173,4 @@ class UserModel {
   }
 }
 
-export default new UserModel('http://localhost:8080');
+export default new UserModel('http://localhost:8000');

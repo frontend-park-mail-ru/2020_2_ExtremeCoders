@@ -56,7 +56,6 @@ export default class SignUpView {
       const msgElem = document.createElement('label');
       msgElem.id = msgBoxName;
       msgElem.innerHTML = text;
-      // input.parentNode.appendChild(msgElem);
       input.parentNode.before(msgElem);
     }
   }

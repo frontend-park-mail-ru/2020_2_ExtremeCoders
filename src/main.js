@@ -14,6 +14,8 @@ import SendLetterView from './Views/SendLetterView.js';
 import Navbar from './Views/NavbarView.js';
 import navbarController from './Controllers/NavbarController.js';
 import profileController from './Controllers/ProfileController.js';
+import signInController from './Controllers/SignInController.js';
+import signUpController from './Controllers/SignUpController.js';
 
 const router = new Router();
 const signInView = new SignInView(document.body);
