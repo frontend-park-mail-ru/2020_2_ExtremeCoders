@@ -5,8 +5,8 @@ export default function myFetch(url, method, body) {
   if (token === null) {
     token = '';
   } else {
-    token = String(token);
-    console.log("TOKEN:::",token);
+    token = String(token[0] || token[1]);
+    console.log(token);
     token = token.replace('token=', '');
     console.log(token);
   }
