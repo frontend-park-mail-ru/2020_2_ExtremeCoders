@@ -9,6 +9,7 @@
     "lint:fix": "eslint --fix ./src",
     "build": "NODE_ENV='production' webpack",
     "start": "node ./server.js",
+    "server": "node ./server.js",
     "prestart": "npm run tmpl",
     "pretmpl": "pug -c ./src/Views/PugTemplates",
     "prebuild": "npm run tmpl",

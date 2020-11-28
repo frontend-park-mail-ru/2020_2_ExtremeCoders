@@ -77,7 +77,7 @@ const Events = {
 };
 
 const Paths = {
-  baseUrl: 'http://95.163.209.195:8080',
+  baseUrl: 'http://localhost:8000',
   mainPage: '/letters',
   signInPage: '/signin',
   signUpPage: '/signup',
