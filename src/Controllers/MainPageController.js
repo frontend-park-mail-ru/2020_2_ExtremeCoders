@@ -30,8 +30,8 @@ class MainPageController {
     });
 
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
-      console.log('SELECT LETTER ', letterId, this.data.letterList);
-      this.data.letter = this.data.letterList[letterId];
+      this.data.letter = this.data.selectFolder[letterId];
+      // event: letter was written
       this.mainPageView.render(this.data);
     });
 
@@ -50,7 +50,40 @@ class MainPageController {
       };
       globalEventBus.on(Events.letterModelEvents.getLetterList.success, h);
     });
+
+    globalEventBus.on(Events.mainPageView.recivedFolder, () => {
+      globalEventBus.emit(Events.mainPageController.recivedFolder);
+      const h = (data) => {
+        globalEventBus.off(Events.letterModelEvents.recivedFolder.success, h);
+        this.data.recivedFolder = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.recivedFolder.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.sendedFolder, () => {
+      globalEventBus.emit(Events.mainPageController.sendedFolder);
+      const h = (data) => {
+        globalEventBus.off(Events.letterModelEvents.sendedFolder.success, h);
+        this.data.sendedFolder = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.sendedFolder.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.selectFolder, (folder, type) => {
+      globalEventBus.emit(Events.mainPageController.selectFolder, folder, type);
+      const h = (data) => {
+        globalEventBus.off(Events.letterModelEvents.selectFolder.success, h);
+        this.data.selectFolder = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.selectFolder.success, h);
+    });
+
   }
+
+
 
   setView(profileView) {
     this.mainPageView = profileView;

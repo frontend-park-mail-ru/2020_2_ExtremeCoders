@@ -549,13 +549,22 @@ var Events = {
   },
   mainPageView: {
     needData: 'mainPageView-needData',
-    selectLetter: 'mainPageView-selectLetter',
-    selectFolder: 'mainPageView-selectFolder'
+    recivedFolder: 'mainPageView-recivedFolder',
+    sendedFolder: 'mainPageView-sendedFolder',
+    selectFolder: 'mainPageView-selectFolder',
+    selectLetter: 'mainPageView-selectLetter'
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
     needGetLetterList: 'mainPageController-needGetLetterList',
-    needGetLetter: 'mainPageController-needGetLetter'
+    needGetLetter: 'mainPageController-needGetLetter',
+    recivedFolder: 'mainPageController-recivedFolder',
+    sendedFolder: 'mainPageController-sendedFolder',
+    selectFolder: 'mainPageController-selectFolder',
+    selectLetter: 'mainPageController-selectLetter',
+    //
+    sendWrittenLetter: 'mainPageController-sendWrittenLetter' //
+
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter'
@@ -579,6 +588,19 @@ var Events = {
     sendLetter: {
       success: 'letterModelEvents-sendLetter-success',
       fail: 'letterModelEvents-sendLetter-fail'
+    },
+    //
+    recivedFolder: {
+      success: 'letterModelEvents-recivedFolder-success',
+      fail: 'letterModelEvents-recivedFolder-fail'
+    },
+    sendedFolder: {
+      success: 'letterModelEvents-sendedFolder-success',
+      fail: 'letterModelEvents-sendedFolder-fail'
+    },
+    selectFolder: {
+      success: 'letterModelEvents-selectFolder-success',
+      fail: 'letterModelEvents-selectFolder-fail'
     }
   },
   userModelEvents: {
@@ -601,7 +623,7 @@ var Events = {
   }
 };
 var Paths = {
-  baseUrl: 'http://localhost:8000',
+  baseUrl: 'http://localhost:8080',
   mainPage: '/letters',
   signInPage: '/signin',
   signUpPage: '/signup',
@@ -617,7 +639,10 @@ var Paths = {
   getUserData: '/user',
   getAvatar: '/user/avatar',
   getReceivedLetters: '/user/letter/received',
-  getSendedLetters: '/user/letter/sent'
+  getSendedLetters: '/user/letter/sent',
+  getRecivedFolder: '/user/folders/recived',
+  getSendedFolder: '/user/folders/sended',
+  getSelectFolder: '/user/foders'
 }; // логин post /session
 // логаут delete /session
 // регистрация post /user
@@ -1531,6 +1556,9 @@ var UserModel_UserModel = /*#__PURE__*/function () {
         return;
       }
 
+      var shortLogin = data.data.get('email');
+      shortLogin += '@mailer.ru.com ';
+      data.data.set('email', shortLogin);
       console.log('SIGN IN ', data, this.baseUrl + Paths.signInPage);
       myFetch(Paths.signInServ, 'POST', data.data).then(function (response) {
         return response.json();
@@ -1696,7 +1724,7 @@ var UserModel_UserModel = /*#__PURE__*/function () {
   return UserModel;
 }();
 
-/* harmony default export */ var Models_UserModel = (new UserModel_UserModel('http://95.163.209.195:8080'));
+/* harmony default export */ var Models_UserModel = (new UserModel_UserModel('http://localhost:8080'));
 // CONCATENATED MODULE: ./src/Models/LetterModel.js
 function LetterModel_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1720,6 +1748,11 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
     src_EventBus.on(Events.mainPageController.needGetFolderList, LetterModel.getFolders.bind(this));
     src_EventBus.on(Events.sendLetterView.sendLetter, LetterModel.sendLetter.bind(this));
     src_EventBus.on(Events.global.logout, this.logout.bind(this));
+    src_EventBus.on(Events.mainPageController.recivedFolder, this.recivedFolder.bind(this));
+    src_EventBus.on(Events.mainPageController.sendedFolder, this.sendedFolder.bind(this));
+    src_EventBus.on(Events.mainPageController.selectFolder, this.selectFolder.bind(this)); //
+
+    src_EventBus.on(Events.mainPageController.sendWrittenLetter, this.sendWrittenLetter.bind(this));
   }
 
   LetterModel_createClass(LetterModel, [{
@@ -1772,6 +1805,97 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           error: error
         });
       });
+    }
+  }, {
+    key: "recivedFolder",
+    value: function recivedFolder() {
+      var _this2 = this;
+
+      myFetch(Paths.getRecivedFolder, 'GET').then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (response.Code === 200) {
+          _this2.recivedFolders = new Map();
+
+          if (response.Folders) {
+            response.Folders.forEach(function (folder) {
+              _this2.recivedFolders[folder.Id] = folder;
+            });
+          }
+
+          src_EventBus.emit(Events.letterModelEvents.recivedFolder.success, _this2.recivedFolders);
+        } else {
+          src_EventBus.emit(Events.letterModelEvents.recivedFolder.fail, {
+            error: response.Description
+          });
+        }
+      })["catch"](function (error) {
+        src_EventBus.emit(Events.letterModelEvents.recivedFolder.fail, {
+          error: error
+        });
+      });
+    }
+  }, {
+    key: "sendedFolder",
+    value: function sendedFolder() {
+      var _this3 = this;
+
+      myFetch(Paths.getSendedFolder, 'GET').then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (response.Code === 200) {
+          _this3.sendedFolders = new Map();
+
+          if (response.Folders) {
+            response.Folders.forEach(function (folder) {
+              _this3.sendedFolders[folder.Id] = folder;
+            });
+          }
+
+          src_EventBus.emit(Events.letterModelEvents.sendedFolder.success, _this3.sendedFolders);
+        } else {
+          src_EventBus.emit(Events.letterModelEvents.sendedFolder.fail, {
+            error: response.Description
+          });
+        }
+      })["catch"](function (error) {
+        src_EventBus.emit(Events.letterModelEvents.sendedFolder.fail, {
+          error: error
+        });
+      });
+    }
+  }, {
+    key: "selectFolder",
+    value: function selectFolder(folder, type) {
+      var _this4 = this;
+
+      myFetch(Paths.getSelectFolder + '/' + type + '/' + folder, 'GET').then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (response.Code === 200) {
+          _this4.selectFolder = new Map();
+
+          if (response.Letters) {
+            response.Letters.forEach(function (letter) {
+              _this4.selectFolder[letter.Id] = letter;
+            });
+          }
+
+          src_EventBus.emit(Events.letterModelEvents.selectFolder.success, _this4.selectFolder);
+        } else {
+          src_EventBus.emit(Events.letterModelEvents.selectFolder.fail, {
+            error: response.Description
+          });
+        }
+      })["catch"](function (error) {
+        src_EventBus.emit(Events.letterModelEvents.selectFolder.fail, {
+          error: error
+        });
+      });
+    }
+  }, {
+    key: "sendWrittenLetter",
+    value: function sendWrittenLetter(letterId) {// query
     }
   }, {
     key: "logout",
@@ -2754,11 +2878,11 @@ function mainPage_template(locals) {
 
   try {
     var pug_debug_sources = {
-      "./src/Views/PugTemplates/mainPage.pug": "div(class=\"s-content site-page mainPage\")\n\n    div(class=\"row tool-letter-menu\")\n        a(class=\"letter__toggle-menu\" title=\"Menu\")\n            span Навигация\n\n        a(title=\"Close Menu\" class=\"letter__overlay-close\")\n\n    div(class=\"row\")\n        div(class=\"column large-4 tab-12 mob-12 folders-main letter-menu\")\n\n            ul(class=\"folders\")\n                li(class=\"btn btn--stroke h-full-width folder\") K\n\n            if(locals.folderList)\n                div(class=\"receive-send listView\")\n                      each folder in locals.folderList\n                            a(id=folder) #{folder}\n\n            if(locals.letterList)\n                    ul(class=\"bricks-wrapper listView\" name='letterList')\n                      each letter in locals.letterList\n                        - date = new Date(letter.DateTime * 1000)\n                        div(class=\"brick entry\")\n                            if(locals.letter && locals.letter.Id === letter.Id)\n                                conso\n                                div(id=letter.Id class=\"entry__text letter-title state-checked\")\n                                    h1(class=\"entry__title label theme-title\") #{letter.Theme}\n                                    p(class=\"label sender-title\") #{letter.Sender}\n                                    div(class=\"entry__excerpt\")\n                                        p(class=\"label datetime-title\") #{date.toLocaleTimeString()}\n                                    p(class=\"label text-title\") #{letter.Text}\n                            else\n                                div(id=letter.Id class=\"entry__text letter-title\")\n                                    h1(class=\"entry__title label theme-title\") #{letter.Theme}\n                                    p(class=\"label sender-title\") #{letter.Sender}\n                                    div(class=\"entry__excerpt\")\n                                        p(class=\"label datetime-title\") #{date.toLocaleTimeString()}\n                                    p(class=\"label text-title\") #{letter.Text}\n\n\n        if(locals.letter && locals.letter.Id)\n            - date = new Date(locals.letter.DateTime * 1000)\n            div(class=\"column large-7 tab-12 mob-12 letter-view\")\n                h3 #{locals.letter.Theme}\n                p(class=\"lead\") #{locals.letter.Sender}\n                p(class=\"lead\") #{date.toLocaleDateString()}\n                p(class=\"lead\") #{locals.letter.Text}\n"
+      "./src/Views/PugTemplates/mainPage.pug": "div(class=\"s-content site-page mainPage\")\n\n    div(class=\"row\")\n        div(class=\"column large-3 tab-12 mob-12\" name=\"folders\")\n            p Входящие\n            if(locals.recivedFolder)\n                each folder in locals.recivedFolder\n                    a(id=folder class=\"recived\") #{folder}\n\n            p Исходящие\n            if(locals.sendedFolder)\n              each folder in locals.sendedFolder\n                  a(id=folder class=\"sended\") #{folder}\n\n        div(class=\"column large-4 tab-12 mob-12\")\n            div(class=\"bricks-wrapper h-group\" name=\"letters\")\n                if(locals.selectFolder)\n                  each letter in locals.selectFolder\n                    article(id=letter.Id class=\"brick entry format-standard\")\n                        div(class=\"entry__text\")\n                            div(class=\"entry__header\")\n                                h1(class=\"entry__title\") #{letter.Theme}\n\n                            div(class=\"entry__excerpt\")\n                                p #{letter.Sender}\n                            div(class=\"entry__excerpt\")\n                                p #{letter.Text}\n\n\n        div(class=\"column large-5 tab-12 mob-12\")\n            if(locals.letter)\n                h3 #{letter.Theme}\n                p(class=\"lead\") #{letter.Sender}\n                p(class=\"lead\") #{letter.Text}\n"
     };
     ;
     var locals_for_with = locals || {};
-    (function (Date, date) {
+    (function (letter) {
       ;
       pug_debug_line = 1;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -2766,69 +2890,41 @@ function mainPage_template(locals) {
       ;
       pug_debug_line = 3;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "<div class=\"row tool-letter-menu\">";
+      pug_html = pug_html + "<div class=\"row\">";
       ;
       pug_debug_line = 4;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "<a class=\"letter__toggle-menu\" title=\"Menu\">";
+      pug_html = pug_html + "<div class=\"column large-3 tab-12 mob-12\" name=\"folders\">";
       ;
       pug_debug_line = 5;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "<span>";
+      pug_html = pug_html + "<p>";
       ;
       pug_debug_line = 5;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "\u041D\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044F</span></a>";
+      pug_html = pug_html + "\u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435</p>";
       ;
-      pug_debug_line = 7;
-      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "<a class=\"letter__overlay-close\" title=\"Close Menu\"></a></div>";
-      ;
-      pug_debug_line = 9;
-      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "<div class=\"row\">";
-      ;
-      pug_debug_line = 10;
-      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "<div class=\"column large-4 tab-12 mob-12 folders-main letter-menu\">";
-      ;
-      pug_debug_line = 12;
-      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "<ul class=\"folders\">";
-      ;
-      pug_debug_line = 13;
-      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "<li class=\"btn btn--stroke h-full-width folder\">";
-      ;
-      pug_debug_line = 13;
-      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      pug_html = pug_html + "K</li></ul>";
-      ;
-      pug_debug_line = 15;
+      pug_debug_line = 6;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
-      if (locals.folderList) {
+      if (locals.recivedFolder) {
         ;
-        pug_debug_line = 16;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + "<div class=\"receive-send listView\">";
-        ;
-        pug_debug_line = 17;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.folderList
+        pug_debug_line = 7;
+        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.recivedFolder
 
         ;
         (function () {
-          var $$obj = locals.folderList;
+          var $$obj = locals.recivedFolder;
 
           if ('number' == typeof $$obj.length) {
             for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
               var folder = $$obj[pug_index0];
               ;
-              pug_debug_line = 18;
+              pug_debug_line = 8;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-              pug_html = pug_html + "<a" + mainPage_pug_attr("id", folder, true, false) + ">";
+              pug_html = pug_html + "<a" + (" class=\"recived\"" + mainPage_pug_attr("id", folder, true, false)) + ">";
               ;
-              pug_debug_line = 18;
+              pug_debug_line = 8;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
               pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder) ? "" : pug_interp) + "</a>";
             }
@@ -2839,301 +2935,233 @@ function mainPage_template(locals) {
               $$l++;
               var folder = $$obj[pug_index0];
               ;
-              pug_debug_line = 18;
+              pug_debug_line = 8;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-              pug_html = pug_html + "<a" + mainPage_pug_attr("id", folder, true, false) + ">";
+              pug_html = pug_html + "<a" + (" class=\"recived\"" + mainPage_pug_attr("id", folder, true, false)) + ">";
               ;
-              pug_debug_line = 18;
+              pug_debug_line = 8;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
               pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder) ? "" : pug_interp) + "</a>";
             }
           }
         }).call(this);
-        pug_html = pug_html + "</div>";
       }
 
       ;
-      pug_debug_line = 20;
+      pug_debug_line = 10;
+      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+      pug_html = pug_html + "<p>";
+      ;
+      pug_debug_line = 10;
+      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+      pug_html = pug_html + "\u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435</p>";
+      ;
+      pug_debug_line = 11;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
-      if (locals.letterList) {
+      if (locals.sendedFolder) {
         ;
-        pug_debug_line = 21;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + "<ul class=\"bricks-wrapper listView\" name=\"letterList\">";
-        ;
-        pug_debug_line = 22;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.letterList
+        pug_debug_line = 12;
+        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.sendedFolder
 
         ;
         (function () {
-          var $$obj = locals.letterList;
+          var $$obj = locals.sendedFolder;
 
           if ('number' == typeof $$obj.length) {
             for (var pug_index1 = 0, $$l = $$obj.length; pug_index1 < $$l; pug_index1++) {
-              var letter = $$obj[pug_index1];
+              var folder = $$obj[pug_index1];
               ;
-              pug_debug_line = 23;
+              pug_debug_line = 13;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-              date = new Date(letter.DateTime * 1000);
-              pug_debug_line = 24;
-              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-              pug_html = pug_html + "<div class=\"brick entry\">";
+              pug_html = pug_html + "<a" + (" class=\"sended\"" + mainPage_pug_attr("id", folder, true, false)) + ">";
               ;
-              pug_debug_line = 25;
+              pug_debug_line = 13;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-
-              if (locals.letter && locals.letter.Id === letter.Id) {
-                ;
-                pug_debug_line = 26;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<conso></conso>";
-                ;
-                pug_debug_line = 27;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div" + (" class=\"entry__text letter-title state-checked\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                ;
-                pug_debug_line = 28;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<h1 class=\"entry__title label theme-title\">";
-                ;
-                pug_debug_line = 28;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1>";
-                ;
-                pug_debug_line = 29;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label sender-title\">";
-                ;
-                pug_debug_line = 29;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p>";
-                ;
-                pug_debug_line = 30;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div class=\"entry__excerpt\">";
-                ;
-                pug_debug_line = 31;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label datetime-title\">";
-                ;
-                pug_debug_line = 31;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = date.toLocaleTimeString()) ? "" : pug_interp) + "</p></div>";
-                ;
-                pug_debug_line = 32;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label text-title\">";
-                ;
-                pug_debug_line = 32;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div>";
-              } else {
-                ;
-                pug_debug_line = 34;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div" + (" class=\"entry__text letter-title\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                ;
-                pug_debug_line = 35;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<h1 class=\"entry__title label theme-title\">";
-                ;
-                pug_debug_line = 35;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1>";
-                ;
-                pug_debug_line = 36;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label sender-title\">";
-                ;
-                pug_debug_line = 36;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p>";
-                ;
-                pug_debug_line = 37;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div class=\"entry__excerpt\">";
-                ;
-                pug_debug_line = 38;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label datetime-title\">";
-                ;
-                pug_debug_line = 38;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = date.toLocaleTimeString()) ? "" : pug_interp) + "</p></div>";
-                ;
-                pug_debug_line = 39;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label text-title\">";
-                ;
-                pug_debug_line = 39;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div>";
-              }
-
-              pug_html = pug_html + "</div>";
+              pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder) ? "" : pug_interp) + "</a>";
             }
           } else {
             var $$l = 0;
 
             for (var pug_index1 in $$obj) {
               $$l++;
-              var letter = $$obj[pug_index1];
+              var folder = $$obj[pug_index1];
               ;
-              pug_debug_line = 23;
+              pug_debug_line = 13;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-              date = new Date(letter.DateTime * 1000);
-              pug_debug_line = 24;
-              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-              pug_html = pug_html + "<div class=\"brick entry\">";
+              pug_html = pug_html + "<a" + (" class=\"sended\"" + mainPage_pug_attr("id", folder, true, false)) + ">";
               ;
-              pug_debug_line = 25;
+              pug_debug_line = 13;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-
-              if (locals.letter && locals.letter.Id === letter.Id) {
-                ;
-                pug_debug_line = 26;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<conso></conso>";
-                ;
-                pug_debug_line = 27;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div" + (" class=\"entry__text letter-title state-checked\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                ;
-                pug_debug_line = 28;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<h1 class=\"entry__title label theme-title\">";
-                ;
-                pug_debug_line = 28;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1>";
-                ;
-                pug_debug_line = 29;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label sender-title\">";
-                ;
-                pug_debug_line = 29;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p>";
-                ;
-                pug_debug_line = 30;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div class=\"entry__excerpt\">";
-                ;
-                pug_debug_line = 31;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label datetime-title\">";
-                ;
-                pug_debug_line = 31;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = date.toLocaleTimeString()) ? "" : pug_interp) + "</p></div>";
-                ;
-                pug_debug_line = 32;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label text-title\">";
-                ;
-                pug_debug_line = 32;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div>";
-              } else {
-                ;
-                pug_debug_line = 34;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div" + (" class=\"entry__text letter-title\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                ;
-                pug_debug_line = 35;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<h1 class=\"entry__title label theme-title\">";
-                ;
-                pug_debug_line = 35;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1>";
-                ;
-                pug_debug_line = 36;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label sender-title\">";
-                ;
-                pug_debug_line = 36;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p>";
-                ;
-                pug_debug_line = 37;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div class=\"entry__excerpt\">";
-                ;
-                pug_debug_line = 38;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label datetime-title\">";
-                ;
-                pug_debug_line = 38;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = date.toLocaleTimeString()) ? "" : pug_interp) + "</p></div>";
-                ;
-                pug_debug_line = 39;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p class=\"label text-title\">";
-                ;
-                pug_debug_line = 39;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div>";
-              }
-
-              pug_html = pug_html + "</div>";
+              pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder) ? "" : pug_interp) + "</a>";
             }
           }
         }).call(this);
-        pug_html = pug_html + "</ul>";
       }
 
       pug_html = pug_html + "</div>";
       ;
-      pug_debug_line = 42;
+      pug_debug_line = 15;
+      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+      pug_html = pug_html + "<div class=\"column large-4 tab-12 mob-12\">";
+      ;
+      pug_debug_line = 16;
+      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+      pug_html = pug_html + "<div class=\"bricks-wrapper h-group\" name=\"letters\">";
+      ;
+      pug_debug_line = 17;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
-      if (locals.letter && locals.letter.Id) {
+      if (locals.selectFolder) {
         ;
-        pug_debug_line = 43;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        date = new Date(locals.letter.DateTime * 1000);
-        pug_debug_line = 44;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + "<div class=\"column large-7 tab-12 mob-12 letter-view\">";
+        pug_debug_line = 18;
+        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.selectFolder
+
         ;
-        pug_debug_line = 45;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + "<h3>";
-        ;
-        pug_debug_line = 45;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = locals.letter.Theme) ? "" : pug_interp) + "</h3>";
-        ;
-        pug_debug_line = 46;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + "<p class=\"lead\">";
-        ;
-        pug_debug_line = 46;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = locals.letter.Sender) ? "" : pug_interp) + "</p>";
-        ;
-        pug_debug_line = 47;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + "<p class=\"lead\">";
-        ;
-        pug_debug_line = 47;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = date.toLocaleDateString()) ? "" : pug_interp) + "</p>";
-        ;
-        pug_debug_line = 48;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + "<p class=\"lead\">";
-        ;
-        pug_debug_line = 48;
-        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-        pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = locals.letter.Text) ? "" : pug_interp) + "</p></div>";
+        (function () {
+          var $$obj = locals.selectFolder;
+
+          if ('number' == typeof $$obj.length) {
+            for (var pug_index2 = 0, $$l = $$obj.length; pug_index2 < $$l; pug_index2++) {
+              var letter = $$obj[pug_index2];
+              ;
+              pug_debug_line = 19;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+              ;
+              pug_debug_line = 20;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<div class=\"entry__text\">";
+              ;
+              pug_debug_line = 21;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<div class=\"entry__header\">";
+              ;
+              pug_debug_line = 22;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<h1 class=\"entry__title\">";
+              ;
+              pug_debug_line = 22;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
+              ;
+              pug_debug_line = 24;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<div class=\"entry__excerpt\">";
+              ;
+              pug_debug_line = 25;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<p>";
+              ;
+              pug_debug_line = 25;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
+              ;
+              pug_debug_line = 26;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<div class=\"entry__excerpt\">";
+              ;
+              pug_debug_line = 27;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<p>";
+              ;
+              pug_debug_line = 27;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
+            }
+          } else {
+            var $$l = 0;
+
+            for (var pug_index2 in $$obj) {
+              $$l++;
+              var letter = $$obj[pug_index2];
+              ;
+              pug_debug_line = 19;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+              ;
+              pug_debug_line = 20;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<div class=\"entry__text\">";
+              ;
+              pug_debug_line = 21;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<div class=\"entry__header\">";
+              ;
+              pug_debug_line = 22;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<h1 class=\"entry__title\">";
+              ;
+              pug_debug_line = 22;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
+              ;
+              pug_debug_line = 24;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<div class=\"entry__excerpt\">";
+              ;
+              pug_debug_line = 25;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<p>";
+              ;
+              pug_debug_line = 25;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
+              ;
+              pug_debug_line = 26;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<div class=\"entry__excerpt\">";
+              ;
+              pug_debug_line = 27;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<p>";
+              ;
+              pug_debug_line = 27;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
+            }
+          }
+        }).call(this);
       }
 
       pug_html = pug_html + "</div></div>";
-    }).call(this, "Date" in locals_for_with ? locals_for_with.Date : typeof Date !== "undefined" ? Date : undefined, "date" in locals_for_with ? locals_for_with.date : typeof date !== "undefined" ? date : undefined);
+      ;
+      pug_debug_line = 30;
+      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+      pug_html = pug_html + "<div class=\"column large-5 tab-12 mob-12\">";
+      ;
+      pug_debug_line = 31;
+      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+
+      if (locals.letter) {
+        ;
+        pug_debug_line = 32;
+        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+        pug_html = pug_html + "<h3>";
+        ;
+        pug_debug_line = 32;
+        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+        pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h3>";
+        ;
+        pug_debug_line = 33;
+        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+        pug_html = pug_html + "<p class=\"lead\">";
+        ;
+        pug_debug_line = 33;
+        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+        pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p>";
+        ;
+        pug_debug_line = 34;
+        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+        pug_html = pug_html + "<p class=\"lead\">";
+        ;
+        pug_debug_line = 34;
+        pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+        pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p>";
+      }
+
+      pug_html = pug_html + "</div></div></div>";
+    }).call(this, "letter" in locals_for_with ? locals_for_with.letter : typeof letter !== "undefined" ? letter : undefined);
   } catch (err) {
     mainPage_pug_rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
   }
@@ -3177,51 +3205,75 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
       this.element.insertAdjacentHTML('beforeend', mainPage_template(data));
       var letterList = document.getElementsByName('letterList')[0];
       var folderList = document.getElementsByClassName('listView')[0];
-      var selectColumn = document.getElementById('select-column');
-      letterList.addEventListener('click', function (event) {
-        console.log('CLICK LETTER', event.target);
-        selectColumn.classList.add('select-column');
-
-        if (event.target.tagName === 'UL') {
-          return;
-        }
-
-        if (event.target.tagName === 'DIV') {
-          console.log('DIV ID ', event.target.id);
-          src_EventBus.emit(Events.mainPageView.selectLetter, event.target.id);
-          return;
-        }
-
-        src_EventBus.emit(Events.mainPageView.selectLetter, event.target.parentNode.id);
-      });
-      folderList.addEventListener('click', function (event) {
-        console.log('CLICK FOLDER', event.target.id);
-        src_EventBus.emit(Events.mainPageView.selectFolder, event.target.innerText);
-      }); // const navWrap = document.querySelector('.s-header__nav-wrap');
-
-      var menuToggle = document.querySelector('.letter__toggle-menu');
-      var menu = document.querySelector('.letter-menu');
-      var off = document.querySelector('.letter__overlay-close');
-      menuToggle.addEventListener('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        menu.style.display = 'block';
-        menuToggle.style.display = 'none';
-        off.style.display = 'block';
-      });
-      off.addEventListener('click', function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        menu.style.display = 'none';
-        off.style.display = 'none';
-        menuToggle.style.display = 'block';
-      }); // closeNavWrap.addEventListener('click', (event) => {
+      var selectColumn = document.getElementById('select-column'); // letterList.addEventListener('click', (event) => {
+      //   console.log('CLICK LETTER', event.target);
+      //   if (event.target.tagName === 'UL') {
+      //     return;
+      //   }
+      //   if (event.target.tagName === 'DIV') {
+      //     console.log('DIV ID ', event.target.id);
+      //     globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
+      //     return;
+      //   }
+      //   globalEventBus.emit(Events.mainPageView.selectLetter, event.target.parentNode.id);
+      // });
+      //
+      // folderList.addEventListener('click', (event) => {
+      //   console.log('CLICK FOLDER', event.target.id);
+      //   globalEventBus.emit(Events.mainPageView.selectFolder, event.target.innerText);
+      // });
+      // // const navWrap = document.querySelector('.s-header__nav-wrap');
+      // const menuToggle = document.querySelector('.letter__toggle-menu');
+      // const menu = document.querySelector('.letter-menu');
+      // const off = document.querySelector('.letter__overlay-close');
+      //
+      // menuToggle.addEventListener('click', (event) => {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      //   menu.style.display = 'block';
+      //   menuToggle.style.display = 'none';
+      //   off.style.display = 'block';
+      // });
+      //
+      // off.addEventListener('click', (event) => {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      //   menu.style.display = 'none';
+      //   off.style.display = 'none';
+      //   menuToggle.style.display = 'block';
+      // });
+      // closeNavWrap.addEventListener('click', (event) => {
       //   event.preventDefault();
       //   event.stopPropagation();
       //   if (siteBody.classList.contains('nav-wrap-is-visible')) {
       //     siteBody.classList.remove('nav-wrap-is-visible');
       //   }
       // });
+
+      src_EventBus.emit(Events.mainPageView.recivedFolder);
+      src_EventBus.emit(Events.mainPageView.sendedFolder);
+      var folders = document.getElementsByName('folders')[0];
+      folders.addEventListener('click', function (event) {
+        if (event.target.tagName === 'DIV' || event.target.tagName === 'P') {
+          return;
+        }
+
+        if (event.target.tagName === 'A') {
+          src_EventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target["class"]);
+          return;
+        }
+      });
+      var letters = document.getElementsByName('letters')[0];
+      letters.addEventListener('click', function (event) {
+        if (event.target.tagName === 'DIV') {
+          return;
+        }
+
+        if (event.target.tagName === 'ARTICLE') {
+          src_EventBus.emit(Events.mainPageView.selectLetter, event.target.id);
+          return;
+        }
+      });
     }
   }]);
 
@@ -3272,8 +3324,7 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
       src_EventBus.on(Events.letterModelEvents.getLetterList.success, h1);
     });
     src_EventBus.on(Events.mainPageView.selectLetter, function (letterId) {
-      console.log('SELECT LETTER ', letterId, _this.data.letterList);
-      _this.data.letter = _this.data.letterList[letterId];
+      _this.data.letter = _this.data.selectFolder[letterId]; // event: letter was written
 
       _this.mainPageView.render(_this.data);
     });
@@ -3295,6 +3346,42 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
       };
 
       src_EventBus.on(Events.letterModelEvents.getLetterList.success, h);
+    });
+    src_EventBus.on(Events.mainPageView.recivedFolder, function () {
+      src_EventBus.emit(Events.mainPageController.recivedFolder);
+
+      var h = function h(data) {
+        src_EventBus.off(Events.letterModelEvents.recivedFolder.success, h);
+        _this.data.recivedFolder = data;
+
+        _this.mainPageView.render(_this.data);
+      };
+
+      src_EventBus.on(Events.letterModelEvents.recivedFolder.success, h);
+    });
+    src_EventBus.on(Events.mainPageView.sendedFolder, function () {
+      src_EventBus.emit(Events.mainPageController.sendedFolder);
+
+      var h = function h(data) {
+        src_EventBus.off(Events.letterModelEvents.sendedFolder.success, h);
+        _this.data.sendedFolder = data;
+
+        _this.mainPageView.render(_this.data);
+      };
+
+      src_EventBus.on(Events.letterModelEvents.sendedFolder.success, h);
+    });
+    src_EventBus.on(Events.mainPageView.selectFolder, function (folder, type) {
+      src_EventBus.emit(Events.mainPageController.selectFolder, folder, type);
+
+      var h = function h(data) {
+        src_EventBus.off(Events.letterModelEvents.selectFolder.success, h);
+        _this.data.selectFolder = data;
+
+        _this.mainPageView.render(_this.data);
+      };
+
+      src_EventBus.on(Events.letterModelEvents.selectFolder.success, h);
     });
   }
 

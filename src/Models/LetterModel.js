@@ -14,6 +14,15 @@ export default class LetterModel {
     globalEventBus.on(Events.sendLetterView.sendLetter,
       LetterModel.sendLetter.bind(this));
     globalEventBus.on(Events.global.logout, this.logout.bind(this));
+
+
+    globalEventBus.on(Events.mainPageController.recivedFolder, this.recivedFolder.bind(this));
+    globalEventBus.on(Events.mainPageController.sendedFolder, this.sendedFolder.bind(this));
+
+    globalEventBus.on(Events.mainPageController.selectFolder, this.selectFolder.bind(this));
+    //
+    globalEventBus.on(Events.mainPageController.sendWrittenLetter,
+      this.sendWrittenLetter.bind(this));
   }
 
   getLetter(letterId) {
@@ -89,6 +98,88 @@ export default class LetterModel {
           error,
         });
       });
+  }
+
+  recivedFolder() {
+    myFetch(Paths.getRecivedFolder, 'GET')
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          this.recivedFolders = new Map();
+          if (response.Folders) {
+            response.Folders.forEach((folder) => {
+              this.recivedFolders[folder.Id] = folder;
+            });
+          }
+
+          globalEventBus.emit(Events.letterModelEvents.recivedFolder.success, this.recivedFolders);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.recivedFolder.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        globalEventBus.emit(Events.letterModelEvents.recivedFolder.fail, {
+          error,
+        });
+      });
+  }
+
+  sendedFolder() {
+    myFetch(Paths.getSendedFolder, 'GET')
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          this.sendedFolders = new Map();
+          if (response.Folders) {
+            response.Folders.forEach((folder) => {
+              this.sendedFolders[folder.Id] = folder;
+            });
+          }
+
+          globalEventBus.emit(Events.letterModelEvents.sendedFolder.success, this.sendedFolders);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.sendedFolder.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        globalEventBus.emit(Events.letterModelEvents.sendedFolder.fail, {
+          error,
+        });
+      });
+  }
+
+  selectFolder(folder, type){
+    myFetch(Paths.getSelectFolder + '/' + type + '/' + folder, 'GET')
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          this.selectFolder = new Map();
+          if (response.Letters) {
+            response.Letters.forEach((letter) => {
+              this.selectFolder[letter.Id] = letter;
+            });
+          }
+
+          globalEventBus.emit(Events.letterModelEvents.selectFolder.success, this.selectFolder );
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.selectFolder.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        globalEventBus.emit(Events.letterModelEvents.selectFolder.fail, {
+          error,
+        });
+      });
+  }
+
+  sendWrittenLetter(letterId) {
+    // query
   }
 
   logout() {

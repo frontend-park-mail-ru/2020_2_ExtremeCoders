@@ -27,6 +27,11 @@ class UserModel {
         errors);
       return;
     }
+
+    let shortLogin = data.data.get('email');
+    shortLogin += '@mailer.ru.com ';
+    data.data.set('email', shortLogin);
+
     console.log('SIGN IN ', data, this.baseUrl + Paths.signInPage);
     myFetch(Paths.signInServ, 'POST', data.data)
       .then((response) => response.json())
@@ -173,4 +178,4 @@ class UserModel {
   }
 }
 
-export default new UserModel('http://95.163.209.195:8080');
+export default new UserModel('http://localhost:8080');

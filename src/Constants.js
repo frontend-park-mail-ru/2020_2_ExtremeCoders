@@ -22,13 +22,28 @@ const Events = {
   },
   mainPageView: {
     needData: 'mainPageView-needData',
-    selectLetter: 'mainPageView-selectLetter',
+
+    recivedFolder: 'mainPageView-recivedFolder',
+    sendedFolder: 'mainPageView-sendedFolder',
+
     selectFolder: 'mainPageView-selectFolder',
+
+    selectLetter: 'mainPageView-selectLetter',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
     needGetLetterList: 'mainPageController-needGetLetterList',
     needGetLetter: 'mainPageController-needGetLetter',
+
+    recivedFolder: 'mainPageController-recivedFolder',
+    sendedFolder: 'mainPageController-sendedFolder',
+
+    selectFolder: 'mainPageController-selectFolder',
+
+    selectLetter: 'mainPageController-selectLetter',
+    //
+    sendWrittenLetter: 'mainPageController-sendWrittenLetter',
+    //
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter',
@@ -54,6 +69,21 @@ const Events = {
       success: 'letterModelEvents-sendLetter-success',
       fail: 'letterModelEvents-sendLetter-fail',
     },
+
+    //
+    recivedFolder: {
+      success: 'letterModelEvents-recivedFolder-success',
+      fail: 'letterModelEvents-recivedFolder-fail',
+    },
+    sendedFolder: {
+      success: 'letterModelEvents-sendedFolder-success',
+      fail: 'letterModelEvents-sendedFolder-fail',
+    },
+
+    selectFolder: {
+      success: 'letterModelEvents-selectFolder-success',
+      fail: 'letterModelEvents-selectFolder-fail',
+    }
   },
 
   userModelEvents: {
@@ -77,7 +107,7 @@ const Events = {
 };
 
 const Paths = {
-  baseUrl: 'http://localhost:8000',
+  baseUrl: 'http://localhost:8080',
   mainPage: '/letters',
   signInPage: '/signin',
   signUpPage: '/signup',
@@ -96,6 +126,11 @@ const Paths = {
   getAvatar: '/user/avatar',
   getReceivedLetters: '/user/letter/received',
   getSendedLetters: '/user/letter/sent',
+
+  getRecivedFolder: '/user/folders/recived',
+  getSendedFolder: '/user/folders/sended',
+
+  getSelectFolder: '/user/foders',
 };
 
 // логин post /session

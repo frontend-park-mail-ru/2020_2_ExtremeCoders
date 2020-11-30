@@ -1,48 +1,34 @@
 div(class="s-content site-page mainPage")
 
-    div(class="row tool-letter-menu")
-        a(class="letter__toggle-menu" title="Menu")
-            span Навигация
-
-        a(title="Close Menu" class="letter__overlay-close")
-
     div(class="row")
-        div(class="column large-4 tab-12 mob-12 folders-main letter-menu")
+        div(class="column large-3 tab-12 mob-12" name="folders")
+            p Входящие
+            if(locals.recivedFolder)
+                each folder in locals.recivedFolder
+                    a(id=folder class="recived") #{folder}
 
-            ul(class="folders")
-                li(class="btn btn--stroke h-full-width folder") K
+            p Исходящие
+            if(locals.sendedFolder)
+              each folder in locals.sendedFolder
+                  a(id=folder class="sended") #{folder}
 
-            if(locals.folderList)
-                div(class="receive-send listView")
-                      each folder in locals.folderList
-                            a(id=folder) #{folder}
+        div(class="column large-4 tab-12 mob-12")
+            div(class="bricks-wrapper h-group" name="letters")
+                if(locals.selectFolder)
+                  each letter in locals.selectFolder
+                    article(id=letter.Id class="brick entry format-standard")
+                        div(class="entry__text")
+                            div(class="entry__header")
+                                h1(class="entry__title") #{letter.Theme}
 
-            if(locals.letterList)
-                    ul(class="bricks-wrapper listView" name='letterList')
-                      each letter in locals.letterList
-                        - date = new Date(letter.DateTime * 1000)
-                        div(class="brick entry")
-                            if(locals.letter && locals.letter.Id === letter.Id)
-                                conso
-                                div(id=letter.Id class="entry__text letter-title state-checked")
-                                    h1(class="entry__title label theme-title") #{letter.Theme}
-                                    p(class="label sender-title") #{letter.Sender}
-                                    div(class="entry__excerpt")
-                                        p(class="label datetime-title") #{date.toLocaleTimeString()}
-                                    p(class="label text-title") #{letter.Text}
-                            else
-                                div(id=letter.Id class="entry__text letter-title")
-                                    h1(class="entry__title label theme-title") #{letter.Theme}
-                                    p(class="label sender-title") #{letter.Sender}
-                                    div(class="entry__excerpt")
-                                        p(class="label datetime-title") #{date.toLocaleTimeString()}
-                                    p(class="label text-title") #{letter.Text}
+                            div(class="entry__excerpt")
+                                p #{letter.Sender}
+                            div(class="entry__excerpt")
+                                p #{letter.Text}
 
 
-        if(locals.letter && locals.letter.Id)
-            - date = new Date(locals.letter.DateTime * 1000)
-            div(class="column large-7 tab-12 mob-12 letter-view")
-                h3 #{locals.letter.Theme}
-                p(class="lead") #{locals.letter.Sender}
-                p(class="lead") #{date.toLocaleDateString()}
-                p(class="lead") #{locals.letter.Text}
+        div(class="column large-5 tab-12 mob-12")
+            if(locals.letter)
+                h3 #{letter.Theme}
+                p(class="lead") #{letter.Sender}
+                p(class="lead") #{letter.Text}
