@@ -76,12 +76,8 @@ export default class MainPageView {
 
     const folders = document.getElementsByName('folders')[0];
     folders.addEventListener('click', (event) => {
-      if (event.target.tagName === 'DIV' || event.target.tagName === 'P') {
-        return;
-      }
       if (event.target.tagName === 'A') {
-        globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.class);
-        return;
+        globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.parentNode.id);
       }
     });
 
