@@ -8,7 +8,7 @@ export default class LetterModel {
     this.Letters = new Map();
     this.folders = {};
     globalEventBus.on(Events.mainPageController.needGetLetter, this.getLetter.bind(this));
-    globalEventBus.on(Events.mainPageController.needGetLetterList, this.getLetterList.bind(this));
+    // globalEventBus.on(Events.mainPageController.needGetLetterList, this.getLetterList.bind(this));
     globalEventBus.on(Events.mainPageController.needGetFolderList,
       LetterModel.getFolders.bind(this));
     globalEventBus.on(Events.sendLetterView.sendLetter,
@@ -20,6 +20,10 @@ export default class LetterModel {
     globalEventBus.on(Events.mainPageController.sendedFolder, this.sendedFolder.bind(this));
 
     globalEventBus.on(Events.mainPageController.selectFolder, this.selectFolder.bind(this));
+    globalEventBus.on(Events.mainPageController.recivedUn, this.recivedUn.bind(this));
+    globalEventBus.on(Events.mainPageController.sendedUn, this.sendedUn.bind(this));
+
+
     //
     globalEventBus.on(Events.mainPageController.sendWrittenLetter,
       this.sendWrittenLetter.bind(this));
@@ -60,45 +64,45 @@ export default class LetterModel {
     globalEventBus.emit(Events.letterModelEvents.getFolderList.success, ['Входящие', 'Исходящие']);
   }
 
-  getLetterList(folder) {
-    console.log('GET LETTER LIST FOLDER ', folder);
-    let path = '';
-    if (folder === 'Входящие') {
-      path = Paths.getReceivedLetters;
-    } else {
-      path = Paths.getSendedLetters;
-    }
-
-    myFetch(path, 'GET')
-      .then((response) => response.json())
-      .then((response) => {
-        console.log('RESP GET LETTER LIST', response);
-        if (response.Code === 200) {
-          console.log('SUCCES GET LETTER LETTER LIST');
-          this.Letters = new Map();
-          if (response.Letters) {
-            response.Letters.forEach((letter) => {
-              this.Letters[letter.Id] = letter;
-            });
-            this.Letters.forEach((letter) => {
-              console.log('LETTTER', letter);
-            });
-          }
-
-          globalEventBus.emit(Events.letterModelEvents.getLetterList.success, this.Letters);
-        } else {
-          globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
-            error: response.Description,
-          });
-        }
-      })
-      .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
-        globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
-          error,
-        });
-      });
-  }
+  // getLetterList(folder) {
+  //   console.log('GET LETTER LIST FOLDER ', folder);
+  //   let path = '';
+  //   if (folder === 'Входящие') {
+  //     path = Paths.getReceivedLetters;
+  //   } else {
+  //     path = Paths.getSendedLetters;
+  //   }
+  //
+  //   myFetch(path, 'GET')
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       console.log('RESP GET LETTER LIST', response);
+  //       if (response.Code === 200) {
+  //         console.log('SUCCES GET LETTER LETTER LIST');
+  //         this.Letters = new Map();
+  //         if (response.Letters) {
+  //           response.Letters.forEach((letter) => {
+  //             this.Letters[letter.Id] = letter;
+  //           });
+  //           this.Letters.forEach((letter) => {
+  //             console.log('LETTTER', letter);
+  //           });
+  //         }
+  //
+  //         globalEventBus.emit(Events.letterModelEvents.getLetterList.success, this.Letters);
+  //       } else {
+  //         globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
+  //           error: response.Description,
+  //         });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log('CAAAAAAAAAAAAAAAATCH', error);
+  //       globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
+  //         error,
+  //       });
+  //     });
+  // }
 
   recivedFolder() {
     myFetch(Paths.getRecivedFolder, 'GET')
@@ -173,6 +177,57 @@ export default class LetterModel {
       })
       .catch((error) => {
         globalEventBus.emit(Events.letterModelEvents.selectFolder.fail, {
+          error,
+        });
+      });
+  }
+
+  recivedUn() {
+    myFetch(Paths.getReceivedLetters, 'GET')
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          this.selectFolder = new Map();
+          if (response.Letters) {
+            response.Letters.forEach((letter) => {
+              this.selectFolder[letter.Id] = letter;
+            });
+          }
+          console.log('sent letters', this.selectFolder);
+          globalEventBus.emit(Events.letterModelEvents.recivedUn.success, this.selectFolder);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.recivedUn.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        globalEventBus.emit(Events.letterModelEvents.recivedUn.fail, {
+          error,
+        });
+      });
+  }
+
+  sendedUn() {
+    myFetch(Paths.getSendedLetters, 'GET')
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          this.selectFolder = new Map();
+          if (response.Letters) {
+            response.Letters.forEach((letter) => {
+              this.selectFolder[letter.Id] = letter;
+            });
+          }
+          globalEventBus.emit(Events.letterModelEvents.sendedUn.success, this.selectFolder);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
           error,
         });
       });

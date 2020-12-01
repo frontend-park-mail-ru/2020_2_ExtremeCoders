@@ -3,11 +3,13 @@ div(class="s-content site-page mainPage")
     div(class="row")
         div(class="column large-3 tab-12 mob-12" name="folders")
             p Входящие
+            a(id=recivedUn) Без папки
             if(locals.recivedFolder)
                 each folder in locals.recivedFolder
                     a(id=folder class="recived") #{folder}
 
             p Исходящие
+            a(id=sendedUn) Без папки
             if(locals.sendedFolder)
               each folder in locals.sendedFolder
                   a(id=folder class="sended") #{folder}

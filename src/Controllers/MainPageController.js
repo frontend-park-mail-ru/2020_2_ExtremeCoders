@@ -81,6 +81,25 @@ class MainPageController {
       globalEventBus.on(Events.letterModelEvents.selectFolder.success, h);
     });
 
+    globalEventBus.on(Events.mainPageView.recivedUn, () => {
+      globalEventBus.emit(Events.mainPageController.recivedUn);
+      const h = (data) => {
+        globalEventBus.off(Events.letterModelEvents.recivedUn.success, h);
+        this.data.selectFolder = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.recivedUn.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.sendedUn, () => {
+      globalEventBus.emit(Events.mainPageController.sendedUn);
+      const h = (data) => {
+        globalEventBus.off(Events.letterModelEvents.sendedUn.success, h);
+        this.data.selectFolder = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.sendedUn.success, h);
+    });
   }
 
 

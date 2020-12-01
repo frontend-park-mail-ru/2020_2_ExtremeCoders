@@ -29,6 +29,10 @@ const Events = {
     selectFolder: 'mainPageView-selectFolder',
 
     selectLetter: 'mainPageView-selectLetter',
+
+    recivedUn: 'mainPageView-recivedUn',
+
+    sendedUn: 'mainPageView-sendedUn',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -41,6 +45,10 @@ const Events = {
     selectFolder: 'mainPageController-selectFolder',
 
     selectLetter: 'mainPageController-selectLetter',
+
+    recivedUn: 'mainPageView-recivedUn',
+
+    sendedUn: 'mainPageView-sendedUn',
     //
     sendWrittenLetter: 'mainPageController-sendWrittenLetter',
     //
@@ -83,7 +91,12 @@ const Events = {
     selectFolder: {
       success: 'letterModelEvents-selectFolder-success',
       fail: 'letterModelEvents-selectFolder-fail',
-    }
+    },
+
+    recivedUn: {
+      success: 'letterModelEvents-recivedUn-success',
+      fail: 'letterModelEvents-recivedUn-fail',
+    },
   },
 
   userModelEvents: {

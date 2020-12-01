@@ -97,5 +97,16 @@ export default class MainPageView {
     });
 
 
+    const recivedUn = document.getElementById('recivedUn');
+    recivedUn.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.recivedUn);
+    });
+
+    const sendedUn = document.getElementById('sendedUn');
+    sendedUn.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.sendedUn);
+    });
   }
 }
