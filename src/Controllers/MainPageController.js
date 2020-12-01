@@ -100,6 +100,24 @@ class MainPageController {
       };
       globalEventBus.on(Events.letterModelEvents.sendedUn.success, h);
     });
+
+    globalEventBus.on(Events.mainPageView.addFolderRecived, (nameOfFolder) => {
+      globalEventBus.emit(Events.mainPageController.addFolderRecived, nameOfFolder);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.addFolderRecived.success, h);
+        globalEventBus.emit(Events.mainPageView.recivedFolder);
+      };
+      globalEventBus.on(Events.letterModelEvents.addFolderRecived.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.addFolderSended, (nameOfFolder) => {
+      globalEventBus.emit(Events.mainPageController.addFolderSended, nameOfFolder);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.addFolderSended.success, h);
+        globalEventBus.emit(Events.mainPageView.sendedFolder);
+      };
+      globalEventBus.on(Events.letterModelEvents.addFolderSended.success, h);
+    });
   }
 
 

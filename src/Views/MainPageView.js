@@ -87,13 +87,7 @@ export default class MainPageView {
 
     const letters = document.getElementsByName('letters')[0];
     letters.addEventListener('click', (event) => {
-      if (event.target.tagName === 'DIV') {
-        return;
-      }
-      if (event.target.tagName === 'ARTICLE') {
-        globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
-        return;
-      }
+      globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
     });
 
 
@@ -108,5 +102,18 @@ export default class MainPageView {
       event.preventDefault();
       globalEventBus.emit(Events.mainPageView.sendedUn);
     });
+
+    const addFolderButton = document.getElementsByName('button-of-recived-folder')[0];
+    addFolderButton.addEventListener('submit', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.addFolderRecived, new FormData(addFolderButton));
+    });
+
+    const addFolderButtonSended = document.getElementsByName('button-of-sended-folder')[0];
+    addFolderButtonSended.addEventListener('submit', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.addFolderSended, new FormData(addFolderButtonSended));
+    });
+
   }
 }

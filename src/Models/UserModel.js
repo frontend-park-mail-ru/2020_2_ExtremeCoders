@@ -29,7 +29,7 @@ class UserModel {
     }
 
     let shortLogin = data.data.get('email');
-    shortLogin += '@mailer.ru.com ';
+    shortLogin += '@mailer.ru.com';
     data.data.set('email', shortLogin);
 
     console.log('SIGN IN ', data, this.baseUrl + Paths.signInPage);
@@ -72,7 +72,7 @@ class UserModel {
     }
 
     let shortEmail = data.data.get('email');
-    shortEmail += '@mailer.ru.com ';
+    shortEmail += '@mailer.ru.com';
     data.data.set('email', shortEmail);
 
     myFetch(Paths.signUpServ, 'POST', data.data)

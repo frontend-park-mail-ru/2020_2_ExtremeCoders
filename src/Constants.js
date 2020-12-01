@@ -27,12 +27,11 @@ const Events = {
     sendedFolder: 'mainPageView-sendedFolder',
 
     selectFolder: 'mainPageView-selectFolder',
-
     selectLetter: 'mainPageView-selectLetter',
-
     recivedUn: 'mainPageView-recivedUn',
-
     sendedUn: 'mainPageView-sendedUn',
+    addFolderRecived: 'mainPageView-addFolderRecived',
+    addFolderSended: 'mainPageView-addFolderSended',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -43,12 +42,11 @@ const Events = {
     sendedFolder: 'mainPageController-sendedFolder',
 
     selectFolder: 'mainPageController-selectFolder',
-
     selectLetter: 'mainPageController-selectLetter',
-
-    recivedUn: 'mainPageView-recivedUn',
-
-    sendedUn: 'mainPageView-sendedUn',
+    recivedUn: 'mainPageController-recivedUn',
+    sendedUn: 'mainPageController-sendedUn',
+    addFolderRecived: 'mainPageController-addFolderRecived',
+    addFolderSended: 'mainPageController-addFolderSended',
     //
     sendWrittenLetter: 'mainPageController-sendWrittenLetter',
     //
@@ -97,6 +95,21 @@ const Events = {
       success: 'letterModelEvents-recivedUn-success',
       fail: 'letterModelEvents-recivedUn-fail',
     },
+
+    sendedUn: {
+      success: 'letterModelEvents-sendedUn-success',
+      fail: 'letterModelEvents-sendedUn-fail',
+    },
+
+    addFolderRecived: {
+      success: 'letterModelEvents-addFolderRecived-success',
+      fail: 'letterModelEvents-addFolderRecived-fail',
+    },
+
+    addFolderSended: {
+      success: 'letterModelEvents-addFolderSended-success',
+      fail: 'letterModelEvents-addFolderSended-fail',
+    },
   },
 
   userModelEvents: {
@@ -144,6 +157,10 @@ const Paths = {
   getSendedFolder: '/user/folders/sended',
 
   getSelectFolder: '/user/foders',
+
+  addFolderRecived: '/user/folders/recived/folderName',
+
+  addFolderSended: '/user/folders/sended/folderName',
 };
 
 // логин post /session
