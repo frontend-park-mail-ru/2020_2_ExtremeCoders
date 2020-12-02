@@ -17,65 +17,45 @@ export default class MainPageView {
     this.element.innerHTML = '';
     Navbar.render();
     this.element.insertAdjacentHTML('beforeend', template(data));
-    const letterList = document.getElementsByName('letterList')[0];
-    const folderList = document.getElementsByClassName('listView')[0];
-
-    const selectColumn = document.getElementById('select-column');
-
-    // letterList.addEventListener('click', (event) => {
-    //   console.log('CLICK LETTER', event.target);
-
-    //   if (event.target.tagName === 'UL') {
-    //     return;
-    //   }
-    //   if (event.target.tagName === 'DIV') {
-    //     console.log('DIV ID ', event.target.id);
-    //     globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
-    //     return;
-    //   }
-    //   globalEventBus.emit(Events.mainPageView.selectLetter, event.target.parentNode.id);
-    // });
-    //
-    // folderList.addEventListener('click', (event) => {
-    //   console.log('CLICK FOLDER', event.target.id);
-    //   globalEventBus.emit(Events.mainPageView.selectFolder, event.target.innerText);
-    // });
-
-    // // const navWrap = document.querySelector('.s-header__nav-wrap');
-    // const menuToggle = document.querySelector('.letter__toggle-menu');
-    // const menu = document.querySelector('.letter-menu');
-    // const off = document.querySelector('.letter__overlay-close');
-    //
-    // menuToggle.addEventListener('click', (event) => {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    //   menu.style.display = 'block';
-    //   menuToggle.style.display = 'none';
-    //   off.style.display = 'block';
-    // });
-    //
-    // off.addEventListener('click', (event) => {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    //   menu.style.display = 'none';
-    //   off.style.display = 'none';
-    //   menuToggle.style.display = 'block';
-    // });
-
-    // closeNavWrap.addEventListener('click', (event) => {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    //   if (siteBody.classList.contains('nav-wrap-is-visible')) {
-    //     siteBody.classList.remove('nav-wrap-is-visible');
-    //   }
-    // });
-
-    globalEventBus.emit(Events.mainPageView.recivedFolder);
-    globalEventBus.emit(Events.mainPageView.sendedFolder);
 
 
-    const folders = document.getElementsByName('folders')[0];
-    folders.addEventListener('click', (event) => {
+    const addFolderRecived = document.getElementById('add-folder-recived');
+    const buttonOfRecivedFolder = document.getElementsByName('button-of-recived-folder')[0];
+    addFolderRecived.addEventListener('click', (event) => {
+      event.preventDefault();
+      addFolderRecived.classList.toggle('hide');
+      buttonOfRecivedFolder.classList.toggle('hide');
+    });
+
+    const addFolderSend = document.getElementById('add-folder-send');
+    const buttonOfSendFolder = document.getElementsByName('button-of-sended-folder')[0];
+    addFolderSend.addEventListener('click', (event) => {
+      event.preventDefault();
+      addFolderSend.classList.toggle('hide');
+      buttonOfSendFolder.classList.toggle('hide');
+    });
+
+    const summaryRecived = document.getElementById('summary-recived');
+    summaryRecived.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.recivedFolder);
+    });
+
+    const summarySend = document.getElementById('summary-send');
+    summarySend.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.sendedFolder);
+    });
+
+    const folderRecivedChoose = document.getElementById('recived');
+    folderRecivedChoose.addEventListener('click', (event) => {
+      if (event.target.tagName === 'A') {
+        globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.parentNode.id);
+      }
+    });
+
+    const folderSendedChoose = document.getElementById('sended');
+    folderSendedChoose.addEventListener('click', (event) => {
       if (event.target.tagName === 'A') {
         globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.parentNode.id);
       }
@@ -84,8 +64,10 @@ export default class MainPageView {
     const letters = document.getElementsByName('letters')[0];
     letters.addEventListener('click', (event) => {
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
+      const id = new FormData();
+      id.append('id', event.target.id);
+      globalEventBus.emit(Events.mainPageView.sendWrittenLetter, id);
     });
-
 
     const recivedUn = document.getElementById('recivedUn');
     recivedUn.addEventListener('click', (event) => {
@@ -110,6 +92,54 @@ export default class MainPageView {
       event.preventDefault();
       globalEventBus.emit(Events.mainPageView.addFolderSended, new FormData(addFolderButtonSended));
     });
+
+    const chooseFolder = document.getElementById('choose-folder');
+    chooseFolder.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const folderName = document.getElementsByName('inFolderName')[0];
+      const currentName = document.getElementsByName('title-of-current')[0];
+      const currentNameToogle = document.getElementById('toogle');
+
+      const folder = folderName.value.trim();
+      const current = currentName.id;
+      const chooseFolderData = new FormData();
+      chooseFolderData.append('letterId', current);
+      chooseFolderData.append('folderName', folder);
+
+      let type = '';
+      if (currentNameToogle.checked)
+        type = 'recived';
+      else
+        type = 'sended';
+
+      const method = 'PUT'
+
+      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
+    });
+
+    const deleteFolder = document.getElementById('delete-folder');
+    deleteFolder.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const currentName = document.getElementsByName('title-of-current')[0];
+      const currentNameToogle = document.getElementById('toogle');
+
+      const current = currentName.id;
+      const chooseFolderData = new FormData();
+      chooseFolderData.append('letterId', current);
+
+      let type = '';
+      if (currentNameToogle.checked)
+        type = 'recived';
+      else
+        type = 'sended';
+
+      const method = 'DELETE'
+
+      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
+    });
+
 
   }
 }

@@ -25,9 +25,11 @@ export default class LetterModel {
 
     globalEventBus.on(Events.mainPageController.addFolderRecived, this.addFolderRecived.bind(this));
     globalEventBus.on(Events.mainPageController.addFolderSended, this.addFolderSended.bind(this));
-    //
+
     globalEventBus.on(Events.mainPageController.sendWrittenLetter,
       this.sendWrittenLetter.bind(this));
+
+    globalEventBus.on(Events.mainPageController.inFolder, this.inFolder.bind(this));
   }
 
   getLetter(letterId) {
@@ -254,11 +256,9 @@ export default class LetterModel {
   }
 
   addFolderSended(name) {
-    console.log('addFolderRecived создать папку', name);
     myFetch(Paths.addFolderSended, 'POST', name)
       .then((response) => response.json())
       .then((response) => {
-        console.log('addFolderRecived создана папка', response.Code);
         if (response.Code === 200) {
           globalEventBus.emit(Events.letterModelEvents.addFolderSended.success);
         } else {
@@ -273,7 +273,37 @@ export default class LetterModel {
   }
 
   sendWrittenLetter(letterId) {
-    // query
+    myFetch(Paths.sendWrittenLetter, 'PUT', letterId)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.success);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('CAAAAAAAAAAAAAAAATCH', error);
+      });
+  }
+
+  inFolder(method, folder, type) {
+    myFetch(Paths.inFolder + type + '/folderName/letter', method, folder)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.success);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('CAAAAAAAAAAAAAAAATCH', error);
+      });
   }
 
   logout() {

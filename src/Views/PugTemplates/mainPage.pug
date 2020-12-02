@@ -1,35 +1,37 @@
 div(class="s-content site-page mainPage")
     div(class="row")
-        div(class="column large-3 tab-12 mob-12" name="folders")
+        div(class="column large-3 tab-12 mob-12")
 
-            form(name="button-of-recived-folder")
+            a(id="add-folder-recived") Добавить папку
+            form(name="button-of-recived-folder" class="hide")
                 div(class="row")
                     input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
                     button(type="submit" class="btn btn--medium h-full-width") Добавить
 
-            details(class="h-full-width")
-                summary
-                    span Входящие
-                a(id="recivedUn") Без папки
-                div(id="recived")
-                    if(locals.recivedFolder)
-                        each folder in locals.recivedFolder
-                            a(id=folder.id) #{folder}
+
+            p(id="summary-recived" class="titles-category") Входящие
+            a(id="recivedUn") Без папки
+            div(id="recived")
+                if(locals.recivedFolder)
+                    each folder in locals.recivedFolder
+                        a(id=folder.id) #{folder}
 
 
-            form(name="button-of-sended-folder")
+            div(class="horizontal")
+
+            a(id="add-folder-send") Добавить папку
+            form(name="button-of-sended-folder" class="hide")
                 div(class="row")
                     input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
                     button(type="submit" class="btn btn--medium h-full-width") Добавить
 
-            details(class="h-full-width")
-                summary
-                    span Исходящие
-                a(id="sendedUn") Без папки
-                div(id="sended")
-                    if(locals.sendedFolder)
-                      each folder in locals.sendedFolder
-                          a(id=folder.id) #{folder}
+
+            p(id="summary-send" class="titles-category") Исходящие
+            a(id="sendedUn") Без папки
+            div(id="sended")
+                if(locals.sendedFolder)
+                  each folder in locals.sendedFolder
+                      a(id=folder.id) #{folder}
 
         div(class="column large-4 tab-12 mob-12")
             div(class="bricks-wrapper h-group" name="letters")
@@ -40,6 +42,8 @@ div(class="s-content site-page mainPage")
                             div(id=letter.Id class="entry__header")
                                 h1(id=letter.Id class="entry__title") #{letter.Theme}
 
+                            if(!letter.IsWatched)
+                                div(id=letter.Id class="h-full-width not-watched")
                             div(id=letter.Id class="entry__excerpt")
                                 p(id=letter.Id) Получатель: #{letter.Receiver}
                             div(id=letter.Id class="entry__excerpt")
@@ -49,8 +53,23 @@ div(class="s-content site-page mainPage")
 
 
         div(class="column large-5 tab-12 mob-12")
-            if(locals.letter)
-                h3 #{letter.Theme}
+            if(letter.Id !== undefined)
+                form(id="choose-folder")
+                    div(class="row")
+                        div(class="column large-6 tab-12 mob-12")
+                            input(name="inFolderName" type="text" class="h-full-width" placeholder="Название папки" autocomplete="off" required)
+                        div(class="column large-6 tab-12 mob-12")
+                            div(class="button r" id="button-1")
+                                input(type="checkbox" class="checkbox" id="toogle")
+                                div(class="knobs")
+                                div(class="layer")
+                    div(class="row")
+                        button(type="submit" class="btn h-full-width") Добавить
+
+                div(class="row")
+                        button(id="delete-folder" class="btn h-full-width") Удалить
+
+                h3(id=letter.Id name="title-of-current") #{letter.Theme}
                 p(class="lead") #{letter.Receiver}
                 p(class="lead") #{letter.Sender}
                 p(class="lead") #{letter.Text}

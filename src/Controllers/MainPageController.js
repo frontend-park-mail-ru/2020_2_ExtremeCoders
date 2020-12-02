@@ -31,7 +31,6 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
       this.data.letter = this.data.selectFolder[letterId];
-      // event: letter was written
       this.mainPageView.render(this.data);
     });
 
@@ -117,6 +116,24 @@ class MainPageController {
         globalEventBus.emit(Events.mainPageView.sendedFolder);
       };
       globalEventBus.on(Events.letterModelEvents.addFolderSended.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.sendWrittenLetter, (id) => {
+      globalEventBus.emit(Events.mainPageController.sendWrittenLetter, id);
+      const h = (data) => {
+        globalEventBus.off(Events.letterModelEvents.sendWrittenLetter.success, h);
+        this.data.selectFolder = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.sendWrittenLetter.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.inFolder, (method, folder, type) => {
+      globalEventBus.emit(Events.mainPageController.inFolder, method, folder, type);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.inFolder.success, h);
+      };
+      globalEventBus.on(Events.letterModelEvents.inFolder.success, h);
     });
   }
 
