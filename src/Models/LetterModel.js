@@ -115,7 +115,7 @@ export default class LetterModel {
           this.recivedFolders = new Map();
           if (response.Folders) {
             response.Folders.forEach((folder) => {
-              this.recivedFolders[folder.Id] = folder;
+              this.recivedFolders[folder.Name] = folder;
             });
           }
 
@@ -141,7 +141,7 @@ export default class LetterModel {
           this.sendedFolders = new Map();
           if (response.Folders) {
             response.Folders.forEach((folder) => {
-              this.sendedFolders[folder.Id] = folder;
+              this.sendedFolders[folder.Name] = folder;
             });
           }
 

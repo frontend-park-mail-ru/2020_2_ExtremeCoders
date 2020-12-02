@@ -5327,3 +5327,7 @@ details[open] summary {
 {
     transition: 0.3s ease all;
 }
+
+.block {
+    display: block;
+}

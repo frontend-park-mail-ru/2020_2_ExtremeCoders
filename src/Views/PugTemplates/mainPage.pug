@@ -14,7 +14,7 @@ div(class="s-content site-page mainPage")
             div(id="recived")
                 if(locals.recivedFolder)
                     each folder in locals.recivedFolder
-                        a(id=folder.id) #{folder}
+                        a(class="block" id=folder.Name) #{folder.Name}
 
 
             div(class="horizontal")
@@ -31,7 +31,7 @@ div(class="s-content site-page mainPage")
             div(id="sended")
                 if(locals.sendedFolder)
                   each folder in locals.sendedFolder
-                      a(id=folder.id) #{folder}
+                      a(class="block" id=folder.Name) #{folder.Name}
 
         div(class="column large-4 tab-12 mob-12")
             div(class="bricks-wrapper h-group" name="letters")
