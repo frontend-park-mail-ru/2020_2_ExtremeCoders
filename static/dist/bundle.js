@@ -675,7 +675,7 @@ var Paths = {
   getSendedLetters: '/user/letter/sent',
   getRecivedFolder: '/user/folders/recived',
   getSendedFolder: '/user/folders/sended',
-  getSelectFolder: '/user/folders',
+  getSelectFolder: '/user/foders',
   addFolderRecived: '/user/folders/recived/folderName',
   addFolderSended: '/user/folders/sended/folderName',
   sendWrittenLetter: '/watch/letter',
@@ -1910,6 +1910,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
     value: function selectFolder(folder, type) {
       var _this4 = this;
 
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!33', Paths.getSelectFolder + '/' + type + '/' + folder);
       myFetch(Paths.getSelectFolder + '/' + type + '/' + folder, 'GET').then(function (response) {
         return response.json();
       }).then(function (response) {
@@ -3612,12 +3613,16 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
       var folderRecivedChoose = document.getElementById('recived');
       folderRecivedChoose.addEventListener('click', function (event) {
         if (event.target.tagName === 'A') {
+          // const folder = new FormData();
+          // folder.append('folderName', event.target.id);
           src_EventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.parentNode.id);
         }
       });
       var folderSendedChoose = document.getElementById('sended');
       folderSendedChoose.addEventListener('click', function (event) {
         if (event.target.tagName === 'A') {
+          // const folder = new FormData();
+          // folder.append('folderName', event.target.id);
           src_EventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.parentNode.id);
         }
       });
@@ -3775,6 +3780,7 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
       src_EventBus.on(Events.letterModelEvents.sendedFolder.success, h);
     });
     src_EventBus.on(Events.mainPageView.selectFolder, function (folder, type) {
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!2');
       src_EventBus.emit(Events.mainPageController.selectFolder, folder, type);
 
       var h = function h(data) {

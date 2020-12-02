@@ -166,7 +166,7 @@ const Paths = {
 
   getRecivedFolder: '/user/folders/recived',
   getSendedFolder: '/user/folders/sended',
-  getSelectFolder: '/user/folders',
+  getSelectFolder: '/user/foders',
   addFolderRecived: '/user/folders/recived/folderName',
   addFolderSended: '/user/folders/sended/folderName',
   sendWrittenLetter: '/watch/letter',

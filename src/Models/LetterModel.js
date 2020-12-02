@@ -159,7 +159,7 @@ export default class LetterModel {
       });
   }
 
-  selectFolder(folder, type){
+  selectFolder(folder, type) {
     myFetch(Paths.getSelectFolder + '/' + type + '/' + folder, 'GET')
       .then((response) => response.json())
       .then((response) => {
@@ -171,7 +171,7 @@ export default class LetterModel {
             });
           }
 
-          globalEventBus.emit(Events.letterModelEvents.selectFolder.success, this.selectFolder );
+          globalEventBus.emit(Events.letterModelEvents.selectFolder.success, this.selectFolder);
         } else {
           globalEventBus.emit(Events.letterModelEvents.selectFolder.fail, {
             error: response.Description,

@@ -50,6 +50,8 @@ export default class MainPageView {
     const folderRecivedChoose = document.getElementById('recived');
     folderRecivedChoose.addEventListener('click', (event) => {
       if (event.target.tagName === 'A') {
+        // const folder = new FormData();
+        // folder.append('folderName', event.target.id);
         globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.parentNode.id);
       }
     });
@@ -57,6 +59,8 @@ export default class MainPageView {
     const folderSendedChoose = document.getElementById('sended');
     folderSendedChoose.addEventListener('click', (event) => {
       if (event.target.tagName === 'A') {
+        // const folder = new FormData();
+        // folder.append('folderName', event.target.id);
         globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.parentNode.id);
       }
     });
@@ -113,7 +117,7 @@ export default class MainPageView {
       else
         type = 'sended';
 
-      const method = 'PUT'
+      const method = 'PUT';
 
       globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
     });
