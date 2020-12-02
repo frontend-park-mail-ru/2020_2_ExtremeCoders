@@ -1910,15 +1910,14 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
     value: function selectFolder(folder, type) {
       var _this4 = this;
 
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!33', Paths.getSelectFolder + '/' + type + '/' + folder);
       myFetch(Paths.getSelectFolder + '/' + type + '/' + folder, 'GET').then(function (response) {
         return response.json();
       }).then(function (response) {
         if (response.Code === 200) {
           _this4.selectFolder = new Map();
 
-          if (response.Letters) {
-            response.Letters.forEach(function (letter) {
+          if (response.Letter) {
+            response.Letter.forEach(function (letter) {
               _this4.selectFolder[letter.Id] = letter;
             });
           }
@@ -3780,12 +3779,12 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
       src_EventBus.on(Events.letterModelEvents.sendedFolder.success, h);
     });
     src_EventBus.on(Events.mainPageView.selectFolder, function (folder, type) {
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!2');
       src_EventBus.emit(Events.mainPageController.selectFolder, folder, type);
 
       var h = function h(data) {
         src_EventBus.off(Events.letterModelEvents.selectFolder.success, h);
         _this.data.selectFolder = data;
+        console.log('1111111111!!!!!1', _this.data.selectFolder);
 
         _this.mainPageView.render(_this.data);
       };

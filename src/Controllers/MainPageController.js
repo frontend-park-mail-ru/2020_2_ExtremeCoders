@@ -75,6 +75,7 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.selectFolder.success, h);
         this.data.selectFolder = data;
+        console.log('1111111111!!!!!1', this.data.selectFolder);
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.selectFolder.success, h);

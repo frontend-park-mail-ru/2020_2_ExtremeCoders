@@ -165,8 +165,8 @@ export default class LetterModel {
       .then((response) => {
         if (response.Code === 200) {
           this.selectFolder = new Map();
-          if (response.Letters) {
-            response.Letters.forEach((letter) => {
+          if (response.Letter) {
+            response.Letter.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
           }
