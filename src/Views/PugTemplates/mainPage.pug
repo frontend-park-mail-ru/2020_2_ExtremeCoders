@@ -10,7 +10,7 @@ div(class="s-content site-page mainPage")
 
 
             p(id="summary-recived" class="titles-category") Входящие
-            a(id="recivedUn") Без папки
+            a(id="recivedUn") Все
             div(id="recived")
                 if(locals.recivedFolder)
                     each folder in locals.recivedFolder
@@ -27,7 +27,7 @@ div(class="s-content site-page mainPage")
 
 
             p(id="summary-send" class="titles-category") Исходящие
-            a(id="sendedUn") Без папки
+            a(id="sendedUn") Все
             div(id="sended")
                 if(locals.sendedFolder)
                   each folder in locals.sendedFolder
