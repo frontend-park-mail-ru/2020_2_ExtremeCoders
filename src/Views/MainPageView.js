@@ -20,11 +20,23 @@ export default class MainPageView {
 
 
     const addFolderRecived = document.getElementById('add-folder-recived');
-    const buttonOfRecivedFolder = document.getElementsByName('button-of-recived-folder')[0];
+    const buttonOfRecivedFolder = document.getElementsByClassName('form-add-folder-up')[0];
+    const page = document.getElementsByClassName('main-page')[0];
     addFolderRecived.addEventListener('click', (event) => {
       event.preventDefault();
       addFolderRecived.classList.toggle('hide');
       buttonOfRecivedFolder.classList.toggle('hide');
+      page.classList.toggle('blur');
+    });
+
+    const removeFolderRecived = document.getElementById('remove-folder-recived');
+    const form = document.getElementsByClassName('form-add-folder-up')[0];
+    const pageBlock = document.getElementsByClassName('main-page')[0];
+    removeFolderRecived.addEventListener('click', (event) => {
+      event.preventDefault();
+      form.classList.toggle('hide');
+      pageBlock.classList.toggle('blur');
+      addFolderRecived.classList.toggle('hide');
     });
 
     const addFolderSend = document.getElementById('add-folder-send');
@@ -54,6 +66,14 @@ export default class MainPageView {
         // folder.append('folderName', event.target.id);
         globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.parentNode.id);
       }
+    });
+
+    folderRecivedChoose.addEventListener('dblclick', (event) => {
+      if (event.target.tagName === 'INPUT') {
+        const current = document.getElementById(event.target.id);
+        current.classList.toggle('disable');
+      }
+      console.log('!!!!!!!!!!!!!!!#323232');
     });
 
     const folderSendedChoose = document.getElementById('sended');
@@ -139,11 +159,9 @@ export default class MainPageView {
       else
         type = 'sended';
 
-      const method = 'DELETE'
+      const method = 'DELETE';
 
       globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
     });
-
-
   }
 }

@@ -1,17 +1,20 @@
-div(class="s-content site-page mainPage")
+div(class="main-page mainPage")
     div(class="row")
         div(class="column large-3 tab-12 mob-12")
 
-            a(id="add-folder-recived") Добавить папку
-            form(name="button-of-recived-folder" class="hide")
-                div(class="row")
-                    input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
-                    button(type="submit" class="btn btn--medium h-full-width") Добавить
+            div(id="add-folder-recived" class="block plus radius")
+            //form(name="button-of-recived-folder" class="hide")
+            //    div(class="row")
+            //        input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
+            //        button(type="submit" class="btn btn--medium h-full-width") Добавить
 
-
-            p(id="summary-recived" class="titles-category") Входящие
-            a(id="recivedUn") Все
+            if(locals.recivedFolderRecived)
+                div(id="summary-recived" class="triangle-down")
+            else
+                div(id="summary-recived" class="triangle-right")
+            a(id="recivedUn" class="titles-category") Входящие
             div(id="recived")
+                input(class="folder-names disable" value="Папка")
                 if(locals.recivedFolder)
                     each folder in locals.recivedFolder
                         a(class="block" id=folder.Name) #{folder.Name}
@@ -19,15 +22,18 @@ div(class="s-content site-page mainPage")
 
             div(class="horizontal")
 
-            a(id="add-folder-send") Добавить папку
+            //a(id="add-folder-send") Добавить папку
             form(name="button-of-sended-folder" class="hide")
                 div(class="row")
                     input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
                     button(type="submit" class="btn btn--medium h-full-width") Добавить
 
 
-            p(id="summary-send" class="titles-category") Исходящие
-            a(id="sendedUn") Все
+            if(locals.triangleRecived)
+                div(id="summary-send" class="triangle-down")
+            else
+                div(id="summary-send" class="triangle-right")
+            a(id="sendedUn" class="titles-category") Исходящие
             div(id="sended")
                 if(locals.sendedFolder)
                   each folder in locals.sendedFolder
@@ -73,3 +79,12 @@ div(class="s-content site-page mainPage")
                 p(class="lead") #{letter.Receiver}
                 p(class="lead") #{letter.Sender}
                 p(class="lead") #{letter.Text}
+
+
+//форма добавления
+div(class="form-add-folder-up hide")
+    div(id="remove-folder-recived" class="plus radius cross")
+    form(name="button-of-recived-folder")
+        div(class="row")
+            input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
+            button(type="submit" class="btn btn--medium h-full-width") Добавить

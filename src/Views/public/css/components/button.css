@@ -1,0 +1,25 @@
+.plus {
+    display:inline-block;
+    width:40px;
+    height:40px;
+
+    background:
+            linear-gradient(#fff,#fff),
+            linear-gradient(#fff,#fff),
+            #000;
+    background-position: center;
+    background-size: 50% 2px,2px 50%;
+    background-repeat: no-repeat;
+
+    margin-bottom: 10px;
+}
+
+.radius {
+    border-radius:50%;
+}
+
+.cross {
+    transform: rotate(-45deg);
+    margin-left: 20px;
+}
+

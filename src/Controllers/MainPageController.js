@@ -55,6 +55,7 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.recivedFolder.success, h);
         this.data.recivedFolder = data;
+        this.data.triangleRecived = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.recivedFolder.success, h);
@@ -65,6 +66,7 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.sendedFolder.success, h);
         this.data.sendedFolder = data;
+        this.data.recivedFolderSended = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.sendedFolder.success, h);

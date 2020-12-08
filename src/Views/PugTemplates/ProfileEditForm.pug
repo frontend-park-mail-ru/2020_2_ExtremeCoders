@@ -1,19 +1,19 @@
 - var avatarUrl = "background: url(" + locals.avatar + ") no-repeat center center; background-size: cover; height: 310px;"
 
-section(class="s-content site-page")
+section(class="s-content__primary site-page")
     div(class="row")
-        div(class="column large-12 intro")
-            h1 Профиль
+        div(class="column large-12 tab-12")
+            h2 Профиль
 
     form
         div(class="row")
-            div(class="column large-4 tab-12")
-                h3(class="h-add-bottom") Аватар
+            div(class="column large-6 tab-12")
+                h3 Аватар
                 div(style=avatarUrl)
                 div(class="form-field")
                     input(name="avatar" type="file" id="file" class="h-full-width" placeholder="Обновить аватар" accept="image/jpeg, image/png, image/jpg" value="" autocomplete="off")
 
-            div(class="column large-8 tab-12")
+            div(class="column large-6 tab-12")
                 h3 Имя
                 div(class="form-field")
                     input(name="profile_firstName" type="text" class="h-full-width" placeholder=locals.name autocomplete="off")

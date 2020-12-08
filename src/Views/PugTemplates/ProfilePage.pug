@@ -1,24 +1,26 @@
 - var avatarUrl = "background: url(" + locals.avatar + ") no-repeat center center; background-size: cover; height: 310px;"
 
-section(class="s-content site-page")
+section(class="s-content__primary site-page")
     div(class="row")
-        div(class="column large-12 intro")
-            h1 Профиль
+        div(class="column large-12 tab-12")
+            h2 Профиль
 
     div(class="row")
-        div(class="column large-4 tab-12")
-            h3(class="h-add-bottom") Аватар
+        div(class="column large-6 tab-12")
+            h3 Аватар
             div(style=avatarUrl)
-            div(class="form-field")
-                input(class="h-full-width" type="text" disabled)
+            div(class="empty-space")
 
-        div(class="column large-8 tab-12")
+        div(class="column large-6 tab-12")
             h3 Имя
-            p #{locals.name}
+            div(class="form-field")
+                p #{locals.name}
             h3 Фамилия
-            p #{locals.surname}
+            div(class="form-field")
+                p #{locals.surname}
             h3 Email
-            p #{locals.email}
+            div(class="form-field")
+                p #{locals.email}
 
     div(class="row")
         div(class="column large-6")
