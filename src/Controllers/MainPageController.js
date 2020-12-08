@@ -31,6 +31,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
       this.data.letter = this.data.selectFolder[letterId];
+      this.data.buttonPlus = true;
       this.mainPageView.render(this.data);
     });
 
@@ -55,7 +56,7 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.recivedFolder.success, h);
         this.data.recivedFolder = data;
-        this.data.triangleRecived = true;
+        this.data.recivedFolderRecived = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.recivedFolder.success, h);
@@ -66,7 +67,6 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.sendedFolder.success, h);
         this.data.sendedFolder = data;
-        this.data.recivedFolderSended = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.sendedFolder.success, h);
@@ -77,7 +77,6 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.selectFolder.success, h);
         this.data.selectFolder = data;
-        console.log('1111111111!!!!!1', this.data.selectFolder);
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.selectFolder.success, h);

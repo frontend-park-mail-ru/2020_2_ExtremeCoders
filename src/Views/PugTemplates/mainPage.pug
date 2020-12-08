@@ -1,12 +1,8 @@
 div(class="main-page mainPage")
-    div(class="row")
+    div(class="row" style="margin-left: 0; margin-right: 0;")
         div(class="column large-3 tab-12 mob-12")
 
             div(id="add-folder-recived" class="block plus radius")
-            //form(name="button-of-recived-folder" class="hide")
-            //    div(class="row")
-            //        input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
-            //        button(type="submit" class="btn btn--medium h-full-width") Добавить
 
             if(locals.recivedFolderRecived)
                 div(id="summary-recived" class="triangle-down")
@@ -14,30 +10,16 @@ div(class="main-page mainPage")
                 div(id="summary-recived" class="triangle-right")
             a(id="recivedUn" class="titles-category") Входящие
             div(id="recived")
-                input(class="folder-names disable" value="Папка")
                 if(locals.recivedFolder)
                     each folder in locals.recivedFolder
-                        a(class="block" id=folder.Name) #{folder.Name}
-
+                        //a(class="block" id=folder.Name) #{folder.Name}
+                        div
+                            input(class="block folder-names" readonly value=folder.Name id=folder.Name)
+                            div(class="small-plus radius cross")
 
             div(class="horizontal")
 
-            //a(id="add-folder-send") Добавить папку
-            form(name="button-of-sended-folder" class="hide")
-                div(class="row")
-                    input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
-                    button(type="submit" class="btn btn--medium h-full-width") Добавить
-
-
-            if(locals.triangleRecived)
-                div(id="summary-send" class="triangle-down")
-            else
-                div(id="summary-send" class="triangle-right")
-            a(id="sendedUn" class="titles-category") Исходящие
-            div(id="sended")
-                if(locals.sendedFolder)
-                  each folder in locals.sendedFolder
-                      a(class="block" id=folder.Name) #{folder.Name}
+            a(id="sendedUn" class="block titles-category") Исходящие
 
         div(class="column large-4 tab-12 mob-12")
             div(class="bricks-wrapper h-group" name="letters")
@@ -46,45 +28,62 @@ div(class="main-page mainPage")
                     article(id=letter.Id class="brick entry format-standard")
                         div(id=letter.Id class="entry__text")
                             div(id=letter.Id class="entry__header")
-                                h1(id=letter.Id class="entry__title") #{letter.Theme}
+                                h1(id=letter.Id class="entry__title max-ch") #{letter.Theme}
 
                             if(!letter.IsWatched)
                                 div(id=letter.Id class="h-full-width not-watched")
                             div(id=letter.Id class="entry__excerpt")
-                                p(id=letter.Id) Получатель: #{letter.Receiver}
+                                p(id=letter.Id class="max-ch") Получатель: #{letter.Receiver}
                             div(id=letter.Id class="entry__excerpt")
-                                p(id=letter.Id) Отправитель: #{letter.Sender}
+                                p(id=letter.Id class="max-ch") Отправитель: #{letter.Sender}
                             div(id=letter.Id class="entry__excerpt")
-                                p(id=letter.Id) #{letter.Text}
+                                p(id=letter.Id class="max-ch") #{letter.Text}
 
 
         div(class="column large-5 tab-12 mob-12")
-            if(letter.Id !== undefined)
-                form(id="choose-folder")
-                    div(class="row")
-                        div(class="column large-6 tab-12 mob-12")
-                            input(name="inFolderName" type="text" class="h-full-width" placeholder="Название папки" autocomplete="off" required)
-                        div(class="column large-6 tab-12 mob-12")
-                            div(class="button r" id="button-1")
-                                input(type="checkbox" class="checkbox" id="toogle")
-                                div(class="knobs")
-                                div(class="layer")
-                    div(class="row")
-                        button(type="submit" class="btn h-full-width") Добавить
+            if(locals.buttonPlus)
+                div(id="button-form-add-letter-folder" class="small-plus radius")
+            //form(id="choose-folder")
+            //    div(class="row")
+            //        div(class="column large-6 tab-12 mob-12")
+            //            input(name="inFolderName" type="text" class="h-full-width" placeholder="Название папки" autocomplete="off" required)
+            //        div(class="column large-6 tab-12 mob-12")
+            //            //div(class="button r" id="button-1")
+            //            //    input(type="checkbox" class="checkbox" id="toogle")
+            //            //    div(class="knobs")
+            //            //    div(class="layer")
+            //    div(class="row")
+            //        button(type="submit" class="btn h-full-width") Добавить
+            //
+            //div(class="row")
+            //        button(id="delete-folder" class="btn h-full-width") Удалить
 
-                div(class="row")
-                        button(id="delete-folder" class="btn h-full-width") Удалить
-
-                h3(id=letter.Id name="title-of-current") #{letter.Theme}
-                p(class="lead") #{letter.Receiver}
-                p(class="lead") #{letter.Sender}
-                p(class="lead") #{letter.Text}
+            h3(id=letter.Id name="title-of-current") #{letter.Theme}
+            p(class="lead") #{letter.Receiver}
+            p(class="lead") #{letter.Sender}
+            p(class="lead") #{letter.Text}
 
 
 //форма добавления
 div(class="form-add-folder-up hide")
-    div(id="remove-folder-recived" class="plus radius cross")
+    div(id="remove-folder-recived" class="plus radius cross cross-modal")
     form(name="button-of-recived-folder")
         div(class="row")
             input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
             button(type="submit" class="btn btn--medium h-full-width") Добавить
+
+//форма добавления в папку
+div(class="hide form-add-folder-up")
+    form(id="choose-folder")
+        div(class="row")
+            input(name="inFolderName" type="text" class="h-full-width" placeholder="Название папки" autocomplete="off" required)
+            //div(class="column large-6 tab-12 mob-12")
+                //div(class="button r" id="button-1")
+                //    input(type="checkbox" class="checkbox" id="toogle")
+                //    div(class="knobs")
+                //    div(class="layer")
+        div(class="row")
+            button(type="submit" class="btn h-full-width") Добавить
+
+    div(class="row")
+        button(id="delete-folder" class="btn h-full-width") Удалить

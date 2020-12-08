@@ -14,12 +14,30 @@
     margin-bottom: 10px;
 }
 
+.small-plus {
+    display:inline-block;
+    width:20px;
+    height:20px;
+
+    background:
+            linear-gradient(#fff,#fff),
+            linear-gradient(#fff,#fff),
+            #000;
+    background-position: center;
+    background-size: 50% 2px,2px 50%;
+    background-repeat: no-repeat;
+
+    margin-left: 5px;
+    margin-bottom: -5px;
+}
+
 .radius {
     border-radius:50%;
 }
 
 .cross {
     transform: rotate(-45deg);
+}
+.cross-modal {
     margin-left: 20px;
 }
-

@@ -4725,10 +4725,30 @@ form {
 }
 
 .folder-names {
-    border-radius: 5px;
+    display: inline-block;
     background: none;
+    width: 70%;
+    border: var(--color-body) solid;
+    border-radius: 5px;
+
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
-.disable {
-    pointer-events: none;
+.folder-names:hover {
+    color: var(--color-2);
+    cursor: pointer;
+    background: var(--color-info);
+    border: var(--color-info) solid;
+    border-radius: 5px;
+}
+
+.folder-names-focus {
+    border-radius: 5px;
+}
+
+.max-ch {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
