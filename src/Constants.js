@@ -34,6 +34,8 @@ const Events = {
     addFolderSended: 'mainPageView-addFolderSended',
     sendWrittenLetter: 'mainPageView-sendWrittenLetter',
     inFolder: 'mainPageView-inFolder',
+
+    renameFolder: 'mainPageView-renameFolder',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -51,6 +53,8 @@ const Events = {
     addFolderSended: 'mainPageController-addFolderSended',
     sendWrittenLetter: 'mainPageController-sendWrittenLetter',
     inFolder: 'mainPageController-inFolder',
+
+    renameFolder: 'mainPageController-renameFolder',
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter',
@@ -77,7 +81,6 @@ const Events = {
       fail: 'letterModelEvents-sendLetter-fail',
     },
 
-    //
     recivedFolder: {
       success: 'letterModelEvents-recivedFolder-success',
       fail: 'letterModelEvents-recivedFolder-fail',
@@ -120,6 +123,11 @@ const Events = {
     inFolder: {
       success: 'letterModelEvents-inFolder-success',
       fail: 'letterModelEvents-inFolder-fail',
+    },
+
+    renameFolder: {
+      success: 'letterModelEvents-renameFolder-success',
+      fail: 'letterModelEvents-renameFolder-fail',
     },
   },
 
@@ -170,8 +178,9 @@ const Paths = {
   addFolderRecived: '/user/folders/recived/folderName',
   addFolderSended: '/user/folders/sended/folderName',
   sendWrittenLetter: '/watch/letter',
-
   inFolder: '/user/folders/',
+
+  renameFolder: '/user/folders/recived/folderName',
 };
 
 // логин post /session

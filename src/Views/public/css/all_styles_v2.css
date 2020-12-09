@@ -605,7 +605,7 @@ textarea {
  * ------------------------------------- */
 .row {
     width: 92%;
-    max-width: var(--width-grid-max);
+    /*max-width: var(--width-grid-max);*/
     margin: 0 auto;
     display: -ms-flexbox;
     display: -webkit-box;
@@ -4751,4 +4751,16 @@ form {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.main-columns {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.main-container {
+    overflow: hidden;
+    height: calc(100vh - 105px);
+    position: relative;
 }

@@ -41,8 +41,14 @@ export default class MainPageView {
 
     const addFolderForm = document?.getElementById('button-form-add-letter-folder');
     const buttonFolder = document.getElementsByClassName('form-add-folder-up')[1];
-    // const pageForm = document.getElementsByClassName('main-page')[0];
     addFolderForm?.addEventListener('click', (event) => {
+      event.preventDefault();
+      buttonFolder.classList.toggle('hide');
+      page.classList.toggle('blur');
+    });
+
+    const removeFolderForm = document.getElementById('remove-form-add-folder-up');
+    removeFolderForm.addEventListener('click', (event) => {
       event.preventDefault();
       buttonFolder.classList.toggle('hide');
       page.classList.toggle('blur');
@@ -62,29 +68,35 @@ export default class MainPageView {
       globalEventBus.emit(Events.mainPageView.recivedFolder);
     });
 
-    const folderRecivedChoose = document.getElementById('recived');
-    folderRecivedChoose.addEventListener('click', (event) => {
-      if (event.target.tagName === 'A') {
-        // const folder = new FormData();
-        // folder.append('folderName', event.target.id);
-        globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, event.target.parentNode.id);
-      }
-    });
-
-    folderRecivedChoose.addEventListener('dblclick', (event) => {
+    const folderRecivedChoose = document?.getElementById('recived');
+    folderRecivedChoose?.addEventListener('click', (event) => {
       if (event.target.tagName === 'INPUT') {
         const current = document.getElementById(event.target.id);
         current.removeAttribute('readonly');
         current.classList.toggle('folder-names-focus');
 
         current.addEventListener('change', (event) => {
+          const newName = new FormData();
+          newName.append('oldName', current.id);
+          newName.append('newName', current.value.trim());
           current.setAttribute('readonly', 'readonly');
+          globalEventBus.emit(Events.mainPageView.renameFolder, newName);
         });
       }
     });
+    folderRecivedChoose?.addEventListener('dblclick', (event) => {
+      if (event.target.tagName === 'INPUT') {
+        globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived');
+      }
+    });
+
+
 
     const letters = document.getElementsByName('letters')[0];
     letters.addEventListener('click', (event) => {
+      if (event.target.getAttribute('name') === 'letters') {
+        return;
+      }
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
       const id = new FormData();
       id.append('id', event.target.id);
@@ -115,51 +127,39 @@ export default class MainPageView {
     //   globalEventBus.emit(Events.mainPageView.addFolderSended, new FormData(addFolderButtonSended));
     // });
 
-    // const chooseFolder = document.getElementById('choose-folder');
-    // chooseFolder.addEventListener('submit', (event) => {
-    //   event.preventDefault();
+    const chooseFolder = document.getElementById('choose-folder');
+    chooseFolder.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const folderName = document.getElementsByName('inFolderName')[0];
+      const currentName = document.getElementsByName('title-of-current')[0];
+
+      const folder = folderName.value.trim();
+      const current = currentName.id;
+      const chooseFolderData = new FormData();
+      chooseFolderData.append('letterId', current);
+      chooseFolderData.append('folderName', folder);
+
+      const type = 'recived';
+      const method = 'PUT';
+
+      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
+    });
     //
-    //   const folderName = document.getElementsByName('inFolderName')[0];
-    //   const currentName = document.getElementsByName('title-of-current')[0];
-    //   const currentNameToogle = document.getElementById('toogle');
-    //
-    //   const folder = folderName.value.trim();
-    //   const current = currentName.id;
-    //   const chooseFolderData = new FormData();
-    //   chooseFolderData.append('letterId', current);
-    //   chooseFolderData.append('folderName', folder);
-    //
-    //   let type = '';
-    //   if (currentNameToogle.checked)
-    //     type = 'recived';
-    //   else
-    //     type = 'sended';
-    //
-    //   const method = 'PUT';
-    //
-    //   globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
-    // });
-    //
-    // const deleteFolder = document.getElementById('delete-folder');
-    // deleteFolder.addEventListener('click', (event) => {
-    //   event.preventDefault();
-    //
-    //   const currentName = document.getElementsByName('title-of-current')[0];
-    //   const currentNameToogle = document.getElementById('toogle');
-    //
-    //   const current = currentName.id;
-    //   const chooseFolderData = new FormData();
-    //   chooseFolderData.append('letterId', current);
-    //
-    //   let type = '';
-    //   if (currentNameToogle.checked)
-    //     type = 'recived';
-    //   else
-    //     type = 'sended';
-    //
-    //   const method = 'DELETE';
-    //
-    //   globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
-    // });
+    const deleteFolder = document?.getElementById('delete-folder');
+    deleteFolder?.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const currentName = document.getElementsByName('title-of-current')[0];
+
+      const current = currentName.id;
+      const chooseFolderData = new FormData();
+      chooseFolderData.append('letterId', current);
+
+      const type = 'recived';
+      const method = 'DELETE';
+
+      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
+    });
   }
 }

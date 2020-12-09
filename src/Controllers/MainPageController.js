@@ -20,7 +20,7 @@ class MainPageController {
     globalEventBus.on(Events.mainPageView.needData, () => {
       this.data.letter = {};
       const h1 = (data) => {
-        this.data.letterList = data;
+        this.data.selectFolder = data;
         this.mainPageView.render(this.data);
         globalEventBus.off(Events.letterModelEvents.getLetterList.success, h1);
       };
@@ -39,17 +39,17 @@ class MainPageController {
       globalEventBus.emit(Events.global.redirect, { path: Paths.mainPage });
     });
 
-    globalEventBus.on(Events.mainPageView.selectFolder, (folder) => {
-      console.log('SELECT LETTER ', folder, this.data.letterList);
-      globalEventBus.emit(Events.mainPageController.needGetLetterList, folder);
-      const h = (data) => {
-        console.log('SELECTED LETTER');
-        globalEventBus.off(Events.letterModelEvents.getLetterList.success, h);
-        this.data.letterList = data;
-        this.mainPageView.render(this.data);
-      };
-      globalEventBus.on(Events.letterModelEvents.getLetterList.success, h);
-    });
+    // globalEventBus.on(Events.mainPageView.selectFolder, (folder) => {
+    //   console.log('SELECT LETTER ', folder, this.data.letterList);
+    //   globalEventBus.emit(Events.mainPageController.needGetLetterList, folder);
+    //   const h = (data) => {
+    //     console.log('SELECTED LETTER');
+    //     globalEventBus.off(Events.letterModelEvents.getLetterList.success, h);
+    //     this.data.letterList = data;
+    //     this.mainPageView.render(this.data);
+    //   };
+    //   globalEventBus.on(Events.letterModelEvents.getLetterList.success, h);
+    // });
 
     globalEventBus.on(Events.mainPageView.recivedFolder, () => {
       globalEventBus.emit(Events.mainPageController.recivedFolder);
@@ -79,7 +79,13 @@ class MainPageController {
         this.data.selectFolder = data;
         this.mainPageView.render(this.data);
       };
+      const h2 = () => {
+        globalEventBus.off(Events.letterModelEvents.selectFolder.fail, h2);
+        this.data.selectFolder = new Map();
+        this.mainPageView.render(this.data);
+      };
       globalEventBus.on(Events.letterModelEvents.selectFolder.success, h);
+      globalEventBus.on(Events.letterModelEvents.selectFolder.fail, h2);
     });
 
     globalEventBus.on(Events.mainPageView.recivedUn, () => {
@@ -136,6 +142,15 @@ class MainPageController {
         globalEventBus.off(Events.letterModelEvents.inFolder.success, h);
       };
       globalEventBus.on(Events.letterModelEvents.inFolder.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.renameFolder, (newName) => {
+      globalEventBus.emit(Events.mainPageController.renameFolder, newName);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.renameFolder.success, h);
+        globalEventBus.emit(Events.mainPageView.needData);
+      };
+      globalEventBus.on(Events.letterModelEvents.renameFolder.success, h);
     });
   }
 

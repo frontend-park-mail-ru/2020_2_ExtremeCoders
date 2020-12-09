@@ -22,14 +22,14 @@ export default class LetterModel {
     globalEventBus.on(Events.mainPageController.selectFolder, this.selectFolder.bind(this));
     globalEventBus.on(Events.mainPageController.recivedUn, this.recivedUn.bind(this));
     globalEventBus.on(Events.mainPageController.sendedUn, this.sendedUn.bind(this));
-
     globalEventBus.on(Events.mainPageController.addFolderRecived, this.addFolderRecived.bind(this));
     globalEventBus.on(Events.mainPageController.addFolderSended, this.addFolderSended.bind(this));
-
     globalEventBus.on(Events.mainPageController.sendWrittenLetter,
       this.sendWrittenLetter.bind(this));
-
     globalEventBus.on(Events.mainPageController.inFolder, this.inFolder.bind(this));
+
+    globalEventBus.on(Events.mainPageController.renameFolder, this.renameFolder.bind(this));
+
   }
 
   getLetter(letterId) {
@@ -84,6 +84,7 @@ export default class LetterModel {
           console.log('SUCCES GET LETTER LETTER LIST');
           this.Letters = new Map();
           if (response.Letters) {
+            response.Letters.reverse();
             response.Letters.forEach((letter) => {
               this.Letters[letter.Id] = letter;
             });
@@ -166,6 +167,7 @@ export default class LetterModel {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letter) {
+            response.Letters = response.Letters.reverse();
             response.Letter.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
@@ -192,6 +194,7 @@ export default class LetterModel {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letters) {
+            response.Letters = response.Letters.reverse();
             response.Letters.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
@@ -218,6 +221,9 @@ export default class LetterModel {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letters) {
+            console.log('!!!!@@@@@####', response.Letters);
+            const letters = response.Letters.reverse();
+            console.log('222@@@@@####', letters);
             response.Letters.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
@@ -297,6 +303,23 @@ export default class LetterModel {
           globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.success);
         } else {
           globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('CAAAAAAAAAAAAAAAATCH', error);
+      });
+  }
+
+  renameFolder(newName) {
+    myFetch(Paths.renameFolder, 'PUT', newName)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          globalEventBus.emit(Events.letterModelEvents.renameFolder.success);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.renameFolder.fail, {
             error: response.Description,
           });
         }
