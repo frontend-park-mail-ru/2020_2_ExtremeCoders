@@ -167,12 +167,11 @@ export default class LetterModel {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letter) {
-            response.Letters = response.Letters.reverse();
+            response.Letter = response.Letter.reverse();
             response.Letter.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
           }
-
           globalEventBus.emit(Events.letterModelEvents.selectFolder.success, this.selectFolder);
         } else {
           globalEventBus.emit(Events.letterModelEvents.selectFolder.fail, {
@@ -181,6 +180,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
+        console.log('7654321 + !!!!!!!!!!!!!!!!! + 999999999999');
         globalEventBus.emit(Events.letterModelEvents.selectFolder.fail, {
           error,
         });
@@ -221,9 +221,7 @@ export default class LetterModel {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letters) {
-            console.log('!!!!@@@@@####', response.Letters);
             const letters = response.Letters.reverse();
-            console.log('222@@@@@####', letters);
             response.Letters.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });

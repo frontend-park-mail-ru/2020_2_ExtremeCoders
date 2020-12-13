@@ -2968,7 +2968,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
  * ## masonry entries
  * ------------------------------------------------------------------- */
 .bricks-wrapper .entry {
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 }
 
 .bricks-wrapper .entry__thumb,
@@ -3048,7 +3048,10 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .bricks-wrapper .entry__text {
-    padding: 2.4rem 2.8rem 3.6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
     background-color: white;
 }
 
@@ -3434,7 +3437,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
  * ------------------------------------------------------------------- */
 @media screen and (max-width: 1400px) {
     .bricks-wrapper .entry {
-        margin-bottom: 3.6rem;
+        margin-bottom: 1rem;
     }
 }
 
@@ -3458,13 +3461,13 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 @media screen and (max-width: 800px) {
     .bricks-wrapper .entry {
-        margin-bottom: 3.2rem;
+        margin-bottom: 1rem;
     }
 }
 
 @media screen and (max-width: 700px) {
     .bricks-wrapper .entry {
-        margin-bottom: 2.4rem;
+        margin-bottom: 1rem;
     }
     .bricks-wrapper .entry__title,
     .format-quote blockquote p,
@@ -3476,7 +3479,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 @media screen and (max-width: 600px) {
     .bricks-wrapper .entry {
-        margin-bottom: 4rem;
+        margin-bottom: 1rem;
     }
     .bricks-wrapper .entry__title,
     .format-quote blockquote p,
@@ -3509,7 +3512,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 @media screen and (max-width: 400px) {
     .bricks-wrapper .entry {
-        margin-bottom: 3.6rem;
+        margin-bottom: 1rem;
     }
     .f-slide {
         height: 440px;
@@ -4727,7 +4730,7 @@ form {
 .folder-names {
     display: inline-block;
     background: none;
-    width: 70%;
+    width: 65%;
     border: var(--color-body) solid;
     border-radius: 5px;
 
@@ -4763,4 +4766,36 @@ form {
     overflow: hidden;
     height: calc(100vh - 105px);
     position: relative;
+    width: 100%;
+}
+
+.letter-board {
+    position: fixed;
+    background: var(--color-body);
+    width: 47.5%;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.letter-board-last-element {
+    margin-right: 20px;
+}
+
+.icon-group {
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.letter-container {
+    margin-top: 30px;
 }

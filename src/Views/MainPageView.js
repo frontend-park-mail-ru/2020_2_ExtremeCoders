@@ -54,14 +54,6 @@ export default class MainPageView {
       page.classList.toggle('blur');
     });
 
-    // const addFolderSend = document.getElementById('add-folder-send');
-    // const buttonOfSendFolder = document.getElementsByName('button-of-sended-folder')[0];
-    // addFolderSend.addEventListener('click', (event) => {
-    //   event.preventDefault();
-    //   addFolderSend.classList.toggle('hide');
-    //   buttonOfSendFolder.classList.toggle('hide');
-    // });
-
     const summaryRecived = document.getElementById('summary-recived');
     summaryRecived.addEventListener('click', (event) => {
       event.preventDefault();
@@ -69,13 +61,15 @@ export default class MainPageView {
     });
 
     const folderRecivedChoose = document?.getElementById('recived');
-    folderRecivedChoose?.addEventListener('click', (event) => {
-      if (event.target.tagName === 'INPUT') {
-        const current = document.getElementById(event.target.id);
+
+    const folderChooseName = document?.getElementById('icon-group');
+    folderChooseName?.addEventListener('click', (event) => {
+      if (event.target.getAttribute('name') === 'edit-folder') {
+        const current = folderRecivedChoose.querySelector('input#' + event.target.id);
         current.removeAttribute('readonly');
         current.classList.toggle('folder-names-focus');
 
-        current.addEventListener('change', (event) => {
+        current.addEventListener('change', () => {
           const newName = new FormData();
           newName.append('oldName', current.id);
           newName.append('newName', current.value.trim());
@@ -84,13 +78,11 @@ export default class MainPageView {
         });
       }
     });
-    folderRecivedChoose?.addEventListener('dblclick', (event) => {
+    folderRecivedChoose?.addEventListener('click', (event) => {
       if (event.target.tagName === 'INPUT') {
         globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived');
       }
     });
-
-
 
     const letters = document.getElementsByName('letters')[0];
     letters.addEventListener('click', (event) => {
@@ -121,12 +113,6 @@ export default class MainPageView {
       globalEventBus.emit(Events.mainPageView.addFolderRecived, new FormData(addFolderButton));
     });
 
-    // const addFolderButtonSended = document.getElementsByName('button-of-sended-folder')[0];
-    // addFolderButtonSended.addEventListener('submit', (event) => {
-    //   event.preventDefault();
-    //   globalEventBus.emit(Events.mainPageView.addFolderSended, new FormData(addFolderButtonSended));
-    // });
-
     const chooseFolder = document.getElementById('choose-folder');
     chooseFolder.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -145,7 +131,7 @@ export default class MainPageView {
 
       globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
     });
-    //
+
     const deleteFolder = document?.getElementById('delete-folder');
     deleteFolder?.addEventListener('click', (event) => {
       event.preventDefault();

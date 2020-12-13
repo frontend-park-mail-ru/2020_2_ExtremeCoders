@@ -1,3 +1,4 @@
+import './Views/public/css/components/scroll.css';
 import './Views/public/css/components/button.css';
 import './Views/public/css/components/triangle.css';
 import './Views/public/css/components/header.css';

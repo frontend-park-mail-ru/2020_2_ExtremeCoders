@@ -1,7 +1,7 @@
 .plus {
-    display:inline-block;
-    width:40px;
-    height:40px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
 
     background:
             linear-gradient(#fff,#fff),
@@ -15,9 +15,9 @@
 }
 
 .small-plus {
-    display:inline-block;
-    width:20px;
-    height:20px;
+    /*display: inline-block;*/
+    width: 20px;
+    height: 20px;
 
     background:
             linear-gradient(#fff,#fff),
@@ -28,7 +28,6 @@
     background-repeat: no-repeat;
 
     margin-left: 5px;
-    margin-bottom: -5px;
 }
 
 .radius {
@@ -40,4 +39,14 @@
 }
 .cross-modal {
     margin-left: 20px;
+}
+
+.edit-button {
+    width: 20px;
+    height: 20px;
+    background: #000;
+    /*margin-left: 5px;*/
+
+    padding-left: 4px;
+    padding-top: 5px;
 }

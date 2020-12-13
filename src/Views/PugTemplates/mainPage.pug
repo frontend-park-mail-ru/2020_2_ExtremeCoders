@@ -1,29 +1,38 @@
 div(class="main-page mainPage")
     div(class="row" style="margin-left: 0; margin-right: 0; width: 100vw;")
-        div(class="column large-3 tab-12 mob-12 main-container")
+        div(class="column large-2 tab-12 mob-12 main-container")
+            div(class="main-columns project_scroll")
+                div(id="add-folder-recived" class="block plus radius")
 
-            div(id="add-folder-recived" class="block plus radius")
+                if(locals.recivedFolderRecived)
+                    div(id="summary-recived" class="triangle-down")
+                else
+                    div(id="summary-recived" class="triangle-right")
+                a(id="recivedUn" class="titles-category") Входящие
 
-            if(locals.recivedFolderRecived)
-                div(id="summary-recived" class="triangle-down")
-            else
-                div(id="summary-recived" class="triangle-right")
-            a(id="recivedUn" class="titles-category") Входящие
+                if(locals.recivedFolderRecived)
+                    div(id="recived")
+                        if(locals.recivedFolder)
+                            each folder in locals.recivedFolder
+                                div(class="input-group")
+                                    div
+                                        input(class="folder-names" readonly value=folder.Name id=folder.Name)
+                                    div(class="icon-group" id="icon-group")
+                                        div(class="edit-button radius" id=folder.Name name="edit-folder")
+                                            svg(id=folder.Name name="edit-folder" class="block" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 171 171" style=" fill:#000000;")
+                                                g(id=folder.Name name="edit-folder" fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal")
+                                                    path(id=folder.Name name="edit-folder" d="M0,171.99852v-171.99852h171.99852v171.99852z" fill="none")
+                                                    g(id=folder.Name name="edit-folder" fill="#ffffff")
+                                                        path(id=folder.Name name="edit-folder" d="M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z")
 
-            if(locals.recivedFolderRecived)
-                div(id="recived")
-                    if(locals.recivedFolder)
-                        each folder in locals.recivedFolder
-                            div
-                                input(class="block folder-names" readonly value=folder.Name id=folder.Name)
-                                div(class="small-plus radius cross")
+                                        div(class="small-plus radius cross" id=folder.Name name="delete-folder")
 
-            div(class="horizontal")
+                div(class="horizontal")
 
-            a(id="sendedUn" class="block titles-category") Исходящие
+                a(id="sendedUn" class="block titles-category") Исходящие
 
         div(class="column large-4 tab-12 mob-12 main-container")
-            div(class="bricks-wrapper h-group main-columns" name="letters")
+            div(class="bricks-wrapper h-group main-columns project_scroll" name="letters")
                 if(locals.selectFolder)
                   each letter in locals.selectFolder
                     article(id=letter.Id class="brick entry format-standard")
@@ -41,16 +50,18 @@ div(class="main-page mainPage")
                                 p(id=letter.Id class="max-ch") #{letter.Text}
 
 
-        div(class="column large-5 tab-12 mob-12 main-container")
-            div(class="main-columns")
+        div(class="column large-6 tab-12 mob-12 main-container")
+            div(class="main-columns project_scroll")
                 if(locals.buttonPlus && letter.Id !== undefined)
-                    div(id="button-form-add-letter-folder" class="small-plus radius")
-                    div(id="delete-folder" class="small-plus radius cross")
+                    div(class="letter-board")
+                        div(id="button-form-add-letter-folder" class="small-plus radius")
+                        div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
 
-                h3(id=letter.Id name="title-of-current") #{letter.Theme}
-                p(class="lead") #{letter.Receiver}
-                p(class="lead") #{letter.Sender}
-                p(class="lead") #{letter.Text}
+                div(class="letter-container")
+                    h3(id=letter.Id name="title-of-current") #{letter.Theme}
+                    p(class="lead") #{letter.Receiver}
+                    p(class="lead") #{letter.Sender}
+                    p(class="lead") #{letter.Text}
 
 
 //форма добавления
@@ -59,7 +70,7 @@ div(class="form-add-folder-up hide")
     form(name="button-of-recived-folder")
         div(class="row")
             input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
-            button(type="submit" class="btn btn--medium h-full-width") Добавить
+            button(type="submit" class="btn btn--medium btn--primary h-full-width") Добавить
 
 //форма добавления в папку
 div(class="hide form-add-folder-up")
