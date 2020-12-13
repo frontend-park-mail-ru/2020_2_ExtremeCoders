@@ -148,9 +148,10 @@ class MainPageController {
       globalEventBus.emit(Events.mainPageController.renameFolder, newName);
       const h = () => {
         globalEventBus.off(Events.letterModelEvents.renameFolder.success, h);
-        globalEventBus.emit(Events.mainPageView.needData);
+        globalEventBus.emit(Events.mainPageView.recivedFolder);
       };
       globalEventBus.on(Events.letterModelEvents.renameFolder.success, h);
+      globalEventBus.on(Events.letterModelEvents.renameFolder.fail, h);
     });
   }
 

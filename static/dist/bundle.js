@@ -3809,7 +3809,7 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
   MainPageView_createClass(MainPageView, [{
     key: "render",
     value: function render(data) {
-      var _document, _document2, _document3, _document4;
+      var _document, _document2, _document3;
 
       console.log('RENDER MAIN PAGE DATA, dat', data);
 
@@ -3858,10 +3858,11 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
         src_EventBus.emit(Events.mainPageView.recivedFolder);
       });
       var folderRecivedChoose = (_document2 = document) === null || _document2 === void 0 ? void 0 : _document2.getElementById('recived');
-      var folderChooseName = (_document3 = document) === null || _document3 === void 0 ? void 0 : _document3.getElementById('icon-group');
-      folderChooseName === null || folderChooseName === void 0 ? void 0 : folderChooseName.addEventListener('click', function (event) {
+      folderRecivedChoose === null || folderRecivedChoose === void 0 ? void 0 : folderRecivedChoose.addEventListener('click', function (event) {
+        var current = folderRecivedChoose.querySelector("input#".concat(event.target.id));
+
         if (event.target.getAttribute('name') === 'edit-folder') {
-          var current = folderRecivedChoose.querySelector('input#' + event.target.id);
+          // const current = folderRecivedChoose.querySelector(`input#${event.target.id}`);
           current.removeAttribute('readonly');
           current.classList.toggle('folder-names-focus');
           current.addEventListener('change', function () {
@@ -3870,14 +3871,19 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
             newName.append('newName', current.value.trim());
             current.setAttribute('readonly', 'readonly');
             src_EventBus.emit(Events.mainPageView.renameFolder, newName);
+            src_EventBus.emit(Events.mainPageView.recivedFolder);
           });
         }
-      });
-      folderRecivedChoose === null || folderRecivedChoose === void 0 ? void 0 : folderRecivedChoose.addEventListener('click', function (event) {
-        if (event.target.tagName === 'INPUT') {
+
+        if (event.target.tagName === 'INPUT' && current.hasAttribute('readonly')) {
           src_EventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived');
         }
-      });
+      }); // folderRecivedChoose?.addEventListener('dblclick', (event) => {
+      //   if (event.target.tagName === 'INPUT') {
+      //     globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived');
+      //   }
+      // });
+
       var letters = document.getElementsByName('letters')[0];
       letters.addEventListener('click', function (event) {
         if (event.target.getAttribute('name') === 'letters') {
@@ -3918,7 +3924,7 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
         var method = 'PUT';
         src_EventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
       });
-      var deleteFolder = (_document4 = document) === null || _document4 === void 0 ? void 0 : _document4.getElementById('delete-folder');
+      var deleteFolder = (_document3 = document) === null || _document3 === void 0 ? void 0 : _document3.getElementById('delete-folder');
       deleteFolder === null || deleteFolder === void 0 ? void 0 : deleteFolder.addEventListener('click', function (event) {
         event.preventDefault();
         var currentName = document.getElementsByName('title-of-current')[0];
@@ -4115,10 +4121,11 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
 
       var h = function h() {
         src_EventBus.off(Events.letterModelEvents.renameFolder.success, h);
-        src_EventBus.emit(Events.mainPageView.needData);
+        src_EventBus.emit(Events.mainPageView.recivedFolder);
       };
 
       src_EventBus.on(Events.letterModelEvents.renameFolder.success, h);
+      src_EventBus.on(Events.letterModelEvents.renameFolder.fail, h);
     });
   }
 

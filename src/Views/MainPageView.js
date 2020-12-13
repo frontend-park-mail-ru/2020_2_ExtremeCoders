@@ -38,7 +38,6 @@ export default class MainPageView {
       addFolderRecived.classList.toggle('hide');
     });
 
-
     const addFolderForm = document?.getElementById('button-form-add-letter-folder');
     const buttonFolder = document.getElementsByClassName('form-add-folder-up')[1];
     addFolderForm?.addEventListener('click', (event) => {
@@ -62,24 +61,27 @@ export default class MainPageView {
 
     const folderRecivedChoose = document?.getElementById('recived');
 
-    const folderChooseName = document?.getElementById('icon-group');
-    folderChooseName?.addEventListener('click', (event) => {
+    folderRecivedChoose?.addEventListener('click', (event) => {
+
+      const current = folderRecivedChoose.querySelector(`input#${event.target.id}`);
+
+      if (event.target.getAttribute('name') === 'delete-folder') {
+        globalEventBus.emit(Events.mainPageView.deleteFolder);
+        globalEventBus.emit(Events.mainPageView.recivedFolder);
+      }
       if (event.target.getAttribute('name') === 'edit-folder') {
-        const current = folderRecivedChoose.querySelector('input#' + event.target.id);
         current.removeAttribute('readonly');
         current.classList.toggle('folder-names-focus');
-
         current.addEventListener('change', () => {
           const newName = new FormData();
           newName.append('oldName', current.id);
           newName.append('newName', current.value.trim());
           current.setAttribute('readonly', 'readonly');
           globalEventBus.emit(Events.mainPageView.renameFolder, newName);
+          globalEventBus.emit(Events.mainPageView.recivedFolder);
         });
       }
-    });
-    folderRecivedChoose?.addEventListener('click', (event) => {
-      if (event.target.tagName === 'INPUT') {
+      if (event.target.tagName === 'INPUT' && current.hasAttribute('readonly')) {
         globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived');
       }
     });
