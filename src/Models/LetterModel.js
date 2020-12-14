@@ -29,7 +29,8 @@ export default class LetterModel {
     globalEventBus.on(Events.mainPageController.inFolder, this.inFolder.bind(this));
 
     globalEventBus.on(Events.mainPageController.renameFolder, this.renameFolder.bind(this));
-
+    globalEventBus.on(Events.mainPageController.deleteFolder, this.deleteFolder.bind(this));
+    globalEventBus.on(Events.mainPageController.deleteLetter, this.deleteLetter.bind(this));
   }
 
   getLetter(letterId) {
@@ -318,6 +319,40 @@ export default class LetterModel {
           globalEventBus.emit(Events.letterModelEvents.renameFolder.success);
         } else {
           globalEventBus.emit(Events.letterModelEvents.renameFolder.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('CAAAAAAAAAAAAAAAATCH', error);
+      });
+  }
+
+  deleteFolder(deleteName) {
+    myFetch(Paths.deleteFolder, 'DELETE', deleteName)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          globalEventBus.emit(Events.letterModelEvents.deleteFolder.success);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.deleteFolder.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('CAAAAAAAAAAAAAAAATCH', error);
+      });
+  }
+
+  deleteLetter(deleteName) {
+    myFetch(Paths.deleteLetter, 'DELETE', deleteName)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          globalEventBus.emit(Events.letterModelEvents.deleteLetter.success);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.deleteLetter.fail, {
             error: response.Description,
           });
         }

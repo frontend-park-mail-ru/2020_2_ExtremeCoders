@@ -34,8 +34,12 @@ const Events = {
     addFolderSended: 'mainPageView-addFolderSended',
     sendWrittenLetter: 'mainPageView-sendWrittenLetter',
     inFolder: 'mainPageView-inFolder',
-
     renameFolder: 'mainPageView-renameFolder',
+    deleteFolder: 'mainPageView-deleteFolder',
+    deleteLetter: 'mainPageView-deleteLetter',
+
+    backToFolders: 'mainPageView-backToFolders',
+    backToLetters: 'mainPageView-backToLetters',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -53,8 +57,12 @@ const Events = {
     addFolderSended: 'mainPageController-addFolderSended',
     sendWrittenLetter: 'mainPageController-sendWrittenLetter',
     inFolder: 'mainPageController-inFolder',
-
     renameFolder: 'mainPageController-renameFolder',
+    deleteFolder: 'mainPageController-deleteFolder',
+    deleteLetter: 'mainPageController-deleteLetter',
+
+    backToFolders: 'mainPageController-backToFolders',
+    backToLetters: 'mainPageController-backToLetters',
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter',
@@ -129,6 +137,26 @@ const Events = {
       success: 'letterModelEvents-renameFolder-success',
       fail: 'letterModelEvents-renameFolder-fail',
     },
+
+    deleteFolder: {
+      success: 'letterModelEvents-deleteFolder-success',
+      fail: 'letterModelEvents-deleteFolder-fail',
+    },
+
+    deleteLetter: {
+      success: 'letterModelEvents-deleteLetter-success',
+      fail: 'letterModelEvents-deleteLetter-fail',
+    },
+
+    backToFolders: {
+      success: 'letterModelEvents-backToFolders-success',
+      fail: 'letterModelEvents-backToFolders-fail',
+    },
+
+    backToLetters: {
+      success: 'letterModelEvents-backToLetters-success',
+      fail: 'letterModelEvents-backToLetters-fail',
+    },
   },
 
   userModelEvents: {
@@ -181,6 +209,9 @@ const Paths = {
   inFolder: '/user/folders/',
 
   renameFolder: '/user/folders/recived/folderName',
+  deleteFolder: '/user/folders/recived/folderName',
+
+  deleteLetter: '/user/letter',
 };
 
 // логин post /session

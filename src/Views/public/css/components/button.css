@@ -15,7 +15,6 @@
 }
 
 .small-plus {
-    /*display: inline-block;*/
     width: 20px;
     height: 20px;
 
@@ -45,8 +44,13 @@
     width: 20px;
     height: 20px;
     background: #000;
-    /*margin-left: 5px;*/
-
     padding-left: 4px;
     padding-top: 5px;
+}
+
+.delete-letter-button {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: #000;
 }

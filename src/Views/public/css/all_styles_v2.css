@@ -4779,6 +4779,23 @@ form {
     justify-content: flex-end;
 }
 
+@media screen and (max-width: 800px) {
+    .letter-board {
+        position: fixed;
+        background: var(--color-body);
+        width: 90%;
+        height: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .letter-board-small {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
 .letter-board-last-element {
     margin-right: 20px;
 }
@@ -4798,4 +4815,12 @@ form {
 
 .letter-container {
     margin-top: 30px;
+}
+
+.icon-trash {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

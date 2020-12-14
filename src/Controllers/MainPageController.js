@@ -5,6 +5,11 @@ class MainPageController {
   constructor(MainPageView) {
     this.mainPageView = MainPageView;
     this.data = {};
+    this.data.screenWidth = window.innerWidth;
+    this.data.folderColumn = true;
+    this.data.letterColumn = false;
+    this.data.oneLetterColumn = false;
+
     globalEventBus.on(Events.letterModelEvents.getLetter.success, (data) => {
       this.data.letter = data;
     });
@@ -32,6 +37,9 @@ class MainPageController {
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
       this.data.letter = this.data.selectFolder[letterId];
       this.data.buttonPlus = true;
+      this.data.folderColumn = false;
+      this.data.letterColumn = false;
+      this.data.oneLetterColumn = true;
       this.mainPageView.render(this.data);
     });
 
@@ -39,37 +47,20 @@ class MainPageController {
       globalEventBus.emit(Events.global.redirect, { path: Paths.mainPage });
     });
 
-    // globalEventBus.on(Events.mainPageView.selectFolder, (folder) => {
-    //   console.log('SELECT LETTER ', folder, this.data.letterList);
-    //   globalEventBus.emit(Events.mainPageController.needGetLetterList, folder);
-    //   const h = (data) => {
-    //     console.log('SELECTED LETTER');
-    //     globalEventBus.off(Events.letterModelEvents.getLetterList.success, h);
-    //     this.data.letterList = data;
-    //     this.mainPageView.render(this.data);
-    //   };
-    //   globalEventBus.on(Events.letterModelEvents.getLetterList.success, h);
-    // });
-
     globalEventBus.on(Events.mainPageView.recivedFolder, () => {
       globalEventBus.emit(Events.mainPageController.recivedFolder);
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.recivedFolder.success, h);
         this.data.recivedFolder = data;
         this.data.recivedFolderRecived = true;
+
+        this.data.folderColumn = true;
+        this.data.letterColumn = false;
+        this.data.oneLetterColumn = false;
+
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.recivedFolder.success, h);
-    });
-
-    globalEventBus.on(Events.mainPageView.sendedFolder, () => {
-      globalEventBus.emit(Events.mainPageController.sendedFolder);
-      const h = (data) => {
-        globalEventBus.off(Events.letterModelEvents.sendedFolder.success, h);
-        this.data.sendedFolder = data;
-        this.mainPageView.render(this.data);
-      };
-      globalEventBus.on(Events.letterModelEvents.sendedFolder.success, h);
     });
 
     globalEventBus.on(Events.mainPageView.selectFolder, (folder, type) => {
@@ -77,11 +68,17 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.selectFolder.success, h);
         this.data.selectFolder = data;
+        this.data.folderColumn = false;
+        this.data.letterColumn = true;
+        this.data.oneLetterColumn = false;
         this.mainPageView.render(this.data);
       };
       const h2 = () => {
         globalEventBus.off(Events.letterModelEvents.selectFolder.fail, h2);
         this.data.selectFolder = new Map();
+        this.data.folderColumn = false;
+        this.data.letterColumn = true;
+        this.data.oneLetterColumn = false;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.selectFolder.success, h);
@@ -93,6 +90,9 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.recivedUn.success, h);
         this.data.selectFolder = data;
+        this.data.folderColumn = false;
+        this.data.letterColumn = true;
+        this.data.oneLetterColumn = false;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.recivedUn.success, h);
@@ -103,6 +103,9 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.sendedUn.success, h);
         this.data.selectFolder = data;
+        this.data.folderColumn = false;
+        this.data.letterColumn = true;
+        this.data.oneLetterColumn = false;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.sendedUn.success, h);
@@ -152,6 +155,40 @@ class MainPageController {
       };
       globalEventBus.on(Events.letterModelEvents.renameFolder.success, h);
       globalEventBus.on(Events.letterModelEvents.renameFolder.fail, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.deleteFolder, (deleteName) => {
+      globalEventBus.emit(Events.mainPageController.deleteFolder, deleteName);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.deleteFolder.success, h);
+        globalEventBus.emit(Events.mainPageView.recivedFolder);
+      };
+      globalEventBus.on(Events.letterModelEvents.deleteFolder.success, h);
+      globalEventBus.on(Events.letterModelEvents.deleteFolder.fail, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.deleteLetter, (deleteName) => {
+      globalEventBus.emit(Events.mainPageController.deleteLetter, deleteName);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.deleteLetter.success, h);
+        globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
+      };
+      globalEventBus.on(Events.letterModelEvents.deleteLetter.success, h);
+      globalEventBus.on(Events.letterModelEvents.deleteLetter.fail, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.backToFolders, () => {
+      this.data.folderColumn = true;
+      this.data.letterColumn = false;
+      this.data.oneLetterColumn = false;
+      this.mainPageView.render(this.data);
+    });
+
+    globalEventBus.on(Events.mainPageView.backToLetters, () => {
+      this.data.folderColumn = false;
+      this.data.letterColumn = true;
+      this.data.oneLetterColumn = false;
+      this.mainPageView.render(this.data);
     });
   }
 
