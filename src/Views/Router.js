@@ -31,6 +31,14 @@ export default class Router {
   go(event) {
     console.log('GOOO', event);
     if (event) {
+      if (event.path === '/letters') {
+        const letterData = {
+          folderColumn: true,
+          letterColumn: false,
+          oneLetterColumn: false,
+        };
+        event.data = letterData;
+      }
       this.registeredPathes[event.path].render(event.data || 0);
       window.history.pushState({ path: event.path, data: (event.data || 0) },
         event.path, event.path);

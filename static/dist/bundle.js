@@ -997,6 +997,15 @@ var Router_Router = /*#__PURE__*/function () {
       console.log('GOOO', event);
 
       if (event) {
+        if (event.path === '/letters') {
+          var letterData = {
+            folderColumn: true,
+            letterColumn: false,
+            oneLetterColumn: false
+          };
+          event.data = letterData;
+        }
+
         this.registeredPathes[event.path].render(event.data || 0);
         window.history.pushState({
           path: event.path,
@@ -3292,80 +3301,76 @@ function mainPage_template(locals) {
 
   try {
     var pug_debug_sources = {
-      "./src/Views/PugTemplates/mainPage.pug": "- console.log('hello from dno !!!!!!!!!!!!!!!!!!!!!1', locals.screenWidth);\n\nif(locals.screenWidth > 800)\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            div(class=\"column large-2 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"summary-recived\" class=\"triangle-down\")\n                    else\n                        div(id=\"summary-recived\" class=\"triangle-right\")\n                    a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"recived\")\n                            if(locals.recivedFolder)\n                                each folder in locals.recivedFolder\n                                    div(class=\"input-group\")\n                                        div\n                                            input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                        div(class=\"icon-group\" id=\"icon-group\")\n                                            div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                    g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                        path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                        g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                            path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                            div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                    div(class=\"horizontal\")\n\n                    a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            div(class=\"column large-4 tab-12 mob-12 main-container\")\n                div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                    if(locals.selectFolder)\n                      each letter in locals.selectFolder\n                        article(id=letter.Id class=\"brick entry format-standard\")\n                            div(id=letter.Id class=\"entry__text\")\n                                div(id=letter.Id class=\"entry__header\")\n                                    h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                if(!letter.IsWatched)\n                                    div(id=letter.Id class=\"h-full-width not-watched\")\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n\n            div(class=\"column large-6 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    if(locals.buttonPlus && letter.Id !== undefined)\n                        div(class=\"letter-board\")\n                            div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                            div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                            div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                    div(class=\"letter-container\")\n                        h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                        p(class=\"lead\") #{letter.Receiver}\n                        p(class=\"lead\") #{letter.Sender}\n                        p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                        each folder in locals.recivedFolder\n                            option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n\nelse\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            if(locals.folderColumn)\n                div(class=\"column large-2 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"summary-recived\" class=\"triangle-down\")\n                        else\n                            div(id=\"summary-recived\" class=\"triangle-right\")\n                        a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"recived\")\n                                if(locals.recivedFolder)\n                                  each folder in locals.recivedFolder\n                                      div(class=\"input-group\")\n                                          div\n                                              input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                          div(class=\"icon-group\" id=\"icon-group\")\n                                              div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                  svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                      g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                          path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                          g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                              path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                              div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                        div(class=\"horizontal\")\n\n                        a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            if(locals.letterColumn)\n                div(class=\"column large-4 tab-12 mob-12 main-container\")\n\n                    a(id=\"back-to-folders\") < \u041F\u0430\u043F\u043A\u0438\n\n                    div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                        if(locals.selectFolder)\n                          each letter in locals.selectFolder\n                              article(id=letter.Id class=\"brick entry format-standard\")\n                                  div(id=letter.Id class=\"entry__text\")\n                                      div(id=letter.Id class=\"entry__header\")\n                                          h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                      if(!letter.IsWatched)\n                                          div(id=letter.Id class=\"h-full-width not-watched\")\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n            if(locals.oneLetterColumn)\n                div(class=\"column large-6 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        if(locals.buttonPlus && letter.Id !== undefined)\n                            div(class=\"letter-board\")\n                                a(id=\"back-to-letters\") < \u043A \u043F\u0430\u043F\u043A\u0430\u043C\n                                div(class=\"letter-board-small\")\n                                    div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                        img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                                    div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                                    div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                        div(class=\"letter-container\")\n                            h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                            p(class=\"lead\") #{letter.Receiver}\n                            p(class=\"lead\") #{letter.Sender}\n                            p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                      each folder in locals.recivedFolder\n                          option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n"
+      "./src/Views/PugTemplates/mainPage.pug": "if(locals.screenWidth > 800)\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            div(class=\"column large-2 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"summary-recived\" class=\"triangle-down\")\n                    else\n                        div(id=\"summary-recived\" class=\"triangle-right\")\n                    a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"recived\")\n                            if(locals.recivedFolder)\n                                each folder in locals.recivedFolder\n                                    div(class=\"input-group\")\n                                        div\n                                            input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                        div(class=\"icon-group\" id=\"icon-group\")\n                                            div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                    g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                        path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                        g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                            path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                            div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                    div(class=\"horizontal\")\n\n                    a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            div(class=\"column large-4 tab-12 mob-12 main-container\")\n                div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                    if(locals.selectFolder)\n                      each letter in locals.selectFolder\n                        article(id=letter.Id class=\"brick entry format-standard\")\n                            div(id=letter.Id class=\"entry__text\")\n                                div(id=letter.Id class=\"entry__header\")\n                                    h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                if(!letter.IsWatched)\n                                    div(id=letter.Id class=\"h-full-width not-watched\")\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n\n            div(class=\"column large-6 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    if(locals.buttonPlus && letter.Id !== undefined)\n                        div(class=\"letter-board\")\n                            div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                            div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                            div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                    div(class=\"letter-container\")\n                        h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                        p(class=\"lead\") #{letter.Receiver}\n                        p(class=\"lead\") #{letter.Sender}\n                        p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                        each folder in locals.recivedFolder\n                            option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n\nelse\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            if(locals.folderColumn)\n                div(class=\"column large-2 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"summary-recived\" class=\"triangle-down\")\n                        else\n                            div(id=\"summary-recived\" class=\"triangle-right\")\n                        a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"recived\")\n                                if(locals.recivedFolder)\n                                  each folder in locals.recivedFolder\n                                      div(class=\"input-group\")\n                                          div\n                                              input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                          div(class=\"icon-group\" id=\"icon-group\")\n                                              div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                  svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                      g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                          path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                          g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                              path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                              div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                        div(class=\"horizontal\")\n\n                        a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            if(locals.letterColumn)\n                div(class=\"column large-4 tab-12 mob-12 main-container\")\n\n                    a(id=\"back-to-folders\") < \u041F\u0430\u043F\u043A\u0438\n\n                    div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                        if(locals.selectFolder)\n                          each letter in locals.selectFolder\n                              article(id=letter.Id class=\"brick entry format-standard\")\n                                  div(id=letter.Id class=\"entry__text\")\n                                      div(id=letter.Id class=\"entry__header\")\n                                          h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                      if(!letter.IsWatched)\n                                          div(id=letter.Id class=\"h-full-width not-watched\")\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n            if(locals.oneLetterColumn)\n                div(class=\"column large-6 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        if(locals.buttonPlus && letter.Id !== undefined)\n                            div(class=\"letter-board\")\n                                a(id=\"back-to-letters\") < \u041A \u043F\u0430\u043F\u043A\u0430\u043C\n                                div(class=\"letter-board-small\")\n                                    div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                        img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                                    div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                                    div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                        div(class=\"letter-container\")\n                            h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                            p(class=\"lead\") #{letter.Receiver}\n                            p(class=\"lead\") #{letter.Sender}\n                            p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                      each folder in locals.recivedFolder\n                          option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n"
     };
     ;
     var locals_for_with = locals || {};
-    (function (console, letter) {
+    (function (letter) {
       ;
       pug_debug_line = 1;
-      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-      console.log('hello from dno !!!!!!!!!!!!!!!!!!!!!1', locals.screenWidth);
-      ;
-      pug_debug_line = 3;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
       if (locals.screenWidth > 800) {
         ;
-        pug_debug_line = 4;
+        pug_debug_line = 2;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"main-page mainPage\">";
         ;
-        pug_debug_line = 5;
+        pug_debug_line = 3;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\">";
         ;
-        pug_debug_line = 7;
+        pug_debug_line = 5;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"column large-2 tab-12 mob-12 main-container\">";
         ;
-        pug_debug_line = 8;
+        pug_debug_line = 6;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"main-columns project_scroll\">";
         ;
-        pug_debug_line = 9;
+        pug_debug_line = 7;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"block plus radius\" id=\"add-folder-recived\"></div>";
         ;
-        pug_debug_line = 11;
+        pug_debug_line = 9;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.recivedFolderRecived) {
           ;
-          pug_debug_line = 12;
+          pug_debug_line = 10;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"triangle-down\" id=\"summary-recived\"></div>";
         } else {
           ;
-          pug_debug_line = 14;
+          pug_debug_line = 12;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"triangle-right\" id=\"summary-recived\"></div>";
         }
 
         ;
-        pug_debug_line = 15;
+        pug_debug_line = 13;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<a class=\"titles-category\" id=\"recivedUn\">";
         ;
-        pug_debug_line = 15;
+        pug_debug_line = 13;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435</a>";
         ;
-        pug_debug_line = 17;
+        pug_debug_line = 15;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.recivedFolderRecived) {
           ;
-          pug_debug_line = 18;
+          pug_debug_line = 16;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div id=\"recived\">";
           ;
-          pug_debug_line = 19;
+          pug_debug_line = 17;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
           if (locals.recivedFolder) {
             ;
-            pug_debug_line = 20;
+            pug_debug_line = 18;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.recivedFolder
 
             ;
@@ -3376,47 +3381,47 @@ function mainPage_template(locals) {
                 for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
                   var folder = $$obj[pug_index0];
                   ;
-                  pug_debug_line = 21;
+                  pug_debug_line = 19;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div class=\"input-group\">";
                   ;
-                  pug_debug_line = 22;
+                  pug_debug_line = 20;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div>";
                   ;
-                  pug_debug_line = 23;
+                  pug_debug_line = 21;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<input" + (" class=\"folder-names\"" + mainPage_pug_attr("readonly", true, true, false) + mainPage_pug_attr("value", folder.Name, true, false) + mainPage_pug_attr("id", folder.Name, true, false)) + "/></div>";
                   ;
-                  pug_debug_line = 24;
+                  pug_debug_line = 22;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div class=\"icon-group\" id=\"icon-group\">";
                   ;
-                  pug_debug_line = 25;
+                  pug_debug_line = 23;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"edit-button radius\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\"") + ">";
                   ;
-                  pug_debug_line = 26;
+                  pug_debug_line = 24;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<svg" + (" class=\"block\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\"") + ">";
                   ;
-                  pug_debug_line = 27;
+                  pug_debug_line = 25;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\"") + ">";
                   ;
-                  pug_debug_line = 28;
+                  pug_debug_line = 26;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\"") + "></path>";
                   ;
-                  pug_debug_line = 29;
+                  pug_debug_line = 27;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"#ffffff\"") + ">";
                   ;
-                  pug_debug_line = 30;
+                  pug_debug_line = 28;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\"") + "></path></g></g></svg></div>";
                   ;
-                  pug_debug_line = 32;
+                  pug_debug_line = 30;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"small-plus radius cross\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"delete-folder\"") + "></div></div></div>";
                 }
@@ -3427,47 +3432,47 @@ function mainPage_template(locals) {
                   $$l++;
                   var folder = $$obj[pug_index0];
                   ;
-                  pug_debug_line = 21;
+                  pug_debug_line = 19;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div class=\"input-group\">";
                   ;
-                  pug_debug_line = 22;
+                  pug_debug_line = 20;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div>";
                   ;
-                  pug_debug_line = 23;
+                  pug_debug_line = 21;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<input" + (" class=\"folder-names\"" + mainPage_pug_attr("readonly", true, true, false) + mainPage_pug_attr("value", folder.Name, true, false) + mainPage_pug_attr("id", folder.Name, true, false)) + "/></div>";
                   ;
-                  pug_debug_line = 24;
+                  pug_debug_line = 22;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div class=\"icon-group\" id=\"icon-group\">";
                   ;
-                  pug_debug_line = 25;
+                  pug_debug_line = 23;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"edit-button radius\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\"") + ">";
                   ;
-                  pug_debug_line = 26;
+                  pug_debug_line = 24;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<svg" + (" class=\"block\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\"") + ">";
                   ;
-                  pug_debug_line = 27;
+                  pug_debug_line = 25;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\"") + ">";
                   ;
-                  pug_debug_line = 28;
+                  pug_debug_line = 26;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\"") + "></path>";
                   ;
-                  pug_debug_line = 29;
+                  pug_debug_line = 27;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"#ffffff\"") + ">";
                   ;
-                  pug_debug_line = 30;
+                  pug_debug_line = 28;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\"") + "></path></g></g></svg></div>";
                   ;
-                  pug_debug_line = 32;
+                  pug_debug_line = 30;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"small-plus radius cross\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"delete-folder\"") + "></div></div></div>";
                 }
@@ -3479,32 +3484,32 @@ function mainPage_template(locals) {
         }
 
         ;
-        pug_debug_line = 34;
+        pug_debug_line = 32;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"horizontal\"></div>";
         ;
-        pug_debug_line = 36;
+        pug_debug_line = 34;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<a class=\"block titles-category\" id=\"sendedUn\">";
         ;
-        pug_debug_line = 36;
+        pug_debug_line = 34;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435</a></div></div>";
         ;
-        pug_debug_line = 38;
+        pug_debug_line = 36;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"column large-4 tab-12 mob-12 main-container\">";
         ;
-        pug_debug_line = 39;
+        pug_debug_line = 37;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\">";
         ;
-        pug_debug_line = 40;
+        pug_debug_line = 38;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.selectFolder) {
           ;
-          pug_debug_line = 41;
+          pug_debug_line = 39;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.selectFolder
 
           ;
@@ -3515,36 +3520,52 @@ function mainPage_template(locals) {
               for (var pug_index1 = 0, $$l = $$obj.length; pug_index1 < $$l; pug_index1++) {
                 var letter = $$obj[pug_index1];
                 ;
-                pug_debug_line = 42;
+                pug_debug_line = 40;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 43;
+                pug_debug_line = 41;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__text\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 44;
+                pug_debug_line = 42;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__header\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 45;
+                pug_debug_line = 43;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<h1" + (" class=\"entry__title max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 45;
+                pug_debug_line = 43;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
                 ;
-                pug_debug_line = 47;
+                pug_debug_line = 45;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
                 if (!letter.IsWatched) {
                   ;
-                  pug_debug_line = 48;
+                  pug_debug_line = 46;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"h-full-width not-watched\"" + mainPage_pug_attr("id", letter.Id, true, false)) + "></div>";
                 }
 
+                ;
+                pug_debug_line = 47;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+                ;
+                pug_debug_line = 48;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+                ;
+                pug_debug_line = 48;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "Получатель: ";
+                ;
+                pug_debug_line = 48;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
                 ;
                 pug_debug_line = 49;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -3556,11 +3577,11 @@ function mainPage_template(locals) {
                 ;
                 pug_debug_line = 50;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "Получатель: ";
+                pug_html = pug_html + "Отправитель: ";
                 ;
                 pug_debug_line = 50;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
+                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
                 ;
                 pug_debug_line = 51;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -3571,22 +3592,6 @@ function mainPage_template(locals) {
                 pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
                 pug_debug_line = 52;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "Отправитель: ";
-                ;
-                pug_debug_line = 52;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
-                ;
-                pug_debug_line = 53;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                ;
-                pug_debug_line = 54;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                ;
-                pug_debug_line = 54;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
               }
@@ -3597,36 +3602,52 @@ function mainPage_template(locals) {
                 $$l++;
                 var letter = $$obj[pug_index1];
                 ;
-                pug_debug_line = 42;
+                pug_debug_line = 40;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 43;
+                pug_debug_line = 41;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__text\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 44;
+                pug_debug_line = 42;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__header\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 45;
+                pug_debug_line = 43;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<h1" + (" class=\"entry__title max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 45;
+                pug_debug_line = 43;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
                 ;
-                pug_debug_line = 47;
+                pug_debug_line = 45;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
                 if (!letter.IsWatched) {
                   ;
-                  pug_debug_line = 48;
+                  pug_debug_line = 46;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"h-full-width not-watched\"" + mainPage_pug_attr("id", letter.Id, true, false)) + "></div>";
                 }
 
+                ;
+                pug_debug_line = 47;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+                ;
+                pug_debug_line = 48;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+                ;
+                pug_debug_line = 48;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "Получатель: ";
+                ;
+                pug_debug_line = 48;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
                 ;
                 pug_debug_line = 49;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -3638,11 +3659,11 @@ function mainPage_template(locals) {
                 ;
                 pug_debug_line = 50;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "Получатель: ";
+                pug_html = pug_html + "Отправитель: ";
                 ;
                 pug_debug_line = 50;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
+                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
                 ;
                 pug_debug_line = 51;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -3654,22 +3675,6 @@ function mainPage_template(locals) {
                 ;
                 pug_debug_line = 52;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "Отправитель: ";
-                ;
-                pug_debug_line = 52;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
-                ;
-                pug_debug_line = 53;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                ;
-                pug_debug_line = 54;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                ;
-                pug_debug_line = 54;
-                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
               }
             }
@@ -3678,139 +3683,139 @@ function mainPage_template(locals) {
 
         pug_html = pug_html + "</div></div>";
         ;
-        pug_debug_line = 57;
+        pug_debug_line = 55;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"column large-6 tab-12 mob-12 main-container\">";
         ;
-        pug_debug_line = 58;
+        pug_debug_line = 56;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"main-columns project_scroll\">";
         ;
-        pug_debug_line = 59;
+        pug_debug_line = 57;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.buttonPlus && letter.Id !== undefined) {
           ;
-          pug_debug_line = 60;
+          pug_debug_line = 58;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"letter-board\">";
           ;
-          pug_debug_line = 61;
+          pug_debug_line = 59;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"delete-letter-button radius\" id=\"button-remove-letter\">";
           ;
-          pug_debug_line = 62;
+          pug_debug_line = 60;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<img class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\"/></div>";
           ;
-          pug_debug_line = 63;
+          pug_debug_line = 61;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"small-plus radius\" id=\"button-form-add-letter-folder\"></div>";
           ;
-          pug_debug_line = 64;
+          pug_debug_line = 62;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"small-plus radius cross letter-board-last-element\" id=\"delete-folder\"></div></div>";
         }
 
         ;
-        pug_debug_line = 66;
+        pug_debug_line = 64;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"letter-container\">";
         ;
-        pug_debug_line = 67;
+        pug_debug_line = 65;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<h3" + (mainPage_pug_attr("id", letter.Id, true, false) + " name=\"title-of-current\"") + ">";
         ;
-        pug_debug_line = 67;
+        pug_debug_line = 65;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h3>";
         ;
-        pug_debug_line = 68;
+        pug_debug_line = 66;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<p class=\"lead\">";
         ;
-        pug_debug_line = 68;
+        pug_debug_line = 66;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p>";
         ;
-        pug_debug_line = 69;
+        pug_debug_line = 67;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<p class=\"lead\">";
         ;
-        pug_debug_line = 69;
+        pug_debug_line = 67;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p>";
         ;
-        pug_debug_line = 70;
+        pug_debug_line = 68;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<p class=\"lead\">";
         ;
-        pug_debug_line = 70;
+        pug_debug_line = 68;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></div></div></div>";
         ;
-        pug_debug_line = 73;
+        pug_debug_line = 71;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<!--\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F-->";
         ;
-        pug_debug_line = 74;
+        pug_debug_line = 72;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"form-add-folder-up hide\">";
         ;
-        pug_debug_line = 75;
+        pug_debug_line = 73;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"plus radius cross cross-modal\" id=\"remove-folder-recived\"></div>";
         ;
-        pug_debug_line = 76;
+        pug_debug_line = 74;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<form name=\"button-of-recived-folder\">";
         ;
-        pug_debug_line = 77;
+        pug_debug_line = 75;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 78;
+        pug_debug_line = 76;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<input" + (" class=\"h-full-width\"" + " name=\"folderName\" type=\"text\" placeholder=\"Добавить папку\" value=\"\" autocomplete=\"off\"" + mainPage_pug_attr("required", true, true, false)) + "/>";
         ;
-        pug_debug_line = 79;
+        pug_debug_line = 77;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<button class=\"btn btn--medium btn--primary h-full-width\" type=\"submit\">";
         ;
-        pug_debug_line = 79;
+        pug_debug_line = 77;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button></div></form></div>";
         ;
-        pug_debug_line = 81;
+        pug_debug_line = 79;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<!--\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443-->";
         ;
-        pug_debug_line = 82;
+        pug_debug_line = 80;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"hide form-add-folder-up\">";
         ;
-        pug_debug_line = 83;
+        pug_debug_line = 81;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"plus radius cross cross-modal\" id=\"remove-form-add-folder-up\"></div>";
         ;
-        pug_debug_line = 84;
+        pug_debug_line = 82;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<form id=\"choose-folder\">";
         ;
-        pug_debug_line = 85;
+        pug_debug_line = 83;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 86;
+        pug_debug_line = 84;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<select class=\"h-full-width\" name=\"inFolderName\">";
         ;
-        pug_debug_line = 87;
+        pug_debug_line = 85;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.recivedFolder) {
           ;
-          pug_debug_line = 88;
+          pug_debug_line = 86;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.recivedFolder
 
           ;
@@ -3821,11 +3826,11 @@ function mainPage_template(locals) {
               for (var pug_index2 = 0, $$l = $$obj.length; pug_index2 < $$l; pug_index2++) {
                 var folder = $$obj[pug_index2];
                 ;
-                pug_debug_line = 89;
+                pug_debug_line = 87;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<option" + mainPage_pug_attr("value", folder.Name, true, false) + ">";
                 ;
-                pug_debug_line = 89;
+                pug_debug_line = 87;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder.Name) ? "" : pug_interp) + "</option>";
               }
@@ -3836,11 +3841,11 @@ function mainPage_template(locals) {
                 $$l++;
                 var folder = $$obj[pug_index2];
                 ;
-                pug_debug_line = 89;
+                pug_debug_line = 87;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<option" + mainPage_pug_attr("value", folder.Name, true, false) + ">";
                 ;
-                pug_debug_line = 89;
+                pug_debug_line = 87;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder.Name) ? "" : pug_interp) + "</option>";
               }
@@ -3850,83 +3855,83 @@ function mainPage_template(locals) {
 
         pug_html = pug_html + "</select></div>";
         ;
-        pug_debug_line = 92;
+        pug_debug_line = 90;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 93;
+        pug_debug_line = 91;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<button class=\"btn h-full-width\" type=\"submit\">";
         ;
-        pug_debug_line = 93;
+        pug_debug_line = 91;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button></div></form></div>";
       } else {
         ;
-        pug_debug_line = 97;
+        pug_debug_line = 95;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"main-page mainPage\">";
         ;
-        pug_debug_line = 98;
+        pug_debug_line = 96;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\">";
         ;
-        pug_debug_line = 100;
+        pug_debug_line = 98;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.folderColumn) {
           ;
-          pug_debug_line = 101;
+          pug_debug_line = 99;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"column large-2 tab-12 mob-12 main-container\">";
           ;
-          pug_debug_line = 102;
+          pug_debug_line = 100;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"main-columns project_scroll\">";
           ;
-          pug_debug_line = 103;
+          pug_debug_line = 101;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"block plus radius\" id=\"add-folder-recived\"></div>";
           ;
-          pug_debug_line = 105;
+          pug_debug_line = 103;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
           if (locals.recivedFolderRecived) {
             ;
-            pug_debug_line = 106;
+            pug_debug_line = 104;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"triangle-down\" id=\"summary-recived\"></div>";
           } else {
             ;
-            pug_debug_line = 108;
+            pug_debug_line = 106;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"triangle-right\" id=\"summary-recived\"></div>";
           }
 
           ;
-          pug_debug_line = 109;
+          pug_debug_line = 107;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<a class=\"titles-category\" id=\"recivedUn\">";
           ;
-          pug_debug_line = 109;
+          pug_debug_line = 107;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "\u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435</a>";
           ;
-          pug_debug_line = 111;
+          pug_debug_line = 109;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
           if (locals.recivedFolderRecived) {
             ;
-            pug_debug_line = 112;
+            pug_debug_line = 110;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div id=\"recived\">";
             ;
-            pug_debug_line = 113;
+            pug_debug_line = 111;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
             if (locals.recivedFolder) {
               ;
-              pug_debug_line = 114;
+              pug_debug_line = 112;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.recivedFolder
 
               ;
@@ -3937,47 +3942,47 @@ function mainPage_template(locals) {
                   for (var pug_index3 = 0, $$l = $$obj.length; pug_index3 < $$l; pug_index3++) {
                     var folder = $$obj[pug_index3];
                     ;
-                    pug_debug_line = 115;
+                    pug_debug_line = 113;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div class=\"input-group\">";
                     ;
-                    pug_debug_line = 116;
+                    pug_debug_line = 114;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div>";
                     ;
-                    pug_debug_line = 117;
+                    pug_debug_line = 115;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<input" + (" class=\"folder-names\"" + mainPage_pug_attr("readonly", true, true, false) + mainPage_pug_attr("value", folder.Name, true, false) + mainPage_pug_attr("id", folder.Name, true, false)) + "/></div>";
                     ;
-                    pug_debug_line = 118;
+                    pug_debug_line = 116;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div class=\"icon-group\" id=\"icon-group\">";
                     ;
-                    pug_debug_line = 119;
+                    pug_debug_line = 117;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"edit-button radius\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\"") + ">";
                     ;
-                    pug_debug_line = 120;
+                    pug_debug_line = 118;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<svg" + (" class=\"block\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\"") + ">";
                     ;
-                    pug_debug_line = 121;
+                    pug_debug_line = 119;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\"") + ">";
                     ;
-                    pug_debug_line = 122;
+                    pug_debug_line = 120;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\"") + "></path>";
                     ;
-                    pug_debug_line = 123;
+                    pug_debug_line = 121;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"#ffffff\"") + ">";
                     ;
-                    pug_debug_line = 124;
+                    pug_debug_line = 122;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\"") + "></path></g></g></svg></div>";
                     ;
-                    pug_debug_line = 126;
+                    pug_debug_line = 124;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"small-plus radius cross\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"delete-folder\"") + "></div></div></div>";
                   }
@@ -3988,47 +3993,47 @@ function mainPage_template(locals) {
                     $$l++;
                     var folder = $$obj[pug_index3];
                     ;
-                    pug_debug_line = 115;
+                    pug_debug_line = 113;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div class=\"input-group\">";
                     ;
-                    pug_debug_line = 116;
+                    pug_debug_line = 114;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div>";
                     ;
-                    pug_debug_line = 117;
+                    pug_debug_line = 115;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<input" + (" class=\"folder-names\"" + mainPage_pug_attr("readonly", true, true, false) + mainPage_pug_attr("value", folder.Name, true, false) + mainPage_pug_attr("id", folder.Name, true, false)) + "/></div>";
                     ;
-                    pug_debug_line = 118;
+                    pug_debug_line = 116;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div class=\"icon-group\" id=\"icon-group\">";
                     ;
-                    pug_debug_line = 119;
+                    pug_debug_line = 117;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"edit-button radius\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\"") + ">";
                     ;
-                    pug_debug_line = 120;
+                    pug_debug_line = 118;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<svg" + (" class=\"block\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\"") + ">";
                     ;
-                    pug_debug_line = 121;
+                    pug_debug_line = 119;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\"") + ">";
                     ;
-                    pug_debug_line = 122;
+                    pug_debug_line = 120;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\"") + "></path>";
                     ;
-                    pug_debug_line = 123;
+                    pug_debug_line = 121;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"#ffffff\"") + ">";
                     ;
-                    pug_debug_line = 124;
+                    pug_debug_line = 122;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\"") + "></path></g></g></svg></div>";
                     ;
-                    pug_debug_line = 126;
+                    pug_debug_line = 124;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"small-plus radius cross\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"delete-folder\"") + "></div></div></div>";
                   }
@@ -4040,47 +4045,47 @@ function mainPage_template(locals) {
           }
 
           ;
-          pug_debug_line = 128;
+          pug_debug_line = 126;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"horizontal\"></div>";
           ;
-          pug_debug_line = 130;
+          pug_debug_line = 128;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<a class=\"block titles-category\" id=\"sendedUn\">";
           ;
-          pug_debug_line = 130;
+          pug_debug_line = 128;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "\u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435</a></div></div>";
         }
 
         ;
-        pug_debug_line = 132;
+        pug_debug_line = 130;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.letterColumn) {
           ;
-          pug_debug_line = 133;
+          pug_debug_line = 131;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"column large-4 tab-12 mob-12 main-container\">";
           ;
-          pug_debug_line = 135;
+          pug_debug_line = 133;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<a id=\"back-to-folders\">";
           ;
-          pug_debug_line = 135;
+          pug_debug_line = 133;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "< \u041F\u0430\u043F\u043A\u0438</a>";
           ;
-          pug_debug_line = 137;
+          pug_debug_line = 135;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\">";
           ;
-          pug_debug_line = 138;
+          pug_debug_line = 136;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
           if (locals.selectFolder) {
             ;
-            pug_debug_line = 139;
+            pug_debug_line = 137;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.selectFolder
 
             ;
@@ -4091,36 +4096,52 @@ function mainPage_template(locals) {
                 for (var pug_index4 = 0, $$l = $$obj.length; pug_index4 < $$l; pug_index4++) {
                   var letter = $$obj[pug_index4];
                   ;
-                  pug_debug_line = 140;
+                  pug_debug_line = 138;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 141;
+                  pug_debug_line = 139;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__text\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 142;
+                  pug_debug_line = 140;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__header\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 143;
+                  pug_debug_line = 141;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<h1" + (" class=\"entry__title max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 143;
+                  pug_debug_line = 141;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
                   ;
-                  pug_debug_line = 145;
+                  pug_debug_line = 143;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
                   if (!letter.IsWatched) {
                     ;
-                    pug_debug_line = 146;
+                    pug_debug_line = 144;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"h-full-width not-watched\"" + mainPage_pug_attr("id", letter.Id, true, false)) + "></div>";
                   }
 
+                  ;
+                  pug_debug_line = 145;
+                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                  pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+                  ;
+                  pug_debug_line = 146;
+                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                  pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+                  ;
+                  pug_debug_line = 146;
+                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                  pug_html = pug_html + "Получатель: ";
+                  ;
+                  pug_debug_line = 146;
+                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                  pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
                   ;
                   pug_debug_line = 147;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -4132,11 +4153,11 @@ function mainPage_template(locals) {
                   ;
                   pug_debug_line = 148;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + "Получатель: ";
+                  pug_html = pug_html + "Отправитель: ";
                   ;
                   pug_debug_line = 148;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
+                  pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
                   ;
                   pug_debug_line = 149;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -4147,22 +4168,6 @@ function mainPage_template(locals) {
                   pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
                   pug_debug_line = 150;
-                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + "Отправитель: ";
-                  ;
-                  pug_debug_line = 150;
-                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
-                  ;
-                  pug_debug_line = 151;
-                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                  ;
-                  pug_debug_line = 152;
-                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                  ;
-                  pug_debug_line = 152;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
                 }
@@ -4173,36 +4178,52 @@ function mainPage_template(locals) {
                   $$l++;
                   var letter = $$obj[pug_index4];
                   ;
-                  pug_debug_line = 140;
+                  pug_debug_line = 138;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 141;
+                  pug_debug_line = 139;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__text\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 142;
+                  pug_debug_line = 140;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__header\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 143;
+                  pug_debug_line = 141;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<h1" + (" class=\"entry__title max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 143;
+                  pug_debug_line = 141;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
                   ;
-                  pug_debug_line = 145;
+                  pug_debug_line = 143;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
                   if (!letter.IsWatched) {
                     ;
-                    pug_debug_line = 146;
+                    pug_debug_line = 144;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"h-full-width not-watched\"" + mainPage_pug_attr("id", letter.Id, true, false)) + "></div>";
                   }
 
+                  ;
+                  pug_debug_line = 145;
+                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                  pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+                  ;
+                  pug_debug_line = 146;
+                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                  pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
+                  ;
+                  pug_debug_line = 146;
+                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                  pug_html = pug_html + "Получатель: ";
+                  ;
+                  pug_debug_line = 146;
+                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                  pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
                   ;
                   pug_debug_line = 147;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -4214,11 +4235,11 @@ function mainPage_template(locals) {
                   ;
                   pug_debug_line = 148;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + "Получатель: ";
+                  pug_html = pug_html + "Отправитель: ";
                   ;
                   pug_debug_line = 148;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
+                  pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
                   ;
                   pug_debug_line = 149;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -4229,22 +4250,6 @@ function mainPage_template(locals) {
                   pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
                   pug_debug_line = 150;
-                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + "Отправитель: ";
-                  ;
-                  pug_debug_line = 150;
-                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
-                  ;
-                  pug_debug_line = 151;
-                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                  ;
-                  pug_debug_line = 152;
-                  pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-                  pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
-                  ;
-                  pug_debug_line = 152;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
                 }
@@ -4256,159 +4261,159 @@ function mainPage_template(locals) {
         }
 
         ;
-        pug_debug_line = 154;
+        pug_debug_line = 152;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.oneLetterColumn) {
           ;
-          pug_debug_line = 155;
+          pug_debug_line = 153;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"column large-6 tab-12 mob-12 main-container\">";
           ;
-          pug_debug_line = 156;
+          pug_debug_line = 154;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"main-columns project_scroll\">";
           ;
-          pug_debug_line = 157;
+          pug_debug_line = 155;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
           if (locals.buttonPlus && letter.Id !== undefined) {
             ;
-            pug_debug_line = 158;
+            pug_debug_line = 156;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"letter-board\">";
             ;
-            pug_debug_line = 159;
+            pug_debug_line = 157;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<a id=\"back-to-letters\">";
             ;
-            pug_debug_line = 159;
+            pug_debug_line = 157;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-            pug_html = pug_html + "< \u043A \u043F\u0430\u043F\u043A\u0430\u043C</a>";
+            pug_html = pug_html + "< \u041A \u043F\u0430\u043F\u043A\u0430\u043C</a>";
             ;
-            pug_debug_line = 160;
+            pug_debug_line = 158;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"letter-board-small\">";
             ;
-            pug_debug_line = 161;
+            pug_debug_line = 159;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"delete-letter-button radius\" id=\"button-remove-letter\">";
             ;
-            pug_debug_line = 162;
+            pug_debug_line = 160;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<img class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\"/></div>";
             ;
-            pug_debug_line = 163;
+            pug_debug_line = 161;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"small-plus radius\" id=\"button-form-add-letter-folder\"></div>";
             ;
-            pug_debug_line = 164;
+            pug_debug_line = 162;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"small-plus radius cross letter-board-last-element\" id=\"delete-folder\"></div></div></div>";
           }
 
           ;
-          pug_debug_line = 166;
+          pug_debug_line = 164;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"letter-container\">";
           ;
-          pug_debug_line = 167;
+          pug_debug_line = 165;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<h3" + (mainPage_pug_attr("id", letter.Id, true, false) + " name=\"title-of-current\"") + ">";
           ;
-          pug_debug_line = 167;
+          pug_debug_line = 165;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h3>";
           ;
-          pug_debug_line = 168;
+          pug_debug_line = 166;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<p class=\"lead\">";
           ;
-          pug_debug_line = 168;
+          pug_debug_line = 166;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p>";
           ;
-          pug_debug_line = 169;
+          pug_debug_line = 167;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<p class=\"lead\">";
           ;
-          pug_debug_line = 169;
+          pug_debug_line = 167;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p>";
           ;
-          pug_debug_line = 170;
+          pug_debug_line = 168;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<p class=\"lead\">";
           ;
-          pug_debug_line = 170;
+          pug_debug_line = 168;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></div>";
         }
 
         pug_html = pug_html + "</div></div>";
         ;
-        pug_debug_line = 173;
+        pug_debug_line = 171;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<!--\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F-->";
         ;
-        pug_debug_line = 174;
+        pug_debug_line = 172;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"form-add-folder-up hide\">";
         ;
-        pug_debug_line = 175;
+        pug_debug_line = 173;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"plus radius cross cross-modal\" id=\"remove-folder-recived\"></div>";
         ;
-        pug_debug_line = 176;
+        pug_debug_line = 174;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<form name=\"button-of-recived-folder\">";
         ;
-        pug_debug_line = 177;
+        pug_debug_line = 175;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 178;
+        pug_debug_line = 176;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<input" + (" class=\"h-full-width\"" + " name=\"folderName\" type=\"text\" placeholder=\"Добавить папку\" value=\"\" autocomplete=\"off\"" + mainPage_pug_attr("required", true, true, false)) + "/>";
         ;
-        pug_debug_line = 179;
+        pug_debug_line = 177;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<button class=\"btn btn--medium btn--primary h-full-width\" type=\"submit\">";
         ;
-        pug_debug_line = 179;
+        pug_debug_line = 177;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button></div></form></div>";
         ;
-        pug_debug_line = 181;
+        pug_debug_line = 179;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<!--\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443-->";
         ;
-        pug_debug_line = 182;
+        pug_debug_line = 180;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"hide form-add-folder-up\">";
         ;
-        pug_debug_line = 183;
+        pug_debug_line = 181;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"plus radius cross cross-modal\" id=\"remove-form-add-folder-up\"></div>";
         ;
-        pug_debug_line = 184;
+        pug_debug_line = 182;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<form id=\"choose-folder\">";
         ;
-        pug_debug_line = 185;
+        pug_debug_line = 183;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 186;
+        pug_debug_line = 184;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<select class=\"h-full-width\" name=\"inFolderName\">";
         ;
-        pug_debug_line = 187;
+        pug_debug_line = 185;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.recivedFolder) {
           ;
-          pug_debug_line = 188;
+          pug_debug_line = 186;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.recivedFolder
 
           ;
@@ -4419,11 +4424,11 @@ function mainPage_template(locals) {
               for (var pug_index5 = 0, $$l = $$obj.length; pug_index5 < $$l; pug_index5++) {
                 var folder = $$obj[pug_index5];
                 ;
-                pug_debug_line = 189;
+                pug_debug_line = 187;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<option" + mainPage_pug_attr("value", folder.Name, true, false) + ">";
                 ;
-                pug_debug_line = 189;
+                pug_debug_line = 187;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder.Name) ? "" : pug_interp) + "</option>";
               }
@@ -4434,11 +4439,11 @@ function mainPage_template(locals) {
                 $$l++;
                 var folder = $$obj[pug_index5];
                 ;
-                pug_debug_line = 189;
+                pug_debug_line = 187;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<option" + mainPage_pug_attr("value", folder.Name, true, false) + ">";
                 ;
-                pug_debug_line = 189;
+                pug_debug_line = 187;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder.Name) ? "" : pug_interp) + "</option>";
               }
@@ -4448,19 +4453,19 @@ function mainPage_template(locals) {
 
         pug_html = pug_html + "</select></div>";
         ;
-        pug_debug_line = 192;
+        pug_debug_line = 190;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 193;
+        pug_debug_line = 191;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<button class=\"btn h-full-width\" type=\"submit\">";
         ;
-        pug_debug_line = 193;
+        pug_debug_line = 191;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button></div></form></div>";
       }
-    }).call(this, "console" in locals_for_with ? locals_for_with.console : typeof console !== "undefined" ? console : undefined, "letter" in locals_for_with ? locals_for_with.letter : typeof letter !== "undefined" ? letter : undefined);
+    }).call(this, "letter" in locals_for_with ? locals_for_with.letter : typeof letter !== "undefined" ? letter : undefined);
   } catch (err) {
     mainPage_pug_rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
   }

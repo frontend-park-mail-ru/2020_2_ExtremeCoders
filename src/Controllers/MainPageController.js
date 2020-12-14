@@ -192,8 +192,6 @@ class MainPageController {
     });
   }
 
-
-
   setView(profileView) {
     this.mainPageView = profileView;
   }
