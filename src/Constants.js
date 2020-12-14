@@ -211,7 +211,7 @@ const Paths = {
   renameFolder: '/user/folders/recived/folderName',
   deleteFolder: '/user/folders/recived/folderName',
 
-  deleteLetter: '/user/letter',
+  deleteLetter: '/letter',
 };
 
 // логин post /session
