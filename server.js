@@ -18,4 +18,4 @@ app.get(/.*$/, (request, response) => {
   response.sendFile(`${__dirname}/static/dist/index.html`);
 });
 
-app.listen(3000);
+app.listen(80);
