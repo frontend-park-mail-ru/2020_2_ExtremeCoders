@@ -147,16 +147,16 @@ class UserModel {
         }
       });
 
-    // const p2 = myFetch(Paths.getAvatar, 'GET')
-    //   .then((response) => response.blob())
-    //   .then((myBlob) => {
-    //     console.log('BLOB', myBlob);
-    //     this.user.avatar = URL.createObjectURL(myBlob);
-    //   });
+    const p2 = myFetch(Paths.getAvatar, 'GET')
+      .then((response) => response.blob())
+      .then((myBlob) => {
+        console.log('BLOB', myBlob);
+        this.user.avatar = URL.createObjectURL(myBlob);
+      });
 
-    function p2() {
-      console.log('Мок аватарки');
-    }
+    // function p2() {
+    //   console.log('Мок аватарки');
+    // }
 
     Promise.all([p1, p2]).then(
       () => {

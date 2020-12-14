@@ -1914,16 +1914,15 @@ var UserModel_UserModel = /*#__PURE__*/function () {
         } else {
           throw new Error(response.Description);
         }
-      }); // const p2 = myFetch(Paths.getAvatar, 'GET')
-      //   .then((response) => response.blob())
-      //   .then((myBlob) => {
-      //     console.log('BLOB', myBlob);
-      //     this.user.avatar = URL.createObjectURL(myBlob);
-      //   });
-
-      function p2() {
-        console.log('Мок аватарки');
-      }
+      });
+      var p2 = myFetch(Paths.getAvatar, 'GET').then(function (response) {
+        return response.blob();
+      }).then(function (myBlob) {
+        console.log('BLOB', myBlob);
+        _this4.user.avatar = URL.createObjectURL(myBlob);
+      }); // function p2() {
+      //   console.log('Мок аватарки');
+      // }
 
       Promise.all([p1, p2]).then(function () {
         console.log('УСПЕХ');
@@ -2298,7 +2297,6 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
   }, {
     key: "deleteLetter",
     value: function deleteLetter(deleteName) {
-      console.log('$#$!!!!!!!!!!', Paths.deleteLetter);
       myFetch(Paths.deleteLetter, 'DELETE', deleteName).then(function (response) {
         return response.json();
       }).then(function (response) {
