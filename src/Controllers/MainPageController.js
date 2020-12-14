@@ -171,7 +171,9 @@ class MainPageController {
       globalEventBus.emit(Events.mainPageController.deleteLetter, deleteName);
       const h = () => {
         globalEventBus.off(Events.letterModelEvents.deleteLetter.success, h);
-        globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
+        this.data.letter = null;
+        this.mainPageView.render(this.data);
+        // globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
       };
       globalEventBus.on(Events.letterModelEvents.deleteLetter.success, h);
       globalEventBus.on(Events.letterModelEvents.deleteLetter.fail, h);

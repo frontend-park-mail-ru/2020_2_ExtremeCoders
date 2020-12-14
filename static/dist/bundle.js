@@ -855,7 +855,7 @@ var Paths = {
   inFolder: '/user/folders/',
   renameFolder: '/user/folders/recived/folderName',
   deleteFolder: '/user/folders/recived/folderName',
-  deleteLetter: '/user/letter'
+  deleteLetter: '/letter'
 }; // логин post /session
 // логаут delete /session
 // регистрация post /user
@@ -2298,6 +2298,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
   }, {
     key: "deleteLetter",
     value: function deleteLetter(deleteName) {
+      console.log('$#$!!!!!!!!!!', Paths.deleteLetter);
       myFetch(Paths.deleteLetter, 'DELETE', deleteName).then(function (response) {
         return response.json();
       }).then(function (response) {
@@ -4858,7 +4859,10 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
 
       var h = function h() {
         src_EventBus.off(Events.letterModelEvents.deleteLetter.success, h);
-        src_EventBus.emit(Events.mainPageView.needData, 'Входящие');
+        _this.data.letter = null;
+
+        _this.mainPageView.render(_this.data); // globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
+
       };
 
       src_EventBus.on(Events.letterModelEvents.deleteLetter.success, h);
