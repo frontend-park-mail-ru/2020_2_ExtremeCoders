@@ -4,9 +4,9 @@
 node_modules
 .idea
 
-static
+static/
 
-*.css
+css/
 
 navbar.js
 mainPage.js
