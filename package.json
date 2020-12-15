@@ -13,6 +13,10 @@
     "prestart": "npm run tmpl",
     "pretmpl": "pug -c ./src/Views/PugTemplates",
     "prebuild": "npm run tmpl",
+    "prebuild": "npm run build-css",
+    "prebuild-css": "npm run build-css-components",
+    "build-css": "node-sass src/Views/public/scss -o src/Views/public/css",
+    "build-css-components": "node-sass src/Views/public/scss/components -o src/Views/public/css/components",
     "tmpl": "echo 'export {template}' >> src/Views/PugTemplates/mainPage.js \n echo 'export {template}' >> src/Views/PugTemplates/ProfileEditForm.js \n echo 'export {template}' >> src/Views/PugTemplates/ProfilePage.js \n echo 'export {template}' >> src/Views/PugTemplates/SendLetterForm.js \n echo 'export {template}' >> src/Views/PugTemplates/SignInForm.js \n echo 'export {template}' >> src/Views/PugTemplates/SignUpForm.js \n echo 'export {template}' >> src/Views/PugTemplates/BaseComponents/navbar.js"
   },
   "keywords": [],

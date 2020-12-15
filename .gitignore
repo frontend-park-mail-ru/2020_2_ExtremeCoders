@@ -6,3 +6,13 @@ node_modules
 
 /dist/
 
+*.css
+
+navbar.js
+mainPage.js
+ProfileEditForm.js
+ProfilePage.js
+SendLetterForm.js
+SignInForm.js
+SignUpForm.js
+
