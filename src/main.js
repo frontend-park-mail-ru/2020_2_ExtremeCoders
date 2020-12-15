@@ -1,8 +1,17 @@
+import './Views/public/css/font.css';
+import './Views/public/css/color.css';
+import './Views/public/css/spacing.css';
+import './Views/public/css/grid.css';
+import './Views/public/css/properties.css';
+import './Views/public/css/blocks.css';
+import './Views/public/css/components/input.css';
+import './Views/public/css/components/title.css';
 import './Views/public/css/components/scroll.css';
 import './Views/public/css/components/button.css';
 import './Views/public/css/components/triangle.css';
 import './Views/public/css/components/header.css';
-import './Views/public/css/all_styles_v2.css';
+import './Views/public/css/base.css';
+import './Views/public/css/wrapper.css';
 
 import Router from './Views/Router.js';
 import SignInView from './Views/SignInView.js';

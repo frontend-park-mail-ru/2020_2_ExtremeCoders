@@ -1,0 +1,92 @@
+.h-group:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.is-hidden {
+    display: none;
+}
+.is-invisible {
+    visibility: hidden;
+}
+.h-antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.h-overflow-hidden {
+    overflow: hidden;
+}
+.h-remove-top {
+    margin-top: 0;
+}
+.h-remove-bottom {
+    margin-bottom: 0;
+}
+.h-add-half-bottom {
+    margin-bottom: var(--vspace-0_5) !important;
+}
+.h-add-bottom {
+    margin-bottom: var(--vspace-1) !important;
+}
+.h-no-border {
+    border: none;
+}
+.h-full-width {
+    width: 100%;
+}
+.h-text-center {
+    text-align: center;
+}
+.h-text-left {
+    text-align: left;
+}
+.h-text-right {
+    text-align: right;
+}
+.h-pull-left {
+    float: left;
+}
+.h-pull-right {
+    float: right;
+}
+
+.btn.h-full-width, button.h-full-width {
+    width: 100%;
+    margin-right: 0;
+}
+
+.btn--small, button.btn--small {
+    --btn-height: calc(var(--vspace-btn) - 1.6rem);
+}
+
+.btn--medium, button.btn--medium {
+    --btn-height: calc(var(--vspace-btn) + .8rem);
+}
+
+.btn--large, button.btn--large {
+    --btn-height: calc(var(--vspace-btn) + 1.6rem);
+}
+
+.btn--stroke, button.btn--stroke {
+    background: transparent !important;
+    border: 0.2rem solid var(--color-btn-stroke);
+    color: var(--color-btn-stroke-text);
+}
+
+.btn--stroke:hover, button.btn--stroke:hover {
+    background: var(--color-btn-stroke-hover) !important;
+    border: 0.2rem solid var(--color-btn-stroke-hover);
+    color: var(--color-btn-stroke-hover-text);
+}
+
+.btn--pill, button.btn--pill {
+    padding-left: 3.2rem !important;
+    padding-right: 3.2rem !important;
+    border-radius: 1000px !important;
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
