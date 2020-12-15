@@ -13,7 +13,7 @@
     "prestart": "npm run tmpl",
     "pretmpl": "pug -c ./src/Views/PugTemplates",
     "prebuild": "npm run tmpl",
-    "prebuild": "npm run build-css",
+    "preprebuild": "npm run build-css",
     "prebuild-css": "npm run build-css-components",
     "build-css": "node-sass src/Views/public/scss -o src/Views/public/css",
     "build-css-components": "node-sass src/Views/public/scss/components -o src/Views/public/css/components",
