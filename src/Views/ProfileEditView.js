@@ -27,7 +27,6 @@ export default class ProfileEditView {
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      console.log('SUBMIT PROFILE EDIT');
       globalEventBus.emit(Events.profileEditViewEvents.submit, {
         target: 'ProfileEditView',
         data: new FormData(form),

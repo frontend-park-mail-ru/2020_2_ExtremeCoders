@@ -32,7 +32,6 @@ class UserModel {
     shortLogin += '@mailer.ru.com';
     data.data.set('email', shortLogin);
 
-    console.log('SIGN IN ', data, this.baseUrl + Paths.signInPage);
     myFetch(Paths.signInServ, 'POST', data.data)
       .then((response) => response.json())
       .then((response) => {
@@ -65,7 +64,6 @@ class UserModel {
   signUp(data) {
     const errors = validator.checkSignUpForm(data.data);
     if (Object.keys(errors).length !== 0) {
-      console.log('ERRORS IN SIGN UP ', errors);
       globalEventBus.emit(Events.userModelEvents.signUp.fail,
         errors);
       return;

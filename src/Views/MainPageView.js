@@ -9,7 +9,6 @@ export default class MainPageView {
   }
 
   render(data) {
-    console.log('RENDER MAIN PAGE DATA, dat', data);
     if (!data || !data.letterList || !data.folderList) {
       globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
       globalEventBus.emit(Events.mainPageView.recivedFolder);

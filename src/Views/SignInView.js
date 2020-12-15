@@ -15,7 +15,6 @@ export default class SignInView {
     const signUpButton = document.getElementsByName('signup')[0];
 
     form.addEventListener('submit', (event) => {
-      console.log('FORM SUBMIT');
       event.preventDefault();
       const formData = new FormData(form);
       globalEventBus.emit(Events.signInViewEvents.submit, { target: 'SignInView', data: formData });
@@ -28,7 +27,6 @@ export default class SignInView {
   }
 
   static showErrors(errors) {
-    console.log('SIGN IN ERRORS SHOW', errors.errors);
     const passwordField = document.getElementsByName('password')[0];
     const emailField = document.getElementsByName('email')[0];
     console.log(errors.password);

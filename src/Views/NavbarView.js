@@ -13,7 +13,6 @@ class NavbarView {
       return;
     }
     this.element.innerHTML = '';
-    console.log('NAVBAR VIEW RENDER', data);
     const navDiv = document.getElementById('navbar') || document.createElement('div');
     navDiv.id = 'navbar';
     navDiv.innerHTML = template(data);

@@ -40,7 +40,6 @@ export default class LetterModel {
   static sendLetter(data) {
     const errors = validator.checkLetterForm(data);
     if (Object.keys(errors).length !== 0) {
-      console.log('ERRORS IN SEND LETTER ', errors);
       globalEventBus.emit(Events.letterModelEvents.sendLetter.fail,
         errors);
       return;
@@ -48,9 +47,7 @@ export default class LetterModel {
     myFetch(Paths.sendMessageToServ, 'POST', data)
       .then((response) => response.json())
       .then((response) => {
-        console.log('RESP SEND LETTER', response);
         if (response.Code === 200) {
-          console.log('SUCCES SEND LETTER');
           globalEventBus.emit(Events.letterModelEvents.sendLetter.success);
         } else {
           globalEventBus.emit(Events.letterModelEvents.sendLetter.fail, {
@@ -69,7 +66,6 @@ export default class LetterModel {
   }
 
   getLetterList(folder) {
-    console.log('GET LETTER LIST FOLDER ', folder);
     let path = '';
     if (folder === 'Входящие') {
       path = Paths.getReceivedLetters;

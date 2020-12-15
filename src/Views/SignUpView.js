@@ -25,7 +25,6 @@ export default class SignUpView {
 
   static showErrors(errors) {
     SignUpView.clearErrors();
-    console.log('SIGN UP ERRORS SHOW', errors);
     const emailField = document.getElementsByName('email')[0];
     const passwordField1 = document.getElementsByName('password1')[0];
     const passwordField2 = document.getElementsByName('password2')[0];
@@ -64,7 +63,6 @@ export default class SignUpView {
     const names = ['passwordField1Error', 'passwordField2Error', 'emailError', 'nameError', 'surnameError'];
     names.forEach((el) => {
       const msgElem = document.getElementById(el);
-      console.log('MESSAGE ELEMT', el, msgElem);
       if (msgElem) {
         msgElem.innerHTML = '';
       }
