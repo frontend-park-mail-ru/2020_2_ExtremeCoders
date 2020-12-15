@@ -13,7 +13,6 @@ app.use(express.static(`${__dirname}/static/dist`));
  * send get request
  */
 app.get(/.*$/, (request, response) => {
-  console.log(request.method, request.url);
   // response.sendFile(__dirname+'/src/index.html');
   response.sendFile(`${__dirname}/static/dist/index.html`);
 });

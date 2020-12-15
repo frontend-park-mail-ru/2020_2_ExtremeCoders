@@ -27,7 +27,6 @@ class EventBus {
    * this.emit('select', data1, data2);
    */
   emit(eventName, ...args) {
-    console.log('EMIT', eventName, args);
     if (!this._eventHandlers || !this._eventHandlers[eventName]) {
       return;
     }

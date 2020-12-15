@@ -45,8 +45,7 @@ export default class Validator {
   }
 
   static checkSignUpForm(formData) {
-    console.log('VALIDATOR SIGN UP', formData.get('email'), formData.get('password1'), formData.get('password2'),
-      formData.get('name'), formData.get('surname'));
+    formData.get('name'), formData.get('surname'));
     const errors = {};
     if (!Validator._checkEmail(formData.get('email'))) {
       errors.email = 'Некорректный email';
@@ -67,7 +66,6 @@ export default class Validator {
   }
 
   static checkLetterForm(formData) {
-    console.log('VALIDATOR SEND LETTER', formData.get('to'), formData.get('theme'), formData.get('text'));
     const errors = {};
     if (!Validator._checkEmail(formData.get('to'))) {
       errors.to = 'Некорректный email получателя';

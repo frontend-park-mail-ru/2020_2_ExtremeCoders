@@ -12,7 +12,6 @@ export default class SendLetterView {
 
   render(data) {
     const newdata = data || {};
-    console.log('SEND LETTER VIEW RENDER');
     this.element.innerHTML = '';
     Navbar.render();
     this.element.insertAdjacentHTML('beforeend', template(newdata));
@@ -30,7 +29,6 @@ export default class SendLetterView {
   }
 
   static showErrors(errors) {
-    console.log('SEND LETTER ERRORS SHOW', errors);
     const reciever = document.getElementsByName('to')[0];
     const theme = document.getElementsByName('theme')[0];
     const text = document.getElementsByName('text')[0];

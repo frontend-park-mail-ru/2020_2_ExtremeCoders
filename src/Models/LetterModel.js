@@ -56,7 +56,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
   }
 
@@ -76,17 +76,12 @@ export default class LetterModel {
     myFetch(path, 'GET')
       .then((response) => response.json())
       .then((response) => {
-        console.log('RESP GET LETTER LIST', response);
         if (response.Code === 200) {
-          console.log('SUCCES GET LETTER LETTER LIST');
           this.Letters = new Map();
           if (response.Letters) {
             response.Letters.reverse();
             response.Letters.forEach((letter) => {
               this.Letters[letter.Id] = letter;
-            });
-            this.Letters.forEach((letter) => {
-              console.log('LETTTER', letter);
             });
           }
 
@@ -98,7 +93,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
         globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
           error,
         });
@@ -177,7 +172,6 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('7654321 + !!!!!!!!!!!!!!!!! + 999999999999');
         globalEventBus.emit(Events.letterModelEvents.selectFolder.fail, {
           error,
         });
@@ -196,7 +190,6 @@ export default class LetterModel {
               this.selectFolder[letter.Id] = letter;
             });
           }
-          console.log('sent letters', this.selectFolder);
           globalEventBus.emit(Events.letterModelEvents.recivedUn.success, this.selectFolder);
         } else {
           globalEventBus.emit(Events.letterModelEvents.recivedUn.fail, {
@@ -238,11 +231,9 @@ export default class LetterModel {
   }
 
   addFolderRecived(name) {
-    console.log('addFolderRecived создать папку', name);
     myFetch(Paths.addFolderRecived, 'POST', name)
       .then((response) => response.json())
       .then((response) => {
-        console.log('addFolderRecived создана папка', response.Code);
         if (response.Code === 200) {
           globalEventBus.emit(Events.letterModelEvents.addFolderRecived.success);
         } else {
@@ -252,7 +243,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
   }
 
@@ -269,7 +260,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
   }
 
@@ -286,7 +277,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
   }
 
@@ -303,7 +294,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
   }
 
@@ -320,7 +311,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
   }
 
@@ -337,7 +328,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
   }
 
@@ -354,7 +345,7 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
   }
 

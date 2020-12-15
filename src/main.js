@@ -61,11 +61,9 @@ router.register(Paths.profileEditPage, profileEditView);
 router.register(Paths.mainPage, mainPageView);
 router.register(Paths.sendLetterPage, sendLetterView);
 
-console.log(window.location.pathname);
 function initModels() {
   userModel.getUserData();
   const h1 = () => {
-    console.log('h1');
     globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
     LetterModel.getFolders();
   };
@@ -73,7 +71,6 @@ function initModels() {
   globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
 
   const h2 = () => {
-    console.log('h2');
     globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
     letterModel.getLetterList('Входящие');
   };
@@ -81,12 +78,10 @@ function initModels() {
   globalEventBus.on(Events.letterModelEvents.getFolderList.success, h2);
 
   const h3 = () => {
-    console.log('h3');
     globalEventBus.off(Events.letterModelEvents.getLetterList.success, h3);
     try {
       router.start(window.location.pathname);
     } catch (err) {
-      console.log('CATCH PATH, err', err);
       router.start(Paths.signInPage);
     }
   };
@@ -94,7 +89,6 @@ function initModels() {
 
   const h4 = () => {
     globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4);
-    console.log('h4');
     router.start(Paths.signInPage);
   };
   globalEventBus.on(Events.userModelEvents.profileGetData.fail, h4);

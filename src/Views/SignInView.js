@@ -29,7 +29,6 @@ export default class SignInView {
   static showErrors(errors) {
     const passwordField = document.getElementsByName('password')[0];
     const emailField = document.getElementsByName('email')[0];
-    console.log(errors.password);
     if (errors.password) {
       this.createError(passwordField, 'passwordError', errors.password);
     }

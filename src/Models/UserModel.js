@@ -19,10 +19,8 @@ class UserModel {
   }
 
   signIn(data) {
-    console.log('SIGN IN');
     const errors = validator.checkSignInForm(data.data);
     if (Object.keys(errors).length !== 0) {
-      console.log('ERRORS IN SIGN IN ', errors);
       globalEventBus.emit(Events.userModelEvents.signIn.fail,
         errors);
       return;
@@ -76,7 +74,6 @@ class UserModel {
     myFetch(Paths.signUpServ, 'POST', data.data)
       .then((response) => response.json())
       .then((response) => {
-        console.log('RESP SIGN UP UP', response.Code, response);
         if (response.Code === 200) {
           const h = () => {
             globalEventBus.off(Events.userModelEvents.profileGetData.success, h);
@@ -111,7 +108,6 @@ class UserModel {
     myFetch(Paths.editUserServ, 'PUT', data.data)
       .then((response) => response.json())
       .then((response) => {
-        console.log('RESP SIGN UP UP', response.Code, response);
         if (response.Code === 200) {
           this.getUserData(Events.userModelEvents.profileEdit);
           const h1 = () => {
@@ -134,7 +130,6 @@ class UserModel {
     const p1 = myFetch(Paths.getUserData, 'GET')
       .then((response) => response.json())
       .then((response) => {
-        console.log('RESP GET USER DATA', response.status, response);
         if (response.Code === 200) {
           this.user.name = response.User.Name;
           this.user.email = response.User.Email;
@@ -148,7 +143,6 @@ class UserModel {
     const p2 = myFetch(Paths.getAvatar, 'GET')
       .then((response) => response.blob())
       .then((myBlob) => {
-        console.log('BLOB', myBlob);
         this.user.avatar = URL.createObjectURL(myBlob);
       });
 
@@ -158,8 +152,6 @@ class UserModel {
 
     Promise.all([p1, p2]).then(
       () => {
-        console.log('УСПЕХ');
-        console.log('USER', this.user);
         globalEventBus.emit(Events.userModelEvents.profileGetData.success, this.user);
       },
       (error) => {
@@ -171,7 +163,6 @@ class UserModel {
   }
 
   logout() {
-    console.log('LOGOUT');
     globalEventBus.emit(Events.global.redirect, {
       path: Paths.signInPage,
     });
