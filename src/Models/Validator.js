@@ -44,7 +44,6 @@ export default class Validator {
   }
 
   static checkSignUpForm(formData) {
-    formData.get('name'), formData.get('surname'));
     const errors = {};
     if (!Validator._checkEmail(formData.get('email'))) {
       errors.email = 'Некорректный email';

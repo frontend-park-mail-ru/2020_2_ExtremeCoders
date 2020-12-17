@@ -1250,8 +1250,6 @@ var EventBus = /*#__PURE__*/function () {
         args[_key - 1] = arguments[_key];
       }
 
-      console.log('EMIT', eventName, args);
-
       if (!this._eventHandlers || !this._eventHandlers[eventName]) {
         return;
       }
@@ -1286,7 +1284,6 @@ var Router_Router = /*#__PURE__*/function () {
 
     window.onpopstate = function (event) {
       event.preventDefault();
-      console.log('HISTORY EVENT', event);
 
       try {
         _this.registeredPathes[event.state.path].render(event.state.data);
@@ -1308,7 +1305,6 @@ var Router_Router = /*#__PURE__*/function () {
   }, {
     key: "start",
     value: function start(path, data) {
-      console.log('START PATH', path, 'PREV PAGE', document.referrer);
       window.history.pushState({
         path: path,
         data: data || 1
@@ -1318,8 +1314,6 @@ var Router_Router = /*#__PURE__*/function () {
   }, {
     key: "go",
     value: function go(event) {
-      console.log('GOOO', event);
-
       if (event) {
         if (event.path === '/letters') {
           var letterData = {
@@ -1340,9 +1334,7 @@ var Router_Router = /*#__PURE__*/function () {
   }, {
     key: "back",
     value: function back() {
-      console.log("I'L BE BACK");
       window.history.back();
-      console.log('href', window.location.pathname);
       this.registeredPathes[window.location.pathname].render();
     }
   }]);
@@ -1552,7 +1544,6 @@ var SignInView_SignInView = /*#__PURE__*/function () {
       var form = document.getElementsByTagName('form')[0];
       var signUpButton = document.getElementsByName('signup')[0];
       form.addEventListener('submit', function (event) {
-        console.log('FORM SUBMIT');
         event.preventDefault();
         var formData = new FormData(form);
         src_EventBus.emit(Events.signInViewEvents.submit, {
@@ -1587,10 +1578,8 @@ var SignInView_SignInView = /*#__PURE__*/function () {
   }], [{
     key: "showErrors",
     value: function showErrors(errors) {
-      console.log('SIGN IN ERRORS SHOW', errors.errors);
       var passwordField = document.getElementsByName('password')[0];
       var emailField = document.getElementsByName('email')[0];
-      console.log(errors.password);
 
       if (errors.password) {
         this.createError(passwordField, 'passwordError', errors.password);
@@ -1856,7 +1845,6 @@ var SignUpView_SignUpView = /*#__PURE__*/function () {
     key: "showErrors",
     value: function showErrors(errors) {
       SignUpView.clearErrors();
-      console.log('SIGN UP ERRORS SHOW', errors);
       var emailField = document.getElementsByName('email')[0];
       var passwordField1 = document.getElementsByName('password1')[0];
       var passwordField2 = document.getElementsByName('password2')[0];
@@ -1904,7 +1892,6 @@ var SignUpView_SignUpView = /*#__PURE__*/function () {
       var names = ['passwordField1Error', 'passwordField2Error', 'emailError', 'nameError', 'surnameError'];
       names.forEach(function (el) {
         var msgElem = document.getElementById(el);
-        console.log('MESSAGE ELEMT', el, msgElem);
 
         if (msgElem) {
           msgElem.innerHTML = '';
@@ -1931,8 +1918,6 @@ var Validator = /*#__PURE__*/function () {
 
   Validator_createClass(Validator, null, [{
     key: "_checkEmail",
-
-    /* eslint no-underscore-dangle: 0 */
     // static _checkEmail(email) {
     //   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     //   return re.test(email);
@@ -1987,7 +1972,6 @@ var Validator = /*#__PURE__*/function () {
   }, {
     key: "checkSignUpForm",
     value: function checkSignUpForm(formData) {
-      console.log('VALIDATOR SIGN UP', formData.get('email'), formData.get('password1'), formData.get('password2'), formData.get('name'), formData.get('surname'));
       var errors = {};
 
       if (!Validator._checkEmail(formData.get('email'))) {
@@ -2013,7 +1997,6 @@ var Validator = /*#__PURE__*/function () {
   }, {
     key: "checkLetterForm",
     value: function checkLetterForm(formData) {
-      console.log('VALIDATOR SEND LETTER', formData.get('to'), formData.get('theme'), formData.get('text'));
       var errors = {};
 
       if (!Validator._checkEmail(formData.get('to'))) {
@@ -2093,11 +2076,9 @@ var UserModel_UserModel = /*#__PURE__*/function () {
     value: function signIn(data) {
       var _this = this;
 
-      console.log('SIGN IN');
       var errors = Validator.checkSignInForm(data.data);
 
       if (Object.keys(errors).length !== 0) {
-        console.log('ERRORS IN SIGN IN ', errors);
         src_EventBus.emit(Events.userModelEvents.signIn.fail, errors);
         return;
       }
@@ -2105,7 +2086,6 @@ var UserModel_UserModel = /*#__PURE__*/function () {
       var shortLogin = data.data.get('email');
       shortLogin += '@mailer.ru.com';
       data.data.set('email', shortLogin);
-      console.log('SIGN IN ', data, this.baseUrl + Paths.signInPage);
       myFetch(Paths.signInServ, 'POST', data.data).then(function (response) {
         return response.json();
       }).then(function (response) {
@@ -2143,7 +2123,6 @@ var UserModel_UserModel = /*#__PURE__*/function () {
       var errors = Validator.checkSignUpForm(data.data);
 
       if (Object.keys(errors).length !== 0) {
-        console.log('ERRORS IN SIGN UP ', errors);
         src_EventBus.emit(Events.userModelEvents.signUp.fail, errors);
         return;
       }
@@ -2154,8 +2133,6 @@ var UserModel_UserModel = /*#__PURE__*/function () {
       myFetch(Paths.signUpServ, 'POST', data.data).then(function (response) {
         return response.json();
       }).then(function (response) {
-        console.log('RESP SIGN UP UP', response.Code, response);
-
         if (response.Code === 200) {
           var h = function h() {
             src_EventBus.off(Events.userModelEvents.profileGetData.success, h);
@@ -2200,8 +2177,6 @@ var UserModel_UserModel = /*#__PURE__*/function () {
       myFetch(Paths.editUserServ, 'PUT', data.data).then(function (response) {
         return response.json();
       }).then(function (response) {
-        console.log('RESP SIGN UP UP', response.Code, response);
-
         if (response.Code === 200) {
           _this3.getUserData(Events.userModelEvents.profileEdit);
 
@@ -2228,8 +2203,6 @@ var UserModel_UserModel = /*#__PURE__*/function () {
       var p1 = myFetch(Paths.getUserData, 'GET').then(function (response) {
         return response.json();
       }).then(function (response) {
-        console.log('RESP GET USER DATA', response.status, response);
-
         if (response.Code === 200) {
           _this4.user.name = response.User.Name;
           _this4.user.email = response.User.Email;
@@ -2242,15 +2215,12 @@ var UserModel_UserModel = /*#__PURE__*/function () {
       var p2 = myFetch(Paths.getAvatar, 'GET').then(function (response) {
         return response.blob();
       }).then(function (myBlob) {
-        console.log('BLOB', myBlob);
         _this4.user.avatar = URL.createObjectURL(myBlob);
       }); // function p2() {
       //   console.log('Мок аватарки');
       // }
 
       Promise.all([p1, p2]).then(function () {
-        console.log('УСПЕХ');
-        console.log('USER', _this4.user);
         src_EventBus.emit(Events.userModelEvents.profileGetData.success, _this4.user);
       }, function (error) {
         src_EventBus.emit(Events.userModelEvents.profileGetData.fail, {
@@ -2261,7 +2231,6 @@ var UserModel_UserModel = /*#__PURE__*/function () {
   }, {
     key: "logout",
     value: function logout() {
-      console.log('LOGOUT');
       src_EventBus.emit(Events.global.redirect, {
         path: Paths.signInPage
       });
@@ -2321,7 +2290,6 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
     value: function getLetterList(folder) {
       var _this = this;
 
-      console.log('GET LETTER LIST FOLDER ', folder);
       var path = '';
 
       if (folder === 'Входящие') {
@@ -2333,20 +2301,13 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
       myFetch(path, 'GET').then(function (response) {
         return response.json();
       }).then(function (response) {
-        console.log('RESP GET LETTER LIST', response);
-
         if (response.Code === 200) {
-          console.log('SUCCES GET LETTER LETTER LIST');
           _this.Letters = new Map();
 
           if (response.Letters) {
             response.Letters.reverse();
             response.Letters.forEach(function (letter) {
               _this.Letters[letter.Id] = letter;
-            });
-
-            _this.Letters.forEach(function (letter) {
-              console.log('LETTTER', letter);
             });
           }
 
@@ -2357,7 +2318,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
         src_EventBus.emit(Events.letterModelEvents.getLetterList.fail, {
           error: error
         });
@@ -2446,7 +2407,6 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('7654321 + !!!!!!!!!!!!!!!!! + 999999999999');
         src_EventBus.emit(Events.letterModelEvents.selectFolder.fail, {
           error: error
         });
@@ -2470,7 +2430,6 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
             });
           }
 
-          console.log('sent letters', _this5.selectFolder);
           src_EventBus.emit(Events.letterModelEvents.recivedUn.success, _this5.selectFolder);
         } else {
           src_EventBus.emit(Events.letterModelEvents.recivedUn.fail, {
@@ -2516,12 +2475,9 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
   }, {
     key: "addFolderRecived",
     value: function addFolderRecived(name) {
-      console.log('addFolderRecived создать папку', name);
       myFetch(Paths.addFolderRecived, 'POST', name).then(function (response) {
         return response.json();
       }).then(function (response) {
-        console.log('addFolderRecived создана папка', response.Code);
-
         if (response.Code === 200) {
           src_EventBus.emit(Events.letterModelEvents.addFolderRecived.success);
         } else {
@@ -2530,7 +2486,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
     }
   }, {
@@ -2547,7 +2503,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
     }
   }, {
@@ -2564,7 +2520,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
     }
   }, {
@@ -2581,7 +2537,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
     }
   }, {
@@ -2598,7 +2554,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
     }
   }, {
@@ -2615,7 +2571,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
     }
   }, {
@@ -2632,7 +2588,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
     }
   }, {
@@ -2647,7 +2603,6 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
       var errors = Validator.checkLetterForm(data);
 
       if (Object.keys(errors).length !== 0) {
-        console.log('ERRORS IN SEND LETTER ', errors);
         src_EventBus.emit(Events.letterModelEvents.sendLetter.fail, errors);
         return;
       }
@@ -2655,10 +2610,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
       myFetch(Paths.sendMessageToServ, 'POST', data).then(function (response) {
         return response.json();
       }).then(function (response) {
-        console.log('RESP SEND LETTER', response);
-
         if (response.Code === 200) {
-          console.log('SUCCES SEND LETTER');
           src_EventBus.emit(Events.letterModelEvents.sendLetter.success);
         } else {
           src_EventBus.emit(Events.letterModelEvents.sendLetter.fail, {
@@ -2666,7 +2618,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
           });
         }
       })["catch"](function (error) {
-        console.log('CAAAAAAAAAAAAAAAATCH', error);
+        console.log('Fetch error', error);
       });
     }
   }, {
@@ -3088,7 +3040,6 @@ var NavbarView_NavbarView = /*#__PURE__*/function () {
       }
 
       this.element.innerHTML = '';
-      console.log('NAVBAR VIEW RENDER', data);
       var navDiv = document.getElementById('navbar') || document.createElement('div');
       navDiv.id = 'navbar';
       navDiv.innerHTML = navbar_template(data);
@@ -3476,7 +3427,6 @@ var ProfileEditView_ProfileEditView = /*#__PURE__*/function () {
       var backButton = document.getElementsByName('back')[0];
       form.addEventListener('submit', function (event) {
         event.preventDefault();
-        console.log('SUBMIT PROFILE EDIT');
         src_EventBus.emit(Events.profileEditViewEvents.submit, {
           target: 'ProfileEditView',
           data: new FormData(form),
@@ -4822,8 +4772,6 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
     value: function render(data) {
       var _document, _document2, _document3, _document4, _document5, _document6, _document7, _document8, _document9, _document10, _document11, _document12, _document13, _document14, _document15, _document16, _document19, _document20, _document22, _document23;
 
-      console.log('RENDER MAIN PAGE DATA, dat', data);
-
       if (!data || !data.letterList || !data.folderList) {
         src_EventBus.emit(Events.mainPageView.needData, 'Входящие');
         src_EventBus.emit(Events.mainPageView.recivedFolder);
@@ -5417,7 +5365,6 @@ var SendLetterView_SendLetterView = /*#__PURE__*/function () {
     key: "render",
     value: function render(data) {
       var newdata = data || {};
-      console.log('SEND LETTER VIEW RENDER');
       this.element.innerHTML = '';
       Views_NavbarView.render();
       this.element.insertAdjacentHTML('beforeend', SendLetterForm_template(newdata));
@@ -5435,7 +5382,6 @@ var SendLetterView_SendLetterView = /*#__PURE__*/function () {
   }], [{
     key: "showErrors",
     value: function showErrors(errors) {
-      console.log('SEND LETTER ERRORS SHOW', errors);
       var reciever = document.getElementsByName('to')[0];
       var theme = document.getElementsByName('theme')[0];
       var text = document.getElementsByName('text')[0];
@@ -5564,7 +5510,6 @@ var SignUpController_SignUpController = function SignUpController() {
   SignUpController_classCallCheck(this, SignUpController);
 
   src_EventBus.on(Events.userModelEvents.signUp.success, function (user) {
-    console.log('SIGNUP SUCCESS');
     src_EventBus.emit(Events.global.redirect, {
       path: Paths.mainPage,
       data: user
@@ -5628,13 +5573,11 @@ router.register(Paths.profilePage, profileView);
 router.register(Paths.profileEditPage, main_profileEditView);
 router.register(Paths.mainPage, mainPageView);
 router.register(Paths.sendLetterPage, sendLetterView);
-console.log(window.location.pathname);
 
 function initModels() {
   Models_UserModel.getUserData();
 
   var h1 = function h1() {
-    console.log('h1');
     src_EventBus.off(Events.userModelEvents.profileGetData.success, h1);
     LetterModel_LetterModel.getFolders();
   };
@@ -5642,7 +5585,6 @@ function initModels() {
   src_EventBus.on(Events.userModelEvents.profileGetData.success, h1);
 
   var h2 = function h2() {
-    console.log('h2');
     src_EventBus.off(Events.letterModelEvents.getFolderList.success, h2);
     letterModel.getLetterList('Входящие');
   };
@@ -5650,13 +5592,11 @@ function initModels() {
   src_EventBus.on(Events.letterModelEvents.getFolderList.success, h2);
 
   var h3 = function h3() {
-    console.log('h3');
     src_EventBus.off(Events.letterModelEvents.getLetterList.success, h3);
 
     try {
       router.start(window.location.pathname);
     } catch (err) {
-      console.log('CATCH PATH, err', err);
       router.start(Paths.signInPage);
     }
   };
@@ -5665,7 +5605,6 @@ function initModels() {
 
   var h4 = function h4() {
     src_EventBus.off(Events.userModelEvents.profileGetData.fail, h4);
-    console.log('h4');
     router.start(Paths.signInPage);
   };
 
