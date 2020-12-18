@@ -86,6 +86,10 @@
         background-color: white;
     }
 
+    .entry__text:hover {
+        background-color: var(--color-gray-1);
+    }
+
     .entry__title {
         font-size: var(--text-lg);
         font-weight: 500;
