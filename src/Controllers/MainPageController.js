@@ -5,6 +5,7 @@ class MainPageController {
   constructor(MainPageView) {
     this.mainPageView = MainPageView;
     this.data = {};
+    this.data.searchResult = {};
     this.data.screenWidth = window.innerWidth;
     this.data.folderColumn = true;
     this.data.letterColumn = false;
@@ -173,7 +174,6 @@ class MainPageController {
         globalEventBus.off(Events.letterModelEvents.deleteLetter.success, h);
         this.data.letter = null;
         this.mainPageView.render(this.data);
-        // globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
       };
       globalEventBus.on(Events.letterModelEvents.deleteLetter.success, h);
       globalEventBus.on(Events.letterModelEvents.deleteLetter.fail, h);
@@ -191,6 +191,27 @@ class MainPageController {
       this.data.letterColumn = true;
       this.data.oneLetterColumn = false;
       this.mainPageView.render(this.data);
+    });
+
+    globalEventBus.on(Events.mainPageView.startSearch, (similar) => {
+      globalEventBus.emit(Events.mainPageController.startSearch, similar);
+      const h = (data) => {
+        globalEventBus.off(Events.letterModelEvents.startSearch.success, h);
+        this.data.searchResult = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.startSearch.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.resultSearch, (what, value) => {
+      globalEventBus.emit(Events.mainPageController.resultSearch, what, value);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.resultSearch.success, h);
+
+        // рендер
+        // this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.resultSearch.success, h);
     });
   }
 

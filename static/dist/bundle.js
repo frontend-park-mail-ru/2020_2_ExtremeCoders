@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -718,7 +718,7 @@ ___CSS_LOADER_EXPORT___.push([module.i, ".s-header {\n  z-index: 100;\n  width: 
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, "input[type=\"email\"],\ninput[type=\"number\"],\ninput[type=\"search\"],\ninput[type=\"text\"],\ninput[type=\"tel\"],\ninput[type=\"url\"],\ninput[type=\"password\"],\ninput[type=\"file\"],\ntextarea {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none; }\n\nfieldset,\nbutton,\n.btn {\n  margin-bottom: var(--vspace-0_5); }\n\ninput,\ntextarea,\nselect,\npre,\nblockquote,\nfigure,\nfigcaption,\ntable,\np,\nul,\nol,\ndl,\nform,\nimg,\n.video-container,\n.ss-custom-select {\n  margin-bottom: var(--vspace-1); }\n\n.folders {\n  padding: 0;\n  margin: 0; }\n\n.form-field {\n  display: flex;\n  flex-direction: row; }\n\nfieldset {\n  border: none; }\n\ninput[type=\"email\"],\ninput[type=\"number\"],\ninput[type=\"search\"],\ninput[type=\"text\"],\ninput[type=\"tel\"],\ninput[type=\"url\"],\ninput[type=\"password\"],\ninput[type=\"file\"],\ntextarea,\nselect {\n  --input-height: var(--vspace-2);\n  --input-line-height: var(--vspace-1);\n  --input-vpadding: calc(((var(--input-height) - var(--input-line-height)) / 2) - .1rem);\n  display: block;\n  height: var(--input-height);\n  padding: var(--input-vpadding) calc(2.4rem - .1rem);\n  border: 0;\n  outline: none;\n  color: var(--color-placeholder);\n  font-family: var(--font-1);\n  font-size: var(--text-sm);\n  line-height: var(--input-line-height);\n  max-width: 100%;\n  background-color: rgba(0, 0, 0, 0.07);\n  border: 1px solid transparent;\n  -webkit-transition: all .3s ease-in-out;\n  transition: all .3s ease-in-out; }\n\ntextarea {\n  min-height: calc(7 * var(--space)); }\n\ninput[type=\"email\"]:focus,\ninput[type=\"number\"]:focus,\ninput[type=\"search\"]:focus,\ninput[type=\"text\"]:focus,\ninput[type=\"tel\"]:focus,\ninput[type=\"url\"]:focus,\ninput[type=\"password\"]:focus,\ninput[type=\"file\"]:focus,\ntextarea:focus,\nselect:focus {\n  color: white;\n  background-color: var(--color-gray-16);\n  border: 1px solid var(--color-gray-16); }\n\nlabel, legend {\n  font-family: var(--font-1);\n  font-weight: 600;\n  font-size: var(--text-sm);\n  line-height: var(--vspace-0_5);\n  margin-bottom: var(--vspace-0_5);\n  color: var(--color-text-dark);\n  display: block; }\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  display: inline; }\n\nlabel > .label-text {\n  display: inline-block;\n  margin-left: 1rem;\n  font-family: var(--font-1);\n  line-height: inherit; }\n\nlabel > input[type=\"checkbox\"], label > input[type=\"radio\"] {\n  margin: 0;\n  position: relative;\n  top: .2rem; }\n\ninput:-webkit-autofill,\ninput:-webkit-autofill:hover,\ninput:-webkit-autofill:focus input:-webkit-autofill,\ntextarea:-webkit-autofill,\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\nselect:-webkit-autofill,\nselect:-webkit-autofill:hover,\nselect:-webkit-autofill:focus {\n  -webkit-text-fill-color: var(--color-1);\n  -webkit-transition: background-color 5000s ease-in-out 0s;\n  transition: background-color 5000s ease-in-out 0s; }\n\n.btn,\nbutton,\ninput[type=\"submit\"],\ninput[type=\"reset\"],\ninput[type=\"button\"] {\n  --btn-height: var(--vspace-btn);\n  display: inline-block;\n  font-family: var(--font-2);\n  font-weight: 600;\n  font-size: var(--text-xs);\n  text-transform: uppercase;\n  letter-spacing: .4em;\n  height: var(--btn-height);\n  line-height: calc(var(--btn-height) - .4rem);\n  padding: 0 3.2rem;\n  margin: 0 .4rem 1.6rem 0;\n  color: var(--color-btn-text);\n  text-decoration: none;\n  text-align: center;\n  white-space: nowrap;\n  cursor: pointer;\n  -webkit-transition: all .3s;\n  transition: all .3s;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-color: var(--color-btn);\n  border: 0.2rem solid var(--color-btn); }\n\n.btn:hover,\nbutton:hover,\ninput[type=\"submit\"]:hover,\ninput[type=\"reset\"]:hover,\ninput[type=\"button\"]:hover,\n.btn:focus, button:focus,\ninput[type=\"submit\"]:focus,\ninput[type=\"reset\"]:focus,\ninput[type=\"button\"]:focus {\n  background-color: var(--color-btn-hover);\n  border-color: var(--color-btn-hover);\n  color: var(--color-btn-hover-text);\n  outline: 0; }\n\n.btn.btn--primary,\nbutton.btn--primary,\ninput[type=\"submit\"].btn--primary,\ninput[type=\"reset\"].btn--primary,\ninput[type=\"button\"].btn--primary {\n  background: var(--color-btn-primary);\n  border-color: var(--color-btn-primary);\n  color: var(--color-btn-primary-text); }\n\n.btn.btn--primary:hover,\nbutton.btn--primary:hover,\ninput[type=\"submit\"].btn--primary:hover,\ninput[type=\"reset\"].btn--primary:hover,\ninput[type=\"button\"].btn--primary:hover,\n.btn.btn--primary:focus,\nbutton.btn--primary:focus,\ninput[type=\"submit\"].btn--primary:focus,\ninput[type=\"reset\"].btn--primary:focus,\ninput[type=\"button\"].btn--primary:focus {\n  background: var(--color-btn-primary-hover);\n  border-color: var(--color-btn-primary-hover);\n  color: var(--color-btn-primary-hover-text); }\n", "",{"version":3,"sources":["webpack://./src/Views/public/css/base.css"],"names":[],"mappings":"AAAA;;;;;;;;;EASE,wBAAwB;EACxB,qBAAqB;EACrB,gBAAgB,EAAE;;AAEpB;;;EAGE,gCAAgC,EAAE;;AAEpC;;;;;;;;;;;;;;;;EAgBE,8BAA8B,EAAE;;AAElC;EACE,UAAU;EACV,SAAS,EAAE;;AAEb;EACE,aAAa;EACb,mBAAmB,EAAE;;AAEvB;EACE,YAAY,EAAE;;AAEhB;;;;;;;;;;EAUE,+BAA+B;EAC/B,oCAAoC;EACpC,sFAAsF;EACtF,cAAc;EACd,2BAA2B;EAC3B,mDAAmD;EACnD,SAAS;EACT,aAAa;EACb,+BAA+B;EAC/B,0BAA0B;EAC1B,yBAAyB;EACzB,qCAAqC;EACrC,eAAe;EACf,qCAAqC;EACrC,6BAA6B;EAC7B,uCAAuC;EACvC,+BAA+B,EAAE;;AAEnC;EACE,kCAAkC,EAAE;;AAEtC;;;;;;;;;;EAUE,YAAY;EACZ,sCAAsC;EACtC,sCAAsC,EAAE;;AAE1C;EACE,0BAA0B;EAC1B,gBAAgB;EAChB,yBAAyB;EACzB,8BAA8B;EAC9B,gCAAgC;EAChC,6BAA6B;EAC7B,cAAc,EAAE;;AAElB;;EAEE,eAAe,EAAE;;AAEnB;EACE,qBAAqB;EACrB,iBAAiB;EACjB,0BAA0B;EAC1B,oBAAoB,EAAE;;AAExB;EACE,SAAS;EACT,kBAAkB;EAClB,UAAU,EAAE;;AAEd;;;;;;;;EAQE,uCAAuC;EACvC,yDAAyD;EACzD,iDAAiD,EAAE;;AAErD;;;;;EAKE,+BAA+B;EAC/B,qBAAqB;EACrB,0BAA0B;EAC1B,gBAAgB;EAChB,yBAAyB;EACzB,yBAAyB;EACzB,oBAAoB;EACpB,yBAAyB;EACzB,4CAA4C;EAC5C,iBAAiB;EACjB,wBAAwB;EACxB,4BAA4B;EAC5B,qBAAqB;EACrB,kBAAkB;EAClB,mBAAmB;EACnB,eAAe;EACf,2BAA2B;EAC3B,mBAAmB;EACnB,mCAAmC;EACnC,kCAAkC;EAClC,kCAAkC;EAClC,qCAAqC,EAAE;;AAEzC;;;;;;;;;EASE,wCAAwC;EACxC,oCAAoC;EACpC,kCAAkC;EAClC,UAAU,EAAE;;AAEd;;;;;EAKE,oCAAoC;EACpC,sCAAsC;EACtC,oCAAoC,EAAE;;AAExC;;;;;;;;;;EAUE,0CAA0C;EAC1C,4CAA4C;EAC5C,0CAA0C,EAAE","sourcesContent":["input[type=\"email\"],\ninput[type=\"number\"],\ninput[type=\"search\"],\ninput[type=\"text\"],\ninput[type=\"tel\"],\ninput[type=\"url\"],\ninput[type=\"password\"],\ninput[type=\"file\"],\ntextarea {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none; }\n\nfieldset,\nbutton,\n.btn {\n  margin-bottom: var(--vspace-0_5); }\n\ninput,\ntextarea,\nselect,\npre,\nblockquote,\nfigure,\nfigcaption,\ntable,\np,\nul,\nol,\ndl,\nform,\nimg,\n.video-container,\n.ss-custom-select {\n  margin-bottom: var(--vspace-1); }\n\n.folders {\n  padding: 0;\n  margin: 0; }\n\n.form-field {\n  display: flex;\n  flex-direction: row; }\n\nfieldset {\n  border: none; }\n\ninput[type=\"email\"],\ninput[type=\"number\"],\ninput[type=\"search\"],\ninput[type=\"text\"],\ninput[type=\"tel\"],\ninput[type=\"url\"],\ninput[type=\"password\"],\ninput[type=\"file\"],\ntextarea,\nselect {\n  --input-height: var(--vspace-2);\n  --input-line-height: var(--vspace-1);\n  --input-vpadding: calc(((var(--input-height) - var(--input-line-height)) / 2) - .1rem);\n  display: block;\n  height: var(--input-height);\n  padding: var(--input-vpadding) calc(2.4rem - .1rem);\n  border: 0;\n  outline: none;\n  color: var(--color-placeholder);\n  font-family: var(--font-1);\n  font-size: var(--text-sm);\n  line-height: var(--input-line-height);\n  max-width: 100%;\n  background-color: rgba(0, 0, 0, 0.07);\n  border: 1px solid transparent;\n  -webkit-transition: all .3s ease-in-out;\n  transition: all .3s ease-in-out; }\n\ntextarea {\n  min-height: calc(7 * var(--space)); }\n\ninput[type=\"email\"]:focus,\ninput[type=\"number\"]:focus,\ninput[type=\"search\"]:focus,\ninput[type=\"text\"]:focus,\ninput[type=\"tel\"]:focus,\ninput[type=\"url\"]:focus,\ninput[type=\"password\"]:focus,\ninput[type=\"file\"]:focus,\ntextarea:focus,\nselect:focus {\n  color: white;\n  background-color: var(--color-gray-16);\n  border: 1px solid var(--color-gray-16); }\n\nlabel, legend {\n  font-family: var(--font-1);\n  font-weight: 600;\n  font-size: var(--text-sm);\n  line-height: var(--vspace-0_5);\n  margin-bottom: var(--vspace-0_5);\n  color: var(--color-text-dark);\n  display: block; }\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  display: inline; }\n\nlabel > .label-text {\n  display: inline-block;\n  margin-left: 1rem;\n  font-family: var(--font-1);\n  line-height: inherit; }\n\nlabel > input[type=\"checkbox\"], label > input[type=\"radio\"] {\n  margin: 0;\n  position: relative;\n  top: .2rem; }\n\ninput:-webkit-autofill,\ninput:-webkit-autofill:hover,\ninput:-webkit-autofill:focus input:-webkit-autofill,\ntextarea:-webkit-autofill,\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\nselect:-webkit-autofill,\nselect:-webkit-autofill:hover,\nselect:-webkit-autofill:focus {\n  -webkit-text-fill-color: var(--color-1);\n  -webkit-transition: background-color 5000s ease-in-out 0s;\n  transition: background-color 5000s ease-in-out 0s; }\n\n.btn,\nbutton,\ninput[type=\"submit\"],\ninput[type=\"reset\"],\ninput[type=\"button\"] {\n  --btn-height: var(--vspace-btn);\n  display: inline-block;\n  font-family: var(--font-2);\n  font-weight: 600;\n  font-size: var(--text-xs);\n  text-transform: uppercase;\n  letter-spacing: .4em;\n  height: var(--btn-height);\n  line-height: calc(var(--btn-height) - .4rem);\n  padding: 0 3.2rem;\n  margin: 0 .4rem 1.6rem 0;\n  color: var(--color-btn-text);\n  text-decoration: none;\n  text-align: center;\n  white-space: nowrap;\n  cursor: pointer;\n  -webkit-transition: all .3s;\n  transition: all .3s;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-color: var(--color-btn);\n  border: 0.2rem solid var(--color-btn); }\n\n.btn:hover,\nbutton:hover,\ninput[type=\"submit\"]:hover,\ninput[type=\"reset\"]:hover,\ninput[type=\"button\"]:hover,\n.btn:focus, button:focus,\ninput[type=\"submit\"]:focus,\ninput[type=\"reset\"]:focus,\ninput[type=\"button\"]:focus {\n  background-color: var(--color-btn-hover);\n  border-color: var(--color-btn-hover);\n  color: var(--color-btn-hover-text);\n  outline: 0; }\n\n.btn.btn--primary,\nbutton.btn--primary,\ninput[type=\"submit\"].btn--primary,\ninput[type=\"reset\"].btn--primary,\ninput[type=\"button\"].btn--primary {\n  background: var(--color-btn-primary);\n  border-color: var(--color-btn-primary);\n  color: var(--color-btn-primary-text); }\n\n.btn.btn--primary:hover,\nbutton.btn--primary:hover,\ninput[type=\"submit\"].btn--primary:hover,\ninput[type=\"reset\"].btn--primary:hover,\ninput[type=\"button\"].btn--primary:hover,\n.btn.btn--primary:focus,\nbutton.btn--primary:focus,\ninput[type=\"submit\"].btn--primary:focus,\ninput[type=\"reset\"].btn--primary:focus,\ninput[type=\"button\"].btn--primary:focus {\n  background: var(--color-btn-primary-hover);\n  border-color: var(--color-btn-primary-hover);\n  color: var(--color-btn-primary-hover-text); }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".search-back {\n  background: var(--color-white);\n  border: 2px solid var(--color-info);\n  position: absolute;\n  width: 100%; }\n  .search-back div {\n    padding: 3px; }\n  .search-back div:hover {\n    background: var(--color-info); }\n\n.search-input {\n  margin-bottom: 0; }\n\n.search-block {\n  position: relative; }\n\n.search-title {\n  padding: 0 3px 0 3px;\n  font-size: 10px; }\n\n.search-title-no {\n  padding: 3px; }\n", "",{"version":3,"sources":["webpack://./src/Views/public/css/components/search.css"],"names":[],"mappings":"AAAA;EACE,8BAA8B;EAC9B,mCAAmC;EACnC,kBAAkB;EAClB,WAAW,EAAE;EACb;IACE,YAAY,EAAE;EAChB;IACE,6BAA6B,EAAE;;AAEnC;EACE,gBAAgB,EAAE;;AAEpB;EACE,kBAAkB,EAAE;;AAEtB;EACE,oBAAoB;EACpB,eAAe,EAAE;;AAEnB;EACE,YAAY,EAAE","sourcesContent":[".search-back {\n  background: var(--color-white);\n  border: 2px solid var(--color-info);\n  position: absolute;\n  width: 100%; }\n  .search-back div {\n    padding: 3px; }\n  .search-back div:hover {\n    background: var(--color-info); }\n\n.search-input {\n  margin-bottom: 0; }\n\n.search-block {\n  position: relative; }\n\n.search-title {\n  padding: 0 3px 0 3px;\n  font-size: 10px; }\n\n.search-title-no {\n  padding: 3px; }\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["a"] = (___CSS_LOADER_EXPORT___);
 
@@ -737,13 +737,32 @@ ___CSS_LOADER_EXPORT___.push([module.i, "input[type=\"email\"],\ninput[type=\"nu
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".bricks-wrapper .entry {\n  margin-bottom: 1rem; }\n\n.bricks-wrapper .entry__thumb, .bricks-wrapper .entry__text {\n  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);\n  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05); }\n\n.bricks-wrapper .entry__thumb {\n  overflow: hidden;\n  position: relative; }\n\n.bricks-wrapper .entry__thumb img {\n  vertical-align: bottom;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  margin: 0; }\n\n.bricks-wrapper .entry__thumb .thumb-link::before {\n  z-index: 1;\n  content: \"\";\n  display: block;\n  background: rgba(0, 0, 0, 0.8);\n  opacity: 0;\n  visibility: hidden;\n  width: 100%;\n  height: 100%;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.bricks-wrapper .entry__thumb .thumb-link::after {\n  z-index: 1;\n  display: block;\n  content: \"...\";\n  font-family: georgia, serif;\n  font-size: 3.2rem;\n  height: 90px;\n  width: 90px;\n  letter-spacing: .2rem;\n  line-height: 90px;\n  margin-left: -45px;\n  margin-top: -45px;\n  text-align: center;\n  color: white;\n  opacity: 0;\n  visibility: hidden;\n  -webkit-transform: scale(0.5);\n  transform: scale(0.5);\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  position: absolute;\n  left: 50%;\n  top: 50%; }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link::before {\n  opacity: 1;\n  visibility: visible; }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link::after {\n  opacity: 1;\n  visibility: visible;\n  -webkit-transform: scale(1);\n  transform: scale(1); }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link img {\n  -webkit-transform: scale(1.05);\n  transform: scale(1.05); }\n\n.bricks-wrapper .entry__text {\n  padding-left: 2rem;\n  padding-right: 2rem;\n  padding-bottom: 1rem;\n  padding-top: 1rem;\n  background-color: white; }\n\n.bricks-wrapper .entry__title {\n  font-size: var(--text-lg);\n  font-weight: 500;\n  line-height: var(--vspace-1);\n  margin-top: 0;\n  margin-bottom: var(--vspace-0_5); }\n\n.bricks-wrapper .entry__title a, .bricks-wrapper .entry__title a:visited {\n  color: black; }\n\n.bricks-wrapper .entry__meta {\n  font-family: var(--font-1);\n  font-size: var(--text-sm);\n  margin-bottom: calc(0.125 * var(--space)); }\n\n.bricks-wrapper .entry__meta a, .bricks-wrapper .entry__meta a:visited {\n  color: black; }\n\n.bricks-wrapper .entry__cat-links a::after {\n  content: \", \"; }\n\n.bricks-wrapper .entry__cat-links a:last-child::after {\n  display: none; }\n\n.bricks-wrapper .entry__excerpt {\n  font-size: 1.5rem;\n  line-height: 1.733;\n  color: var(--color-text-light); }\n\n.bricks-wrapper .entry__excerpt p {\n  margin-bottom: 0; }\n\n@media screen and (max-width: 1400px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-md);\n    line-height: calc(0.875 * var(--space)); } }\n\n@media screen and (max-width: 980px) {\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-lg);\n    line-height: var(--vspace-1); } }\n\n@media screen and (max-width: 800px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; } }\n\n@media screen and (max-width: 700px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-md);\n    line-height: calc(0.875 * var(--space)); } }\n\n@media screen and (max-width: 600px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-lg);\n    line-height: var(--vspace-1); } }\n\n@media screen and (max-width: 400px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; } }\n\n.s-content {\n  --row-max-width: 1080px;\n  padding-top: var(--topspace);\n  padding-bottom: var(--vspace-0_125); }\n  .s-content .row {\n    max-width: var(--row-max-width); }\n  .s-content row.wide {\n    max-width: 1400px; }\n  .s-content .row.narrow {\n    max-width: 800px; }\n\n.s-content--single {\n  padding-bottom: var(--vspace-0_125); }\n\n.s-content__media {\n  position: relative;\n  margin-bottom: var(--vspace-2_5); }\n\n.s-content__media img {\n  vertical-align: bottom;\n  margin-bottom: 0; }\n\n.s-content__primary {\n  padding-top: var(--topspace);\n  padding-left: 20rem;\n  padding-right: 20rem; }\n\n.s-content__primary img {\n  max-width: calc(var(--row-max-width) - var(--gutter-lg) * 2);\n  margin: var(--vspace-1) 0 var(--vspace-1) -8rem; }\n\n.s-content__title {\n  text-align: center; }\n\n.s-content__title--post {\n  margin-bottom: var(--vspace-0_25); }\n\n.s-content__blocks h4 {\n  margin-top: 0; }\n\n.s-content__form {\n  margin-top: var(--vspace-2); }\n\n@media screen and (max-width: 1200px) {\n  .s-content {\n    --row-max-width: 1000px; }\n  .s-content__primary {\n    padding-left: 4.8rem;\n    padding-right: 4.8rem; }\n    .s-content__primary img {\n      max-width: calc(var(--row-max-width) - var(--gutter-md) * 2);\n      margin: var(--vspace-1) 0 var(--vspace-1) -4.8rem; } }\n\n@media screen and (max-width: 1100px) {\n  .s-content {\n    --row-max-width: 920px; }\n  .s-content__primary {\n    padding-left: 4rem;\n    padding-right: 4rem; }\n    .s-content__primary img {\n      margin: var(--vspace-1) 0 var(--vspace-1) -4rem; } }\n\n@media screen and (max-width: 1020px) {\n  .s-content__primary {\n    padding-left: 3.2rem;\n    padding-right: 3.2rem; }\n    .s-content__primary img {\n      max-width: 100%;\n      margin: var(--vspace-1) 0; } }\n\n@media screen and (max-width: 800px) {\n  .s-content {\n    padding-top: var(--topspace); }\n  .s-content__primary {\n    padding-left: 0;\n    padding-right: 0; }\n  .s-content__media {\n    margin-bottom: var(--vspace-2); } }\n\n@media screen and (max-width: 600px) {\n  .s-content {\n    padding-top: var(--topspace); }\n  .s-content__media {\n    margin-bottom: var(--vspace-1_5); } }\n\n@media screen and (max-width: 400px) {\n  .s-content__title {\n    font-size: var(--text-xxl);\n    line-height: var(--vspace-1_5); } }\n\n.s-bricks {\n  padding-top: 4.2rem; }\n  .s-bricks .with-top-sep {\n    position: relative; }\n  .s-bricks .with-top-sep::before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    left: 50%;\n    top: 0;\n    margin-left: -100px;\n    width: 200px;\n    height: 1px;\n    background-color: var(--color-border); }\n  .s-bricks .masonry {\n    max-width: 1440px;\n    width: 94%;\n    margin: 0 auto var(--vspace-1); }\n  .s-bricks .pagination {\n    margin-top: 6rem; }\n\n.bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n  width: 100%; }\n\n.bricks-wrapper .brick {\n  padding: 0; }\n\n.bricks-wrapper .featured-grid {\n  width: 100%; }\n\n.bricks-wrapper .featured-grid .entry-content {\n  width: 100%;\n  background: #151515; }\n\n@media screen and (max-width: 1440px) {\n  .s-bricks .masonry {\n    width: 98%; } }\n\n@media screen and (max-width: 1400px) {\n  .s-bricks .masonry {\n    max-width: var(--width-max);\n    width: 94%; }\n  .bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n    width: 100%; }\n  .bricks-wrapper .brick {\n    padding: 0; }\n  .bricks-wrapper .featured-grid {\n    width: 100%; } }\n\n@media screen and (max-width: 980px) {\n  .s-bricks .masonry {\n    max-width: 780px;\n    width: 96%; }\n  .bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n    width: 100%; }\n  .bricks-wrapper .featured-grid {\n    width: 100%; } }\n\n@media screen and (max-width: 800px) {\n  .bricks-wrapper .brick {\n    padding: 0; } }\n\n@media screen and (max-width: 700px) {\n  .bricks-wrapper .brick {\n    padding: 0; } }\n\n@media screen and (max-width: 600px) {\n  .s-bricks .masonry {\n    max-width: 480px;\n    width: 100%;\n    padding-left: 6vw;\n    padding-right: 6vw; }\n  .bricks-wrapper .grid-sizer,\n  .bricks-wrapper .brick {\n    float: none;\n    width: 100%;\n    padding: 0 var(--gutter-mob);\n    clear: both; } }\n\n@media screen and (max-width: 400px) {\n  .bricks-wrapper .brick {\n    margin-left: 0;\n    margin-right: 0;\n    padding: 0; } }\n\n.not-watched {\n  background: var(--color-1-lighter);\n  height: 6px; }\n\n.hide {\n  display: none; }\n\n.titles-category {\n  margin-bottom: 0; }\n\n.horizontal {\n  background: var(--color-1);\n  height: 2px;\n  margin-top: 3px;\n  margin-bottom: 3px; }\n\n.block {\n  display: block; }\n\n.empty-space {\n  height: 95.994px; }\n\nform {\n  display: inline; }\n\n.main-page {\n  padding-top: var(--vspace-3);\n  padding-bottom: var(--vspace-0_125); }\n\n.form-add-folder-up {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n\n.blur {\n  filter: blur(10px); }\n\n.folder-names {\n  display: inline-block;\n  background: none;\n  width: 65%;\n  border: var(--color-body) solid;\n  border-radius: 5px;\n  margin-top: 3px;\n  margin-bottom: 3px; }\n\n.folder-names:hover {\n  color: var(--color-2);\n  cursor: pointer;\n  background: var(--color-info);\n  border: var(--color-info) solid;\n  border-radius: 5px; }\n\n.folder-names-focus {\n  border-radius: 5px; }\n\n.max-ch {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n.main-columns {\n  height: 100%;\n  overflow-y: scroll;\n  overflow-x: hidden; }\n\n.main-container {\n  overflow: hidden;\n  height: calc(100vh - 105px);\n  position: relative;\n  width: 100%; }\n\n.letter-board {\n  position: fixed;\n  background: var(--color-body);\n  width: 47.5%;\n  height: 25px;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end; }\n\n@media screen and (max-width: 800px) {\n  .letter-board {\n    position: fixed;\n    background: var(--color-body);\n    width: 90%;\n    height: 25px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between; }\n  .letter-board-small {\n    display: flex;\n    flex-direction: row; } }\n\n.letter-board-last-element {\n  margin-right: 20px; }\n\n.icon-group {\n  display: flex;\n  flex-direction: row;\n  margin-right: 5px; }\n\n.input-group {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: flex-start; }\n\n.letter-container {\n  margin-top: 30px; }\n\n.icon-trash {\n  display: block;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n", "",{"version":3,"sources":["webpack://./src/Views/public/css/wrapper.css"],"names":[],"mappings":"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","sourcesContent":[".bricks-wrapper .entry {\n  margin-bottom: 1rem; }\n\n.bricks-wrapper .entry__thumb, .bricks-wrapper .entry__text {\n  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);\n  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05); }\n\n.bricks-wrapper .entry__thumb {\n  overflow: hidden;\n  position: relative; }\n\n.bricks-wrapper .entry__thumb img {\n  vertical-align: bottom;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  margin: 0; }\n\n.bricks-wrapper .entry__thumb .thumb-link::before {\n  z-index: 1;\n  content: \"\";\n  display: block;\n  background: rgba(0, 0, 0, 0.8);\n  opacity: 0;\n  visibility: hidden;\n  width: 100%;\n  height: 100%;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.bricks-wrapper .entry__thumb .thumb-link::after {\n  z-index: 1;\n  display: block;\n  content: \"...\";\n  font-family: georgia, serif;\n  font-size: 3.2rem;\n  height: 90px;\n  width: 90px;\n  letter-spacing: .2rem;\n  line-height: 90px;\n  margin-left: -45px;\n  margin-top: -45px;\n  text-align: center;\n  color: white;\n  opacity: 0;\n  visibility: hidden;\n  -webkit-transform: scale(0.5);\n  transform: scale(0.5);\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  position: absolute;\n  left: 50%;\n  top: 50%; }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link::before {\n  opacity: 1;\n  visibility: visible; }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link::after {\n  opacity: 1;\n  visibility: visible;\n  -webkit-transform: scale(1);\n  transform: scale(1); }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link img {\n  -webkit-transform: scale(1.05);\n  transform: scale(1.05); }\n\n.bricks-wrapper .entry__text {\n  padding-left: 2rem;\n  padding-right: 2rem;\n  padding-bottom: 1rem;\n  padding-top: 1rem;\n  background-color: white; }\n\n.bricks-wrapper .entry__title {\n  font-size: var(--text-lg);\n  font-weight: 500;\n  line-height: var(--vspace-1);\n  margin-top: 0;\n  margin-bottom: var(--vspace-0_5); }\n\n.bricks-wrapper .entry__title a, .bricks-wrapper .entry__title a:visited {\n  color: black; }\n\n.bricks-wrapper .entry__meta {\n  font-family: var(--font-1);\n  font-size: var(--text-sm);\n  margin-bottom: calc(0.125 * var(--space)); }\n\n.bricks-wrapper .entry__meta a, .bricks-wrapper .entry__meta a:visited {\n  color: black; }\n\n.bricks-wrapper .entry__cat-links a::after {\n  content: \", \"; }\n\n.bricks-wrapper .entry__cat-links a:last-child::after {\n  display: none; }\n\n.bricks-wrapper .entry__excerpt {\n  font-size: 1.5rem;\n  line-height: 1.733;\n  color: var(--color-text-light); }\n\n.bricks-wrapper .entry__excerpt p {\n  margin-bottom: 0; }\n\n@media screen and (max-width: 1400px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-md);\n    line-height: calc(0.875 * var(--space)); } }\n\n@media screen and (max-width: 980px) {\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-lg);\n    line-height: var(--vspace-1); } }\n\n@media screen and (max-width: 800px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; } }\n\n@media screen and (max-width: 700px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-md);\n    line-height: calc(0.875 * var(--space)); } }\n\n@media screen and (max-width: 600px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-lg);\n    line-height: var(--vspace-1); } }\n\n@media screen and (max-width: 400px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; } }\n\n.s-content {\n  --row-max-width: 1080px;\n  padding-top: var(--topspace);\n  padding-bottom: var(--vspace-0_125); }\n  .s-content .row {\n    max-width: var(--row-max-width); }\n  .s-content row.wide {\n    max-width: 1400px; }\n  .s-content .row.narrow {\n    max-width: 800px; }\n\n.s-content--single {\n  padding-bottom: var(--vspace-0_125); }\n\n.s-content__media {\n  position: relative;\n  margin-bottom: var(--vspace-2_5); }\n\n.s-content__media img {\n  vertical-align: bottom;\n  margin-bottom: 0; }\n\n.s-content__primary {\n  padding-top: var(--topspace);\n  padding-left: 20rem;\n  padding-right: 20rem; }\n\n.s-content__primary img {\n  max-width: calc(var(--row-max-width) - var(--gutter-lg) * 2);\n  margin: var(--vspace-1) 0 var(--vspace-1) -8rem; }\n\n.s-content__title {\n  text-align: center; }\n\n.s-content__title--post {\n  margin-bottom: var(--vspace-0_25); }\n\n.s-content__blocks h4 {\n  margin-top: 0; }\n\n.s-content__form {\n  margin-top: var(--vspace-2); }\n\n@media screen and (max-width: 1200px) {\n  .s-content {\n    --row-max-width: 1000px; }\n  .s-content__primary {\n    padding-left: 4.8rem;\n    padding-right: 4.8rem; }\n    .s-content__primary img {\n      max-width: calc(var(--row-max-width) - var(--gutter-md) * 2);\n      margin: var(--vspace-1) 0 var(--vspace-1) -4.8rem; } }\n\n@media screen and (max-width: 1100px) {\n  .s-content {\n    --row-max-width: 920px; }\n  .s-content__primary {\n    padding-left: 4rem;\n    padding-right: 4rem; }\n    .s-content__primary img {\n      margin: var(--vspace-1) 0 var(--vspace-1) -4rem; } }\n\n@media screen and (max-width: 1020px) {\n  .s-content__primary {\n    padding-left: 3.2rem;\n    padding-right: 3.2rem; }\n    .s-content__primary img {\n      max-width: 100%;\n      margin: var(--vspace-1) 0; } }\n\n@media screen and (max-width: 800px) {\n  .s-content {\n    padding-top: var(--topspace); }\n  .s-content__primary {\n    padding-left: 0;\n    padding-right: 0; }\n  .s-content__media {\n    margin-bottom: var(--vspace-2); } }\n\n@media screen and (max-width: 600px) {\n  .s-content {\n    padding-top: var(--topspace); }\n  .s-content__media {\n    margin-bottom: var(--vspace-1_5); } }\n\n@media screen and (max-width: 400px) {\n  .s-content__title {\n    font-size: var(--text-xxl);\n    line-height: var(--vspace-1_5); } }\n\n.s-bricks {\n  padding-top: 4.2rem; }\n  .s-bricks .with-top-sep {\n    position: relative; }\n  .s-bricks .with-top-sep::before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    left: 50%;\n    top: 0;\n    margin-left: -100px;\n    width: 200px;\n    height: 1px;\n    background-color: var(--color-border); }\n  .s-bricks .masonry {\n    max-width: 1440px;\n    width: 94%;\n    margin: 0 auto var(--vspace-1); }\n  .s-bricks .pagination {\n    margin-top: 6rem; }\n\n.bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n  width: 100%; }\n\n.bricks-wrapper .brick {\n  padding: 0; }\n\n.bricks-wrapper .featured-grid {\n  width: 100%; }\n\n.bricks-wrapper .featured-grid .entry-content {\n  width: 100%;\n  background: #151515; }\n\n@media screen and (max-width: 1440px) {\n  .s-bricks .masonry {\n    width: 98%; } }\n\n@media screen and (max-width: 1400px) {\n  .s-bricks .masonry {\n    max-width: var(--width-max);\n    width: 94%; }\n  .bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n    width: 100%; }\n  .bricks-wrapper .brick {\n    padding: 0; }\n  .bricks-wrapper .featured-grid {\n    width: 100%; } }\n\n@media screen and (max-width: 980px) {\n  .s-bricks .masonry {\n    max-width: 780px;\n    width: 96%; }\n  .bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n    width: 100%; }\n  .bricks-wrapper .featured-grid {\n    width: 100%; } }\n\n@media screen and (max-width: 800px) {\n  .bricks-wrapper .brick {\n    padding: 0; } }\n\n@media screen and (max-width: 700px) {\n  .bricks-wrapper .brick {\n    padding: 0; } }\n\n@media screen and (max-width: 600px) {\n  .s-bricks .masonry {\n    max-width: 480px;\n    width: 100%;\n    padding-left: 6vw;\n    padding-right: 6vw; }\n  .bricks-wrapper .grid-sizer,\n  .bricks-wrapper .brick {\n    float: none;\n    width: 100%;\n    padding: 0 var(--gutter-mob);\n    clear: both; } }\n\n@media screen and (max-width: 400px) {\n  .bricks-wrapper .brick {\n    margin-left: 0;\n    margin-right: 0;\n    padding: 0; } }\n\n.not-watched {\n  background: var(--color-1-lighter);\n  height: 6px; }\n\n.hide {\n  display: none; }\n\n.titles-category {\n  margin-bottom: 0; }\n\n.horizontal {\n  background: var(--color-1);\n  height: 2px;\n  margin-top: 3px;\n  margin-bottom: 3px; }\n\n.block {\n  display: block; }\n\n.empty-space {\n  height: 95.994px; }\n\nform {\n  display: inline; }\n\n.main-page {\n  padding-top: var(--vspace-3);\n  padding-bottom: var(--vspace-0_125); }\n\n.form-add-folder-up {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n\n.blur {\n  filter: blur(10px); }\n\n.folder-names {\n  display: inline-block;\n  background: none;\n  width: 65%;\n  border: var(--color-body) solid;\n  border-radius: 5px;\n  margin-top: 3px;\n  margin-bottom: 3px; }\n\n.folder-names:hover {\n  color: var(--color-2);\n  cursor: pointer;\n  background: var(--color-info);\n  border: var(--color-info) solid;\n  border-radius: 5px; }\n\n.folder-names-focus {\n  border-radius: 5px; }\n\n.max-ch {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n.main-columns {\n  height: 100%;\n  overflow-y: scroll;\n  overflow-x: hidden; }\n\n.main-container {\n  overflow: hidden;\n  height: calc(100vh - 105px);\n  position: relative;\n  width: 100%; }\n\n.letter-board {\n  position: fixed;\n  background: var(--color-body);\n  width: 47.5%;\n  height: 25px;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end; }\n\n@media screen and (max-width: 800px) {\n  .letter-board {\n    position: fixed;\n    background: var(--color-body);\n    width: 90%;\n    height: 25px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between; }\n  .letter-board-small {\n    display: flex;\n    flex-direction: row; } }\n\n.letter-board-last-element {\n  margin-right: 20px; }\n\n.icon-group {\n  display: flex;\n  flex-direction: row;\n  margin-right: 5px; }\n\n.input-group {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: flex-start; }\n\n.letter-container {\n  margin-top: 30px; }\n\n.icon-trash {\n  display: block;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, "input[type=\"email\"],\ninput[type=\"number\"],\ninput[type=\"search\"],\ninput[type=\"text\"],\ninput[type=\"tel\"],\ninput[type=\"url\"],\ninput[type=\"password\"],\ninput[type=\"file\"],\ntextarea {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none; }\n\nfieldset,\nbutton,\n.btn {\n  margin-bottom: var(--vspace-0_5); }\n\ninput,\ntextarea,\nselect,\npre,\nblockquote,\nfigure,\nfigcaption,\ntable,\np,\nul,\nol,\ndl,\nform,\nimg,\n.video-container,\n.ss-custom-select {\n  margin-bottom: var(--vspace-1); }\n\n.folders {\n  padding: 0;\n  margin: 0; }\n\n.form-field {\n  display: flex;\n  flex-direction: row; }\n\nfieldset {\n  border: none; }\n\ninput[type=\"email\"],\ninput[type=\"number\"],\ninput[type=\"search\"],\ninput[type=\"text\"],\ninput[type=\"tel\"],\ninput[type=\"url\"],\ninput[type=\"password\"],\ninput[type=\"file\"],\ntextarea,\nselect {\n  --input-height: var(--vspace-2);\n  --input-line-height: var(--vspace-1);\n  --input-vpadding: calc(((var(--input-height) - var(--input-line-height)) / 2) - .1rem);\n  display: block;\n  height: var(--input-height);\n  padding: var(--input-vpadding) calc(2.4rem - .1rem);\n  border: 0;\n  outline: none;\n  color: var(--color-placeholder);\n  font-family: var(--font-1);\n  font-size: var(--text-sm);\n  line-height: var(--input-line-height);\n  max-width: 100%;\n  background-color: rgba(0, 0, 0, 0.07);\n  border: 1px solid transparent;\n  -webkit-transition: all .3s ease-in-out;\n  transition: all .3s ease-in-out; }\n\ntextarea {\n  min-height: calc(7 * var(--space)); }\n\ninput[type=\"email\"]:focus,\ninput[type=\"number\"]:focus,\ninput[type=\"search\"]:focus,\ninput[type=\"text\"]:focus,\ninput[type=\"tel\"]:focus,\ninput[type=\"url\"]:focus,\ninput[type=\"password\"]:focus,\ninput[type=\"file\"]:focus,\ntextarea:focus,\nselect:focus {\n  color: white;\n  background-color: var(--color-gray-16);\n  border: 1px solid var(--color-gray-16); }\n\nlabel, legend {\n  font-family: var(--font-1);\n  font-weight: 600;\n  font-size: var(--text-sm);\n  line-height: var(--vspace-0_5);\n  margin-bottom: var(--vspace-0_5);\n  color: var(--color-text-dark);\n  display: block; }\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  display: inline; }\n\nlabel > .label-text {\n  display: inline-block;\n  margin-left: 1rem;\n  font-family: var(--font-1);\n  line-height: inherit; }\n\nlabel > input[type=\"checkbox\"], label > input[type=\"radio\"] {\n  margin: 0;\n  position: relative;\n  top: .2rem; }\n\ninput:-webkit-autofill,\ninput:-webkit-autofill:hover,\ninput:-webkit-autofill:focus input:-webkit-autofill,\ntextarea:-webkit-autofill,\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\nselect:-webkit-autofill,\nselect:-webkit-autofill:hover,\nselect:-webkit-autofill:focus {\n  -webkit-text-fill-color: var(--color-1);\n  -webkit-transition: background-color 5000s ease-in-out 0s;\n  transition: background-color 5000s ease-in-out 0s; }\n\n.btn,\nbutton,\ninput[type=\"submit\"],\ninput[type=\"reset\"],\ninput[type=\"button\"] {\n  --btn-height: var(--vspace-btn);\n  display: inline-block;\n  font-family: var(--font-2);\n  font-weight: 600;\n  font-size: var(--text-xs);\n  text-transform: uppercase;\n  letter-spacing: .4em;\n  height: var(--btn-height);\n  line-height: calc(var(--btn-height) - .4rem);\n  padding: 0 3.2rem;\n  margin: 0 .4rem 1.6rem 0;\n  color: var(--color-btn-text);\n  text-decoration: none;\n  text-align: center;\n  white-space: nowrap;\n  cursor: pointer;\n  -webkit-transition: all .3s;\n  transition: all .3s;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-color: var(--color-btn);\n  border: 0.2rem solid var(--color-btn); }\n\n.btn:hover,\nbutton:hover,\ninput[type=\"submit\"]:hover,\ninput[type=\"reset\"]:hover,\ninput[type=\"button\"]:hover,\n.btn:focus, button:focus,\ninput[type=\"submit\"]:focus,\ninput[type=\"reset\"]:focus,\ninput[type=\"button\"]:focus {\n  background-color: var(--color-btn-hover);\n  border-color: var(--color-btn-hover);\n  color: var(--color-btn-hover-text);\n  outline: 0; }\n\n.btn.btn--primary,\nbutton.btn--primary,\ninput[type=\"submit\"].btn--primary,\ninput[type=\"reset\"].btn--primary,\ninput[type=\"button\"].btn--primary {\n  background: var(--color-btn-primary);\n  border-color: var(--color-btn-primary);\n  color: var(--color-btn-primary-text); }\n\n.btn.btn--primary:hover,\nbutton.btn--primary:hover,\ninput[type=\"submit\"].btn--primary:hover,\ninput[type=\"reset\"].btn--primary:hover,\ninput[type=\"button\"].btn--primary:hover,\n.btn.btn--primary:focus,\nbutton.btn--primary:focus,\ninput[type=\"submit\"].btn--primary:focus,\ninput[type=\"reset\"].btn--primary:focus,\ninput[type=\"button\"].btn--primary:focus {\n  background: var(--color-btn-primary-hover);\n  border-color: var(--color-btn-primary-hover);\n  color: var(--color-btn-primary-hover-text); }\n", "",{"version":3,"sources":["webpack://./src/Views/public/css/base.css"],"names":[],"mappings":"AAAA;;;;;;;;;EASE,wBAAwB;EACxB,qBAAqB;EACrB,gBAAgB,EAAE;;AAEpB;;;EAGE,gCAAgC,EAAE;;AAEpC;;;;;;;;;;;;;;;;EAgBE,8BAA8B,EAAE;;AAElC;EACE,UAAU;EACV,SAAS,EAAE;;AAEb;EACE,aAAa;EACb,mBAAmB,EAAE;;AAEvB;EACE,YAAY,EAAE;;AAEhB;;;;;;;;;;EAUE,+BAA+B;EAC/B,oCAAoC;EACpC,sFAAsF;EACtF,cAAc;EACd,2BAA2B;EAC3B,mDAAmD;EACnD,SAAS;EACT,aAAa;EACb,+BAA+B;EAC/B,0BAA0B;EAC1B,yBAAyB;EACzB,qCAAqC;EACrC,eAAe;EACf,qCAAqC;EACrC,6BAA6B;EAC7B,uCAAuC;EACvC,+BAA+B,EAAE;;AAEnC;EACE,kCAAkC,EAAE;;AAEtC;;;;;;;;;;EAUE,YAAY;EACZ,sCAAsC;EACtC,sCAAsC,EAAE;;AAE1C;EACE,0BAA0B;EAC1B,gBAAgB;EAChB,yBAAyB;EACzB,8BAA8B;EAC9B,gCAAgC;EAChC,6BAA6B;EAC7B,cAAc,EAAE;;AAElB;;EAEE,eAAe,EAAE;;AAEnB;EACE,qBAAqB;EACrB,iBAAiB;EACjB,0BAA0B;EAC1B,oBAAoB,EAAE;;AAExB;EACE,SAAS;EACT,kBAAkB;EAClB,UAAU,EAAE;;AAEd;;;;;;;;EAQE,uCAAuC;EACvC,yDAAyD;EACzD,iDAAiD,EAAE;;AAErD;;;;;EAKE,+BAA+B;EAC/B,qBAAqB;EACrB,0BAA0B;EAC1B,gBAAgB;EAChB,yBAAyB;EACzB,yBAAyB;EACzB,oBAAoB;EACpB,yBAAyB;EACzB,4CAA4C;EAC5C,iBAAiB;EACjB,wBAAwB;EACxB,4BAA4B;EAC5B,qBAAqB;EACrB,kBAAkB;EAClB,mBAAmB;EACnB,eAAe;EACf,2BAA2B;EAC3B,mBAAmB;EACnB,mCAAmC;EACnC,kCAAkC;EAClC,kCAAkC;EAClC,qCAAqC,EAAE;;AAEzC;;;;;;;;;EASE,wCAAwC;EACxC,oCAAoC;EACpC,kCAAkC;EAClC,UAAU,EAAE;;AAEd;;;;;EAKE,oCAAoC;EACpC,sCAAsC;EACtC,oCAAoC,EAAE;;AAExC;;;;;;;;;;EAUE,0CAA0C;EAC1C,4CAA4C;EAC5C,0CAA0C,EAAE","sourcesContent":["input[type=\"email\"],\ninput[type=\"number\"],\ninput[type=\"search\"],\ninput[type=\"text\"],\ninput[type=\"tel\"],\ninput[type=\"url\"],\ninput[type=\"password\"],\ninput[type=\"file\"],\ntextarea {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none; }\n\nfieldset,\nbutton,\n.btn {\n  margin-bottom: var(--vspace-0_5); }\n\ninput,\ntextarea,\nselect,\npre,\nblockquote,\nfigure,\nfigcaption,\ntable,\np,\nul,\nol,\ndl,\nform,\nimg,\n.video-container,\n.ss-custom-select {\n  margin-bottom: var(--vspace-1); }\n\n.folders {\n  padding: 0;\n  margin: 0; }\n\n.form-field {\n  display: flex;\n  flex-direction: row; }\n\nfieldset {\n  border: none; }\n\ninput[type=\"email\"],\ninput[type=\"number\"],\ninput[type=\"search\"],\ninput[type=\"text\"],\ninput[type=\"tel\"],\ninput[type=\"url\"],\ninput[type=\"password\"],\ninput[type=\"file\"],\ntextarea,\nselect {\n  --input-height: var(--vspace-2);\n  --input-line-height: var(--vspace-1);\n  --input-vpadding: calc(((var(--input-height) - var(--input-line-height)) / 2) - .1rem);\n  display: block;\n  height: var(--input-height);\n  padding: var(--input-vpadding) calc(2.4rem - .1rem);\n  border: 0;\n  outline: none;\n  color: var(--color-placeholder);\n  font-family: var(--font-1);\n  font-size: var(--text-sm);\n  line-height: var(--input-line-height);\n  max-width: 100%;\n  background-color: rgba(0, 0, 0, 0.07);\n  border: 1px solid transparent;\n  -webkit-transition: all .3s ease-in-out;\n  transition: all .3s ease-in-out; }\n\ntextarea {\n  min-height: calc(7 * var(--space)); }\n\ninput[type=\"email\"]:focus,\ninput[type=\"number\"]:focus,\ninput[type=\"search\"]:focus,\ninput[type=\"text\"]:focus,\ninput[type=\"tel\"]:focus,\ninput[type=\"url\"]:focus,\ninput[type=\"password\"]:focus,\ninput[type=\"file\"]:focus,\ntextarea:focus,\nselect:focus {\n  color: white;\n  background-color: var(--color-gray-16);\n  border: 1px solid var(--color-gray-16); }\n\nlabel, legend {\n  font-family: var(--font-1);\n  font-weight: 600;\n  font-size: var(--text-sm);\n  line-height: var(--vspace-0_5);\n  margin-bottom: var(--vspace-0_5);\n  color: var(--color-text-dark);\n  display: block; }\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  display: inline; }\n\nlabel > .label-text {\n  display: inline-block;\n  margin-left: 1rem;\n  font-family: var(--font-1);\n  line-height: inherit; }\n\nlabel > input[type=\"checkbox\"], label > input[type=\"radio\"] {\n  margin: 0;\n  position: relative;\n  top: .2rem; }\n\ninput:-webkit-autofill,\ninput:-webkit-autofill:hover,\ninput:-webkit-autofill:focus input:-webkit-autofill,\ntextarea:-webkit-autofill,\ntextarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,\nselect:-webkit-autofill,\nselect:-webkit-autofill:hover,\nselect:-webkit-autofill:focus {\n  -webkit-text-fill-color: var(--color-1);\n  -webkit-transition: background-color 5000s ease-in-out 0s;\n  transition: background-color 5000s ease-in-out 0s; }\n\n.btn,\nbutton,\ninput[type=\"submit\"],\ninput[type=\"reset\"],\ninput[type=\"button\"] {\n  --btn-height: var(--vspace-btn);\n  display: inline-block;\n  font-family: var(--font-2);\n  font-weight: 600;\n  font-size: var(--text-xs);\n  text-transform: uppercase;\n  letter-spacing: .4em;\n  height: var(--btn-height);\n  line-height: calc(var(--btn-height) - .4rem);\n  padding: 0 3.2rem;\n  margin: 0 .4rem 1.6rem 0;\n  color: var(--color-btn-text);\n  text-decoration: none;\n  text-align: center;\n  white-space: nowrap;\n  cursor: pointer;\n  -webkit-transition: all .3s;\n  transition: all .3s;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  background-color: var(--color-btn);\n  border: 0.2rem solid var(--color-btn); }\n\n.btn:hover,\nbutton:hover,\ninput[type=\"submit\"]:hover,\ninput[type=\"reset\"]:hover,\ninput[type=\"button\"]:hover,\n.btn:focus, button:focus,\ninput[type=\"submit\"]:focus,\ninput[type=\"reset\"]:focus,\ninput[type=\"button\"]:focus {\n  background-color: var(--color-btn-hover);\n  border-color: var(--color-btn-hover);\n  color: var(--color-btn-hover-text);\n  outline: 0; }\n\n.btn.btn--primary,\nbutton.btn--primary,\ninput[type=\"submit\"].btn--primary,\ninput[type=\"reset\"].btn--primary,\ninput[type=\"button\"].btn--primary {\n  background: var(--color-btn-primary);\n  border-color: var(--color-btn-primary);\n  color: var(--color-btn-primary-text); }\n\n.btn.btn--primary:hover,\nbutton.btn--primary:hover,\ninput[type=\"submit\"].btn--primary:hover,\ninput[type=\"reset\"].btn--primary:hover,\ninput[type=\"button\"].btn--primary:hover,\n.btn.btn--primary:focus,\nbutton.btn--primary:focus,\ninput[type=\"submit\"].btn--primary:focus,\ninput[type=\"reset\"].btn--primary:focus,\ninput[type=\"button\"].btn--primary:focus {\n  background: var(--color-btn-primary-hover);\n  border-color: var(--color-btn-primary-hover);\n  color: var(--color-btn-primary-hover-text); }\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["a"] = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 /* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, ".bricks-wrapper .entry {\n  margin-bottom: 1rem; }\n\n.bricks-wrapper .entry__thumb, .bricks-wrapper .entry__text {\n  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);\n  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05); }\n\n.bricks-wrapper .entry__thumb {\n  overflow: hidden;\n  position: relative; }\n\n.bricks-wrapper .entry__thumb img {\n  vertical-align: bottom;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  margin: 0; }\n\n.bricks-wrapper .entry__thumb .thumb-link::before {\n  z-index: 1;\n  content: \"\";\n  display: block;\n  background: rgba(0, 0, 0, 0.8);\n  opacity: 0;\n  visibility: hidden;\n  width: 100%;\n  height: 100%;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.bricks-wrapper .entry__thumb .thumb-link::after {\n  z-index: 1;\n  display: block;\n  content: \"...\";\n  font-family: georgia, serif;\n  font-size: 3.2rem;\n  height: 90px;\n  width: 90px;\n  letter-spacing: .2rem;\n  line-height: 90px;\n  margin-left: -45px;\n  margin-top: -45px;\n  text-align: center;\n  color: white;\n  opacity: 0;\n  visibility: hidden;\n  -webkit-transform: scale(0.5);\n  transform: scale(0.5);\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  position: absolute;\n  left: 50%;\n  top: 50%; }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link::before {\n  opacity: 1;\n  visibility: visible; }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link::after {\n  opacity: 1;\n  visibility: visible;\n  -webkit-transform: scale(1);\n  transform: scale(1); }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link img {\n  -webkit-transform: scale(1.05);\n  transform: scale(1.05); }\n\n.bricks-wrapper .entry__text {\n  padding-left: 2rem;\n  padding-right: 2rem;\n  padding-bottom: 1rem;\n  padding-top: 1rem;\n  background-color: white; }\n\n.bricks-wrapper .entry__title {\n  font-size: var(--text-lg);\n  font-weight: 500;\n  line-height: var(--vspace-1);\n  margin-top: 0;\n  margin-bottom: var(--vspace-0_5); }\n\n.bricks-wrapper .entry__title a, .bricks-wrapper .entry__title a:visited {\n  color: black; }\n\n.bricks-wrapper .entry__meta {\n  font-family: var(--font-1);\n  font-size: var(--text-sm);\n  margin-bottom: calc(0.125 * var(--space)); }\n\n.bricks-wrapper .entry__meta a, .bricks-wrapper .entry__meta a:visited {\n  color: black; }\n\n.bricks-wrapper .entry__cat-links a::after {\n  content: \", \"; }\n\n.bricks-wrapper .entry__cat-links a:last-child::after {\n  display: none; }\n\n.bricks-wrapper .entry__excerpt {\n  font-size: 1.5rem;\n  line-height: 1.733;\n  color: var(--color-text-light); }\n\n.bricks-wrapper .entry__excerpt p {\n  margin-bottom: 0; }\n\n@media screen and (max-width: 1400px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-md);\n    line-height: calc(0.875 * var(--space)); } }\n\n@media screen and (max-width: 980px) {\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-lg);\n    line-height: var(--vspace-1); } }\n\n@media screen and (max-width: 800px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; } }\n\n@media screen and (max-width: 700px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-md);\n    line-height: calc(0.875 * var(--space)); } }\n\n@media screen and (max-width: 600px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-lg);\n    line-height: var(--vspace-1); } }\n\n@media screen and (max-width: 400px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; } }\n\n.s-content {\n  --row-max-width: 1080px;\n  padding-top: var(--topspace);\n  padding-bottom: var(--vspace-0_125); }\n  .s-content .row {\n    max-width: var(--row-max-width); }\n  .s-content row.wide {\n    max-width: 1400px; }\n  .s-content .row.narrow {\n    max-width: 800px; }\n\n.s-content--single {\n  padding-bottom: var(--vspace-0_125); }\n\n.s-content__media {\n  position: relative;\n  margin-bottom: var(--vspace-2_5); }\n\n.s-content__media img {\n  vertical-align: bottom;\n  margin-bottom: 0; }\n\n.s-content__primary {\n  padding-top: var(--topspace);\n  padding-left: 20rem;\n  padding-right: 20rem; }\n\n.s-content__primary img {\n  max-width: calc(var(--row-max-width) - var(--gutter-lg) * 2);\n  margin: var(--vspace-1) 0 var(--vspace-1) -8rem; }\n\n.s-content__title {\n  text-align: center; }\n\n.s-content__title--post {\n  margin-bottom: var(--vspace-0_25); }\n\n.s-content__blocks h4 {\n  margin-top: 0; }\n\n.s-content__form {\n  margin-top: var(--vspace-2); }\n\n@media screen and (max-width: 1200px) {\n  .s-content {\n    --row-max-width: 1000px; }\n  .s-content__primary {\n    padding-left: 4.8rem;\n    padding-right: 4.8rem; }\n    .s-content__primary img {\n      max-width: calc(var(--row-max-width) - var(--gutter-md) * 2);\n      margin: var(--vspace-1) 0 var(--vspace-1) -4.8rem; } }\n\n@media screen and (max-width: 1100px) {\n  .s-content {\n    --row-max-width: 920px; }\n  .s-content__primary {\n    padding-left: 4rem;\n    padding-right: 4rem; }\n    .s-content__primary img {\n      margin: var(--vspace-1) 0 var(--vspace-1) -4rem; } }\n\n@media screen and (max-width: 1020px) {\n  .s-content__primary {\n    padding-left: 3.2rem;\n    padding-right: 3.2rem; }\n    .s-content__primary img {\n      max-width: 100%;\n      margin: var(--vspace-1) 0; } }\n\n@media screen and (max-width: 800px) {\n  .s-content {\n    padding-top: var(--topspace); }\n  .s-content__primary {\n    padding-left: 0;\n    padding-right: 0; }\n  .s-content__media {\n    margin-bottom: var(--vspace-2); } }\n\n@media screen and (max-width: 600px) {\n  .s-content {\n    padding-top: var(--topspace); }\n  .s-content__media {\n    margin-bottom: var(--vspace-1_5); } }\n\n@media screen and (max-width: 400px) {\n  .s-content__title {\n    font-size: var(--text-xxl);\n    line-height: var(--vspace-1_5); } }\n\n.s-bricks {\n  padding-top: 4.2rem; }\n  .s-bricks .with-top-sep {\n    position: relative; }\n  .s-bricks .with-top-sep::before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    left: 50%;\n    top: 0;\n    margin-left: -100px;\n    width: 200px;\n    height: 1px;\n    background-color: var(--color-border); }\n  .s-bricks .masonry {\n    max-width: 1440px;\n    width: 94%;\n    margin: 0 auto var(--vspace-1); }\n  .s-bricks .pagination {\n    margin-top: 6rem; }\n\n.bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n  width: 100%; }\n\n.bricks-wrapper .brick {\n  padding: 0; }\n\n.bricks-wrapper .featured-grid {\n  width: 100%; }\n\n.bricks-wrapper .featured-grid .entry-content {\n  width: 100%;\n  background: #151515; }\n\n@media screen and (max-width: 1440px) {\n  .s-bricks .masonry {\n    width: 98%; } }\n\n@media screen and (max-width: 1400px) {\n  .s-bricks .masonry {\n    max-width: var(--width-max);\n    width: 94%; }\n  .bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n    width: 100%; }\n  .bricks-wrapper .brick {\n    padding: 0; }\n  .bricks-wrapper .featured-grid {\n    width: 100%; } }\n\n@media screen and (max-width: 980px) {\n  .s-bricks .masonry {\n    max-width: 780px;\n    width: 96%; }\n  .bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n    width: 100%; }\n  .bricks-wrapper .featured-grid {\n    width: 100%; } }\n\n@media screen and (max-width: 800px) {\n  .bricks-wrapper .brick {\n    padding: 0; } }\n\n@media screen and (max-width: 700px) {\n  .bricks-wrapper .brick {\n    padding: 0; } }\n\n@media screen and (max-width: 600px) {\n  .s-bricks .masonry {\n    max-width: 480px;\n    width: 100%;\n    padding-left: 6vw;\n    padding-right: 6vw; }\n  .bricks-wrapper .grid-sizer,\n  .bricks-wrapper .brick {\n    float: none;\n    width: 100%;\n    padding: 0 var(--gutter-mob);\n    clear: both; } }\n\n@media screen and (max-width: 400px) {\n  .bricks-wrapper .brick {\n    margin-left: 0;\n    margin-right: 0;\n    padding: 0; } }\n\n.not-watched {\n  background: var(--color-1-lighter);\n  height: 6px; }\n\n.hide {\n  display: none; }\n\n.titles-category {\n  margin-bottom: 0; }\n\n.horizontal {\n  background: var(--color-1);\n  height: 2px;\n  margin-top: 3px;\n  margin-bottom: 3px; }\n\n.block {\n  display: block; }\n\n.empty-space {\n  height: 95.994px; }\n\nform {\n  display: inline; }\n\n.main-page {\n  padding-top: var(--vspace-3);\n  padding-bottom: var(--vspace-0_125); }\n\n.form-add-folder-up {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n\n.blur {\n  filter: blur(10px); }\n\n.folder-names {\n  display: inline-block;\n  background: none;\n  width: 65%;\n  border: var(--color-body) solid;\n  border-radius: 5px;\n  margin-top: 3px;\n  margin-bottom: 3px; }\n\n.folder-names:hover {\n  color: var(--color-2);\n  cursor: pointer;\n  background: var(--color-info);\n  border: var(--color-info) solid;\n  border-radius: 5px; }\n\n.folder-names-focus {\n  border-radius: 5px; }\n\n.max-ch {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n.main-columns {\n  height: 100%;\n  overflow-y: scroll;\n  overflow-x: hidden; }\n\n.main-container {\n  overflow: hidden;\n  height: calc(100vh - 105px);\n  position: relative;\n  width: 100%; }\n\n.letter-board {\n  position: fixed;\n  background: var(--color-body);\n  width: 47.5%;\n  height: 25px;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end; }\n\n@media screen and (max-width: 800px) {\n  .letter-board {\n    position: fixed;\n    background: var(--color-body);\n    width: 90%;\n    height: 25px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between; }\n  .letter-board-small {\n    display: flex;\n    flex-direction: row; } }\n\n.letter-board-last-element {\n  margin-right: 20px; }\n\n.icon-group {\n  display: flex;\n  flex-direction: row;\n  margin-right: 5px; }\n\n.input-group {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: flex-start; }\n\n.letter-container {\n  margin-top: 30px; }\n\n.icon-trash {\n  display: block;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n", "",{"version":3,"sources":["webpack://./src/Views/public/css/wrapper.css"],"names":[],"mappings":"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","sourcesContent":[".bricks-wrapper .entry {\n  margin-bottom: 1rem; }\n\n.bricks-wrapper .entry__thumb, .bricks-wrapper .entry__text {\n  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);\n  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05); }\n\n.bricks-wrapper .entry__thumb {\n  overflow: hidden;\n  position: relative; }\n\n.bricks-wrapper .entry__thumb img {\n  vertical-align: bottom;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  margin: 0; }\n\n.bricks-wrapper .entry__thumb .thumb-link::before {\n  z-index: 1;\n  content: \"\";\n  display: block;\n  background: rgba(0, 0, 0, 0.8);\n  opacity: 0;\n  visibility: hidden;\n  width: 100%;\n  height: 100%;\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.bricks-wrapper .entry__thumb .thumb-link::after {\n  z-index: 1;\n  display: block;\n  content: \"...\";\n  font-family: georgia, serif;\n  font-size: 3.2rem;\n  height: 90px;\n  width: 90px;\n  letter-spacing: .2rem;\n  line-height: 90px;\n  margin-left: -45px;\n  margin-top: -45px;\n  text-align: center;\n  color: white;\n  opacity: 0;\n  visibility: hidden;\n  -webkit-transform: scale(0.5);\n  transform: scale(0.5);\n  -webkit-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n  position: absolute;\n  left: 50%;\n  top: 50%; }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link::before {\n  opacity: 1;\n  visibility: visible; }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link::after {\n  opacity: 1;\n  visibility: visible;\n  -webkit-transform: scale(1);\n  transform: scale(1); }\n\n.bricks-wrapper .entry__thumb:hover .thumb-link img {\n  -webkit-transform: scale(1.05);\n  transform: scale(1.05); }\n\n.bricks-wrapper .entry__text {\n  padding-left: 2rem;\n  padding-right: 2rem;\n  padding-bottom: 1rem;\n  padding-top: 1rem;\n  background-color: white; }\n\n.bricks-wrapper .entry__title {\n  font-size: var(--text-lg);\n  font-weight: 500;\n  line-height: var(--vspace-1);\n  margin-top: 0;\n  margin-bottom: var(--vspace-0_5); }\n\n.bricks-wrapper .entry__title a, .bricks-wrapper .entry__title a:visited {\n  color: black; }\n\n.bricks-wrapper .entry__meta {\n  font-family: var(--font-1);\n  font-size: var(--text-sm);\n  margin-bottom: calc(0.125 * var(--space)); }\n\n.bricks-wrapper .entry__meta a, .bricks-wrapper .entry__meta a:visited {\n  color: black; }\n\n.bricks-wrapper .entry__cat-links a::after {\n  content: \", \"; }\n\n.bricks-wrapper .entry__cat-links a:last-child::after {\n  display: none; }\n\n.bricks-wrapper .entry__excerpt {\n  font-size: 1.5rem;\n  line-height: 1.733;\n  color: var(--color-text-light); }\n\n.bricks-wrapper .entry__excerpt p {\n  margin-bottom: 0; }\n\n@media screen and (max-width: 1400px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-md);\n    line-height: calc(0.875 * var(--space)); } }\n\n@media screen and (max-width: 980px) {\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-lg);\n    line-height: var(--vspace-1); } }\n\n@media screen and (max-width: 800px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; } }\n\n@media screen and (max-width: 700px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-md);\n    line-height: calc(0.875 * var(--space)); } }\n\n@media screen and (max-width: 600px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; }\n  .bricks-wrapper .entry__title,\n  .format-quote blockquote p,\n  .format-link .link-wrap p {\n    font-size: var(--text-lg);\n    line-height: var(--vspace-1); } }\n\n@media screen and (max-width: 400px) {\n  .bricks-wrapper .entry {\n    margin-bottom: 1rem; } }\n\n.s-content {\n  --row-max-width: 1080px;\n  padding-top: var(--topspace);\n  padding-bottom: var(--vspace-0_125); }\n  .s-content .row {\n    max-width: var(--row-max-width); }\n  .s-content row.wide {\n    max-width: 1400px; }\n  .s-content .row.narrow {\n    max-width: 800px; }\n\n.s-content--single {\n  padding-bottom: var(--vspace-0_125); }\n\n.s-content__media {\n  position: relative;\n  margin-bottom: var(--vspace-2_5); }\n\n.s-content__media img {\n  vertical-align: bottom;\n  margin-bottom: 0; }\n\n.s-content__primary {\n  padding-top: var(--topspace);\n  padding-left: 20rem;\n  padding-right: 20rem; }\n\n.s-content__primary img {\n  max-width: calc(var(--row-max-width) - var(--gutter-lg) * 2);\n  margin: var(--vspace-1) 0 var(--vspace-1) -8rem; }\n\n.s-content__title {\n  text-align: center; }\n\n.s-content__title--post {\n  margin-bottom: var(--vspace-0_25); }\n\n.s-content__blocks h4 {\n  margin-top: 0; }\n\n.s-content__form {\n  margin-top: var(--vspace-2); }\n\n@media screen and (max-width: 1200px) {\n  .s-content {\n    --row-max-width: 1000px; }\n  .s-content__primary {\n    padding-left: 4.8rem;\n    padding-right: 4.8rem; }\n    .s-content__primary img {\n      max-width: calc(var(--row-max-width) - var(--gutter-md) * 2);\n      margin: var(--vspace-1) 0 var(--vspace-1) -4.8rem; } }\n\n@media screen and (max-width: 1100px) {\n  .s-content {\n    --row-max-width: 920px; }\n  .s-content__primary {\n    padding-left: 4rem;\n    padding-right: 4rem; }\n    .s-content__primary img {\n      margin: var(--vspace-1) 0 var(--vspace-1) -4rem; } }\n\n@media screen and (max-width: 1020px) {\n  .s-content__primary {\n    padding-left: 3.2rem;\n    padding-right: 3.2rem; }\n    .s-content__primary img {\n      max-width: 100%;\n      margin: var(--vspace-1) 0; } }\n\n@media screen and (max-width: 800px) {\n  .s-content {\n    padding-top: var(--topspace); }\n  .s-content__primary {\n    padding-left: 0;\n    padding-right: 0; }\n  .s-content__media {\n    margin-bottom: var(--vspace-2); } }\n\n@media screen and (max-width: 600px) {\n  .s-content {\n    padding-top: var(--topspace); }\n  .s-content__media {\n    margin-bottom: var(--vspace-1_5); } }\n\n@media screen and (max-width: 400px) {\n  .s-content__title {\n    font-size: var(--text-xxl);\n    line-height: var(--vspace-1_5); } }\n\n.s-bricks {\n  padding-top: 4.2rem; }\n  .s-bricks .with-top-sep {\n    position: relative; }\n  .s-bricks .with-top-sep::before {\n    content: \"\";\n    display: block;\n    position: absolute;\n    left: 50%;\n    top: 0;\n    margin-left: -100px;\n    width: 200px;\n    height: 1px;\n    background-color: var(--color-border); }\n  .s-bricks .masonry {\n    max-width: 1440px;\n    width: 94%;\n    margin: 0 auto var(--vspace-1); }\n  .s-bricks .pagination {\n    margin-top: 6rem; }\n\n.bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n  width: 100%; }\n\n.bricks-wrapper .brick {\n  padding: 0; }\n\n.bricks-wrapper .featured-grid {\n  width: 100%; }\n\n.bricks-wrapper .featured-grid .entry-content {\n  width: 100%;\n  background: #151515; }\n\n@media screen and (max-width: 1440px) {\n  .s-bricks .masonry {\n    width: 98%; } }\n\n@media screen and (max-width: 1400px) {\n  .s-bricks .masonry {\n    max-width: var(--width-max);\n    width: 94%; }\n  .bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n    width: 100%; }\n  .bricks-wrapper .brick {\n    padding: 0; }\n  .bricks-wrapper .featured-grid {\n    width: 100%; } }\n\n@media screen and (max-width: 980px) {\n  .s-bricks .masonry {\n    max-width: 780px;\n    width: 96%; }\n  .bricks-wrapper .grid-sizer, .bricks-wrapper .brick {\n    width: 100%; }\n  .bricks-wrapper .featured-grid {\n    width: 100%; } }\n\n@media screen and (max-width: 800px) {\n  .bricks-wrapper .brick {\n    padding: 0; } }\n\n@media screen and (max-width: 700px) {\n  .bricks-wrapper .brick {\n    padding: 0; } }\n\n@media screen and (max-width: 600px) {\n  .s-bricks .masonry {\n    max-width: 480px;\n    width: 100%;\n    padding-left: 6vw;\n    padding-right: 6vw; }\n  .bricks-wrapper .grid-sizer,\n  .bricks-wrapper .brick {\n    float: none;\n    width: 100%;\n    padding: 0 var(--gutter-mob);\n    clear: both; } }\n\n@media screen and (max-width: 400px) {\n  .bricks-wrapper .brick {\n    margin-left: 0;\n    margin-right: 0;\n    padding: 0; } }\n\n.not-watched {\n  background: var(--color-1-lighter);\n  height: 6px; }\n\n.hide {\n  display: none; }\n\n.titles-category {\n  margin-bottom: 0; }\n\n.horizontal {\n  background: var(--color-1);\n  height: 2px;\n  margin-top: 3px;\n  margin-bottom: 3px; }\n\n.block {\n  display: block; }\n\n.empty-space {\n  height: 95.994px; }\n\nform {\n  display: inline; }\n\n.main-page {\n  padding-top: var(--vspace-3);\n  padding-bottom: var(--vspace-0_125); }\n\n.form-add-folder-up {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n\n.blur {\n  filter: blur(10px); }\n\n.folder-names {\n  display: inline-block;\n  background: none;\n  width: 65%;\n  border: var(--color-body) solid;\n  border-radius: 5px;\n  margin-top: 3px;\n  margin-bottom: 3px; }\n\n.folder-names:hover {\n  color: var(--color-2);\n  cursor: pointer;\n  background: var(--color-info);\n  border: var(--color-info) solid;\n  border-radius: 5px; }\n\n.folder-names-focus {\n  border-radius: 5px; }\n\n.max-ch {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n.main-columns {\n  height: 100%;\n  overflow-y: scroll;\n  overflow-x: hidden; }\n\n.main-container {\n  overflow: hidden;\n  height: calc(100vh - 105px);\n  position: relative;\n  width: 100%; }\n\n.letter-board {\n  position: fixed;\n  background: var(--color-body);\n  width: 47.5%;\n  height: 25px;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end; }\n\n@media screen and (max-width: 800px) {\n  .letter-board {\n    position: fixed;\n    background: var(--color-body);\n    width: 90%;\n    height: 25px;\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between; }\n  .letter-board-small {\n    display: flex;\n    flex-direction: row; } }\n\n.letter-board-last-element {\n  margin-right: 20px; }\n\n.icon-group {\n  display: flex;\n  flex-direction: row;\n  margin-right: 5px; }\n\n.input-group {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: flex-start; }\n\n.letter-container {\n  margin-top: 30px; }\n\n.icon-trash {\n  display: block;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%); }\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["a"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -958,8 +977,25 @@ var header_update = injectStylesIntoStyleTag_default()(header["a" /* default */]
 
 
 /* harmony default export */ var components_header = (header["a" /* default */].locals || {});
+// EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./src/Views/public/css/components/search.css
+var search = __webpack_require__(16);
+
+// CONCATENATED MODULE: ./src/Views/public/css/components/search.css
+
+            
+
+var search_options = {};
+
+search_options.insert = "head";
+search_options.singleton = false;
+
+var search_update = injectStylesIntoStyleTag_default()(search["a" /* default */], search_options);
+
+
+
+/* harmony default export */ var components_search = (search["a" /* default */].locals || {});
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./src/Views/public/css/base.css
-var base = __webpack_require__(16);
+var base = __webpack_require__(17);
 
 // CONCATENATED MODULE: ./src/Views/public/css/base.css
 
@@ -976,7 +1012,7 @@ var base_update = injectStylesIntoStyleTag_default()(base["a" /* default */], ba
 
 /* harmony default export */ var css_base = (base["a" /* default */].locals || {});
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./src/Views/public/css/wrapper.css
-var wrapper = __webpack_require__(17);
+var wrapper = __webpack_require__(18);
 
 // CONCATENATED MODULE: ./src/Views/public/css/wrapper.css
 
@@ -1031,7 +1067,9 @@ var Events = {
     deleteFolder: 'mainPageView-deleteFolder',
     deleteLetter: 'mainPageView-deleteLetter',
     backToFolders: 'mainPageView-backToFolders',
-    backToLetters: 'mainPageView-backToLetters'
+    backToLetters: 'mainPageView-backToLetters',
+    startSearch: 'mainPageView-startSearch',
+    resultSearch: 'mainPageView-resultSearch'
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -1051,7 +1089,9 @@ var Events = {
     deleteFolder: 'mainPageController-deleteFolder',
     deleteLetter: 'mainPageController-deleteLetter',
     backToFolders: 'mainPageController-backToFolders',
-    backToLetters: 'mainPageController-backToLetters'
+    backToLetters: 'mainPageController-backToLetters',
+    startSearch: 'mainPageController-startSearch',
+    resultSearch: 'mainPageController-resultSearch'
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter'
@@ -1131,6 +1171,14 @@ var Events = {
     backToLetters: {
       success: 'letterModelEvents-backToLetters-success',
       fail: 'letterModelEvents-backToLetters-fail'
+    },
+    startSearch: {
+      success: 'letterModelEvents-startSearch-success',
+      fail: 'letterModelEvents-startSearch-fail'
+    },
+    resultSearch: {
+      success: 'letterModelEvents-resultSearch-success',
+      fail: 'letterModelEvents-resultSearch-fail'
     }
   },
   userModelEvents: {
@@ -1179,7 +1227,9 @@ var Paths = {
   inFolder: '/user/folders/',
   renameFolder: '/user/folders/recived/folderName',
   deleteFolder: '/user/folders/recived/folderName',
-  deleteLetter: '/letter'
+  deleteLetter: '/letter',
+  startSearch: '/letter/',
+  resultSearch: '/letter/by/'
 }; // логин post /session
 // логаут delete /session
 // регистрация post /user
@@ -2278,6 +2328,8 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
     src_EventBus.on(Events.mainPageController.renameFolder, this.renameFolder.bind(this));
     src_EventBus.on(Events.mainPageController.deleteFolder, this.deleteFolder.bind(this));
     src_EventBus.on(Events.mainPageController.deleteLetter, this.deleteLetter.bind(this));
+    src_EventBus.on(Events.mainPageController.startSearch, this.startSearch.bind(this));
+    src_EventBus.on(Events.mainPageController.resultSearch, this.resultSearch.bind(this));
   }
 
   LetterModel_createClass(LetterModel, [{
@@ -2589,6 +2641,71 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
         }
       })["catch"](function (error) {
         console.log('Fetch error', error);
+      });
+    }
+  }, {
+    key: "startSearch",
+    value: function startSearch(similar) {
+      var _this7 = this;
+
+      myFetch(Paths.startSearch + similar, 'GET').then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (response) {
+          _this7.searchResult = {};
+          _this7.searchResult.res = true;
+          _this7.searchResult.is = true;
+
+          if (response.Senders) {
+            _this7.searchResult.Senders = response.Senders;
+          }
+
+          if (response.Receivers) {
+            _this7.searchResult.Receivers = response.Receivers;
+          }
+
+          if (response.Themes) {
+            _this7.searchResult.Receivers = response.Themes;
+          }
+
+          if (response.Texts) {
+            _this7.searchResult.Receivers = response.Texts;
+          }
+
+          if (!response.Senders && !response.Receivers && !response.Themes && !response.Texts) {
+            _this7.searchResult.is = false;
+          }
+
+          src_EventBus.emit(Events.letterModelEvents.startSearch.success, _this7.searchResult);
+        } else {
+          src_EventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+            error: response.Description
+          });
+        }
+      })["catch"](function (error) {
+        src_EventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+          error: error
+        });
+      });
+    }
+  }, {
+    key: "resultSearch",
+    value: function resultSearch(what, value) {
+      myFetch(Paths.resultSearch + what + '/' + value, 'GET').then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (response) {
+          console.log(response); //обратка результата запроса
+          // globalEventBus.emit(Events.letterModelEvents.startSearch.success, this.searchResult);
+        } else {
+          src_EventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+            error: response.Description
+          });
+        }
+      })["catch"](function (error) {
+        src_EventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+          error: error
+        });
       });
     }
   }, {
@@ -3574,7 +3691,7 @@ function mainPage_template(locals) {
 
   try {
     var pug_debug_sources = {
-      "./src/Views/PugTemplates/mainPage.pug": "if(locals.screenWidth > 800)\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            div(class=\"column large-2 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"summary-recived\" class=\"triangle-down\")\n                    else\n                        div(id=\"summary-recived\" class=\"triangle-right\")\n                    a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"recived\")\n                            if(locals.recivedFolder)\n                                each folder in locals.recivedFolder\n                                    div(class=\"input-group\")\n                                        div\n                                            input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                        div(class=\"icon-group\" id=\"icon-group\")\n                                            div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                    g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                        path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                        g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                            path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                            div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                    div(class=\"horizontal\")\n\n                    a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            div(class=\"column large-4 tab-12 mob-12 main-container\")\n                div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                    if(locals.selectFolder)\n                      each letter in locals.selectFolder\n                        article(id=letter.Id class=\"brick entry format-standard\")\n                            div(id=letter.Id class=\"entry__text\")\n                                div(id=letter.Id class=\"entry__header\")\n                                    h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                if(!letter.IsWatched)\n                                    div(id=letter.Id class=\"h-full-width not-watched\")\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n\n            div(class=\"column large-6 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    if(locals.buttonPlus && letter.Id !== undefined)\n                        div(class=\"letter-board\")\n                            div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                            div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                            div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                    div(class=\"letter-container\")\n                        h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                        p(class=\"lead\") #{letter.Receiver}\n                        p(class=\"lead\") #{letter.Sender}\n                        p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                        each folder in locals.recivedFolder\n                            option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n\nelse\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            if(locals.folderColumn)\n                div(class=\"column large-2 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"summary-recived\" class=\"triangle-down\")\n                        else\n                            div(id=\"summary-recived\" class=\"triangle-right\")\n                        a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"recived\")\n                                if(locals.recivedFolder)\n                                  each folder in locals.recivedFolder\n                                      div(class=\"input-group\")\n                                          div\n                                              input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                          div(class=\"icon-group\" id=\"icon-group\")\n                                              div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                  svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                      g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                          path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                          g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                              path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                              div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                        div(class=\"horizontal\")\n\n                        a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            if(locals.letterColumn)\n                div(class=\"column large-4 tab-12 mob-12 main-container\")\n\n                    a(id=\"back-to-folders\") < \u041F\u0430\u043F\u043A\u0438\n\n                    div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                        if(locals.selectFolder)\n                          each letter in locals.selectFolder\n                              article(id=letter.Id class=\"brick entry format-standard\")\n                                  div(id=letter.Id class=\"entry__text\")\n                                      div(id=letter.Id class=\"entry__header\")\n                                          h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                      if(!letter.IsWatched)\n                                          div(id=letter.Id class=\"h-full-width not-watched\")\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n            if(locals.oneLetterColumn)\n                div(class=\"column large-6 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        if(locals.buttonPlus && letter.Id !== undefined)\n                            div(class=\"letter-board\")\n                                a(id=\"back-to-letters\") < \u041A \u043F\u0430\u043F\u043A\u0430\u043C\n                                div(class=\"letter-board-small\")\n                                    div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                        img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                                    div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                                    div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                        div(class=\"letter-container\")\n                            h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                            p(class=\"lead\") #{letter.Receiver}\n                            p(class=\"lead\") #{letter.Sender}\n                            p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                      each folder in locals.recivedFolder\n                          option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n"
+      "./src/Views/PugTemplates/mainPage.pug": "if(locals.screenWidth > 800)\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            div(class=\"column large-2 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"summary-recived\" class=\"triangle-down\")\n                    else\n                        div(id=\"summary-recived\" class=\"triangle-right\")\n                    a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"recived\")\n                            if(locals.recivedFolder)\n                                each folder in locals.recivedFolder\n                                    div(class=\"input-group\")\n                                        div\n                                            input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                        div(class=\"icon-group\" id=\"icon-group\")\n                                            div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                    g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                        path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                        g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                            path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                            div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                    div(class=\"horizontal\")\n\n                    a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            div(class=\"column large-4 tab-12 mob-12 main-container\")\n                div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                    if(locals.selectFolder)\n\n                      div(name=\"search-group\" class=\"search-block\")\n                          button(name=\"search-group\" class=\"btn btn--medium btn--primary h-full-width\" id=\"search-button\") \u0418\u0441\u043A\u0430\u0442\u044C\n                          input(id=\"search-input\" name=\"search-group\" type=\"text\" class=\"h-full-width search-input\" placeholder=\"\u041F\u043E\u0438\u0441\u043A\" value=\"\" autocomplete=\"off\" required)\n\n                          if(locals.searchResult.res)\n                              div(name=\"search-group\" class=\"search-back\" id=\"search-result-list\")\n\n                                  if(locals.searchResult.is)\n                                      if(locals.searchResult.Senders)\n                                          span(name=\"search-group\" class=\"search-title\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u0438\n                                          each result in locals.searchResult.Senders\n                                              div(name=\"search-target\" role=\"Senders\" id=result) #{result}\n\n                                      if(locals.searchResult.Receivers)\n                                          span(name=\"search-group\" class=\"search-title\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u0438\n                                          each result in locals.searchResult.Receivers\n                                              div(name=\"search-target\" role=\"Receivers\" id=result) #{result}\n\n                                      if(locals.searchResult.Themes)\n                                          span(name=\"search-group\" class=\"search-title\") \u0422\u0435\u043C\u044B\n                                          each result in locals.searchResult.Themes\n                                              div(name=\"search-target\" role=\"Themes\" id=result) #{result}\n\n                                      if(locals.searchResult.Texts)\n                                          span(name=\"search-group\" class=\"search-title\") \u0422\u0435\u043A\u0441\u0442\u044B\n                                          each result in locals.searchResult.Texts\n                                              div(name=\"search-target\" role=\"Texts\" id=result) #{result}\n\n                                  else\n                                      span(name=\"search-group\" class=\"search-title-no\")  \u041D\u0435\u0442 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u043E\u0432\n\n\n                      each letter in locals.selectFolder\n                        article(id=letter.Id class=\"brick entry format-standard\")\n                            div(id=letter.Id class=\"entry__text\")\n                                div(id=letter.Id class=\"entry__header\")\n                                    h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                if(!letter.IsWatched)\n                                    div(id=letter.Id class=\"h-full-width not-watched\")\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n\n            div(class=\"column large-6 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    if(locals.buttonPlus && letter.Id !== undefined)\n                        div(class=\"letter-board\")\n                            div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                            div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                            div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                    div(class=\"letter-container\")\n                        h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                        p(class=\"lead\") #{letter.Receiver}\n                        p(class=\"lead\") #{letter.Sender}\n                        p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                        each folder in locals.recivedFolder\n                            option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n\nelse\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            if(locals.folderColumn)\n                div(class=\"column large-2 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"summary-recived\" class=\"triangle-down\")\n                        else\n                            div(id=\"summary-recived\" class=\"triangle-right\")\n                        a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"recived\")\n                                if(locals.recivedFolder)\n                                  each folder in locals.recivedFolder\n                                      div(class=\"input-group\")\n                                          div\n                                              input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                          div(class=\"icon-group\" id=\"icon-group\")\n                                              div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                  svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                      g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                          path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                          g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                              path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                              div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                        div(class=\"horizontal\")\n\n                        a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            if(locals.letterColumn)\n                div(class=\"column large-4 tab-12 mob-12 main-container\")\n\n                    a(id=\"back-to-folders\") < \u041F\u0430\u043F\u043A\u0438\n\n                    div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                        if(locals.selectFolder)\n                          each letter in locals.selectFolder\n                              article(id=letter.Id class=\"brick entry format-standard\")\n                                  div(id=letter.Id class=\"entry__text\")\n                                      div(id=letter.Id class=\"entry__header\")\n                                          h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                      if(!letter.IsWatched)\n                                          div(id=letter.Id class=\"h-full-width not-watched\")\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n            if(locals.oneLetterColumn)\n                div(class=\"column large-6 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        if(locals.buttonPlus && letter.Id !== undefined)\n                            div(class=\"letter-board\")\n                                a(id=\"back-to-letters\") < \u041A \u043F\u0430\u043F\u043A\u0430\u043C\n                                div(class=\"letter-board-small\")\n                                    div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                        img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                                    div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                                    div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                        div(class=\"letter-container\")\n                            h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                            p(class=\"lead\") #{letter.Receiver}\n                            p(class=\"lead\") #{letter.Sender}\n                            p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                      each folder in locals.recivedFolder\n                          option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n"
     };
     ;
     var locals_for_with = locals || {};
@@ -3782,7 +3899,259 @@ function mainPage_template(locals) {
 
         if (locals.selectFolder) {
           ;
-          pug_debug_line = 39;
+          pug_debug_line = 40;
+          pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+          pug_html = pug_html + "<div class=\"search-block\" name=\"search-group\">";
+          ;
+          pug_debug_line = 41;
+          pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+          pug_html = pug_html + "<button class=\"btn btn--medium btn--primary h-full-width\" name=\"search-group\" id=\"search-button\">";
+          ;
+          pug_debug_line = 41;
+          pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+          pug_html = pug_html + "\u0418\u0441\u043A\u0430\u0442\u044C</button>";
+          ;
+          pug_debug_line = 42;
+          pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+          pug_html = pug_html + "<input" + (" class=\"h-full-width search-input\"" + " id=\"search-input\" name=\"search-group\" type=\"text\" placeholder=\"Поиск\" value=\"\" autocomplete=\"off\"" + mainPage_pug_attr("required", true, true, false)) + "/>";
+          ;
+          pug_debug_line = 44;
+          pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+
+          if (locals.searchResult.res) {
+            ;
+            pug_debug_line = 45;
+            pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+            pug_html = pug_html + "<div class=\"search-back\" name=\"search-group\" id=\"search-result-list\">";
+            ;
+            pug_debug_line = 47;
+            pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+
+            if (locals.searchResult.is) {
+              ;
+              pug_debug_line = 48;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+
+              if (locals.searchResult.Senders) {
+                ;
+                pug_debug_line = 49;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "<span class=\"search-title\" name=\"search-group\">";
+                ;
+                pug_debug_line = 49;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u0438</span>";
+                ;
+                pug_debug_line = 50;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.searchResult.Senders
+
+                ;
+                (function () {
+                  var $$obj = locals.searchResult.Senders;
+
+                  if ('number' == typeof $$obj.length) {
+                    for (var pug_index1 = 0, $$l = $$obj.length; pug_index1 < $$l; pug_index1++) {
+                      var result = $$obj[pug_index1];
+                      ;
+                      pug_debug_line = 51;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + "<div" + (" name=\"search-target\" role=\"Senders\"" + mainPage_pug_attr("id", result, true, false)) + ">";
+                      ;
+                      pug_debug_line = 51;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = result) ? "" : pug_interp) + "</div>";
+                    }
+                  } else {
+                    var $$l = 0;
+
+                    for (var pug_index1 in $$obj) {
+                      $$l++;
+                      var result = $$obj[pug_index1];
+                      ;
+                      pug_debug_line = 51;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + "<div" + (" name=\"search-target\" role=\"Senders\"" + mainPage_pug_attr("id", result, true, false)) + ">";
+                      ;
+                      pug_debug_line = 51;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = result) ? "" : pug_interp) + "</div>";
+                    }
+                  }
+                }).call(this);
+              }
+
+              ;
+              pug_debug_line = 53;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+
+              if (locals.searchResult.Receivers) {
+                ;
+                pug_debug_line = 54;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "<span class=\"search-title\" name=\"search-group\">";
+                ;
+                pug_debug_line = 54;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "\u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u0438</span>";
+                ;
+                pug_debug_line = 55;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.searchResult.Receivers
+
+                ;
+                (function () {
+                  var $$obj = locals.searchResult.Receivers;
+
+                  if ('number' == typeof $$obj.length) {
+                    for (var pug_index2 = 0, $$l = $$obj.length; pug_index2 < $$l; pug_index2++) {
+                      var result = $$obj[pug_index2];
+                      ;
+                      pug_debug_line = 56;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + "<div" + (" name=\"search-target\" role=\"Receivers\"" + mainPage_pug_attr("id", result, true, false)) + ">";
+                      ;
+                      pug_debug_line = 56;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = result) ? "" : pug_interp) + "</div>";
+                    }
+                  } else {
+                    var $$l = 0;
+
+                    for (var pug_index2 in $$obj) {
+                      $$l++;
+                      var result = $$obj[pug_index2];
+                      ;
+                      pug_debug_line = 56;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + "<div" + (" name=\"search-target\" role=\"Receivers\"" + mainPage_pug_attr("id", result, true, false)) + ">";
+                      ;
+                      pug_debug_line = 56;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = result) ? "" : pug_interp) + "</div>";
+                    }
+                  }
+                }).call(this);
+              }
+
+              ;
+              pug_debug_line = 58;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+
+              if (locals.searchResult.Themes) {
+                ;
+                pug_debug_line = 59;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "<span class=\"search-title\" name=\"search-group\">";
+                ;
+                pug_debug_line = 59;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "\u0422\u0435\u043C\u044B</span>";
+                ;
+                pug_debug_line = 60;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.searchResult.Themes
+
+                ;
+                (function () {
+                  var $$obj = locals.searchResult.Themes;
+
+                  if ('number' == typeof $$obj.length) {
+                    for (var pug_index3 = 0, $$l = $$obj.length; pug_index3 < $$l; pug_index3++) {
+                      var result = $$obj[pug_index3];
+                      ;
+                      pug_debug_line = 61;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + "<div" + (" name=\"search-target\" role=\"Themes\"" + mainPage_pug_attr("id", result, true, false)) + ">";
+                      ;
+                      pug_debug_line = 61;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = result) ? "" : pug_interp) + "</div>";
+                    }
+                  } else {
+                    var $$l = 0;
+
+                    for (var pug_index3 in $$obj) {
+                      $$l++;
+                      var result = $$obj[pug_index3];
+                      ;
+                      pug_debug_line = 61;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + "<div" + (" name=\"search-target\" role=\"Themes\"" + mainPage_pug_attr("id", result, true, false)) + ">";
+                      ;
+                      pug_debug_line = 61;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = result) ? "" : pug_interp) + "</div>";
+                    }
+                  }
+                }).call(this);
+              }
+
+              ;
+              pug_debug_line = 63;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+
+              if (locals.searchResult.Texts) {
+                ;
+                pug_debug_line = 64;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "<span class=\"search-title\" name=\"search-group\">";
+                ;
+                pug_debug_line = 64;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                pug_html = pug_html + "\u0422\u0435\u043A\u0441\u0442\u044B</span>";
+                ;
+                pug_debug_line = 65;
+                pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.searchResult.Texts
+
+                ;
+                (function () {
+                  var $$obj = locals.searchResult.Texts;
+
+                  if ('number' == typeof $$obj.length) {
+                    for (var pug_index4 = 0, $$l = $$obj.length; pug_index4 < $$l; pug_index4++) {
+                      var result = $$obj[pug_index4];
+                      ;
+                      pug_debug_line = 66;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + "<div" + (" name=\"search-target\" role=\"Texts\"" + mainPage_pug_attr("id", result, true, false)) + ">";
+                      ;
+                      pug_debug_line = 66;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = result) ? "" : pug_interp) + "</div>";
+                    }
+                  } else {
+                    var $$l = 0;
+
+                    for (var pug_index4 in $$obj) {
+                      $$l++;
+                      var result = $$obj[pug_index4];
+                      ;
+                      pug_debug_line = 66;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + "<div" + (" name=\"search-target\" role=\"Texts\"" + mainPage_pug_attr("id", result, true, false)) + ">";
+                      ;
+                      pug_debug_line = 66;
+                      pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+                      pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = result) ? "" : pug_interp) + "</div>";
+                    }
+                  }
+                }).call(this);
+              }
+            } else {
+              ;
+              pug_debug_line = 69;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + "<span class=\"search-title-no\" name=\"search-group\">";
+              ;
+              pug_debug_line = 69;
+              pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
+              pug_html = pug_html + " \u041D\u0435\u0442 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u043E\u0432</span>";
+            }
+
+            pug_html = pug_html + "</div>";
+          }
+
+          pug_html = pug_html + "</div>";
+          ;
+          pug_debug_line = 72;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.selectFolder
 
           ;
@@ -3790,163 +4159,163 @@ function mainPage_template(locals) {
             var $$obj = locals.selectFolder;
 
             if ('number' == typeof $$obj.length) {
-              for (var pug_index1 = 0, $$l = $$obj.length; pug_index1 < $$l; pug_index1++) {
-                var letter = $$obj[pug_index1];
+              for (var pug_index5 = 0, $$l = $$obj.length; pug_index5 < $$l; pug_index5++) {
+                var letter = $$obj[pug_index5];
                 ;
-                pug_debug_line = 40;
+                pug_debug_line = 73;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 41;
+                pug_debug_line = 74;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__text\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 42;
+                pug_debug_line = 75;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__header\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 43;
+                pug_debug_line = 76;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<h1" + (" class=\"entry__title max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 43;
+                pug_debug_line = 76;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
                 ;
-                pug_debug_line = 45;
+                pug_debug_line = 78;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
                 if (!letter.IsWatched) {
                   ;
-                  pug_debug_line = 46;
+                  pug_debug_line = 79;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"h-full-width not-watched\"" + mainPage_pug_attr("id", letter.Id, true, false)) + "></div>";
                 }
 
                 ;
-                pug_debug_line = 47;
+                pug_debug_line = 80;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 48;
+                pug_debug_line = 81;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 48;
+                pug_debug_line = 81;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "Получатель: ";
                 ;
-                pug_debug_line = 48;
+                pug_debug_line = 81;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
                 ;
-                pug_debug_line = 49;
+                pug_debug_line = 82;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 50;
+                pug_debug_line = 83;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 50;
+                pug_debug_line = 83;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "Отправитель: ";
                 ;
-                pug_debug_line = 50;
+                pug_debug_line = 83;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
                 ;
-                pug_debug_line = 51;
+                pug_debug_line = 84;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 52;
+                pug_debug_line = 85;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 52;
+                pug_debug_line = 85;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
               }
             } else {
               var $$l = 0;
 
-              for (var pug_index1 in $$obj) {
+              for (var pug_index5 in $$obj) {
                 $$l++;
-                var letter = $$obj[pug_index1];
+                var letter = $$obj[pug_index5];
                 ;
-                pug_debug_line = 40;
+                pug_debug_line = 73;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 41;
+                pug_debug_line = 74;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__text\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 42;
+                pug_debug_line = 75;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__header\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 43;
+                pug_debug_line = 76;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<h1" + (" class=\"entry__title max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 43;
+                pug_debug_line = 76;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
                 ;
-                pug_debug_line = 45;
+                pug_debug_line = 78;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
                 if (!letter.IsWatched) {
                   ;
-                  pug_debug_line = 46;
+                  pug_debug_line = 79;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"h-full-width not-watched\"" + mainPage_pug_attr("id", letter.Id, true, false)) + "></div>";
                 }
 
                 ;
-                pug_debug_line = 47;
+                pug_debug_line = 80;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 48;
+                pug_debug_line = 81;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 48;
+                pug_debug_line = 81;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "Получатель: ";
                 ;
-                pug_debug_line = 48;
+                pug_debug_line = 81;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
                 ;
-                pug_debug_line = 49;
+                pug_debug_line = 82;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 50;
+                pug_debug_line = 83;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 50;
+                pug_debug_line = 83;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "Отправитель: ";
                 ;
-                pug_debug_line = 50;
+                pug_debug_line = 83;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
                 ;
-                pug_debug_line = 51;
+                pug_debug_line = 84;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 52;
+                pug_debug_line = 85;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                 ;
-                pug_debug_line = 52;
+                pug_debug_line = 85;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
               }
@@ -3956,139 +4325,139 @@ function mainPage_template(locals) {
 
         pug_html = pug_html + "</div></div>";
         ;
-        pug_debug_line = 55;
+        pug_debug_line = 88;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"column large-6 tab-12 mob-12 main-container\">";
         ;
-        pug_debug_line = 56;
+        pug_debug_line = 89;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"main-columns project_scroll\">";
         ;
-        pug_debug_line = 57;
+        pug_debug_line = 90;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.buttonPlus && letter.Id !== undefined) {
           ;
-          pug_debug_line = 58;
+          pug_debug_line = 91;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"letter-board\">";
           ;
-          pug_debug_line = 59;
+          pug_debug_line = 92;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"delete-letter-button radius\" id=\"button-remove-letter\">";
           ;
-          pug_debug_line = 60;
+          pug_debug_line = 93;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<img class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\"/></div>";
           ;
-          pug_debug_line = 61;
+          pug_debug_line = 94;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"small-plus radius\" id=\"button-form-add-letter-folder\"></div>";
           ;
-          pug_debug_line = 62;
+          pug_debug_line = 95;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"small-plus radius cross letter-board-last-element\" id=\"delete-folder\"></div></div>";
         }
 
         ;
-        pug_debug_line = 64;
+        pug_debug_line = 97;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"letter-container\">";
         ;
-        pug_debug_line = 65;
+        pug_debug_line = 98;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<h3" + (mainPage_pug_attr("id", letter.Id, true, false) + " name=\"title-of-current\"") + ">";
         ;
-        pug_debug_line = 65;
+        pug_debug_line = 98;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h3>";
         ;
-        pug_debug_line = 66;
+        pug_debug_line = 99;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<p class=\"lead\">";
         ;
-        pug_debug_line = 66;
+        pug_debug_line = 99;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p>";
         ;
-        pug_debug_line = 67;
+        pug_debug_line = 100;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<p class=\"lead\">";
         ;
-        pug_debug_line = 67;
+        pug_debug_line = 100;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p>";
         ;
-        pug_debug_line = 68;
+        pug_debug_line = 101;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<p class=\"lead\">";
         ;
-        pug_debug_line = 68;
+        pug_debug_line = 101;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></div></div></div>";
         ;
-        pug_debug_line = 71;
+        pug_debug_line = 104;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<!--\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F-->";
         ;
-        pug_debug_line = 72;
+        pug_debug_line = 105;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"form-add-folder-up hide\">";
         ;
-        pug_debug_line = 73;
+        pug_debug_line = 106;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"plus radius cross cross-modal\" id=\"remove-folder-recived\"></div>";
         ;
-        pug_debug_line = 74;
+        pug_debug_line = 107;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<form name=\"button-of-recived-folder\">";
         ;
-        pug_debug_line = 75;
+        pug_debug_line = 108;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 76;
+        pug_debug_line = 109;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<input" + (" class=\"h-full-width\"" + " name=\"folderName\" type=\"text\" placeholder=\"Добавить папку\" value=\"\" autocomplete=\"off\"" + mainPage_pug_attr("required", true, true, false)) + "/>";
         ;
-        pug_debug_line = 77;
+        pug_debug_line = 110;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<button class=\"btn btn--medium btn--primary h-full-width\" type=\"submit\">";
         ;
-        pug_debug_line = 77;
+        pug_debug_line = 110;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button></div></form></div>";
         ;
-        pug_debug_line = 79;
+        pug_debug_line = 112;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<!--\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443-->";
         ;
-        pug_debug_line = 80;
+        pug_debug_line = 113;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"hide form-add-folder-up\">";
         ;
-        pug_debug_line = 81;
+        pug_debug_line = 114;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"plus radius cross cross-modal\" id=\"remove-form-add-folder-up\"></div>";
         ;
-        pug_debug_line = 82;
+        pug_debug_line = 115;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<form id=\"choose-folder\">";
         ;
-        pug_debug_line = 83;
+        pug_debug_line = 116;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 84;
+        pug_debug_line = 117;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<select class=\"h-full-width\" name=\"inFolderName\">";
         ;
-        pug_debug_line = 85;
+        pug_debug_line = 118;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.recivedFolder) {
           ;
-          pug_debug_line = 86;
+          pug_debug_line = 119;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.recivedFolder
 
           ;
@@ -4096,29 +4465,29 @@ function mainPage_template(locals) {
             var $$obj = locals.recivedFolder;
 
             if ('number' == typeof $$obj.length) {
-              for (var pug_index2 = 0, $$l = $$obj.length; pug_index2 < $$l; pug_index2++) {
-                var folder = $$obj[pug_index2];
+              for (var pug_index6 = 0, $$l = $$obj.length; pug_index6 < $$l; pug_index6++) {
+                var folder = $$obj[pug_index6];
                 ;
-                pug_debug_line = 87;
+                pug_debug_line = 120;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<option" + mainPage_pug_attr("value", folder.Name, true, false) + ">";
                 ;
-                pug_debug_line = 87;
+                pug_debug_line = 120;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder.Name) ? "" : pug_interp) + "</option>";
               }
             } else {
               var $$l = 0;
 
-              for (var pug_index2 in $$obj) {
+              for (var pug_index6 in $$obj) {
                 $$l++;
-                var folder = $$obj[pug_index2];
+                var folder = $$obj[pug_index6];
                 ;
-                pug_debug_line = 87;
+                pug_debug_line = 120;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<option" + mainPage_pug_attr("value", folder.Name, true, false) + ">";
                 ;
-                pug_debug_line = 87;
+                pug_debug_line = 120;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder.Name) ? "" : pug_interp) + "</option>";
               }
@@ -4128,83 +4497,83 @@ function mainPage_template(locals) {
 
         pug_html = pug_html + "</select></div>";
         ;
-        pug_debug_line = 90;
+        pug_debug_line = 123;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 91;
+        pug_debug_line = 124;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<button class=\"btn h-full-width\" type=\"submit\">";
         ;
-        pug_debug_line = 91;
+        pug_debug_line = 124;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button></div></form></div>";
       } else {
         ;
-        pug_debug_line = 95;
+        pug_debug_line = 128;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"main-page mainPage\">";
         ;
-        pug_debug_line = 96;
+        pug_debug_line = 129;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\">";
         ;
-        pug_debug_line = 98;
+        pug_debug_line = 131;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.folderColumn) {
           ;
-          pug_debug_line = 99;
+          pug_debug_line = 132;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"column large-2 tab-12 mob-12 main-container\">";
           ;
-          pug_debug_line = 100;
+          pug_debug_line = 133;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"main-columns project_scroll\">";
           ;
-          pug_debug_line = 101;
+          pug_debug_line = 134;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"block plus radius\" id=\"add-folder-recived\"></div>";
           ;
-          pug_debug_line = 103;
+          pug_debug_line = 136;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
           if (locals.recivedFolderRecived) {
             ;
-            pug_debug_line = 104;
+            pug_debug_line = 137;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"triangle-down\" id=\"summary-recived\"></div>";
           } else {
             ;
-            pug_debug_line = 106;
+            pug_debug_line = 139;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"triangle-right\" id=\"summary-recived\"></div>";
           }
 
           ;
-          pug_debug_line = 107;
+          pug_debug_line = 140;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<a class=\"titles-category\" id=\"recivedUn\">";
           ;
-          pug_debug_line = 107;
+          pug_debug_line = 140;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "\u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435</a>";
           ;
-          pug_debug_line = 109;
+          pug_debug_line = 142;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
           if (locals.recivedFolderRecived) {
             ;
-            pug_debug_line = 110;
+            pug_debug_line = 143;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div id=\"recived\">";
             ;
-            pug_debug_line = 111;
+            pug_debug_line = 144;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
             if (locals.recivedFolder) {
               ;
-              pug_debug_line = 112;
+              pug_debug_line = 145;
               pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.recivedFolder
 
               ;
@@ -4212,101 +4581,101 @@ function mainPage_template(locals) {
                 var $$obj = locals.recivedFolder;
 
                 if ('number' == typeof $$obj.length) {
-                  for (var pug_index3 = 0, $$l = $$obj.length; pug_index3 < $$l; pug_index3++) {
-                    var folder = $$obj[pug_index3];
+                  for (var pug_index7 = 0, $$l = $$obj.length; pug_index7 < $$l; pug_index7++) {
+                    var folder = $$obj[pug_index7];
                     ;
-                    pug_debug_line = 113;
+                    pug_debug_line = 146;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div class=\"input-group\">";
                     ;
-                    pug_debug_line = 114;
+                    pug_debug_line = 147;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div>";
                     ;
-                    pug_debug_line = 115;
+                    pug_debug_line = 148;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<input" + (" class=\"folder-names\"" + mainPage_pug_attr("readonly", true, true, false) + mainPage_pug_attr("value", folder.Name, true, false) + mainPage_pug_attr("id", folder.Name, true, false)) + "/></div>";
                     ;
-                    pug_debug_line = 116;
+                    pug_debug_line = 149;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div class=\"icon-group\" id=\"icon-group\">";
                     ;
-                    pug_debug_line = 117;
+                    pug_debug_line = 150;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"edit-button radius\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\"") + ">";
                     ;
-                    pug_debug_line = 118;
+                    pug_debug_line = 151;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<svg" + (" class=\"block\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\"") + ">";
                     ;
-                    pug_debug_line = 119;
+                    pug_debug_line = 152;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\"") + ">";
                     ;
-                    pug_debug_line = 120;
+                    pug_debug_line = 153;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\"") + "></path>";
                     ;
-                    pug_debug_line = 121;
+                    pug_debug_line = 154;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"#ffffff\"") + ">";
                     ;
-                    pug_debug_line = 122;
+                    pug_debug_line = 155;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\"") + "></path></g></g></svg></div>";
                     ;
-                    pug_debug_line = 124;
+                    pug_debug_line = 157;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"small-plus radius cross\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"delete-folder\"") + "></div></div></div>";
                   }
                 } else {
                   var $$l = 0;
 
-                  for (var pug_index3 in $$obj) {
+                  for (var pug_index7 in $$obj) {
                     $$l++;
-                    var folder = $$obj[pug_index3];
+                    var folder = $$obj[pug_index7];
                     ;
-                    pug_debug_line = 113;
+                    pug_debug_line = 146;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div class=\"input-group\">";
                     ;
-                    pug_debug_line = 114;
+                    pug_debug_line = 147;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div>";
                     ;
-                    pug_debug_line = 115;
+                    pug_debug_line = 148;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<input" + (" class=\"folder-names\"" + mainPage_pug_attr("readonly", true, true, false) + mainPage_pug_attr("value", folder.Name, true, false) + mainPage_pug_attr("id", folder.Name, true, false)) + "/></div>";
                     ;
-                    pug_debug_line = 116;
+                    pug_debug_line = 149;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div class=\"icon-group\" id=\"icon-group\">";
                     ;
-                    pug_debug_line = 117;
+                    pug_debug_line = 150;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"edit-button radius\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\"") + ">";
                     ;
-                    pug_debug_line = 118;
+                    pug_debug_line = 151;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<svg" + (" class=\"block\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\"") + ">";
                     ;
-                    pug_debug_line = 119;
+                    pug_debug_line = 152;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\"") + ">";
                     ;
-                    pug_debug_line = 120;
+                    pug_debug_line = 153;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\"") + "></path>";
                     ;
-                    pug_debug_line = 121;
+                    pug_debug_line = 154;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<g" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" fill=\"#ffffff\"") + ">";
                     ;
-                    pug_debug_line = 122;
+                    pug_debug_line = 155;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<path" + (mainPage_pug_attr("id", folder.Name, true, false) + " name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\"") + "></path></g></g></svg></div>";
                     ;
-                    pug_debug_line = 124;
+                    pug_debug_line = 157;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"small-plus radius cross\"" + mainPage_pug_attr("id", folder.Name, true, false) + " name=\"delete-folder\"") + "></div></div></div>";
                   }
@@ -4318,47 +4687,47 @@ function mainPage_template(locals) {
           }
 
           ;
-          pug_debug_line = 126;
+          pug_debug_line = 159;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"horizontal\"></div>";
           ;
-          pug_debug_line = 128;
+          pug_debug_line = 161;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<a class=\"block titles-category\" id=\"sendedUn\">";
           ;
-          pug_debug_line = 128;
+          pug_debug_line = 161;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "\u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435</a></div></div>";
         }
 
         ;
-        pug_debug_line = 130;
+        pug_debug_line = 163;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.letterColumn) {
           ;
-          pug_debug_line = 131;
+          pug_debug_line = 164;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"column large-4 tab-12 mob-12 main-container\">";
           ;
-          pug_debug_line = 133;
+          pug_debug_line = 166;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<a id=\"back-to-folders\">";
           ;
-          pug_debug_line = 133;
+          pug_debug_line = 166;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "< \u041F\u0430\u043F\u043A\u0438</a>";
           ;
-          pug_debug_line = 135;
+          pug_debug_line = 168;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\">";
           ;
-          pug_debug_line = 136;
+          pug_debug_line = 169;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
           if (locals.selectFolder) {
             ;
-            pug_debug_line = 137;
+            pug_debug_line = 170;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.selectFolder
 
             ;
@@ -4366,163 +4735,163 @@ function mainPage_template(locals) {
               var $$obj = locals.selectFolder;
 
               if ('number' == typeof $$obj.length) {
-                for (var pug_index4 = 0, $$l = $$obj.length; pug_index4 < $$l; pug_index4++) {
-                  var letter = $$obj[pug_index4];
+                for (var pug_index8 = 0, $$l = $$obj.length; pug_index8 < $$l; pug_index8++) {
+                  var letter = $$obj[pug_index8];
                   ;
-                  pug_debug_line = 138;
+                  pug_debug_line = 171;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 139;
+                  pug_debug_line = 172;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__text\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 140;
+                  pug_debug_line = 173;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__header\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 141;
+                  pug_debug_line = 174;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<h1" + (" class=\"entry__title max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 141;
+                  pug_debug_line = 174;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
                   ;
-                  pug_debug_line = 143;
+                  pug_debug_line = 176;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
                   if (!letter.IsWatched) {
                     ;
-                    pug_debug_line = 144;
+                    pug_debug_line = 177;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"h-full-width not-watched\"" + mainPage_pug_attr("id", letter.Id, true, false)) + "></div>";
                   }
 
                   ;
-                  pug_debug_line = 145;
+                  pug_debug_line = 178;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 146;
+                  pug_debug_line = 179;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 146;
+                  pug_debug_line = 179;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "Получатель: ";
                   ;
-                  pug_debug_line = 146;
+                  pug_debug_line = 179;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
                   ;
-                  pug_debug_line = 147;
+                  pug_debug_line = 180;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 148;
+                  pug_debug_line = 181;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 148;
+                  pug_debug_line = 181;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "Отправитель: ";
                   ;
-                  pug_debug_line = 148;
+                  pug_debug_line = 181;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
                   ;
-                  pug_debug_line = 149;
+                  pug_debug_line = 182;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 150;
+                  pug_debug_line = 183;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 150;
+                  pug_debug_line = 183;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
                 }
               } else {
                 var $$l = 0;
 
-                for (var pug_index4 in $$obj) {
+                for (var pug_index8 in $$obj) {
                   $$l++;
-                  var letter = $$obj[pug_index4];
+                  var letter = $$obj[pug_index8];
                   ;
-                  pug_debug_line = 138;
+                  pug_debug_line = 171;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<article" + (" class=\"brick entry format-standard\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 139;
+                  pug_debug_line = 172;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__text\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 140;
+                  pug_debug_line = 173;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__header\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 141;
+                  pug_debug_line = 174;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<h1" + (" class=\"entry__title max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 141;
+                  pug_debug_line = 174;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h1></div>";
                   ;
-                  pug_debug_line = 143;
+                  pug_debug_line = 176;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
                   if (!letter.IsWatched) {
                     ;
-                    pug_debug_line = 144;
+                    pug_debug_line = 177;
                     pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                     pug_html = pug_html + "<div" + (" class=\"h-full-width not-watched\"" + mainPage_pug_attr("id", letter.Id, true, false)) + "></div>";
                   }
 
                   ;
-                  pug_debug_line = 145;
+                  pug_debug_line = 178;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 146;
+                  pug_debug_line = 179;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 146;
+                  pug_debug_line = 179;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "Получатель: ";
                   ;
-                  pug_debug_line = 146;
+                  pug_debug_line = 179;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p></div>";
                   ;
-                  pug_debug_line = 147;
+                  pug_debug_line = 180;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 148;
+                  pug_debug_line = 181;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 148;
+                  pug_debug_line = 181;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "Отправитель: ";
                   ;
-                  pug_debug_line = 148;
+                  pug_debug_line = 181;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p></div>";
                   ;
-                  pug_debug_line = 149;
+                  pug_debug_line = 182;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<div" + (" class=\"entry__excerpt\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 150;
+                  pug_debug_line = 183;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + "<p" + (" class=\"max-ch\"" + mainPage_pug_attr("id", letter.Id, true, false)) + ">";
                   ;
-                  pug_debug_line = 150;
+                  pug_debug_line = 183;
                   pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                   pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></article>";
                 }
@@ -4534,159 +4903,159 @@ function mainPage_template(locals) {
         }
 
         ;
-        pug_debug_line = 152;
+        pug_debug_line = 185;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.oneLetterColumn) {
           ;
-          pug_debug_line = 153;
+          pug_debug_line = 186;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"column large-6 tab-12 mob-12 main-container\">";
           ;
-          pug_debug_line = 154;
+          pug_debug_line = 187;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"main-columns project_scroll\">";
           ;
-          pug_debug_line = 155;
+          pug_debug_line = 188;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
           if (locals.buttonPlus && letter.Id !== undefined) {
             ;
-            pug_debug_line = 156;
+            pug_debug_line = 189;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"letter-board\">";
             ;
-            pug_debug_line = 157;
+            pug_debug_line = 190;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<a id=\"back-to-letters\">";
             ;
-            pug_debug_line = 157;
+            pug_debug_line = 190;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "< \u041A \u043F\u0430\u043F\u043A\u0430\u043C</a>";
             ;
-            pug_debug_line = 158;
+            pug_debug_line = 191;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"letter-board-small\">";
             ;
-            pug_debug_line = 159;
+            pug_debug_line = 192;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"delete-letter-button radius\" id=\"button-remove-letter\">";
             ;
-            pug_debug_line = 160;
+            pug_debug_line = 193;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<img class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\"/></div>";
             ;
-            pug_debug_line = 161;
+            pug_debug_line = 194;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"small-plus radius\" id=\"button-form-add-letter-folder\"></div>";
             ;
-            pug_debug_line = 162;
+            pug_debug_line = 195;
             pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
             pug_html = pug_html + "<div class=\"small-plus radius cross letter-board-last-element\" id=\"delete-folder\"></div></div></div>";
           }
 
           ;
-          pug_debug_line = 164;
+          pug_debug_line = 197;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<div class=\"letter-container\">";
           ;
-          pug_debug_line = 165;
+          pug_debug_line = 198;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<h3" + (mainPage_pug_attr("id", letter.Id, true, false) + " name=\"title-of-current\"") + ">";
           ;
-          pug_debug_line = 165;
+          pug_debug_line = 198;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Theme) ? "" : pug_interp) + "</h3>";
           ;
-          pug_debug_line = 166;
+          pug_debug_line = 199;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<p class=\"lead\">";
           ;
-          pug_debug_line = 166;
+          pug_debug_line = 199;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Receiver) ? "" : pug_interp) + "</p>";
           ;
-          pug_debug_line = 167;
+          pug_debug_line = 200;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<p class=\"lead\">";
           ;
-          pug_debug_line = 167;
+          pug_debug_line = 200;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Sender) ? "" : pug_interp) + "</p>";
           ;
-          pug_debug_line = 168;
+          pug_debug_line = 201;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + "<p class=\"lead\">";
           ;
-          pug_debug_line = 168;
+          pug_debug_line = 201;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
           pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = letter.Text) ? "" : pug_interp) + "</p></div></div></div>";
         }
 
         pug_html = pug_html + "</div></div>";
         ;
-        pug_debug_line = 171;
+        pug_debug_line = 204;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<!--\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F-->";
         ;
-        pug_debug_line = 172;
+        pug_debug_line = 205;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"form-add-folder-up hide\">";
         ;
-        pug_debug_line = 173;
+        pug_debug_line = 206;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"plus radius cross cross-modal\" id=\"remove-folder-recived\"></div>";
         ;
-        pug_debug_line = 174;
+        pug_debug_line = 207;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<form name=\"button-of-recived-folder\">";
         ;
-        pug_debug_line = 175;
+        pug_debug_line = 208;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 176;
+        pug_debug_line = 209;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<input" + (" class=\"h-full-width\"" + " name=\"folderName\" type=\"text\" placeholder=\"Добавить папку\" value=\"\" autocomplete=\"off\"" + mainPage_pug_attr("required", true, true, false)) + "/>";
         ;
-        pug_debug_line = 177;
+        pug_debug_line = 210;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<button class=\"btn btn--medium btn--primary h-full-width\" type=\"submit\">";
         ;
-        pug_debug_line = 177;
+        pug_debug_line = 210;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button></div></form></div>";
         ;
-        pug_debug_line = 179;
+        pug_debug_line = 212;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<!--\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443-->";
         ;
-        pug_debug_line = 180;
+        pug_debug_line = 213;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"hide form-add-folder-up\">";
         ;
-        pug_debug_line = 181;
+        pug_debug_line = 214;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"plus radius cross cross-modal\" id=\"remove-form-add-folder-up\"></div>";
         ;
-        pug_debug_line = 182;
+        pug_debug_line = 215;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<form id=\"choose-folder\">";
         ;
-        pug_debug_line = 183;
+        pug_debug_line = 216;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 184;
+        pug_debug_line = 217;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<select class=\"h-full-width\" name=\"inFolderName\">";
         ;
-        pug_debug_line = 185;
+        pug_debug_line = 218;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
 
         if (locals.recivedFolder) {
           ;
-          pug_debug_line = 186;
+          pug_debug_line = 219;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug"; // iterate locals.recivedFolder
 
           ;
@@ -4694,29 +5063,29 @@ function mainPage_template(locals) {
             var $$obj = locals.recivedFolder;
 
             if ('number' == typeof $$obj.length) {
-              for (var pug_index5 = 0, $$l = $$obj.length; pug_index5 < $$l; pug_index5++) {
-                var folder = $$obj[pug_index5];
+              for (var pug_index9 = 0, $$l = $$obj.length; pug_index9 < $$l; pug_index9++) {
+                var folder = $$obj[pug_index9];
                 ;
-                pug_debug_line = 187;
+                pug_debug_line = 220;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<option" + mainPage_pug_attr("value", folder.Name, true, false) + ">";
                 ;
-                pug_debug_line = 187;
+                pug_debug_line = 220;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder.Name) ? "" : pug_interp) + "</option>";
               }
             } else {
               var $$l = 0;
 
-              for (var pug_index5 in $$obj) {
+              for (var pug_index9 in $$obj) {
                 $$l++;
-                var folder = $$obj[pug_index5];
+                var folder = $$obj[pug_index9];
                 ;
-                pug_debug_line = 187;
+                pug_debug_line = 220;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + "<option" + mainPage_pug_attr("value", folder.Name, true, false) + ">";
                 ;
-                pug_debug_line = 187;
+                pug_debug_line = 220;
                 pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
                 pug_html = pug_html + mainPage_pug_escape(null == (pug_interp = folder.Name) ? "" : pug_interp) + "</option>";
               }
@@ -4726,15 +5095,15 @@ function mainPage_template(locals) {
 
         pug_html = pug_html + "</select></div>";
         ;
-        pug_debug_line = 190;
+        pug_debug_line = 223;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<div class=\"row\">";
         ;
-        pug_debug_line = 191;
+        pug_debug_line = 224;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "<button class=\"btn h-full-width\" type=\"submit\">";
         ;
-        pug_debug_line = 191;
+        pug_debug_line = 224;
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button></div></form></div>";
       }
@@ -4770,7 +5139,7 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
   MainPageView_createClass(MainPageView, [{
     key: "render",
     value: function render(data) {
-      var _document, _document2, _document3, _document4, _document5, _document6, _document7, _document8, _document9, _document10, _document11, _document12, _document13, _document14, _document15, _document16, _document19, _document20, _document22, _document23;
+      var _document, _document2, _document3, _document4, _document5, _document6, _document7, _document8, _document9, _document10, _document11, _document12, _document13, _document14, _document15, _document16, _document19, _document20, _document22, _document23, _document24, _document25, _document26;
 
       if (!data || !data.letterList || !data.folderList) {
         src_EventBus.emit(Events.mainPageView.needData, 'Входящие');
@@ -4854,6 +5223,14 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
           return;
         }
 
+        if (event.target.getAttribute('name') === 'search-group') {
+          return;
+        }
+
+        if (event.target.getAttribute('name') === 'search-target') {
+          return;
+        }
+
         src_EventBus.emit(Events.mainPageView.selectLetter, event.target.id);
         var id = new FormData();
         id.append('id', event.target.id);
@@ -4922,6 +5299,23 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
         event.preventDefault();
         src_EventBus.emit(Events.mainPageView.backToLetters);
       });
+      var searchButton = (_document24 = document) === null || _document24 === void 0 ? void 0 : _document24.getElementById('search-button');
+      var searchInput = (_document25 = document) === null || _document25 === void 0 ? void 0 : _document25.getElementById('search-input');
+      searchButton === null || searchButton === void 0 ? void 0 : searchButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        var similar = searchInput.value.trim();
+        src_EventBus.emit(Events.mainPageView.startSearch, similar);
+      });
+      var searchResultList = (_document26 = document) === null || _document26 === void 0 ? void 0 : _document26.getElementById('search-result-list');
+      searchResultList === null || searchResultList === void 0 ? void 0 : searchResultList.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        if (event.target.getAttribute('name') === 'search-target') {
+          var what = event.target.getAttribute('role');
+          var value = event.target.id;
+          src_EventBus.emit(Events.mainPageView.resultSearch, what, value);
+        }
+      });
     }
   }]);
 
@@ -4947,6 +5341,7 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
 
     this.mainPageView = MainPageView;
     this.data = {};
+    this.data.searchResult = {};
     this.data.screenWidth = window.innerWidth;
     this.data.folderColumn = true;
     this.data.letterColumn = false;
@@ -5131,8 +5526,7 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
         src_EventBus.off(Events.letterModelEvents.deleteLetter.success, h);
         _this.data.letter = null;
 
-        _this.mainPageView.render(_this.data); // globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
-
+        _this.mainPageView.render(_this.data);
       };
 
       src_EventBus.on(Events.letterModelEvents.deleteLetter.success, h);
@@ -5151,6 +5545,28 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
       _this.data.oneLetterColumn = false;
 
       _this.mainPageView.render(_this.data);
+    });
+    src_EventBus.on(Events.mainPageView.startSearch, function (similar) {
+      src_EventBus.emit(Events.mainPageController.startSearch, similar);
+
+      var h = function h(data) {
+        src_EventBus.off(Events.letterModelEvents.startSearch.success, h);
+        _this.data.searchResult = data;
+
+        _this.mainPageView.render(_this.data);
+      };
+
+      src_EventBus.on(Events.letterModelEvents.startSearch.success, h);
+    });
+    src_EventBus.on(Events.mainPageView.resultSearch, function (what, value) {
+      src_EventBus.emit(Events.mainPageController.resultSearch, what, value);
+
+      var h = function h() {
+        src_EventBus.off(Events.letterModelEvents.resultSearch.success, h); // рендер
+        // this.mainPageView.render(this.data);
+      };
+
+      src_EventBus.on(Events.letterModelEvents.resultSearch.success, h);
     });
   }
 
@@ -5519,6 +5935,7 @@ var SignUpController_SignUpController = function SignUpController() {
 
 /* harmony default export */ var Controllers_SignUpController = (new SignUpController_SignUpController());
 // CONCATENATED MODULE: ./src/main.js
+
 
 
 

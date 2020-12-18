@@ -37,9 +37,11 @@ const Events = {
     renameFolder: 'mainPageView-renameFolder',
     deleteFolder: 'mainPageView-deleteFolder',
     deleteLetter: 'mainPageView-deleteLetter',
-
     backToFolders: 'mainPageView-backToFolders',
     backToLetters: 'mainPageView-backToLetters',
+    startSearch: 'mainPageView-startSearch',
+
+    resultSearch: 'mainPageView-resultSearch',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -60,9 +62,11 @@ const Events = {
     renameFolder: 'mainPageController-renameFolder',
     deleteFolder: 'mainPageController-deleteFolder',
     deleteLetter: 'mainPageController-deleteLetter',
-
     backToFolders: 'mainPageController-backToFolders',
     backToLetters: 'mainPageController-backToLetters',
+    startSearch: 'mainPageController-startSearch',
+
+    resultSearch: 'mainPageController-resultSearch',
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter',
@@ -157,6 +161,16 @@ const Events = {
       success: 'letterModelEvents-backToLetters-success',
       fail: 'letterModelEvents-backToLetters-fail',
     },
+
+    startSearch: {
+      success: 'letterModelEvents-startSearch-success',
+      fail: 'letterModelEvents-startSearch-fail',
+    },
+
+    resultSearch: {
+      success: 'letterModelEvents-resultSearch-success',
+      fail: 'letterModelEvents-resultSearch-fail',
+    },
   },
 
   userModelEvents: {
@@ -210,8 +224,10 @@ const Paths = {
 
   renameFolder: '/user/folders/recived/folderName',
   deleteFolder: '/user/folders/recived/folderName',
-
   deleteLetter: '/letter',
+  startSearch: '/letter/',
+
+  resultSearch: '/letter/by/',
 };
 
 // логин post /session

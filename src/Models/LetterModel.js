@@ -31,6 +31,9 @@ export default class LetterModel {
     globalEventBus.on(Events.mainPageController.renameFolder, this.renameFolder.bind(this));
     globalEventBus.on(Events.mainPageController.deleteFolder, this.deleteFolder.bind(this));
     globalEventBus.on(Events.mainPageController.deleteLetter, this.deleteLetter.bind(this));
+    globalEventBus.on(Events.mainPageController.startSearch, this.startSearch.bind(this));
+
+    globalEventBus.on(Events.mainPageController.resultSearch, this.resultSearch.bind(this));
   }
 
   getLetter(letterId) {
@@ -346,6 +349,64 @@ export default class LetterModel {
       })
       .catch((error) => {
         console.log('Fetch error', error);
+      });
+  }
+
+  startSearch(similar) {
+    myFetch(Paths.startSearch + similar, 'GET')
+      .then((response) => response.json())
+      .then((response) => {
+        if (response) {
+          this.searchResult = {};
+          this.searchResult.res = true;
+          this.searchResult.is = true;
+          if (response.Senders) {
+            this.searchResult.Senders = response.Senders;
+          }
+          if (response.Receivers) {
+            this.searchResult.Receivers = response.Receivers;
+          }
+          if (response.Themes) {
+            this.searchResult.Receivers = response.Themes;
+          }
+          if (response.Texts) {
+            this.searchResult.Receivers = response.Texts;
+          }
+          if (!response.Senders && !response.Receivers && !response.Themes && !response.Texts) {
+            this.searchResult.is = false;
+          }
+          globalEventBus.emit(Events.letterModelEvents.startSearch.success, this.searchResult);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+          error,
+        });
+      });
+  }
+
+  resultSearch(what, value) {
+    myFetch(Paths.resultSearch + what + '/' + value, 'GET')
+      .then((response) => response.json())
+      .then((response) => {
+        if (response) {
+          console.log(response);
+          //обратка результата запроса
+          // globalEventBus.emit(Events.letterModelEvents.startSearch.success, this.searchResult);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+          error,
+        });
       });
   }
 

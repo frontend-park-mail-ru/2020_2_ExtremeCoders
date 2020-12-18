@@ -95,6 +95,12 @@ export default class MainPageView {
       if (event.target.getAttribute('name') === 'letters') {
         return;
       }
+      if (event.target.getAttribute('name') === 'search-group') {
+        return;
+      }
+      if (event.target.getAttribute('name') === 'search-target') {
+        return;
+      }
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
       const id = new FormData();
       id.append('id', event.target.id);
@@ -175,6 +181,24 @@ export default class MainPageView {
     backToLetters?.addEventListener('click', (event) => {
       event.preventDefault();
       globalEventBus.emit(Events.mainPageView.backToLetters);
+    });
+
+    const searchButton = document?.getElementById('search-button');
+    const searchInput = document?.getElementById('search-input');
+    searchButton?.addEventListener('click', (event) => {
+      event.preventDefault();
+      const similar = searchInput.value.trim();
+      globalEventBus.emit(Events.mainPageView.startSearch, similar);
+    });
+
+    const searchResultList = document?.getElementById('search-result-list');
+    searchResultList?.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (event.target.getAttribute('name') === 'search-target') {
+        const what = event.target.getAttribute('role');
+        const value = event.target.id;
+        globalEventBus.emit(Events.mainPageView.resultSearch, what, value);
+      }
     });
   }
 }
