@@ -71,7 +71,7 @@ if(locals.screenWidth > 800)
 
                       each letter in locals.selectFolder
                         article(id=letter.Id class="brick entry format-standard")
-                            div(id=letter.Id class="entry__text choosing")
+                            div(id=letter.Id class="entry__text")
                                 div(id=letter.Id class="entry__header")
                                     h1(id=letter.Id class="entry__title max-ch") #{letter.Theme}
 
@@ -83,6 +83,9 @@ if(locals.screenWidth > 800)
                                     p(id=letter.Id class="max-ch") Отправитель: #{letter.Sender}
                                 div(id=letter.Id class="entry__excerpt")
                                     p(id=letter.Id class="max-ch") #{letter.Text}
+
+                      div(class="block-update")
+                        div(class="small-plus radius")
 
 
             div(class="column large-6 tab-12 mob-12 main-container")
