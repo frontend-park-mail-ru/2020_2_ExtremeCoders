@@ -200,5 +200,15 @@ export default class MainPageView {
         globalEventBus.emit(Events.mainPageView.resultSearch, what, value);
       }
     });
+
+    const addMore = document?.getElementsByClassName('add-more')[0];
+    // searchResultList?.addEventListener('click', (event) => {
+    //   event.preventDefault();
+    //   if (event.target.getAttribute('name') === 'search-target') {
+    //     const what = event.target.getAttribute('role');
+    //     const value = event.target.id;
+    //     globalEventBus.emit(Events.mainPageView.resultSearch, what, value);
+    //   }
+    // });
   }
 }
