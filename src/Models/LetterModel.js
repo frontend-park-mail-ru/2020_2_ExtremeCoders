@@ -71,9 +71,9 @@ export default class LetterModel {
   getLetterList(folder) {
     let path = '';
     if (folder === 'Входящие') {
-      path = Paths.getReceivedLetters;
+      path = Paths.getReceivedLetters + '5' + '/' + '0';
     } else {
-      path = Paths.getSendedLetters;
+      path = Paths.getSendedLetters + '5' + '/' + '0';
     }
 
     myFetch(path, 'GET')
@@ -114,7 +114,6 @@ export default class LetterModel {
               this.recivedFolders[folder.Name] = folder;
             });
           }
-
           globalEventBus.emit(Events.letterModelEvents.recivedFolder.success, this.recivedFolders);
         } else {
           globalEventBus.emit(Events.letterModelEvents.recivedFolder.fail, {
