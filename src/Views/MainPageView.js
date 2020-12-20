@@ -103,6 +103,9 @@ export default class MainPageView {
       if (event.target.getAttribute('name') === 'search-target') {
         return;
       }
+      if (event.target.getAttribute('name') === 'add-more') {
+        return;
+      }
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
       const id = new FormData();
       id.append('id', event.target.id);
@@ -203,7 +206,7 @@ export default class MainPageView {
       }
     });
 
-    const addMore = document?.getElementsByClassName('add-more')[0];
+    const addMore = document?.getElementsByName('add-more')[0];
     addMore?.addEventListener('click', (event) => {
       event.preventDefault();
       const typeOfContent = addMore.getAttribute('role');

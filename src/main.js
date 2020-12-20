@@ -71,12 +71,12 @@ function initModels() {
 
   globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
 
-  // const h2 = () => {
-  //   globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
-  //   // letterModel.getLetterList('Входящие');
-  // };
-  //
-  // globalEventBus.on(Events.letterModelEvents.getFolderList.success, h2);
+  const h2 = () => {
+    globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
+    letterModel.getLetterList('Входящие');
+  };
+
+  globalEventBus.on(Events.letterModelEvents.getFolderList.success, h2);
 
   const h3 = () => {
     globalEventBus.off(Events.letterModelEvents.getLetterList.success, h3);
