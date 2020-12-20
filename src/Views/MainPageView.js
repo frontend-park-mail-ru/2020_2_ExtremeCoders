@@ -9,11 +9,13 @@ export default class MainPageView {
   }
 
   render(data) {
-    if (!data) {
-      globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
-      globalEventBus.emit(Events.mainPageView.recivedFolder);
-      return;
-    }
+    console.log('render(data)', data);
+    // if (!data || !data.selectFolder) {
+    //   console.log('hello');
+    //   globalEventBus.emit(Events.mainPageView.recivedUn, 0);
+    //   // globalEventBus.emit(Events.mainPageView.recivedFolder);
+    //   return;
+    // }
     this.element.innerHTML = '';
     Navbar.render();
     this.element.insertAdjacentHTML('beforeend', template(data));

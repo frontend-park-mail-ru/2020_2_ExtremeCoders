@@ -70,22 +70,23 @@ if(locals.screenWidth > 800)
 
 
                       each letter in locals.selectFolder
-                        article(id=letter.Id class="brick entry format-standard")
-                            div(id=letter.Id class="entry__text")
-                                div(id=letter.Id class="entry__header")
-                                    h1(id=letter.Id class="entry__title max-ch") #{letter.Theme}
+                         article(id=letter.Id class="brick entry format-standard")
+                             div(id=letter.Id class="entry__text")
+                                 div(id=letter.Id class="entry__header")
+                                     h1(id=letter.Id class="entry__title max-ch") #{letter.Theme}
 
-                                if(!letter.IsWatched)
-                                    div(id=letter.Id class="h-full-width not-watched")
-                                div(id=letter.Id class="entry__excerpt")
-                                    p(id=letter.Id class="max-ch") Получатель: #{letter.Receiver}
-                                div(id=letter.Id class="entry__excerpt")
-                                    p(id=letter.Id class="max-ch") Отправитель: #{letter.Sender}
-                                div(id=letter.Id class="entry__excerpt")
-                                    p(id=letter.Id class="max-ch") #{letter.Text}
+                                 if(!letter.IsWatched)
+                                     div(id=letter.Id class="h-full-width not-watched")
+                                 div(id=letter.Id class="entry__excerpt")
+                                     p(id=letter.Id class="max-ch") Получатель: #{letter.Receiver}
+                                 div(id=letter.Id class="entry__excerpt")
+                                     p(id=letter.Id class="max-ch") Отправитель: #{letter.Sender}
+                                 div(id=letter.Id class="entry__excerpt")
+                                     p(id=letter.Id class="max-ch") #{letter.Text}
 
-                      div(class="block-update")
-                        div(class="small-plus radius" title=local.nameOfFolder id=local.offset name="add-more" role=local.typeOfContent)
+                      // div(class="block-update")
+                      //     if(locals.nameOfFolder && locals.typeOfContent && locals.offset)
+                      //       div(class="small-plus radius" title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 
 
             div(class="column large-6 tab-12 mob-12 main-container")
@@ -170,7 +171,39 @@ else
 
                     div(class="bricks-wrapper h-group main-columns project_scroll" name="letters")
                         if(locals.selectFolder)
-                          each letter in locals.selectFolder
+
+                            div(name="search-group" class="search-block")
+                                button(name="search-group" class="btn btn--medium btn--primary h-full-width" id="search-button") Искать
+                                input(id="search-input" name="search-group" type="text" class="h-full-width search-input" placeholder="Поиск" value="" autocomplete="off" required)
+
+                                if(locals.searchResult.res)
+                                    div(name="search-group" class="search-back" id="search-result-list")
+
+                                        if(locals.searchResult.is)
+                                            if(locals.searchResult.Senders)
+                                                span(name="search-group" class="search-title") Отправители
+                                                each result in locals.searchResult.Senders
+                                                    div(name="search-target" role="Senders" id=result) #{result}
+
+                                            if(locals.searchResult.Receivers)
+                                                span(name="search-group" class="search-title") Получатели
+                                                each result in locals.searchResult.Receivers
+                                                    div(name="search-target" role="Receivers" id=result) #{result}
+
+                                            if(locals.searchResult.Themes)
+                                                span(name="search-group" class="search-title") Темы
+                                                each result in locals.searchResult.Themes
+                                                    div(name="search-target" role="Themes" id=result) #{result}
+
+                                            if(locals.searchResult.Texts)
+                                                span(name="search-group" class="search-title") Тексты
+                                                each result in locals.searchResult.Texts
+                                                    div(name="search-target" role="Texts" id=result) #{result}
+
+                                        else
+                                            span(name="search-group" class="search-title-no")  Нет результатов
+
+                            each letter in locals.selectFolder
                               article(id=letter.Id class="brick entry format-standard")
                                   div(id=letter.Id class="entry__text")
                                       div(id=letter.Id class="entry__header")

@@ -5,6 +5,7 @@ class MainPageController {
   constructor(MainPageView) {
     this.mainPageView = MainPageView;
     this.data = {};
+    // this.data.selectFolder = new Map();
     this.data.searchResult = {};
     this.data.screenWidth = window.innerWidth;
     this.data.folderColumn = true;
@@ -26,17 +27,17 @@ class MainPageController {
       this.data.folderList = data;
     });
 
-    globalEventBus.on(Events.mainPageView.needData, () => {
-      this.data.letter = {};
-      const h1 = (data) => {
-        this.data.selectFolder = data;
-        this.mainPageView.render(this.data);
-        globalEventBus.off(Events.letterModelEvents.getLetterList.success, h1);
-      };
-      globalEventBus.emit(Events.mainPageController.needGetFolderList);
-      globalEventBus.emit(Events.mainPageController.needGetLetterList, 'Входящие');
-      globalEventBus.on(Events.letterModelEvents.getLetterList.success, h1);
-    });
+    // globalEventBus.on(Events.mainPageView.needData, () => {
+    //   this.data.letter = {};
+    //   const h1 = (data) => {
+    //     this.data.selectFolder = data;
+    //     this.mainPageView.render(this.data);
+    //     globalEventBus.off(Events.letterModelEvents.getLetterList.success, h1);
+    //   };
+    //   // globalEventBus.emit(Events.mainPageView.recivedFolder);
+    //   globalEventBus.emit(Events.mainPageView.recivedUn, 0);
+    //   globalEventBus.on(Events.letterModelEvents.getLetterList.success, h1);
+    // });
 
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
       this.data.letter = this.data.selectFolder[letterId];
@@ -62,6 +63,7 @@ class MainPageController {
         this.data.letterColumn = false;
         this.data.oneLetterColumn = false;
 
+        console.log(this.data);
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.recivedFolder.success, h);
