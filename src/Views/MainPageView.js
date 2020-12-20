@@ -10,9 +10,8 @@ export default class MainPageView {
 
   render(data) {
     if (!data) {
-      console.log('hello');
       globalEventBus.emit(Events.mainPageView.needData, 'Входящие');
-      // globalEventBus.emit(Events.mainPageView.recivedFolder);
+      globalEventBus.emit(Events.mainPageView.recivedFolder);
       return;
     }
     this.element.innerHTML = '';
