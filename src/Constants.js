@@ -211,8 +211,8 @@ const Paths = {
   sendMessageToServ: '/letter',
   getUserData: '/user',
   getAvatar: '/user/avatar',
-  getReceivedLetters: '/user/letter/received',
-  getSendedLetters: '/user/letter/sent',
+  getReceivedLetters: '/user/letter/received/',
+  getSendedLetters: '/user/letter/sent/',
 
   getRecivedFolder: '/user/folders/recived',
   getSendedFolder: '/user/folders/sended',

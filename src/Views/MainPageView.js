@@ -86,7 +86,7 @@ export default class MainPageView {
       }
       if (event.target.tagName === 'INPUT' && current.hasAttribute('readonly')) {
         globalEventBus.emit(Events.mainPageView.recivedFolder);
-        globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived');
+        globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived', 0);
       }
     });
 
@@ -110,13 +110,13 @@ export default class MainPageView {
     const recivedUn = document?.getElementById('recivedUn');
     recivedUn?.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.mainPageView.recivedUn);
+      globalEventBus.emit(Events.mainPageView.recivedUn, 0);
     });
 
     const sendedUn = document?.getElementById('sendedUn');
     sendedUn?.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.mainPageView.sendedUn);
+      globalEventBus.emit(Events.mainPageView.sendedUn, 0);
     });
 
     const addFolderButton = document?.getElementsByName('button-of-recived-folder')[0];
@@ -202,13 +202,20 @@ export default class MainPageView {
     });
 
     const addMore = document?.getElementsByClassName('add-more')[0];
-    // searchResultList?.addEventListener('click', (event) => {
-    //   event.preventDefault();
-    //   if (event.target.getAttribute('name') === 'search-target') {
-    //     const what = event.target.getAttribute('role');
-    //     const value = event.target.id;
-    //     globalEventBus.emit(Events.mainPageView.resultSearch, what, value);
-    //   }
-    // });
+    addMore?.addEventListener('click', (event) => {
+      event.preventDefault();
+      const typeOfContent = addMore.getAttribute('role');
+      const offset = +addMore.id;
+      if (typeOfContent === 'recivedUn') {
+        globalEventBus.emit(Events.mainPageView.recivedUn, offset);
+      }
+      if (typeOfContent === 'sendedUn') {
+        globalEventBus.emit(Events.mainPageView.sendedUn, offset);
+      }
+      if (typeOfContent === 'selectFolder') {
+        const name = addMore.getAttribute('title');
+        globalEventBus.emit(Events.mainPageView.selectFolder, name, 'recived', offset);
+      }
+    });
   }
 }

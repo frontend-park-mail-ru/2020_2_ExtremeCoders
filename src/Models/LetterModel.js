@@ -155,8 +155,9 @@ export default class LetterModel {
       });
   }
 
-  selectFolder(folder, type) {
-    myFetch(Paths.getSelectFolder + '/' + type + '/' + folder, 'GET')
+  selectFolder(folder, type, offset) {
+    this.offset = offset;
+    myFetch(Paths.getSelectFolder + '/' + type + '/' + folder + '/' + '5' + '/' + this.offset.toString(), 'GET')
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
@@ -167,7 +168,7 @@ export default class LetterModel {
               this.selectFolder[letter.Id] = letter;
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.selectFolder.success, this.selectFolder);
+          globalEventBus.emit(Events.letterModelEvents.selectFolder.success, this.selectFolder, this.offset);
         } else {
           globalEventBus.emit(Events.letterModelEvents.selectFolder.fail, {
             error: response.Description,
@@ -181,19 +182,20 @@ export default class LetterModel {
       });
   }
 
-  recivedUn() {
-    myFetch(Paths.getReceivedLetters, 'GET')
+  recivedUn(offset) {
+    this.offset = offset;
+    myFetch(Paths.getReceivedLetters + '5' + '/' + this.offset.toString(), 'GET')
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letters) {
-            response.Letters = response.Letters.reverse();
-            response.Letters.forEach((letter) => {
+            const letters = response.Letters.reverse();
+            letters.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.recivedUn.success, this.selectFolder);
+          globalEventBus.emit(Events.letterModelEvents.recivedUn.success, this.selectFolder, this.offset);
         } else {
           globalEventBus.emit(Events.letterModelEvents.recivedUn.fail, {
             error: response.Description,
@@ -207,19 +209,20 @@ export default class LetterModel {
       });
   }
 
-  sendedUn() {
-    myFetch(Paths.getSendedLetters, 'GET')
+  sendedUn(offset) {
+    this.offset = offset;
+    myFetch(Paths.getSendedLetters + '5' + '/' + this.offset.toString(), 'GET')
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letters) {
             const letters = response.Letters.reverse();
-            response.Letters.forEach((letter) => {
+            letters.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.sendedUn.success, this.selectFolder);
+          globalEventBus.emit(Events.letterModelEvents.sendedUn.success, this.selectFolder, this.offset);
         } else {
           globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
             error: response.Description,
