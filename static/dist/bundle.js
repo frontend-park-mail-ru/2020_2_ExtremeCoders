@@ -5153,9 +5153,8 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
       var _document, _document2, _document3, _document4, _document5, _document6, _document7, _document8, _document9, _document10, _document11, _document12, _document13, _document14, _document15, _document16, _document19, _document20, _document22, _document23, _document24, _document25, _document26, _document27;
 
       if (!data) {
-        console.log('hello');
-        src_EventBus.emit(Events.mainPageView.needData, 'Входящие'); // globalEventBus.emit(Events.mainPageView.recivedFolder);
-
+        src_EventBus.emit(Events.mainPageView.needData, 'Входящие');
+        src_EventBus.emit(Events.mainPageView.recivedFolder);
         return;
       }
 
