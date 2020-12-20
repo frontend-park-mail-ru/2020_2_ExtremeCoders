@@ -1,3 +1,4 @@
+- console.log('locals', locals);
 if(locals.screenWidth > 800)
     div(class="main-page mainPage")
         div(class="row" style="margin-left: 0; margin-right: 0; width: 100vw;")
@@ -41,7 +42,7 @@ if(locals.screenWidth > 800)
                           button(name="search-group" class="btn btn--medium btn--primary h-full-width" id="search-button") Искать
                           input(id="search-input" name="search-group" type="text" class="h-full-width search-input" placeholder="Поиск" value="" autocomplete="off" required)
 
-                          if(locals.searchResult.res)
+                          if(locals.searchResult && locals.searchResult.res)
                               div(name="search-group" class="search-back" id="search-result-list")
 
                                   if(locals.searchResult.is)
@@ -84,9 +85,9 @@ if(locals.screenWidth > 800)
                                  div(id=letter.Id class="entry__excerpt")
                                      p(id=letter.Id class="max-ch") #{letter.Text}
 
-                      // div(class="block-update")
-                      //     if(locals.nameOfFolder && locals.typeOfContent && locals.offset)
-                      //       div(class="small-plus radius" title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
+                      div(class="block-update")
+                        if(locals.typeOfContent && locals.offset)
+                             div(class="small-plus radius" title="locals.nameOfFolder" id=locals.offset name="add-more" role=locals.typeOfContent)
 
 
             div(class="column large-6 tab-12 mob-12 main-container")
@@ -98,11 +99,11 @@ if(locals.screenWidth > 800)
                             div(id="button-form-add-letter-folder" class="small-plus radius")
                             div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
 
-                    div(class="letter-container")
-                        h3(id=letter.Id name="title-of-current") #{letter.Theme}
-                        p(class="lead") #{letter.Receiver}
-                        p(class="lead") #{letter.Sender}
-                        p(class="lead") #{letter.Text}
+                        div(class="letter-container")
+                            h3(id=letter.Id name="title-of-current") #{letter.Theme}
+                            p(class="lead") #{letter.Receiver}
+                            p(class="lead") #{letter.Sender}
+                            p(class="lead") #{letter.Text}
 
 
     //форма добавления
@@ -217,6 +218,10 @@ else
                                       div(id=letter.Id class="entry__excerpt")
                                           p(id=letter.Id class="max-ch") #{letter.Text}
 
+                            div(class="block-update")
+                                if(locals.typeOfContent && locals.offset)
+                                  div(class="small-plus radius" title="locals.nameOfFolder" id=locals.offset name="add-more" role=locals.typeOfContent)
+
             if(locals.oneLetterColumn)
                 div(class="column large-6 tab-12 mob-12 main-container")
                     div(class="main-columns project_scroll")
@@ -229,11 +234,11 @@ else
                                     div(id="button-form-add-letter-folder" class="small-plus radius")
                                     div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
 
-                        div(class="letter-container")
-                            h3(id=letter.Id name="title-of-current") #{letter.Theme}
-                            p(class="lead") #{letter.Receiver}
-                            p(class="lead") #{letter.Sender}
-                            p(class="lead") #{letter.Text}
+                            div(class="letter-container")
+                                h3(id=letter.Id name="title-of-current") #{letter.Theme}
+                                p(class="lead") #{letter.Receiver}
+                                p(class="lead") #{letter.Sender}
+                                p(class="lead") #{letter.Text}
 
 
     //форма добавления
