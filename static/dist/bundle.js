@@ -1216,8 +1216,8 @@ var Paths = {
   sendMessageToServ: '/letter',
   getUserData: '/user',
   getAvatar: '/user/avatar',
-  getReceivedLetters: '/user/letter/received',
-  getSendedLetters: '/user/letter/sent',
+  getReceivedLetters: '/user/letter/received/',
+  getSendedLetters: '/user/letter/sent/',
   getRecivedFolder: '/user/folders/recived',
   getSendedFolder: '/user/folders/sended',
   getSelectFolder: '/user/foders',
@@ -2345,9 +2345,9 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
       var path = '';
 
       if (folder === 'Входящие') {
-        path = Paths.getReceivedLetters;
+        path = Paths.getReceivedLetters + '5' + '/' + '0';
       } else {
-        path = Paths.getSendedLetters;
+        path = Paths.getSendedLetters + '5' + '/' + '0';
       }
 
       myFetch(path, 'GET').then(function (response) {
@@ -2436,10 +2436,11 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
     }
   }, {
     key: "selectFolder",
-    value: function selectFolder(folder, type) {
+    value: function selectFolder(folder, type, offset) {
       var _this4 = this;
 
-      myFetch(Paths.getSelectFolder + '/' + type + '/' + folder, 'GET').then(function (response) {
+      this.offset = offset;
+      myFetch(Paths.getSelectFolder + '/' + type + '/' + folder + '/' + '5' + '/' + this.offset.toString(), 'GET').then(function (response) {
         return response.json();
       }).then(function (response) {
         if (response.Code === 200) {
@@ -2452,7 +2453,7 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
             });
           }
 
-          src_EventBus.emit(Events.letterModelEvents.selectFolder.success, _this4.selectFolder);
+          src_EventBus.emit(Events.letterModelEvents.selectFolder.success, _this4.selectFolder, _this4.offset);
         } else {
           src_EventBus.emit(Events.letterModelEvents.selectFolder.fail, {
             error: response.Description
@@ -2466,23 +2467,24 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
     }
   }, {
     key: "recivedUn",
-    value: function recivedUn() {
+    value: function recivedUn(offset) {
       var _this5 = this;
 
-      myFetch(Paths.getReceivedLetters, 'GET').then(function (response) {
+      this.offset = offset;
+      myFetch(Paths.getReceivedLetters + '5' + '/' + this.offset.toString(), 'GET').then(function (response) {
         return response.json();
       }).then(function (response) {
         if (response.Code === 200) {
           _this5.selectFolder = new Map();
 
           if (response.Letters) {
-            response.Letters = response.Letters.reverse();
-            response.Letters.forEach(function (letter) {
+            var letters = response.Letters.reverse();
+            letters.forEach(function (letter) {
               _this5.selectFolder[letter.Id] = letter;
             });
           }
 
-          src_EventBus.emit(Events.letterModelEvents.recivedUn.success, _this5.selectFolder);
+          src_EventBus.emit(Events.letterModelEvents.recivedUn.success, _this5.selectFolder, _this5.offset);
         } else {
           src_EventBus.emit(Events.letterModelEvents.recivedUn.fail, {
             error: response.Description
@@ -2496,10 +2498,11 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
     }
   }, {
     key: "sendedUn",
-    value: function sendedUn() {
+    value: function sendedUn(offset) {
       var _this6 = this;
 
-      myFetch(Paths.getSendedLetters, 'GET').then(function (response) {
+      this.offset = offset;
+      myFetch(Paths.getSendedLetters + '5' + '/' + this.offset.toString(), 'GET').then(function (response) {
         return response.json();
       }).then(function (response) {
         if (response.Code === 200) {
@@ -2507,12 +2510,12 @@ var LetterModel_LetterModel = /*#__PURE__*/function () {
 
           if (response.Letters) {
             var letters = response.Letters.reverse();
-            response.Letters.forEach(function (letter) {
+            letters.forEach(function (letter) {
               _this6.selectFolder[letter.Id] = letter;
             });
           }
 
-          src_EventBus.emit(Events.letterModelEvents.sendedUn.success, _this6.selectFolder);
+          src_EventBus.emit(Events.letterModelEvents.sendedUn.success, _this6.selectFolder, _this6.offset);
         } else {
           src_EventBus.emit(Events.letterModelEvents.sendedUn.fail, {
             error: response.Description
@@ -3691,11 +3694,11 @@ function mainPage_template(locals) {
 
   try {
     var pug_debug_sources = {
-      "./src/Views/PugTemplates/mainPage.pug": "if(locals.screenWidth > 800)\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            div(class=\"column large-2 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"summary-recived\" class=\"triangle-down\")\n                    else\n                        div(id=\"summary-recived\" class=\"triangle-right\")\n                    a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"recived\")\n                            if(locals.recivedFolder)\n                                each folder in locals.recivedFolder\n                                    div(class=\"input-group\")\n                                        div\n                                            input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                        div(class=\"icon-group\" id=\"icon-group\")\n                                            div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                    g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                        path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                        g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                            path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                            div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                    div(class=\"horizontal\")\n\n                    a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            div(class=\"column large-4 tab-12 mob-12 main-container\")\n                div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                    if(locals.selectFolder)\n\n                      div(name=\"search-group\" class=\"search-block\")\n                          button(name=\"search-group\" class=\"btn btn--medium btn--primary h-full-width\" id=\"search-button\") \u0418\u0441\u043A\u0430\u0442\u044C\n                          input(id=\"search-input\" name=\"search-group\" type=\"text\" class=\"h-full-width search-input\" placeholder=\"\u041F\u043E\u0438\u0441\u043A\" value=\"\" autocomplete=\"off\" required)\n\n                          if(locals.searchResult.res)\n                              div(name=\"search-group\" class=\"search-back\" id=\"search-result-list\")\n\n                                  if(locals.searchResult.is)\n                                      if(locals.searchResult.Senders)\n                                          span(name=\"search-group\" class=\"search-title\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u0438\n                                          each result in locals.searchResult.Senders\n                                              div(name=\"search-target\" role=\"Senders\" id=result) #{result}\n\n                                      if(locals.searchResult.Receivers)\n                                          span(name=\"search-group\" class=\"search-title\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u0438\n                                          each result in locals.searchResult.Receivers\n                                              div(name=\"search-target\" role=\"Receivers\" id=result) #{result}\n\n                                      if(locals.searchResult.Themes)\n                                          span(name=\"search-group\" class=\"search-title\") \u0422\u0435\u043C\u044B\n                                          each result in locals.searchResult.Themes\n                                              div(name=\"search-target\" role=\"Themes\" id=result) #{result}\n\n                                      if(locals.searchResult.Texts)\n                                          span(name=\"search-group\" class=\"search-title\") \u0422\u0435\u043A\u0441\u0442\u044B\n                                          each result in locals.searchResult.Texts\n                                              div(name=\"search-target\" role=\"Texts\" id=result) #{result}\n\n                                  else\n                                      span(name=\"search-group\" class=\"search-title-no\")  \u041D\u0435\u0442 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u043E\u0432\n\n\n                      each letter in locals.selectFolder\n                        article(id=letter.Id class=\"brick entry format-standard\")\n                            div(id=letter.Id class=\"entry__text\")\n                                div(id=letter.Id class=\"entry__header\")\n                                    h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                if(!letter.IsWatched)\n                                    div(id=letter.Id class=\"h-full-width not-watched\")\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n                      div(class=\"block-update\")\n                        div(class=\"small-plus radius\")\n\n\n            div(class=\"column large-6 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    if(locals.buttonPlus && letter.Id !== undefined)\n                        div(class=\"letter-board\")\n                            div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                            div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                            div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                    div(class=\"letter-container\")\n                        h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                        p(class=\"lead\") #{letter.Receiver}\n                        p(class=\"lead\") #{letter.Sender}\n                        p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                        each folder in locals.recivedFolder\n                            option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n\nelse\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            if(locals.folderColumn)\n                div(class=\"column large-2 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"summary-recived\" class=\"triangle-down\")\n                        else\n                            div(id=\"summary-recived\" class=\"triangle-right\")\n                        a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"recived\")\n                                if(locals.recivedFolder)\n                                  each folder in locals.recivedFolder\n                                      div(class=\"input-group\")\n                                          div\n                                              input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                          div(class=\"icon-group\" id=\"icon-group\")\n                                              div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                  svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                      g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                          path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                          g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                              path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                              div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                        div(class=\"horizontal\")\n\n                        a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            if(locals.letterColumn)\n                div(class=\"column large-4 tab-12 mob-12 main-container\")\n\n                    a(id=\"back-to-folders\") < \u041F\u0430\u043F\u043A\u0438\n\n                    div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                        if(locals.selectFolder)\n                          each letter in locals.selectFolder\n                              article(id=letter.Id class=\"brick entry format-standard\")\n                                  div(id=letter.Id class=\"entry__text\")\n                                      div(id=letter.Id class=\"entry__header\")\n                                          h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                      if(!letter.IsWatched)\n                                          div(id=letter.Id class=\"h-full-width not-watched\")\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n            if(locals.oneLetterColumn)\n                div(class=\"column large-6 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        if(locals.buttonPlus && letter.Id !== undefined)\n                            div(class=\"letter-board\")\n                                a(id=\"back-to-letters\") < \u041A \u043F\u0430\u043F\u043A\u0430\u043C\n                                div(class=\"letter-board-small\")\n                                    div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                        img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                                    div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                                    div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                        div(class=\"letter-container\")\n                            h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                            p(class=\"lead\") #{letter.Receiver}\n                            p(class=\"lead\") #{letter.Sender}\n                            p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                      each folder in locals.recivedFolder\n                          option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n"
+      "./src/Views/PugTemplates/mainPage.pug": "if(locals.screenWidth > 800)\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            div(class=\"column large-2 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"summary-recived\" class=\"triangle-down\")\n                    else\n                        div(id=\"summary-recived\" class=\"triangle-right\")\n                    a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                    if(locals.recivedFolderRecived)\n                        div(id=\"recived\")\n                            if(locals.recivedFolder)\n                                each folder in locals.recivedFolder\n                                    div(class=\"input-group\")\n                                        div\n                                            input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                        div(class=\"icon-group\" id=\"icon-group\")\n                                            div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                    g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                        path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                        g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                            path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                            div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                    div(class=\"horizontal\")\n\n                    a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            div(class=\"column large-4 tab-12 mob-12 main-container\")\n                div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                    if(locals.selectFolder)\n\n                      div(name=\"search-group\" class=\"search-block\")\n                          button(name=\"search-group\" class=\"btn btn--medium btn--primary h-full-width\" id=\"search-button\") \u0418\u0441\u043A\u0430\u0442\u044C\n                          input(id=\"search-input\" name=\"search-group\" type=\"text\" class=\"h-full-width search-input\" placeholder=\"\u041F\u043E\u0438\u0441\u043A\" value=\"\" autocomplete=\"off\" required)\n\n                          if(locals.searchResult.res)\n                              div(name=\"search-group\" class=\"search-back\" id=\"search-result-list\")\n\n                                  if(locals.searchResult.is)\n                                      if(locals.searchResult.Senders)\n                                          span(name=\"search-group\" class=\"search-title\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u0438\n                                          each result in locals.searchResult.Senders\n                                              div(name=\"search-target\" role=\"Senders\" id=result) #{result}\n\n                                      if(locals.searchResult.Receivers)\n                                          span(name=\"search-group\" class=\"search-title\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u0438\n                                          each result in locals.searchResult.Receivers\n                                              div(name=\"search-target\" role=\"Receivers\" id=result) #{result}\n\n                                      if(locals.searchResult.Themes)\n                                          span(name=\"search-group\" class=\"search-title\") \u0422\u0435\u043C\u044B\n                                          each result in locals.searchResult.Themes\n                                              div(name=\"search-target\" role=\"Themes\" id=result) #{result}\n\n                                      if(locals.searchResult.Texts)\n                                          span(name=\"search-group\" class=\"search-title\") \u0422\u0435\u043A\u0441\u0442\u044B\n                                          each result in locals.searchResult.Texts\n                                              div(name=\"search-target\" role=\"Texts\" id=result) #{result}\n\n                                  else\n                                      span(name=\"search-group\" class=\"search-title-no\")  \u041D\u0435\u0442 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u043E\u0432\n\n\n                      each letter in locals.selectFolder\n                        article(id=letter.Id class=\"brick entry format-standard\")\n                            div(id=letter.Id class=\"entry__text\")\n                                div(id=letter.Id class=\"entry__header\")\n                                    h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                if(!letter.IsWatched)\n                                    div(id=letter.Id class=\"h-full-width not-watched\")\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                div(id=letter.Id class=\"entry__excerpt\")\n                                    p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n                      div(class=\"block-update\")\n                        div(class=\"small-plus radius\" title=local.nameOfFolder id=local.offset name=\"add-more\" role=local.typeOfContent)\n\n\n            div(class=\"column large-6 tab-12 mob-12 main-container\")\n                div(class=\"main-columns project_scroll\")\n                    if(locals.buttonPlus && letter.Id !== undefined)\n                        div(class=\"letter-board\")\n                            div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                            div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                            div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                    div(class=\"letter-container\")\n                        h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                        p(class=\"lead\") #{letter.Receiver}\n                        p(class=\"lead\") #{letter.Sender}\n                        p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                        each folder in locals.recivedFolder\n                            option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n\nelse\n    div(class=\"main-page mainPage\")\n        div(class=\"row\" style=\"margin-left: 0; margin-right: 0; width: 100vw;\")\n\n            if(locals.folderColumn)\n                div(class=\"column large-2 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        div(id=\"add-folder-recived\" class=\"block plus radius\")\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"summary-recived\" class=\"triangle-down\")\n                        else\n                            div(id=\"summary-recived\" class=\"triangle-right\")\n                        a(id=\"recivedUn\" class=\"titles-category\") \u0412\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n                        if(locals.recivedFolderRecived)\n                            div(id=\"recived\")\n                                if(locals.recivedFolder)\n                                  each folder in locals.recivedFolder\n                                      div(class=\"input-group\")\n                                          div\n                                              input(class=\"folder-names\" readonly value=folder.Name id=folder.Name)\n                                          div(class=\"icon-group\" id=\"icon-group\")\n                                              div(class=\"edit-button radius\" id=folder.Name name=\"edit-folder\")\n                                                  svg(id=folder.Name name=\"edit-folder\" class=\"block\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" width=\"12\" height=\"12\" viewBox=\"0 0 171 171\" style=\" fill:#000000;\")\n                                                      g(id=folder.Name name=\"edit-folder\" fill=\"none\" fill-rule=\"nonzero\" stroke=\"none\" stroke-width=\"1\" stroke-linecap=\"butt\" stroke-linejoin=\"miter\" stroke-miterlimit=\"10\" stroke-dasharray=\"\" stroke-dashoffset=\"0\" font-family=\"none\" font-weight=\"none\" font-size=\"none\" text-anchor=\"none\" style=\"mix-blend-mode: normal\")\n                                                          path(id=folder.Name name=\"edit-folder\" d=\"M0,171.99852v-171.99852h171.99852v171.99852z\" fill=\"none\")\n                                                          g(id=folder.Name name=\"edit-folder\" fill=\"#ffffff\")\n                                                              path(id=folder.Name name=\"edit-folder\" d=\"M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z\")\n\n                                              div(class=\"small-plus radius cross\" id=folder.Name name=\"delete-folder\")\n\n                        div(class=\"horizontal\")\n\n                        a(id=\"sendedUn\" class=\"block titles-category\") \u0418\u0441\u0445\u043E\u0434\u044F\u0449\u0438\u0435\n\n            if(locals.letterColumn)\n                div(class=\"column large-4 tab-12 mob-12 main-container\")\n\n                    a(id=\"back-to-folders\") < \u041F\u0430\u043F\u043A\u0438\n\n                    div(class=\"bricks-wrapper h-group main-columns project_scroll\" name=\"letters\")\n                        if(locals.selectFolder)\n                          each letter in locals.selectFolder\n                              article(id=letter.Id class=\"brick entry format-standard\")\n                                  div(id=letter.Id class=\"entry__text\")\n                                      div(id=letter.Id class=\"entry__header\")\n                                          h1(id=letter.Id class=\"entry__title max-ch\") #{letter.Theme}\n\n                                      if(!letter.IsWatched)\n                                          div(id=letter.Id class=\"h-full-width not-watched\")\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041F\u043E\u043B\u0443\u0447\u0430\u0442\u0435\u043B\u044C: #{letter.Receiver}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") \u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C: #{letter.Sender}\n                                      div(id=letter.Id class=\"entry__excerpt\")\n                                          p(id=letter.Id class=\"max-ch\") #{letter.Text}\n\n            if(locals.oneLetterColumn)\n                div(class=\"column large-6 tab-12 mob-12 main-container\")\n                    div(class=\"main-columns project_scroll\")\n                        if(locals.buttonPlus && letter.Id !== undefined)\n                            div(class=\"letter-board\")\n                                a(id=\"back-to-letters\") < \u041A \u043F\u0430\u043F\u043A\u0430\u043C\n                                div(class=\"letter-board-small\")\n                                    div(id=\"button-remove-letter\" class=\"delete-letter-button radius\")\n                                        img(class=\"icon-trash\" height=\"12px\" width=\"12px\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==\")\n                                    div(id=\"button-form-add-letter-folder\" class=\"small-plus radius\")\n                                    div(id=\"delete-folder\" class=\"small-plus radius cross letter-board-last-element\")\n\n                        div(class=\"letter-container\")\n                            h3(id=letter.Id name=\"title-of-current\") #{letter.Theme}\n                            p(class=\"lead\") #{letter.Receiver}\n                            p(class=\"lead\") #{letter.Sender}\n                            p(class=\"lead\") #{letter.Text}\n\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F\n    div(class=\"form-add-folder-up hide\")\n        div(id=\"remove-folder-recived\" class=\"plus radius cross cross-modal\")\n        form(name=\"button-of-recived-folder\")\n            div(class=\"row\")\n                input(name=\"folderName\" type=\"text\" class=\"h-full-width\" placeholder=\"\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0430\u043F\u043A\u0443\" value=\"\" autocomplete=\"off\" required)\n                button(type=\"submit\" class=\"btn btn--medium btn--primary h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n\n    //\u0444\u043E\u0440\u043C\u0430 \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0438\u044F \u0432 \u043F\u0430\u043F\u043A\u0443\n    div(class=\"hide form-add-folder-up\")\n        div(id=\"remove-form-add-folder-up\" class=\"plus radius cross cross-modal\")\n        form(id=\"choose-folder\")\n            div(class=\"row\")\n                select(name=\"inFolderName\" class=\"h-full-width\")\n                    if(locals.recivedFolder)\n                      each folder in locals.recivedFolder\n                          option(value=folder.Name) #{folder.Name}\n\n\n            div(class=\"row\")\n                button(type=\"submit\" class=\"btn h-full-width\") \u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\n"
     };
     ;
     var locals_for_with = locals || {};
-    (function (letter) {
+    (function (letter, local) {
       ;
       pug_debug_line = 1;
       pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
@@ -4328,7 +4331,7 @@ function mainPage_template(locals) {
           ;
           pug_debug_line = 88;
           pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
-          pug_html = pug_html + "<div class=\"small-plus radius\"></div></div>";
+          pug_html = pug_html + "<div" + (" class=\"small-plus radius\"" + mainPage_pug_attr("title", local.nameOfFolder, true, false) + mainPage_pug_attr("id", local.offset, true, false) + " name=\"add-more\"" + mainPage_pug_attr("role", local.typeOfContent, true, false)) + "></div></div>";
         }
 
         pug_html = pug_html + "</div></div>";
@@ -5115,7 +5118,7 @@ function mainPage_template(locals) {
         pug_debug_filename = "./src/Views/PugTemplates/mainPage.pug";
         pug_html = pug_html + "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C</button></div></form></div>";
       }
-    }).call(this, "letter" in locals_for_with ? locals_for_with.letter : typeof letter !== "undefined" ? letter : undefined);
+    }).call(this, "letter" in locals_for_with ? locals_for_with.letter : typeof letter !== "undefined" ? letter : undefined, "local" in locals_for_with ? locals_for_with.local : typeof local !== "undefined" ? local : undefined);
   } catch (err) {
     mainPage_pug_rethrow(err, pug_debug_filename, pug_debug_line, pug_debug_sources[pug_debug_filename]);
   }
@@ -5147,11 +5150,11 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
   MainPageView_createClass(MainPageView, [{
     key: "render",
     value: function render(data) {
-      var _document, _document2, _document3, _document4, _document5, _document6, _document7, _document8, _document9, _document10, _document11, _document12, _document13, _document14, _document15, _document16, _document19, _document20, _document22, _document23, _document24, _document25, _document26;
+      var _document, _document2, _document3, _document4, _document5, _document6, _document7, _document8, _document9, _document10, _document11, _document12, _document13, _document14, _document15, _document16, _document19, _document20, _document22, _document23, _document24, _document25, _document26, _document27;
 
       if (!data || !data.letterList || !data.folderList) {
-        src_EventBus.emit(Events.mainPageView.needData, 'Входящие');
-        src_EventBus.emit(Events.mainPageView.recivedFolder);
+        src_EventBus.emit(Events.mainPageView.needData, 'Входящие'); // globalEventBus.emit(Events.mainPageView.recivedFolder);
+
         return;
       }
 
@@ -5222,7 +5225,7 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
 
         if (event.target.tagName === 'INPUT' && current.hasAttribute('readonly')) {
           src_EventBus.emit(Events.mainPageView.recivedFolder);
-          src_EventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived');
+          src_EventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived', 0);
         }
       });
       var letters = (_document12 = document) === null || _document12 === void 0 ? void 0 : _document12.getElementsByName('letters')[0];
@@ -5247,12 +5250,12 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
       var recivedUn = (_document13 = document) === null || _document13 === void 0 ? void 0 : _document13.getElementById('recivedUn');
       recivedUn === null || recivedUn === void 0 ? void 0 : recivedUn.addEventListener('click', function (event) {
         event.preventDefault();
-        src_EventBus.emit(Events.mainPageView.recivedUn);
+        src_EventBus.emit(Events.mainPageView.recivedUn, 0);
       });
       var sendedUn = (_document14 = document) === null || _document14 === void 0 ? void 0 : _document14.getElementById('sendedUn');
       sendedUn === null || sendedUn === void 0 ? void 0 : sendedUn.addEventListener('click', function (event) {
         event.preventDefault();
-        src_EventBus.emit(Events.mainPageView.sendedUn);
+        src_EventBus.emit(Events.mainPageView.sendedUn, 0);
       });
       var addFolderButton = (_document15 = document) === null || _document15 === void 0 ? void 0 : _document15.getElementsByName('button-of-recived-folder')[0];
       addFolderButton.addEventListener('submit', function (event) {
@@ -5324,6 +5327,25 @@ var MainPageView_MainPageView = /*#__PURE__*/function () {
           src_EventBus.emit(Events.mainPageView.resultSearch, what, value);
         }
       });
+      var addMore = (_document27 = document) === null || _document27 === void 0 ? void 0 : _document27.getElementsByClassName('add-more')[0];
+      addMore === null || addMore === void 0 ? void 0 : addMore.addEventListener('click', function (event) {
+        event.preventDefault();
+        var typeOfContent = addMore.getAttribute('role');
+        var offset = +addMore.id;
+
+        if (typeOfContent === 'recivedUn') {
+          src_EventBus.emit(Events.mainPageView.recivedUn, offset);
+        }
+
+        if (typeOfContent === 'sendedUn') {
+          src_EventBus.emit(Events.mainPageView.sendedUn, offset);
+        }
+
+        if (typeOfContent === 'selectFolder') {
+          var name = addMore.getAttribute('title');
+          src_EventBus.emit(Events.mainPageView.selectFolder, name, 'recived', offset);
+        }
+      });
     }
   }]);
 
@@ -5354,6 +5376,9 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
     this.data.folderColumn = true;
     this.data.letterColumn = false;
     this.data.oneLetterColumn = false;
+    this.data.offset = 0;
+    this.data.typeOfContent = '';
+    this.data.nameOfFolder = '';
     src_EventBus.on(Events.letterModelEvents.getLetter.success, function (data) {
       _this.data.letter = data;
     });
@@ -5408,15 +5433,25 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
 
       src_EventBus.on(Events.letterModelEvents.recivedFolder.success, h);
     });
-    src_EventBus.on(Events.mainPageView.selectFolder, function (folder, type) {
-      src_EventBus.emit(Events.mainPageController.selectFolder, folder, type);
+    src_EventBus.on(Events.mainPageView.selectFolder, function (folder, type, howToSkip) {
+      src_EventBus.emit(Events.mainPageController.selectFolder, folder, type, howToSkip);
 
-      var h = function h(data) {
+      var h = function h(data, offset) {
         src_EventBus.off(Events.letterModelEvents.selectFolder.success, h);
-        _this.data.selectFolder = data;
+
+        if (offset === 0) {
+          _this.data.selectFolder = data;
+        } else {
+          _this.data.selectFolder += data;
+        }
+
+        _this.data.offset = offset;
+        _this.data.offset += 5;
+        _this.data.typeOfContent = 'selectFolder';
         _this.data.folderColumn = false;
         _this.data.letterColumn = true;
         _this.data.oneLetterColumn = false;
+        _this.data.nameOfFolder = folder;
 
         _this.mainPageView.render(_this.data);
       };
@@ -5427,6 +5462,8 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
         _this.data.folderColumn = false;
         _this.data.letterColumn = true;
         _this.data.oneLetterColumn = false;
+        _this.data.offset = 0;
+        _this.data.nameOfFolder = '';
 
         _this.mainPageView.render(_this.data);
       };
@@ -5434,12 +5471,21 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
       src_EventBus.on(Events.letterModelEvents.selectFolder.success, h);
       src_EventBus.on(Events.letterModelEvents.selectFolder.fail, h2);
     });
-    src_EventBus.on(Events.mainPageView.recivedUn, function () {
-      src_EventBus.emit(Events.mainPageController.recivedUn);
+    src_EventBus.on(Events.mainPageView.recivedUn, function (howToSkip) {
+      src_EventBus.emit(Events.mainPageController.recivedUn, howToSkip);
 
-      var h = function h(data) {
+      var h = function h(data, offset) {
         src_EventBus.off(Events.letterModelEvents.recivedUn.success, h);
-        _this.data.selectFolder = data;
+
+        if (offset === 0) {
+          _this.data.selectFolder = data;
+        } else {
+          _this.data.selectFolder += data;
+        }
+
+        _this.data.offset = offset;
+        _this.data.offset += 5;
+        _this.data.typeOfContent = 'recivedUn';
         _this.data.folderColumn = false;
         _this.data.letterColumn = true;
         _this.data.oneLetterColumn = false;
@@ -5449,12 +5495,21 @@ var MainPageController_MainPageController = /*#__PURE__*/function () {
 
       src_EventBus.on(Events.letterModelEvents.recivedUn.success, h);
     });
-    src_EventBus.on(Events.mainPageView.sendedUn, function () {
-      src_EventBus.emit(Events.mainPageController.sendedUn);
+    src_EventBus.on(Events.mainPageView.sendedUn, function (howToSkip) {
+      src_EventBus.emit(Events.mainPageController.sendedUn, howToSkip);
 
-      var h = function h(data) {
+      var h = function h(data, offset) {
         src_EventBus.off(Events.letterModelEvents.sendedUn.success, h);
-        _this.data.selectFolder = data;
+
+        if (offset === 0) {
+          _this.data.selectFolder = data;
+        } else {
+          _this.data.selectFolder += data;
+        }
+
+        _this.data.offset = offset;
+        _this.data.offset += 5;
+        _this.data.typeOfContent = 'sendedUn';
         _this.data.folderColumn = false;
         _this.data.letterColumn = true;
         _this.data.oneLetterColumn = false;
