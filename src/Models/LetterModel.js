@@ -268,16 +268,7 @@ export default class LetterModel {
 
   sendWrittenLetter(letterId) {
     myFetch(Paths.sendWrittenLetter, 'PUT', letterId)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.Code === 200) {
-          globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.success);
-        } else {
-          globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.fail, {
-            error: response.Description,
-          });
-        }
-      })
+      .then(() => globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.success))
       .catch((error) => {
         console.log('Fetch error', error);
       });
@@ -288,9 +279,9 @@ export default class LetterModel {
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
-          globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.success);
+          globalEventBus.emit(Events.letterModelEvents.inFolder.success);
         } else {
-          globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.fail, {
+          globalEventBus.emit(Events.letterModelEvents.inFolder.fail, {
             error: response.Description,
           });
         }
@@ -336,16 +327,7 @@ export default class LetterModel {
 
   deleteLetter(deleteName) {
     myFetch(Paths.deleteLetter, 'DELETE', deleteName)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.Code === 200) {
-          globalEventBus.emit(Events.letterModelEvents.deleteLetter.success);
-        } else {
-          globalEventBus.emit(Events.letterModelEvents.deleteLetter.fail, {
-            error: response.Description,
-          });
-        }
-      })
+      .then(() => globalEventBus.emit(Events.letterModelEvents.deleteLetter.success))
       .catch((error) => {
         console.log('Fetch error', error);
       });
@@ -374,16 +356,13 @@ export default class LetterModel {
           if (!response.Senders && !response.Receivers && !response.Themes && !response.Texts) {
             this.searchResult.is = false;
           }
-          console.log('!!!!!!!!1', this.searchResult);
-          globalEventBus.emit(Events.letterModelEvents.startSearch.success, this.searchResult);
+          globalEventBus.emit(Events.letterModelEvents.startSearch.success, this.searchResult, similar);
         } else {
-          globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
-            error: response.Description,
-          });
+          globalEventBus.emit(Events.letterModelEvents.startSearch.fail);
         }
       })
       .catch((error) => {
-        globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+        globalEventBus.emit(Events.letterModelEvents.startSearch.fail, {
           error,
         });
       });
@@ -394,11 +373,15 @@ export default class LetterModel {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          console.log(response);
-          //обратка результата запроса
-          // globalEventBus.emit(Events.letterModelEvents.startSearch.success, this.searchResult);
+          this.selectFolder = new Map();
+          if (response.Letters) {
+            response.Letters.forEach((letter) => {
+              this.selectFolder[letter.Id] = letter;
+            });
+          }
+          globalEventBus.emit(Events.letterModelEvents.resultSearch.success, this.selectFolder);
         } else {
-          globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+          globalEventBus.emit(Events.letterModelEvents.resultSearch.fail, {
             error: response.Description,
           });
         }

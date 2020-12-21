@@ -106,6 +106,7 @@ export default class MainPageView {
       if (event.target.getAttribute('name') === 'add-more') {
         return;
       }
+      console.log('Events.mainPageView.selectLetter',event.target.id);
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
       const id = new FormData();
       id.append('id', event.target.id);
@@ -188,9 +189,15 @@ export default class MainPageView {
       globalEventBus.emit(Events.mainPageView.backToLetters);
     });
 
-    const searchButton = document?.getElementById('search-button');
+    // const searchButton = document?.getElementById('search-button');
     const searchInput = document?.getElementById('search-input');
-    searchButton?.addEventListener('click', (event) => {
+    if (searchInput.value !== '') {
+      searchInput.focus();
+      const current = searchInput.value;
+      searchInput.value = '';
+      searchInput.value = current;
+    }
+    searchInput?.addEventListener('input', (event) => {
       event.preventDefault();
       const similar = searchInput.value.trim();
       globalEventBus.emit(Events.mainPageView.startSearch, similar);

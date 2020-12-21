@@ -39,8 +39,10 @@ if(locals.screenWidth > 800)
                     if(locals.selectFolder)
 
                       div(name="search-group" class="search-block")
-                          button(name="search-group" class="btn btn--medium btn--primary h-full-width" id="search-button") Искать
-                          input(id="search-input" name="search-group" type="text" class="h-full-width search-input" placeholder="Поиск" value="" autocomplete="off" required)
+                          if(locals.similar && locals.similar !== '')
+                              input(id="search-input" name="search-group" type="text" class="h-full-width search-input" value=locals.similar autocomplete="off")
+                          else
+                              input(id="search-input" name="search-group" type="text" class="h-full-width search-input" placeholder="Поиск" value="" autocomplete="off")
 
                           if(locals.searchResult && locals.searchResult.res)
                               div(name="search-group" class="search-back" id="search-result-list")
@@ -138,8 +140,10 @@ else
                     div(class="main-columns project_scroll")
 
                         div(name="search-group" class="search-block")
-                            button(name="search-group" class="btn btn--medium btn--primary h-full-width" id="search-button") Искать
-                            input(id="search-input" name="search-group" type="text" class="h-full-width search-input" placeholder="Поиск" value="" autocomplete="off" required)
+                            if(locals.similar)
+                                input(id="search-input" name="search-group" type="text" class="h-full-width search-input" value=locals.similar autocomplete="off")
+                            else
+                                input(id="search-input" name="search-group" type="text" class="h-full-width search-input" placeholder="Поиск" value="" autocomplete="off")
 
                             if(locals.searchResult && locals.searchResult.res)
                                 div(name="search-group" class="search-back" id="search-result-list")

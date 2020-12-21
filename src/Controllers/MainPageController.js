@@ -151,6 +151,7 @@ class MainPageController {
       globalEventBus.emit(Events.mainPageController.inFolder, method, folder, type);
       const h = () => {
         globalEventBus.off(Events.letterModelEvents.inFolder.success, h);
+        this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.inFolder.success, h);
     });
@@ -202,21 +203,30 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.startSearch, (similar) => {
       globalEventBus.emit(Events.mainPageController.startSearch, similar);
-      const h = (data) => {
+      const h = (data, sim) => {
         globalEventBus.off(Events.letterModelEvents.startSearch.success, h);
+        this.data.similar = sim;
         this.data.searchResult = data;
         this.mainPageView.render(this.data);
       };
+      const h1 = () => {
+        globalEventBus.off(Events.letterModelEvents.startSearch.fail, h1);
+        this.data.similar = '';
+        this.data.searchResult = { };
+        console.log('!!!!1', this.data.searchResult);
+        this.mainPageView.render(this.data);
+      };
       globalEventBus.on(Events.letterModelEvents.startSearch.success, h);
+      globalEventBus.on(Events.letterModelEvents.startSearch.fail, h1);
     });
 
     globalEventBus.on(Events.mainPageView.resultSearch, (what, value) => {
       globalEventBus.emit(Events.mainPageController.resultSearch, what, value);
-      const h = () => {
+      const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.resultSearch.success, h);
-
-        // рендер
-        // this.mainPageView.render(this.data);
+        this.data.searchResult.res = false;
+        this.data.selectFolder = data;
+        this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.resultSearch.success, h);
     });
