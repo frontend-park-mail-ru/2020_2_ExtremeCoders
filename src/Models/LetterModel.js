@@ -366,14 +366,15 @@ export default class LetterModel {
             this.searchResult.Receivers = response.Receivers;
           }
           if (response.Themes) {
-            this.searchResult.Receivers = response.Themes;
+            this.searchResult.Themes = response.Themes;
           }
           if (response.Texts) {
-            this.searchResult.Receivers = response.Texts;
+            this.searchResult.Texts = response.Texts;
           }
           if (!response.Senders && !response.Receivers && !response.Themes && !response.Texts) {
             this.searchResult.is = false;
           }
+          console.log('!!!!!!!!1', this.searchResult);
           globalEventBus.emit(Events.letterModelEvents.startSearch.success, this.searchResult);
         } else {
           globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
