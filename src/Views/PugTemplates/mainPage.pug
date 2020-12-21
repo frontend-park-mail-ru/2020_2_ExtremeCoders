@@ -49,22 +49,22 @@ if(locals.screenWidth > 800)
                                       if(locals.searchResult.Senders)
                                           span(name="search-group" class="search-title") Отправители
                                           each result in locals.searchResult.Senders
-                                              div(name="search-target" role="Senders" id=result) #{result}
+                                              div(name="search-target" role="sender" id=result) #{result}
 
                                       if(locals.searchResult.Receivers)
                                           span(name="search-group" class="search-title") Получатели
                                           each result in locals.searchResult.Receivers
-                                              div(name="search-target" role="Receivers" id=result) #{result}
+                                              div(name="search-target" role="receiver" id=result) #{result}
 
                                       if(locals.searchResult.Themes)
                                           span(name="search-group" class="search-title") Темы
                                           each result in locals.searchResult.Themes
-                                              div(name="search-target" role="Themes" id=result) #{result}
+                                              div(name="search-target" role="theme" id=result) #{result}
 
                                       if(locals.searchResult.Texts)
                                           span(name="search-group" class="search-title") Тексты
                                           each result in locals.searchResult.Texts
-                                              div(name="search-target" role="Texts" id=result) #{result}
+                                              div(name="search-target" role="text" id=result) #{result}
 
                                   else
                                       span(name="search-group" class="search-title-no")  Нет результатов

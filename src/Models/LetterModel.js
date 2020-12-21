@@ -162,7 +162,6 @@ export default class LetterModel {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letter) {
-            response.Letter = response.Letter.reverse();
             response.Letter.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
@@ -189,8 +188,7 @@ export default class LetterModel {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letters) {
-            const letters = response.Letters.reverse();
-            letters.forEach((letter) => {
+            response.Letters.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
           }
@@ -216,8 +214,7 @@ export default class LetterModel {
         if (response.Code === 200) {
           this.selectFolder = new Map();
           if (response.Letters) {
-            const letters = response.Letters.reverse();
-            letters.forEach((letter) => {
+            response.Letters.forEach((letter) => {
               this.selectFolder[letter.Id] = letter;
             });
           }

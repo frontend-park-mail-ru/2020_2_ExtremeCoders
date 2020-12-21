@@ -48,7 +48,9 @@ class MainPageController {
         if (offset === 0) {
           this.data.selectFolder = data;
         } else {
-          this.data.selectFolder = new Map([this.data.selectFolder, data]);
+          for (let i in data) {
+            this.data.selectFolder[i] = data[i];
+          }
         }
         this.data.offset = offset;
         this.data.offset += 5;
@@ -80,7 +82,9 @@ class MainPageController {
         if (offset === 0) {
           this.data.selectFolder = data;
         } else {
-          this.data.selectFolder = new Map([this.data.selectFolder, data]);
+          for (let i in data) {
+            this.data.selectFolder[i] = data[i];
+          }
         }
         this.data.offset = offset;
         this.data.offset += 5;
@@ -100,7 +104,9 @@ class MainPageController {
         if (offset === 0) {
           this.data.selectFolder = data;
         } else {
-          this.data.selectFolder = new Map([this.data.selectFolder, data]);
+          for (let i in data) {
+            this.data.selectFolder[i] = data[i];
+          }
         }
         this.data.offset = offset;
         this.data.offset += 5;
