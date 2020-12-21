@@ -89,7 +89,7 @@ if(locals.screenWidth > 800)
 
                       div(class="block-update")
                         if(locals.typeOfContent && locals.offset)
-                             div(class="small-plus radius" title="locals.nameOfFolder" id=locals.offset name="add-more" role=locals.typeOfContent)
+                             div(class="small-plus radius" title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 
 
             div(class="column large-6 tab-12 mob-12 main-container")
@@ -140,7 +140,7 @@ else
                     div(class="main-columns project_scroll")
 
                         div(name="search-group" class="search-block")
-                            if(locals.similar)
+                            if(locals.similar && locals.similar !== '')
                                 input(id="search-input" name="search-group" type="text" class="h-full-width search-input" value=locals.similar autocomplete="off")
                             else
                                 input(id="search-input" name="search-group" type="text" class="h-full-width search-input" placeholder="Поиск" value="" autocomplete="off")
@@ -224,7 +224,7 @@ else
 
                             div(class="block-update")
                                 if(locals.typeOfContent && locals.offset)
-                                  div(class="small-plus radius" title="locals.nameOfFolder" id=locals.offset name="add-more" role=locals.typeOfContent)
+                                    div(class="small-plus radius" title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 
             if(locals.oneLetterColumn)
                 div(class="column large-6 tab-12 mob-12 main-container")

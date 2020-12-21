@@ -268,7 +268,7 @@ export default class LetterModel {
 
   sendWrittenLetter(letterId) {
     myFetch(Paths.sendWrittenLetter, 'PUT', letterId)
-      .then(() => globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.success))
+      .then(() => globalEventBus.emit(Events.letterModelEvents.sendWrittenLetter.success, letterId))
       .catch((error) => {
         console.log('Fetch error', error);
       });

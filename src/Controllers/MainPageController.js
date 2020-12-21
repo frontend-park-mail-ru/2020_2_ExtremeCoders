@@ -139,9 +139,9 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.sendWrittenLetter, (id) => {
       globalEventBus.emit(Events.mainPageController.sendWrittenLetter, id);
-      const h = (data) => {
+      const h = (letterId) => {
         globalEventBus.off(Events.letterModelEvents.sendWrittenLetter.success, h);
-        this.data.selectFolder = data;
+        this.data.selectFolder[letterId.get('id')].IsWatched = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.sendWrittenLetter.success, h);
