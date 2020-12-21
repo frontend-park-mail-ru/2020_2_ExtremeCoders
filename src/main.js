@@ -63,15 +63,15 @@ router.register(Paths.mainPage, mainPageView);
 router.register(Paths.sendLetterPage, sendLetterView);
 
 function initModels() {
-
+  userModel.getUserData();
   const h1 = () => {
     globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
     globalEventBus.emit(Events.mainPageView.recivedUn, 0);
     globalEventBus.emit(Events.mainPageView.recivedFolder);
   };
+
   globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
 
-  userModel.getUserData();
   //
   // const h2 = () => {
   //   globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
