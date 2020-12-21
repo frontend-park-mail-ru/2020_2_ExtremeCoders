@@ -66,20 +66,22 @@ function initModels() {
   userModel.getUserData();
   const h1 = () => {
     globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
-    // LetterModel.getFolders();
+    globalEventBus.emit(Events.mainPageView.recivedUn, 0);
+    globalEventBus.emit(Events.mainPageView.recivedFolder);
   };
 
   globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
 
-  const h2 = () => {
-    globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
-    letterModel.getLetterList('Входящие');
-  };
-
-  globalEventBus.on(Events.letterModelEvents.getFolderList.success, h2);
+  // const h2 = () => {
+  //   globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
+  //   letterModel.getLetterList('Входящие');
+  // };
+  //
+  // globalEventBus.on(Events.letterModelEvents.getFolderList.success, h2);
 
   const h3 = () => {
-    globalEventBus.off(Events.letterModelEvents.getLetterList.success, h3);
+    // globalEventBus.off(Events.letterModelEvents.getLetterList.success, h3);
+    globalEventBus.off(Events.letterModelEvents.recivedUn.success, h3);
     try {
       router.start(window.location.pathname);
     } catch (err) {

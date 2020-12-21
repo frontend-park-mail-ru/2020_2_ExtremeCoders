@@ -10,12 +10,12 @@ export default class MainPageView {
 
   render(data) {
     console.log('render(data)', data);
-    // if (!data || !data.selectFolder) {
-    //   console.log('hello');
-    //   globalEventBus.emit(Events.mainPageView.recivedUn, 0);
-    //   // globalEventBus.emit(Events.mainPageView.recivedFolder);
-    //   return;
-    // }
+    if (!data || !data.selectFolder || !data.recivedFolderRecived) {
+      globalEventBus.emit(Events.mainPageView.recivedUn, 0);
+      globalEventBus.emit(Events.mainPageView.recivedFolder);
+      return;
+    }
+
     this.element.innerHTML = '';
     Navbar.render();
     this.element.insertAdjacentHTML('beforeend', template(data));
