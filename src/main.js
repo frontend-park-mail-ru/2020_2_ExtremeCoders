@@ -72,6 +72,7 @@ function initModels() {
 
   globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
 
+  //
   // const h2 = () => {
   //   globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
   //   letterModel.getLetterList('Входящие');
