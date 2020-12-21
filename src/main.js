@@ -63,15 +63,15 @@ router.register(Paths.mainPage, mainPageView);
 router.register(Paths.sendLetterPage, sendLetterView);
 
 function initModels() {
-  userModel.getUserData();
+
   const h1 = () => {
     globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
     globalEventBus.emit(Events.mainPageView.recivedUn, 0);
     globalEventBus.emit(Events.mainPageView.recivedFolder);
   };
-
   globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
 
+  userModel.getUserData();
   //
   // const h2 = () => {
   //   globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
@@ -80,16 +80,16 @@ function initModels() {
   //
   // globalEventBus.on(Events.letterModelEvents.getFolderList.success, h2);
 
-  const h3 = () => {
-    // globalEventBus.off(Events.letterModelEvents.getLetterList.success, h3);
-    globalEventBus.off(Events.letterModelEvents.recivedUn.success, h3);
-    try {
-      router.start(window.location.pathname);
-    } catch (err) {
-      router.start(Paths.signInPage);
-    }
-  };
-  globalEventBus.on(Events.letterModelEvents.getLetterList.success, h3);
+  // const h3 = () => {
+  //   globalEventBus.off(Events.letterModelEvents.getLetterList.success, h3);
+  //   globalEventBus.off(Events.letterModelEvents.recivedUn.success, h3);
+  //   try {
+  //     router.start(window.location.pathname);
+  //   } catch (err) {
+  //     router.start(Paths.signInPage);
+  //   }
+  // };
+  // globalEventBus.on(Events.letterModelEvents.getLetterList.success, h3);
 
   const h4 = () => {
     globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4);
