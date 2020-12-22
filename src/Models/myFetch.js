@@ -8,7 +8,7 @@ export default function myFetch(url, method, body) {
     token = String(token[0] || token[1]);
     token = token.replace('token=', '');
   }
-
+  console.log('req', Paths.baseUrl + url);
   return fetch(Paths.baseUrl + url,
     {
       method,
