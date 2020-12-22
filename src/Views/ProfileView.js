@@ -16,6 +16,7 @@ export default class ProfileView {
      */
   render(data) {
     if (!data) {
+      console.log('!!!!!!!', data);
       globalEventBus.emit(Events.profileViewEvents.needUserData);
       return;
     }

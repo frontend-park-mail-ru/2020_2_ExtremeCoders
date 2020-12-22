@@ -36,7 +36,6 @@ export default class Router {
         };
         event.data = letterData;
       }
-      console.log('event', event);
       this.registeredPathes[event.path].render(event.data || 0);
       window.history.pushState({ path: event.path, data: (event.data || 0) },
         event.path, event.path);
