@@ -9,7 +9,7 @@ export default class MainPageView {
   }
 
   render(data) {
-    // console.log('render(data)', data);
+    console.log('render(data)', data);
     if (!data || !data.recivedFolderRecived) {
       console.log(data);
       globalEventBus.emit(Events.mainPageView.recivedUn, 0);
@@ -141,12 +141,21 @@ export default class MainPageView {
       const folder = folderName.value;
       const current = currentName.id;
       const chooseFolderData = new FormData();
-      chooseFolderData.append('letterId', current);
-      chooseFolderData.append('folderName', folder);
 
       const type = 'recived';
       const method = 'PUT';
 
+      if (folder === 'Спам') {
+        chooseFolderData.append('lid', current);
+        globalEventBus.emit(Events.mainPageView.inSpam, chooseFolderData);
+        return;
+      }
+      if (folder === 'Корзина') {
+        chooseFolderData.append('lid', current);
+        return;
+      }
+      chooseFolderData.append('letterId', current);
+      chooseFolderData.append('folderName', folder);
       globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
     });
 
@@ -176,7 +185,6 @@ export default class MainPageView {
       globalEventBus.emit(Events.mainPageView.deleteLetter, chooseFolderData);
     });
 
-
     const backToFolders = document?.getElementById('back-to-folders');
     backToFolders?.addEventListener('click', (event) => {
       event.preventDefault();
@@ -189,11 +197,10 @@ export default class MainPageView {
       globalEventBus.emit(Events.mainPageView.backToLetters);
     });
 
-    // const searchButton = document?.getElementById('search-button');
     const searchInput = document?.getElementById('search-input');
-    if (searchInput.value !== '') {
-      searchInput.focus();
-      const current = searchInput.value;
+    if (searchInput && searchInput?.value !== '') {
+      searchInput?.focus();
+      const current = searchInput?.value;
       searchInput.value = '';
       searchInput.value = current;
     }
@@ -228,6 +235,18 @@ export default class MainPageView {
         const name = addMore.getAttribute('title');
         globalEventBus.emit(Events.mainPageView.selectFolder, name, 'recived', offset);
       }
+    });
+
+    const spamUn = document?.getElementById('spamUn');
+    spamUn?.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.spamUn);
+    });
+
+    const trashUn = document?.getElementById('trashUn');
+    trashUn?.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.trashUn);
     });
   }
 }

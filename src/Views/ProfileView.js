@@ -16,7 +16,6 @@ export default class ProfileView {
      */
   render(data) {
     if (!data) {
-      console.log('!!!!!!!', data);
       globalEventBus.emit(Events.profileViewEvents.needUserData);
       return;
     }
@@ -39,6 +38,6 @@ export default class ProfileView {
   }
 
   static showErrors(errors) {
-    console.log('SHow Errors', errors);
+    console.log('Show Errors', errors);
   }
 }

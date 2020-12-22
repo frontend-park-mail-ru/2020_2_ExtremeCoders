@@ -11,11 +11,8 @@ export default class LetterModel {
     globalEventBus.on(Events.sendLetterView.sendLetter,
       LetterModel.sendLetter.bind(this));
     globalEventBus.on(Events.global.logout, this.logout.bind(this));
-
-
     globalEventBus.on(Events.mainPageController.recivedFolder, this.recivedFolder.bind(this));
     globalEventBus.on(Events.mainPageController.sendedFolder, this.sendedFolder.bind(this));
-
     globalEventBus.on(Events.mainPageController.selectFolder, this.selectFolder.bind(this));
     globalEventBus.on(Events.mainPageController.recivedUn, this.recivedUn.bind(this));
     globalEventBus.on(Events.mainPageController.sendedUn, this.sendedUn.bind(this));
@@ -29,8 +26,9 @@ export default class LetterModel {
     globalEventBus.on(Events.mainPageController.deleteFolder, this.deleteFolder.bind(this));
     globalEventBus.on(Events.mainPageController.deleteLetter, this.deleteLetter.bind(this));
     globalEventBus.on(Events.mainPageController.startSearch, this.startSearch.bind(this));
-
     globalEventBus.on(Events.mainPageController.resultSearch, this.resultSearch.bind(this));
+    globalEventBus.on(Events.mainPageController.spamUn, this.spamUn.bind(this));
+    globalEventBus.on(Events.mainPageController.trashUn, this.trashUn.bind(this));
   }
 
   getLetter(letterId) {
@@ -344,7 +342,57 @@ export default class LetterModel {
         }
       })
       .catch((error) => {
-        globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
+        globalEventBus.emit(Events.letterModelEvents.resultSearch.fail, {
+          error,
+        });
+      });
+  }
+
+  spamUn() {
+    myFetch(Paths.resultSearch + 'spam/true', 'GET')
+      .then((response) => response.json())
+      .then((response) => {
+        if (response) {
+          this.selectFolder = new Map();
+          if (response.Letters) {
+            response.Letters.forEach((letter) => {
+              this.selectFolder[letter.Id] = letter;
+            });
+          }
+          globalEventBus.emit(Events.letterModelEvents.spamUn.success, this.selectFolder);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.spamUn.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        globalEventBus.emit(Events.letterModelEvents.spamUn.fail, {
+          error,
+        });
+      });
+  }
+
+  trashUn() {
+    myFetch(Paths.resultSearch + 'box/true', 'GET')
+      .then((response) => response.json())
+      .then((response) => {
+        if (response) {
+          this.selectFolder = new Map();
+          if (response.Letters) {
+            response.Letters.forEach((letter) => {
+              this.selectFolder[letter.Id] = letter;
+            });
+          }
+          globalEventBus.emit(Events.letterModelEvents.trashUn.success, this.selectFolder);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.trashUn.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        globalEventBus.emit(Events.letterModelEvents.trashUn.fail, {
           error,
         });
       });

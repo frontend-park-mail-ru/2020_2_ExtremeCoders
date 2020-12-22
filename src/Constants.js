@@ -40,17 +40,16 @@ const Events = {
     backToFolders: 'mainPageView-backToFolders',
     backToLetters: 'mainPageView-backToLetters',
     startSearch: 'mainPageView-startSearch',
-
     resultSearch: 'mainPageView-resultSearch',
+    spamUn: 'mainPageView-spamUn',
+    trashUn: 'mainPageView-trashUn',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
     needGetLetterList: 'mainPageController-needGetLetterList',
     needGetLetter: 'mainPageController-needGetLetter',
-
     recivedFolder: 'mainPageController-recivedFolder',
     sendedFolder: 'mainPageController-sendedFolder',
-
     selectFolder: 'mainPageController-selectFolder',
     selectLetter: 'mainPageController-selectLetter',
     recivedUn: 'mainPageController-recivedUn',
@@ -65,8 +64,9 @@ const Events = {
     backToFolders: 'mainPageController-backToFolders',
     backToLetters: 'mainPageController-backToLetters',
     startSearch: 'mainPageController-startSearch',
-
     resultSearch: 'mainPageController-resultSearch',
+    spamUn: 'mainPageController-spamUn',
+    trashUn: 'mainPageController-trashUn',
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter',
@@ -171,6 +171,16 @@ const Events = {
       success: 'letterModelEvents-resultSearch-success',
       fail: 'letterModelEvents-resultSearch-fail',
     },
+
+    spamUn: {
+      success: 'letterModelEvents-spamUn-success',
+      fail: 'letterModelEvents-spamUn-fail',
+    },
+
+    trashUn: {
+      success: 'letterModelEvents-trashUn-success',
+      fail: 'letterModelEvents-trashUn-fail',
+    },
   },
 
   userModelEvents: {
@@ -194,7 +204,7 @@ const Events = {
 };
 
 const Paths = {
-  baseUrl: 'http://localhost:8080',
+  baseUrl: 'http://95.163.209.195:8080',
   mainPage: '/letters',
   signInPage: '/signin',
   signUpPage: '/signup',

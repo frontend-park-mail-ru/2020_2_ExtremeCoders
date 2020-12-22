@@ -213,7 +213,6 @@ class MainPageController {
         globalEventBus.off(Events.letterModelEvents.startSearch.fail, h1);
         this.data.similar = '';
         this.data.searchResult = { };
-        console.log('!!!!1', this.data.searchResult);
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.startSearch.success, h);
@@ -225,10 +224,39 @@ class MainPageController {
       const h = (data) => {
         globalEventBus.off(Events.letterModelEvents.resultSearch.success, h);
         this.data.searchResult.res = false;
+        this.data.folderColumn = false;
+        this.data.letterColumn = true;
+        this.data.oneLetterColumn = false;
         this.data.selectFolder = data;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.resultSearch.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.spamUn, () => {
+      globalEventBus.emit(Events.mainPageController.spamUn);
+      const h = (data) => {
+        globalEventBus.off(Events.letterModelEvents.spamUn.success, h);
+        this.data.folderColumn = false;
+        this.data.letterColumn = true;
+        this.data.oneLetterColumn = false;
+        this.data.selectFolder = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.spamUn.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.trashUn, () => {
+      globalEventBus.emit(Events.mainPageController.trashUn);
+      const h = (data) => {
+        globalEventBus.off(Events.letterModelEvents.trashUn.success, h);
+        this.data.folderColumn = false;
+        this.data.letterColumn = true;
+        this.data.oneLetterColumn = false;
+        this.data.selectFolder = data;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.trashUn.success, h);
     });
   }
 
