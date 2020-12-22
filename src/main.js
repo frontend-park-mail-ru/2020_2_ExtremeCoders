@@ -41,8 +41,8 @@ const profileEditView = new ProfileEditView(document.body);
 const mainPageView = new MainPageView(document.body);
 const sendLetterView = new SendLetterView(document.body);
 
-userModel.setUrl('https://mailer.ru.com:8080');
-const letterModel = new LetterModel('https://mailer.ru.com:8080');
+userModel.setUrl(Paths.baseUrl);
+const letterModel = new LetterModel(Paths.baseUrl);
 
 mainPageController.setView(mainPageView);
 
