@@ -171,4 +171,4 @@ class UserModel {
   }
 }
 
-export default new UserModel('http://95.163.209.195:8080');
+export default new UserModel('https://mailer.ru.com:8080');
