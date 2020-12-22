@@ -169,37 +169,6 @@ class UserModel {
     this.user = {};
     myFetch(Paths.logoutServ, 'DELETE');
   }
-
-  choose(path) {
-    if (path === '/letters') {
-      globalEventBus.emit(Events.global.redirect, {
-        path: Paths.mainPage,
-      });
-    }
-    if (path === '/signin') {
-      globalEventBus.emit(Events.global.redirect, {
-        path: Paths.signInPage,
-      });
-    }
-    if (path === '/signup') {
-      globalEventBus.emit(Events.global.redirect, {
-        path: Paths.signUpPage,
-      });
-    }
-    if (path === '/profile') {
-      // globalEventBus.emit(Events.global.redirect, { path: Paths.profilePage });
-    }
-    if (path === '/profileEdit') {
-      globalEventBus.emit(Events.global.redirect, {
-        path: Paths.profileEditPage,
-      });
-    }
-    if (path === '/sendLetter') {
-      globalEventBus.emit(Events.global.redirect, {
-        path: Paths.sendLetterPage,
-      });
-    }
-  }
 }
 
 export default new UserModel('http://localhost:8080');

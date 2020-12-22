@@ -8,9 +8,6 @@ export default class LetterModel {
     this.Letters = new Map();
     this.folders = {};
     globalEventBus.on(Events.mainPageController.needGetLetter, this.getLetter.bind(this));
-    globalEventBus.on(Events.mainPageController.needGetLetterList, this.getLetterList.bind(this));
-    globalEventBus.on(Events.mainPageController.needGetFolderList,
-      LetterModel.getFolders.bind(this));
     globalEventBus.on(Events.sendLetterView.sendLetter,
       LetterModel.sendLetter.bind(this));
     globalEventBus.on(Events.global.logout, this.logout.bind(this));
@@ -60,46 +57,6 @@ export default class LetterModel {
       })
       .catch((error) => {
         console.log('Fetch error', error);
-      });
-  }
-
-  static getFolders() {
-    // Пока адекватной работы с папками нет, поэтому тут и такая кривоватая заглушка
-    globalEventBus.emit(Events.letterModelEvents.getFolderList.success, ['Входящие', 'Исходящие']);
-  }
-
-  getLetterList(folder) {
-    let path = '';
-    if (folder === 'Входящие') {
-      path = Paths.getReceivedLetters + '5' + '/' + '0';
-    } else {
-      path = Paths.getSendedLetters + '5' + '/' + '0';
-    }
-
-    myFetch(path, 'GET')
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.Code === 200) {
-          this.Letters = new Map();
-          if (response.Letters) {
-            response.Letters.reverse();
-            response.Letters.forEach((letter) => {
-              this.Letters[letter.Id] = letter;
-            });
-          }
-
-          globalEventBus.emit(Events.letterModelEvents.getLetterList.success, this.Letters);
-        } else {
-          globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
-            error: response.Description,
-          });
-        }
-      })
-      .catch((error) => {
-        console.log('Fetch error', error);
-        globalEventBus.emit(Events.letterModelEvents.getLetterList.fail, {
-          error,
-        });
       });
   }
 

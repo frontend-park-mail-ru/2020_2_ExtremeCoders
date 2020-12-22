@@ -63,22 +63,23 @@ router.register(Paths.mainPage, mainPageView);
 router.register(Paths.sendLetterPage, sendLetterView);
 
 function initModels() {
-  console.log('$$$$$$$$$$$', window.location.pathname);
   userModel.getUserData();
-
   const h1 = () => {
-    // globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
-    // globalEventBus.emit(Events.mainPageView.recivedUn, 0);
-    // globalEventBus.emit(Events.mainPageView.recivedFolder);
-    userModel.choose(window.location.pathname);
+    globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
+    try {
+      router.start(window.location.pathname);
+    } catch (err) {
+      router.start(Paths.signInPage);
+    }
   };
   globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
 
-  const h4 = () => {
-    globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4);
+  const h2 = () => {
+    globalEventBus.off(Events.userModelEvents.profileGetData.fail, h2);
     router.start(Paths.signInPage);
   };
-  globalEventBus.on(Events.userModelEvents.profileGetData.fail, h4);
+  globalEventBus.on(Events.userModelEvents.profileGetData.fail, h2);
+
 }
 
 initModels();

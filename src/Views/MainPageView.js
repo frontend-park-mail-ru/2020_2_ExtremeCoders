@@ -10,8 +10,7 @@ export default class MainPageView {
 
   render(data) {
     // console.log('render(data)', data);
-    // if (!data || !data.selectFolder || !data.recivedFolderRecived) {
-    if (!data) {
+    if (!data || !data.recivedFolderRecived) {
       console.log(data);
       globalEventBus.emit(Events.mainPageView.recivedUn, 0);
       globalEventBus.emit(Events.mainPageView.recivedFolder);
