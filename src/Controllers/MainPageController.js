@@ -14,6 +14,8 @@ class MainPageController {
     this.data.typeOfContent = '';
     this.data.nameOfFolder = '';
 
+    this.data.letterSplit = [];
+
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
       this.data.letter = this.data.selectFolder[letterId];
       this.data.buttonPlus = true;
@@ -257,6 +259,24 @@ class MainPageController {
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.trashUn.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.inSpam, (chooseFolderData) => {
+      globalEventBus.emit(Events.mainPageController.inSpam, chooseFolderData);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.inSpam.success, h);
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.inSpam.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.inBox, (chooseFolderData) => {
+      globalEventBus.emit(Events.mainPageController.inBox, chooseFolderData);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.inBox.success, h);
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.inBox.success, h);
     });
   }
 

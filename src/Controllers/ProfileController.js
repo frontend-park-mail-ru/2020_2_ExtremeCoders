@@ -4,7 +4,6 @@ import globalEventBus from '../EventBus.js';
 class ProfileController {
   constructor() {
     globalEventBus.on(Events.profileViewEvents.needUserData, () => {
-      console.log('5555555',this.model.user);
       this.profileView.render(this.model.user);
     });
   }

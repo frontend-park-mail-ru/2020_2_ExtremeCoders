@@ -43,6 +43,8 @@ const Events = {
     resultSearch: 'mainPageView-resultSearch',
     spamUn: 'mainPageView-spamUn',
     trashUn: 'mainPageView-trashUn',
+    inSpam: 'mainPageView-inSpam',
+    inBox: 'mainPageView-inBox',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -67,6 +69,8 @@ const Events = {
     resultSearch: 'mainPageController-resultSearch',
     spamUn: 'mainPageController-spamUn',
     trashUn: 'mainPageController-trashUn',
+    inSpam: 'mainPageController-inSpam',
+    inBox: 'mainPageController-inBox',
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter',
@@ -181,6 +185,16 @@ const Events = {
       success: 'letterModelEvents-trashUn-success',
       fail: 'letterModelEvents-trashUn-fail',
     },
+
+    inSpam: {
+      success: 'letterModelEvents-inSpam-success',
+      fail: 'letterModelEvents-inSpam-fail',
+    },
+
+    inBox: {
+      success: 'letterModelEvents-inBox-success',
+      fail: 'letterModelEvents-inBox-fail',
+    },
   },
 
   userModelEvents: {
@@ -205,7 +219,8 @@ const Events = {
 
 const Paths = {
   baseUrl: 'https://mailer.ru.com',
-  
+  //baseUrl: 'http://localhost:8080',
+
   mainPage: '/letters',
   signInPage: '/signin',
   signUpPage: '/signup',
