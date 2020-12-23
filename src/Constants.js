@@ -246,16 +246,16 @@ const Paths = {
   getReceivedLetters: '/api/user/letter/received/',
   getSendedLetters: '/api/user/letter/sent/',
 
-  getRecivedFolder: '/api/user/folders/recived',
+  getRecivedFolder: '/api/user/folders/received',
   getSendedFolder: '/api/user/folders/sended',
   getSelectFolder: '/api/user/foders',
-  addFolderRecived: '/api/user/folders/recived/folderName',
+  addFolderRecived: '/api/user/folders/received/folderName',
   addFolderSended: '/api/user/folders/sended/folderName',
   sendWrittenLetter: '/api/watch/letter',
   inFolder: '/api/user/folders/',
 
-  renameFolder: '/api/user/folders/recived/folderName',
-  deleteFolder: '/api/user/folders/recived/folderName',
+  renameFolder: '/api/user/folders/received/folderName',
+  deleteFolder: '/api/user/folders/received/folderName',
   deleteLetter: '/api/letter',
   startSearch: '/api/letter/',
 
