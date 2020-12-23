@@ -1,4 +1,4 @@
- - console.log('locals', locals.selectFolder.length);
+- console.log('locals', locals);
 if(locals.screenWidth > 800)
     div(class="main-page mainPage")
         div(class="row" style="margin-left: 0; margin-right: 0; width: 100vw;")
@@ -121,8 +121,8 @@ if(locals.screenWidth > 800)
                                 b(style="margin-right: 5px;") Отправитель:
                                 span #{letter.Sender}
                             div(class="lead") Текст:
-                            each strLine in letter.Text
-                                div #{strLine}
+                              each strLine in locals.letterSplit
+                                 div #{strLine}
 
 
     //форма добавления

@@ -8,15 +8,33 @@ export default class MainPageView {
     this.element = element;
   }
 
-  render(data) {
-    console.log('render(data)', data);
+  parseText(data){
+    if (data.letter) {
+      let substr = '';
+      data.letterSplit = [];
+      for (let i = 0; i < data?.letter?.Text?.length; i++) {
+        if (data?.letter?.Text[i] === '\n') {
+          data.letterSplit.push(substr);
+          substr = '';
+        } else {
+          substr += data?.letter?.Text[i];
+        }
+      }
+      if (data.letterSplit.length === 0) {
+        data.letterSplit.push(substr);
+      }
+    }
+  }
+
+  render(data){
+
     if (!data || !data.recivedFolderRecived) {
-      console.log(data);
       globalEventBus.emit(Events.mainPageView.recivedUn, 0);
       globalEventBus.emit(Events.mainPageView.recivedFolder);
       return;
     }
 
+    this.parseText(data);
     this.element.innerHTML = '';
     Navbar.render();
     this.element.insertAdjacentHTML('beforeend', template(data));

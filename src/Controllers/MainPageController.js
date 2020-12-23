@@ -14,6 +14,8 @@ class MainPageController {
     this.data.typeOfContent = '';
     this.data.nameOfFolder = '';
 
+    this.data.letterSplit = [];
+
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
       this.data.letter = this.data.selectFolder[letterId];
       this.data.buttonPlus = true;
