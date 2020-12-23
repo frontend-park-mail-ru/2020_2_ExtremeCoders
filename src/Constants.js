@@ -204,7 +204,8 @@ const Events = {
 };
 
 const Paths = {
-  baseUrl: 'https://mailer.ru.com:8080',
+  baseUrl: 'https://mailer.ru.com',
+  
   mainPage: '/letters',
   signInPage: '/signin',
   signUpPage: '/signup',
@@ -214,30 +215,30 @@ const Paths = {
 
   logout: '/logout',
 
-  signInServ: '/session',
-  logoutServ: '/session',
-  signUpServ: '/user',
-  editUserServ: '/user',
-  sendMessageToServ: '/letter',
-  getUserData: '/user',
-  getAvatar: '/user/avatar',
-  getReceivedLetters: '/user/letter/received/',
-  getSendedLetters: '/user/letter/sent/',
+  signInServ: '/api/session',
+  logoutServ: '/api/session',
+  signUpServ: '/api/user',
+  editUserServ: '/api/user',
+  sendMessageToServ: '/api/letter',
+  getUserData: '/api/user',
+  getAvatar: '/api/user/avatar',
+  getReceivedLetters: '/api/user/letter/received/',
+  getSendedLetters: '/api/user/letter/sent/',
 
-  getRecivedFolder: '/user/folders/recived',
-  getSendedFolder: '/user/folders/sended',
-  getSelectFolder: '/user/foders',
-  addFolderRecived: '/user/folders/recived/folderName',
-  addFolderSended: '/user/folders/sended/folderName',
-  sendWrittenLetter: '/watch/letter',
-  inFolder: '/user/folders/',
+  getRecivedFolder: '/api/user/folders/recived',
+  getSendedFolder: '/api/user/folders/sended',
+  getSelectFolder: '/api/user/foders',
+  addFolderRecived: '/api/user/folders/recived/folderName',
+  addFolderSended: '/api/user/folders/sended/folderName',
+  sendWrittenLetter: '/api/watch/letter',
+  inFolder: '/api/user/folders/',
 
-  renameFolder: '/user/folders/recived/folderName',
-  deleteFolder: '/user/folders/recived/folderName',
-  deleteLetter: '/letter',
-  startSearch: '/letter/',
+  renameFolder: '/api/user/folders/recived/folderName',
+  deleteFolder: '/api/user/folders/recived/folderName',
+  deleteLetter: '/api/letter',
+  startSearch: '/api/letter/',
 
-  resultSearch: '/letter/by/',
+  resultSearch: '/api/letter/by/',
 };
 
 // логин post /session
