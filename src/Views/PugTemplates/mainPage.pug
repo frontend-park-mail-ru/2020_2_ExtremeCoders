@@ -13,6 +13,10 @@ if(locals.screenWidth > 800)
                         div(id="summary-recived" class="triangle-right")
                     a(id="recivedUn" class="titles-category") Входящие
 
+                    a(id="spamUn" class="block titles-category") Спам
+
+                    a(id="trashUn" class="block titles-category") Корзина
+
                     if(locals.recivedFolderRecived)
                         div(id="recived")
                             if(locals.recivedFolder)
@@ -33,10 +37,6 @@ if(locals.screenWidth > 800)
                     div(class="horizontal")
 
                     a(id="sendedUn" class="block titles-category") Отправленные
-
-                    a(id="spamUn" class="block titles-category") Спам
-
-                    a(id="trashUn" class="block titles-category") Корзина
 
             div(class="column large-4 tab-12 mob-12 main-container")
                 div(class="bricks-wrapper h-group main-columns project_scroll" name="letters")
@@ -198,6 +198,10 @@ else
                             div(id="summary-recived" class="triangle-right")
                         a(id="recivedUn" class="titles-category") Входящие
 
+                        a(id="spamUn" class="block titles-category") Спам
+
+                        a(id="trashUn" class="block titles-category") Корзина
+
                         if(locals.recivedFolderRecived)
                             div(id="recived")
                                 if(locals.recivedFolder)
@@ -218,10 +222,6 @@ else
                         div(class="horizontal")
 
                         a(id="sendedUn" class="block titles-category") Отправленные
-
-                        a(id="spamUn" class="block titles-category") Спам
-
-                        a(id="trashUn" class="block titles-category") Корзина
 
             if(locals.letterColumn)
                 div(class="column large-4 tab-12 mob-12 main-container")
@@ -276,8 +276,9 @@ else
                                     b(style="margin-right: 5px;") Отправитель:
                                     span #{letter.Sender}
                                 div(class="lead") Текст:
-                            each strLine in letter.Text
-                                div #{strLine}
+                                div(class="lead") Текст:
+                                  each strLine in locals.letterSplit
+                                      div #{strLine}
 
 
     //форма добавления
