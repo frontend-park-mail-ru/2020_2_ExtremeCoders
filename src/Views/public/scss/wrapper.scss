@@ -453,6 +453,15 @@
     height: 6px;
 }
 
+.watched {
+    background: var(--color-white);
+    height: 6px;
+}
+
+.watched:hover {
+    background-color: var(--color-gray-1);
+}
+
 .hide {
     display: none;
 }

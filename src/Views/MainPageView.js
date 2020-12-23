@@ -152,6 +152,7 @@ export default class MainPageView {
       }
       if (folder === 'Корзина') {
         chooseFolderData.append('lid', current);
+        globalEventBus.emit(Events.mainPageView.inBox, chooseFolderData);
         return;
       }
       chooseFolderData.append('letterId', current);
@@ -245,6 +246,12 @@ export default class MainPageView {
 
     const trashUn = document?.getElementById('trashUn');
     trashUn?.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.trashUn);
+    });
+
+    const unWatched = document?.getElementById('unwatched');
+    unWatched?.addEventListener('click', (event) => {
       event.preventDefault();
       globalEventBus.emit(Events.mainPageView.trashUn);
     });

@@ -29,6 +29,8 @@ export default class LetterModel {
     globalEventBus.on(Events.mainPageController.resultSearch, this.resultSearch.bind(this));
     globalEventBus.on(Events.mainPageController.spamUn, this.spamUn.bind(this));
     globalEventBus.on(Events.mainPageController.trashUn, this.trashUn.bind(this));
+    globalEventBus.on(Events.mainPageController.inSpam, this.inSpam.bind(this));
+    globalEventBus.on(Events.mainPageController.inBox, this.inBox.bind(this));
   }
 
   getLetter(letterId) {
@@ -395,6 +397,40 @@ export default class LetterModel {
         globalEventBus.emit(Events.letterModelEvents.trashUn.fail, {
           error,
         });
+      });
+  }
+
+  inSpam(chooseFolderData) {
+    myFetch('/letter/spam', 'PUT', chooseFolderData)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          globalEventBus.emit(Events.letterModelEvents.inSpam.success);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.inSpam.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('Fetch error', error);
+      });
+  }
+
+  inBox(chooseFolderData) {
+    myFetch('/letter/box', 'PUT', chooseFolderData)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.Code === 200) {
+          globalEventBus.emit(Events.letterModelEvents.inBox.success);
+        } else {
+          globalEventBus.emit(Events.letterModelEvents.inBox.fail, {
+            error: response.Description,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('Fetch error', error);
       });
   }
 
