@@ -45,6 +45,7 @@ const Events = {
     trashUn: 'mainPageView-trashUn',
     inSpam: 'mainPageView-inSpam',
     inBox: 'mainPageView-inBox',
+    unWatched: 'mainPageView-unWatched',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -71,6 +72,7 @@ const Events = {
     trashUn: 'mainPageController-trashUn',
     inSpam: 'mainPageController-inSpam',
     inBox: 'mainPageController-inBox',
+    unWatched: 'mainPageController-unWatched',
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter',
@@ -194,6 +196,10 @@ const Events = {
     inBox: {
       success: 'letterModelEvents-inBox-success',
       fail: 'letterModelEvents-inBox-fail',
+    },
+    unWatched: {
+      success: 'letterModelEvents-unWatched-success',
+      fail: 'letterModelEvents-unWatched-fail',
     },
   },
 

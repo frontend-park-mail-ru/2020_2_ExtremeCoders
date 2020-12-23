@@ -104,7 +104,7 @@ if(locals.screenWidth > 800)
                     if(locals.buttonPlus && letter)
                         div(class="letter-board")
                             if(letter && letter.IsWatched)
-                                a(style="margin-right: 10px;") Непрочитано
+                                a(style="margin-right: 10px;" id="unwatched") Непрочитано
                             div(id="button-remove-letter" class="delete-letter-button radius")
                                 img(class="icon-trash" height="12px" width="12px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==")
                             div(id="button-form-add-letter-folder" class="small-plus radius")

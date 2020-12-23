@@ -271,7 +271,11 @@ export default class MainPageView {
     const unWatched = document?.getElementById('unwatched');
     unWatched?.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.mainPageView.trashUn);
+      const currentN = document?.getElementsByName('title-of-current')[0];
+      const cur = currentN.id;
+      const id = new FormData();
+      id.append('id', cur);
+      globalEventBus.emit(Events.mainPageView.unWatched, id);
     });
   }
 }

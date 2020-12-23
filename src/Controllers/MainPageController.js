@@ -278,6 +278,16 @@ class MainPageController {
       };
       globalEventBus.on(Events.letterModelEvents.inBox.success, h);
     });
+
+    globalEventBus.on(Events.mainPageView.unWatched, (id) => {
+      globalEventBus.emit(Events.mainPageController.unWatched, id);
+      const h = () => {
+        globalEventBus.off(Events.letterModelEvents.unWatched.success, h);
+        this.data.letter.IsWatched = false;
+        this.mainPageView.render(this.data);
+      };
+      globalEventBus.on(Events.letterModelEvents.unWatched.success, h);
+    });
   }
 
   setView(profileView) {

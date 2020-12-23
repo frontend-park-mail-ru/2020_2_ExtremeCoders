@@ -31,6 +31,7 @@ export default class LetterModel {
     globalEventBus.on(Events.mainPageController.trashUn, this.trashUn.bind(this));
     globalEventBus.on(Events.mainPageController.inSpam, this.inSpam.bind(this));
     globalEventBus.on(Events.mainPageController.inBox, this.inBox.bind(this));
+    globalEventBus.on(Events.mainPageController.unWatched, this.unWatched.bind(this));
   }
 
   getLetter(letterId) {
@@ -429,6 +430,14 @@ export default class LetterModel {
           });
         }
       })
+      .catch((error) => {
+        console.log('Fetch error', error);
+      });
+  }
+
+  unWatched(letterId) {
+    myFetch(Paths.sendWrittenLetter, 'PUT', letterId)
+      .then(() => globalEventBus.emit(Events.letterModelEvents.unWatched.success))
       .catch((error) => {
         console.log('Fetch error', error);
       });
