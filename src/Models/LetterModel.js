@@ -401,7 +401,7 @@ export default class LetterModel {
   }
 
   inSpam(chooseFolderData) {
-    myFetch('/letter/spam/set', 'PUT', chooseFolderData)
+    myFetch('/api/letter/spam/set', 'PUT', chooseFolderData)
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
@@ -418,7 +418,7 @@ export default class LetterModel {
   }
 
   inBox(chooseFolderData) {
-    myFetch('/letter/box/set', 'PUT', chooseFolderData)
+    myFetch('/api/letter/box/set', 'PUT', chooseFolderData)
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {

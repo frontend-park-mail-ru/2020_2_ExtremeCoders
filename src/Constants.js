@@ -218,8 +218,8 @@ const Events = {
 };
 
 const Paths = {
-  baseUrl: 'https://mailer.ru.com',
-  //baseUrl: 'http://localhost:8080',
+  // baseUrl: 'https://mailer.ru.com',
+  baseUrl: 'http://localhost:8080',
 
   mainPage: '/letters',
   signInPage: '/signin',
