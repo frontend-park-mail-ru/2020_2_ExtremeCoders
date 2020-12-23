@@ -107,7 +107,7 @@ export default class MainPageView {
       }
       if (event.target.tagName === 'INPUT' && current.hasAttribute('readonly')) {
         globalEventBus.emit(Events.mainPageView.recivedFolder);
-        globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'recived', 0);
+        globalEventBus.emit(Events.mainPageView.selectFolder, event.target.id, 'received', 0);
       }
     });
 
@@ -160,7 +160,7 @@ export default class MainPageView {
       const current = currentName.id;
       const chooseFolderData = new FormData();
 
-      const type = 'recived';
+      const type = 'received';
       const method = 'PUT';
 
       if (folder === 'Спам') {
@@ -188,7 +188,7 @@ export default class MainPageView {
       const chooseFolderData = new FormData();
       chooseFolderData.append('letterId', current);
 
-      const type = 'recived';
+      const type = 'received';
       const method = 'DELETE';
 
       globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
@@ -252,7 +252,7 @@ export default class MainPageView {
       }
       if (typeOfContent === 'selectFolder') {
         const name = addMore.getAttribute('title');
-        globalEventBus.emit(Events.mainPageView.selectFolder, name, 'recived', offset);
+        globalEventBus.emit(Events.mainPageView.selectFolder, name, 'received', offset);
       }
     });
 
