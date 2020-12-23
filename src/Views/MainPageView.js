@@ -81,7 +81,6 @@ export default class MainPageView {
     });
 
     const folderRecivedChoose = document?.getElementById('recived');
-
     folderRecivedChoose?.addEventListener('click', (event) => {
       const current = folderRecivedChoose.querySelector(`input#${event.target.id}`);
 
@@ -183,6 +182,8 @@ export default class MainPageView {
       event.preventDefault();
 
       const currentName = document.getElementsByName('title-of-current')[0];
+      const folderIdChoose = document?.getElementsByName('DirectoryRecv')[0];
+      const folderId = folderIdChoose.id;
 
       const current = currentName.id;
       const chooseFolderData = new FormData();
@@ -191,7 +192,7 @@ export default class MainPageView {
       const type = 'received';
       const method = 'DELETE';
 
-      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
+      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type, folderId);
     });
 
     const deleteLetter = document?.getElementById('button-remove-letter');

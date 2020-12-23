@@ -232,8 +232,11 @@ export default class LetterModel {
       });
   }
 
-  inFolder(method, folder, type) {
-    myFetch(Paths.inFolder + type + '/folderName/letter', method, folder)
+  inFolder(method, folder, type, folderId) {
+    if (!folderId) {
+      folderId = 'folderName';
+    }
+    myFetch(Paths.inFolder + type + '/' + folderId + '/letter', method, folder)
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {

@@ -112,6 +112,8 @@ if(locals.screenWidth > 800)
 
                         div(class="letter-container")
                             h3(id=letter.Id name="title-of-current")
+                                if(letter.DirectoryRecv)
+                                    span(id=letter.DirectoryRecv name="DirectoryRecv")
                                 b(style="margin-right: 5px;") Тема:
                                 span #{letter.Theme}
                             div
@@ -267,6 +269,8 @@ else
 
                             div(class="letter-container")
                                 h3(id=letter.Id name="title-of-current")
+                                    if(letter.DirectoryRecv)
+                                      span(id=letter.DirectoryRecv name="DirectoryRecv")
                                     b(style="margin-right: 5px;") Тема:
                                     span #{letter.Theme}
                                 div
