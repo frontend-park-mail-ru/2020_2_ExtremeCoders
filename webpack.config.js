@@ -19,7 +19,7 @@ module.exports = {
   // https://webpack.js.org/concepts/output/
   output: {
     path: path.resolve(__dirname, 'static/dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.[contenthash].js',
     publicPath: '/',
   },
 
