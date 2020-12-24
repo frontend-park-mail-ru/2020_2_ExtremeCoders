@@ -185,7 +185,7 @@ export default class MainPageView {
 
       const currentName = document.getElementsByName('title-of-current')[0];
       const folderIdChoose = document?.getElementsByName('DirectoryRecv')[0];
-      const folderId = folderIdChoose.id;
+      const folderId = folderIdChoose?.id;
 
       const current = currentName.id;
       const chooseFolderData = new FormData();
