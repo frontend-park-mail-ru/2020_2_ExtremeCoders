@@ -4,8 +4,9 @@ import { template as tmp } from './PugTemplates/ProfilePage.js';
 import Navbar from './NavbarView.js';
 
 export default class ProfileView {
-  constructor(element) {
+  constructor(element, title) {
     this.element = element;
+    this.title = title;
     // globalEventBus.on(Events.userModelEvents.profileGetData.success, this.render.bind(this));
     // globalEventBus.on(Events.userModelEvents.profileGetData.fail, this.showErrors.bind(this));
   }
@@ -15,6 +16,8 @@ export default class ProfileView {
      * @param {string} data - profile.css data in JSON format
      */
   render(data) {
+    this.title.text = 'Профиль';
+
     if (!data) {
       globalEventBus.emit(Events.profileViewEvents.needUserData);
       return;

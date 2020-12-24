@@ -3,12 +3,14 @@ import globalEventBus from '../EventBus.js';
 import { template as tmp } from './PugTemplates/SignUpForm.js';
 
 export default class SignUpView {
-  constructor(element) {
+  constructor(element, title) {
     this.element = element;
+    this.title = title;
     globalEventBus.on(Events.userModelEvents.signUp.fail, SignUpView.showErrors.bind(this));
   }
 
   render() {
+    this.title.text = 'Зарегистрироваться';
     this.element.innerHTML = tmp();
     const form = document.getElementsByTagName('form')[0];
     const backButton = document.getElementsByName('back')[0];

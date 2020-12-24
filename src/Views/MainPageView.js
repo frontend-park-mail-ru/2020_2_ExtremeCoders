@@ -4,8 +4,9 @@ import { template } from './PugTemplates/mainPage.js';
 import Navbar from './NavbarView.js';
 
 export default class MainPageView {
-  constructor(element) {
+  constructor(element, title) {
     this.element = element;
+    this.title = title;
   }
 
   parseText(data){
@@ -27,6 +28,7 @@ export default class MainPageView {
   }
 
   render(data){
+    this.title.text = 'Письма';
 
     if (!data || !data.recivedFolderRecived) {
       globalEventBus.emit(Events.mainPageView.recivedUn, 0);

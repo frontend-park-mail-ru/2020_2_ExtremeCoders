@@ -33,13 +33,15 @@ import profileController from './Controllers/ProfileController.js';
 import signInController from './Controllers/SignInController.js';
 import signUpController from './Controllers/SignUpController.js';
 
+const title = document.getElementsByTagName('title')[0];
+
 const router = new Router();
-const signInView = new SignInView(document.body);
-const signUpView = new SignUpView(document.body);
-const profileView = new ProfileView(document.body);
-const profileEditView = new ProfileEditView(document.body);
-const mainPageView = new MainPageView(document.body);
-const sendLetterView = new SendLetterView(document.body);
+const signInView = new SignInView(document.body, title);
+const signUpView = new SignUpView(document.body, title);
+const profileView = new ProfileView(document.body, title);
+const profileEditView = new ProfileEditView(document.body, title);
+const mainPageView = new MainPageView(document.body, title);
+const sendLetterView = new SendLetterView(document.body, title);
 
 userModel.setUrl(Paths.baseUrl);
 const letterModel = new LetterModel(Paths.baseUrl);

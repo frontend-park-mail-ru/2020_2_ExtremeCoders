@@ -3,12 +3,14 @@ import globalEventBus from '../EventBus.js';
 import { template as tmp } from './PugTemplates/SignInForm.js';
 
 export default class SignInView {
-  constructor(element) {
+  constructor(element, title) {
     this.element = element;
+    this.title = title;
     globalEventBus.on(Events.userModelEvents.signIn.fail, SignInView.showErrors.bind(this));
   }
 
   render() {
+    this.title.text = 'Войти';
     this.element.innerHTML = tmp();
 
     const form = document.getElementsByTagName('form')[0];
