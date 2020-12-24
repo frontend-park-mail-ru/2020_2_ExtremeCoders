@@ -188,9 +188,17 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.deleteLetter, (deleteName) => {
       globalEventBus.emit(Events.mainPageController.deleteLetter, deleteName);
-      const h = () => {
+      const h = (deleteVar) => {
         globalEventBus.off(Events.letterModelEvents.deleteLetter.success, h);
         this.data.letter = null;
+        this.data.selectFolder.forEach((letter) => {
+          if (letter.Id === +deleteVar.get('id')) {
+            const index = this.data.selectFolder.indexOf(letter);
+            if (index > -1) {
+              this.data.selectFolder.splice(index, 1);
+            }
+          }
+        });
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.deleteLetter.success, h);

@@ -288,7 +288,7 @@ export default class LetterModel {
 
   deleteLetter(deleteName) {
     myFetch(Paths.deleteLetter, 'DELETE', deleteName)
-      .then(() => globalEventBus.emit(Events.letterModelEvents.deleteLetter.success))
+      .then(() => globalEventBus.emit(Events.letterModelEvents.deleteLetter.success, deleteName))
       .catch((error) => {
         console.log('Fetch error', error);
       });
