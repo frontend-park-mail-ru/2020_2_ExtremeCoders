@@ -118,10 +118,10 @@ export default class LetterModel {
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
-          this.selectFolder = new Map();
+          this.selectFolder = [];
           if (response.Letter) {
             response.Letter.forEach((letter) => {
-              this.selectFolder[letter.Id] = letter;
+              this.selectFolder.push(letter);
             });
           }
           globalEventBus.emit(Events.letterModelEvents.selectFolder.success, this.selectFolder, this.offset);
@@ -144,10 +144,10 @@ export default class LetterModel {
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
-          this.selectFolder = new Map();
+          this.selectFolder = [];
           if (response.Letters) {
             response.Letters.forEach((letter) => {
-              this.selectFolder[letter.Id] = letter;
+              this.selectFolder.push(letter);
             });
           }
           globalEventBus.emit(Events.letterModelEvents.recivedUn.success, this.selectFolder, this.offset);
@@ -170,10 +170,10 @@ export default class LetterModel {
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
-          this.selectFolder = new Map();
+          this.selectFolder = [];
           if (response.Letters) {
             response.Letters.forEach((letter) => {
-              this.selectFolder[letter.Id] = letter;
+              this.selectFolder.push(letter);
             });
           }
           globalEventBus.emit(Events.letterModelEvents.sendedUn.success, this.selectFolder, this.offset);
@@ -334,10 +334,10 @@ export default class LetterModel {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          this.selectFolder = new Map();
+          this.selectFolder = [];
           if (response.Letters) {
             response.Letters.forEach((letter) => {
-              this.selectFolder[letter.Id] = letter;
+              this.selectFolder.push(letter);
             });
           }
           globalEventBus.emit(Events.letterModelEvents.resultSearch.success, this.selectFolder);
@@ -359,10 +359,10 @@ export default class LetterModel {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          this.selectFolder = new Map();
+          this.selectFolder = [];
           if (response.Letters) {
             response.Letters.forEach((letter) => {
-              this.selectFolder[letter.Id] = letter;
+              this.selectFolder.push(letter);
             });
           }
           globalEventBus.emit(Events.letterModelEvents.spamUn.success, this.selectFolder);
@@ -384,10 +384,10 @@ export default class LetterModel {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          this.selectFolder = new Map();
+          this.selectFolder = [];
           if (response.Letters) {
             response.Letters.forEach((letter) => {
-              this.selectFolder[letter.Id] = letter;
+              this.selectFolder.push(letter);
             });
           }
           globalEventBus.emit(Events.letterModelEvents.trashUn.success, this.selectFolder);

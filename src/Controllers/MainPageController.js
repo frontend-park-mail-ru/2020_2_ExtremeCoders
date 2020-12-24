@@ -13,11 +13,17 @@ class MainPageController {
     this.data.offset = 0;
     this.data.typeOfContent = '';
     this.data.nameOfFolder = '';
-
     this.data.letterSplit = [];
+    this.data.selectFolder = [];
+    this.data.letter = {};
+    this.data.isNeedToPag = true;
 
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
-      this.data.letter = this.data.selectFolder[letterId];
+      this.data.selectFolder.forEach((letter) => {
+        if (letter.Id === +letterId) {
+          this.data.letter = letter;
+        }
+      });
       this.data.buttonPlus = true;
       this.data.folderColumn = false;
       this.data.letterColumn = false;
@@ -50,9 +56,7 @@ class MainPageController {
         if (offset === 0) {
           this.data.selectFolder = data;
         } else {
-          for (let i in data) {
-            this.data.selectFolder[i] = data[i];
-          }
+          this.data.selectFolder = this.data.selectFolder.concat(data);
         }
         this.data.offset = offset;
         this.data.offset += 5;
@@ -61,6 +65,7 @@ class MainPageController {
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
         this.data.nameOfFolder = folder;
+        this.data.isNeedToPag = true;
         this.mainPageView.render(this.data);
       };
       const h2 = () => {
@@ -71,6 +76,7 @@ class MainPageController {
         this.data.oneLetterColumn = false;
         this.data.offset = 0;
         this.data.nameOfFolder = '';
+        this.data.isNeedToPag = false;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.selectFolder.success, h);
@@ -84,9 +90,7 @@ class MainPageController {
         if (offset === 0) {
           this.data.selectFolder = data;
         } else {
-          for (let i in data) {
-            this.data.selectFolder[i] = data[i];
-          }
+          this.data.selectFolder = this.data.selectFolder.concat(data);
         }
         this.data.offset = offset;
         this.data.offset += 5;
@@ -94,6 +98,7 @@ class MainPageController {
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
+        this.data.isNeedToPag = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.recivedUn.success, h);
@@ -106,9 +111,7 @@ class MainPageController {
         if (offset === 0) {
           this.data.selectFolder = data;
         } else {
-          for (let i in data) {
-            this.data.selectFolder[i] = data[i];
-          }
+          this.data.selectFolder = this.data.selectFolder.concat(data);
         }
         this.data.offset = offset;
         this.data.offset += 5;
@@ -116,6 +119,7 @@ class MainPageController {
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
+        this.data.isNeedToPag = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.sendedUn.success, h);
@@ -143,7 +147,11 @@ class MainPageController {
       globalEventBus.emit(Events.mainPageController.sendWrittenLetter, id);
       const h = (letterId) => {
         globalEventBus.off(Events.letterModelEvents.sendWrittenLetter.success, h);
-        this.data.selectFolder[letterId.get('id')].IsWatched = true;
+        this.data.selectFolder.forEach((letter) => {
+          if (letter.Id === +letterId.get('id')) {
+            letter.IsWatched = true;
+          }
+        });
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.sendWrittenLetter.success, h);
@@ -214,7 +222,7 @@ class MainPageController {
       const h1 = () => {
         globalEventBus.off(Events.letterModelEvents.startSearch.fail, h1);
         this.data.similar = '';
-        this.data.searchResult = { };
+        this.data.searchResult = {};
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.startSearch.success, h);
@@ -230,6 +238,7 @@ class MainPageController {
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
         this.data.selectFolder = data;
+        this.data.isNeedToPag = false;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.resultSearch.success, h);
@@ -243,6 +252,7 @@ class MainPageController {
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
         this.data.selectFolder = data;
+        this.data.isNeedToPag = false;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.spamUn.success, h);
@@ -256,6 +266,7 @@ class MainPageController {
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
         this.data.selectFolder = data;
+        this.data.isNeedToPag = false;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.trashUn.success, h);

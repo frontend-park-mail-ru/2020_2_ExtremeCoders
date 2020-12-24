@@ -93,8 +93,9 @@ if(locals.screenWidth > 800)
                                      p(id=letter.Id class="max-ch") Отправитель: #{letter.Sender}
                                  div(id=letter.Id class="entry__excerpt")
                                      p(id=letter.Id class="max-ch") #{letter.Text}
-                      if(locals.selectFolder.length >= 5)
-                          div(class="block-update")
+
+                      div(class="block-update")
+                          if(locals.isNeedToPag)
                             if(locals.typeOfContent && locals.offset)
                                  div(class="small-plus radius" title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 
@@ -248,8 +249,9 @@ else
                                           p(id=letter.Id class="max-ch") Отправитель: #{letter.Sender}
                                       div(id=letter.Id class="entry__excerpt")
                                           p(id=letter.Id class="max-ch") #{letter.Text}
-                            if(locals.selectFolder.length >= 5)
-                                div(class="block-update")
+
+                            div(class="block-update")
+                                if(locals.isNeedToPag)
                                     if(locals.typeOfContent && locals.offset)
                                         div(class="small-plus radius" title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 
