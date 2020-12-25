@@ -1,7 +1,28 @@
 const OFFLINE_MSG = 'У вас нет Интернета и Google Dino! :(';
 const CACHE_NAME = 'ec-cache-v1';
 
-self.addEventListener('install', function(event) {});
+/**
+ * Tried to solve hardcoding issue in Router.js 
+ * When user changes URL in SPA the URL path is used to be saved in cache
+ * But it doesn't work... and no time, lol.
+ */
+let urlsToCache = [
+    '/letters',
+    '/signin',
+    '/signup',
+    '/profile',
+    '/profileEdit',
+    '/sendLetter',
+];
+
+self.addEventListener('install', function(event) {
+      event.waitUntil(
+        caches.open(CACHE_NAME).then(function(cache) {
+            console.log('Opened cache');
+            return cache.addAll(urlsToCache);
+        })
+    );
+});
 
 self.addEventListener('activate', function(event) {
     event.waitUntil(

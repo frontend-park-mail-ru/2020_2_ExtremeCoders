@@ -28,12 +28,6 @@ export default class Router {
 
   go(event) {
     if (event) {
-
-      const cache = caches.open(SW.cacheName);
-      console.log(event)
-      const cachedResponse = cache.match(event.request);
-      event.waitUntil(cache.add(event.request));
-
       if (event.path === '/letters') {
         const letterData = {
           folderColumn: true,
