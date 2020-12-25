@@ -263,8 +263,8 @@ const Paths = {
 };
 
 const SW = {
-    offlineMsg = 'У вас нет Интернета и Google Dino! :(',
-    cacheName = 'ec-cache-v1'
+    offlineMsg: 'У вас нет Интернета и Google Dino! :(',
+    cacheName: 'ec-cache-v1'
 }
 
 
