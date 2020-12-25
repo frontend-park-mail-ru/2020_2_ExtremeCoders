@@ -15,13 +15,20 @@ let urlsToCache = [
     '/sendLetter',
 ];
 
-self.addEventListener('install', function(event) {
-      event.waitUntil(
-        caches.open(CACHE_NAME).then(function(cache) {
-            console.log('Opened cache');
-            return cache.addAll(urlsToCache);
-        })
-    );
+// self.addEventListener('install', function(event) {
+//       event.waitUntil(
+//         caches.open(CACHE_NAME).then(function(cache) {
+//             console.log('Opened cache');
+//             return cache.addAll(urlsToCache);
+//         })
+//     );
+// });
+
+self.addEventListener('install', (event) => {
+    event.waitUntil(async function() {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.addAll(urlsToCache);
+    }());
 });
 
 self.addEventListener('activate', function(event) {
