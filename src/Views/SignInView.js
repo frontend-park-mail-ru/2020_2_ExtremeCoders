@@ -45,7 +45,7 @@ export default class SignInView {
       msgElem.innerHTML = text;
     }
     if (!msgElem) {
-      const msgElem = document.createElement('span');
+      const msgElem = document.createElement('p');
       msgElem.id = msgBoxName;
       msgElem.innerHTML = text;
       input.parentNode.appendChild(msgElem);
