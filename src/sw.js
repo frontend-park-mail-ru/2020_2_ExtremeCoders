@@ -37,17 +37,8 @@ self.addEventListener('fetch', function(event) {
                     throw Error('response status ' + response.status);
                 }
                 return response;
-            }).catch(function(error) {
-                console.warn('[SW] Constructing a fallback response, due to an error while fetching the real response:', error);
-                const fallbackResponse = {
-                    Description: 'You are out of network! Play Chrome Dino... oh no! Sorry we are Progressive App!', 
-                    Code: 404
-                };
-                return new Response(JSON.stringify(fallbackResponse), {
-                    headers: {'Content-Type': 'application/json'},
-                    status: 404,
-                });
             })
+            .catch(err => handleNoConn(err))
         );
     } else {
         event.respondWith(
@@ -60,8 +51,7 @@ self.addEventListener('fetch', function(event) {
             
                     let fetchRequest = event.request.clone();
                     
-                    return fetch(fetchRequest).then(
-                        function(response) {
+                    return fetch(fetchRequest).then(function(response) {
                             // Проверка того, получили ли мы правильный ответ
                             if(!response || response.status !== 200 || response.type !== 'basic') {
                                 console.log('[SW] Smth wrong with response from network... Smth - ', response)
@@ -77,8 +67,22 @@ self.addEventListener('fetch', function(event) {
                 
                             return response;
                         }
-                    );  
+                    )
+                    .catch(err => handleNoConn(err));
                 })
         );
     }
 });
+
+
+handleNoConn = err => {
+    console.warn('[SW] Constructing a fallback response, due to access to PWA on reload:', error);
+    const fallbackResponse = {
+        Description: 'У вас нет Интернета и Google Dino! :(', 
+        Code: 404
+    };
+    return new Response(JSON.stringify(fallbackResponse), {
+        headers: {'Content-Type': 'application/json'},
+        status: 404,
+    });
+}
