@@ -29,9 +29,9 @@ export default class Router {
   go(event) {
     if (event) {
 
-      const cache = await caches.open(SW.cacheName);
+      const cache = caches.open(SW.cacheName);
       console.log(event)
-      const cachedResponse = await cache.match(event.request);
+      const cachedResponse = cache.match(event.request);
       event.waitUntil(cache.add(event.request));
 
       if (event.path === '/letters') {
