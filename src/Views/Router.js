@@ -1,4 +1,4 @@
-import { Events } from '../Constants.js';
+import { Events, SW } from '../Constants.js';
 import globalEventBus from '../EventBus.js';
 
 export default class Router {
@@ -28,6 +28,12 @@ export default class Router {
 
   go(event) {
     if (event) {
+
+      const cache = await caches.open(SW.cacheName);
+      console.log(event)
+      const cachedResponse = await cache.match(event.request);
+      event.waitUntil(cache.add(event.request));
+
       if (event.path === '/letters') {
         const letterData = {
           folderColumn: true,
