@@ -86,14 +86,14 @@ function initModels() {
 
 initModels();
 
-// if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', function() {
-//     navigator.serviceWorker.register('/sw.js').then(function(registration) {
-//       // Успешная регистрация
-//       console.log('[SW] ServiceWorker registration successful! Scope:', registration.scope);
-//     }, function(err) {
-//       // При регистрации произошла ошибка
-//       console.log('[SW] Na ja! Das ist nicht arbeiten! No SW! :() ', err);
-//     });
-//   });
-// }
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Успешная регистрация
+      console.log('[SW] ServiceWorker registration successful! Scope:', registration.scope);
+    }, function(err) {
+      // При регистрации произошла ошибка
+      console.log('[SW] Na ja! Das ist nicht arbeiten! No SW! :() ', err);
+    });
+  });
+}
