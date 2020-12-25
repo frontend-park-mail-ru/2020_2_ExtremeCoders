@@ -1,18 +1,6 @@
-const CACHE_NAME = 'my-web-app-cache';
-// let urlsToCache = [
-//   '/',
-//   '/bundle.js'
-// ];
+import { SW } from './Constants.js';
 
-self.addEventListener('install', function(event) {
-//   event.waitUntil(
-//     caches.open(CACHE_NAME)
-//       .then(function(cache) {
-//         console.log('Opened cache');
-//         // return cache.addAll(urlsToCache);
-//       })
-//   );
-});
+self.addEventListener('install', function(event) {});
 
 self.addEventListener('activate', function(event) {
     event.waitUntil(
@@ -78,7 +66,7 @@ self.addEventListener('fetch', function(event) {
 handleNoConn = error => {
     console.warn('[SW] Constructing a fallback response, due to access to PWA on reload:', error);
     const fallbackResponse = {
-        Description: 'У вас нет Интернета и Google Dino! :(', 
+        Description: SW.offlineMsg, 
         Code: 404
     };
     return new Response(JSON.stringify(fallbackResponse), {
