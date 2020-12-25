@@ -11,3 +11,5 @@
 
 Ментор по фронту - [Кирилл Гаджиев](https://github.com/kirBMSTU) \
 Ментор по беку - [Антон Прийма](https://github.com/antonpriyma)
+
+Ссылка на прод: https://mailer.ru.com/
