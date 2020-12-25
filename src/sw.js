@@ -1,4 +1,5 @@
 const OFFLINE_MSG = 'У вас нет Интернета и Google Dino! :(';
+const CACHE_NAME = 'ec-cache-v1';
 
 self.addEventListener('install', function(event) {});
 
