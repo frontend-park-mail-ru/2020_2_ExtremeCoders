@@ -1,40 +1,33 @@
-div(class="SignUpPage")
-    form(class="SignUpForm")
-        label(class="label-form") Регистрация
+section(class="s-content site-page")
+    div(class="row")
+        div(class="column large-12")
+            section
+                div(class="s-content__primary")
+                    h1(class="s-content__title") Регистрация
+                    form(class="s-content__form")
+                        fieldset
+                            div(class="form-field")
+                                input(name="email" type="text" class="h-full-width" placeholder="Email" value="" autocomplete="off" required)
+                                input(type="text" class="h-full-width" placeholder="@mailer.ru.com" disabled)
 
-        div(class="group")
-            input(class="Input" name='email' type="text" required)
-            span(class="bar")
-            label(class="label-input") Email
+                            div(class="form-field")
+                                input(name="password1" type="password" class="h-full-width" placeholder="Пароль" value="" autocomplete="off" required)
 
-        div(class="group")
-            input(class="Input" name='password1' type="password" required)
-            span(class="bar")
-            label(class="label-input") Пароль
+                            div(class="form-field")
+                                input(name="password2" type="password" class="h-full-width" placeholder="Повторите пароль" value="" autocomplete="off" required)
 
-        div(class="group")
-            input(class="Input" name='password2' type="password" required)
-            span(class="bar")
-            label(class="label-input") Повторите пароль
+                            div(class="form-field")
+                                input(name="name" type="text" class="h-full-width" placeholder="Имя" value="" autocomplete="off" required)
 
-        div(class="group")
-            input(class="Input" name='name' type="text" required)
-            span(class="bar")
-            label(class="label-input") Имя
+                            div(class="form-field")
+                                input(name="surname" type="text" class="h-full-width" placeholder="Фамиля" value="" autocomplete="off" required)
 
-        div(class="group")
-            input(class="Input" name='surname' type="text" required)
-            span(class="bar")
-            label(class="label-input") Фамилия
+                            div(class="form-field")
+                                input(name="avatar" id="file" type="file" class="h-full-width" placeholder="Загрузить аватар" accept="image/jpeg, image/png, image/jpg" value="" autocomplete="off")
 
-        div(class="input-file")
-            div(class="form-group")
-                input(type="file" name="avatar" id="file" class="input-file" accept="image/jpeg")
-                label(for="file" class="btn btn-tertiary js-labelFile")
-                    span(class="js-fileName") Загрузить аватар
+                            div(class="row")
+                                div(class="column large-8")
+                                    button(type="submit" name="submit" class="submit btn btn--primary btn--medium h-full-width") Зарегистрироваться
+                                div(class="column large-4")
+                                    button(type="submit" name="back" class="submit btn btn--medium h-full-width") Войти
 
-        div(class="row__item buttons-SignInForm AcceptBackButtonForm")
-            button(class="Button Button-state-passive" name="back") Войти
-            button(class="Button Button-state-accept" type="submit" name="submit") Зарегистрироваться
-
-//export {template}

@@ -1,4 +1,4 @@
-import { Events } from '../Constants.js';
+import { Events, SW } from '../Constants.js';
 import globalEventBus from '../EventBus.js';
 
 export default class Router {
@@ -6,8 +6,6 @@ export default class Router {
     this.registeredPathes = {};
     window.onpopstate = ((event) => {
       event.preventDefault();
-      document.referrer = window.location.href;
-      console.log('HISTORY EVENT', event);
       try {
         this.registeredPathes[event.state.path].render(event.state.data);
       } catch (err) {
@@ -24,14 +22,20 @@ export default class Router {
 
   // запустить роутер
   start(path, data) {
-    console.log('START PATH', path, 'PREV PAGE', document.referrer);
     window.history.pushState({ path, data: (data || 1) }, 'Start', path);
     this.registeredPathes[path].render(data);
   }
 
   go(event) {
-    console.log('GOOO', event);
     if (event) {
+      if (event.path === '/letters') {
+        const letterData = {
+          folderColumn: true,
+          letterColumn: false,
+          oneLetterColumn: false,
+        };
+        event.data = letterData;
+      }
       this.registeredPathes[event.path].render(event.data || 0);
       window.history.pushState({ path: event.path, data: (event.data || 0) },
         event.path, event.path);
@@ -39,9 +43,7 @@ export default class Router {
   }
 
   back() {
-    console.log("I'L BE BACK");
     window.history.back();
-    console.log('href', window.location.pathname);
     this.registeredPathes[window.location.pathname].render();
   }
 }

@@ -4,15 +4,17 @@ import { template } from './PugTemplates/SendLetterForm.js';
 import Navbar from './NavbarView.js';
 
 export default class SendLetterView {
-  constructor(element) {
+  constructor(element, title) {
     this.element = element;
+    this.title = title;
     globalEventBus.on(Events.letterModelEvents.sendLetter.fail,
       SendLetterView.showErrors.bind(this));
   }
 
   render(data) {
+    this.title.text = 'Отправить письмо';
+
     const newdata = data || {};
-    console.log('SEND LETTER VIEW RENDER');
     this.element.innerHTML = '';
     Navbar.render();
     this.element.insertAdjacentHTML('beforeend', template(newdata));
@@ -30,7 +32,6 @@ export default class SendLetterView {
   }
 
   static showErrors(errors) {
-    console.log('SEND LETTER ERRORS SHOW', errors);
     const reciever = document.getElementsByName('to')[0];
     const theme = document.getElementsByName('theme')[0];
     const text = document.getElementsByName('text')[0];

@@ -13,7 +13,6 @@ class NavbarView {
       return;
     }
     this.element.innerHTML = '';
-    console.log('NAVBAR VIEW RENDER', data);
     const navDiv = document.getElementById('navbar') || document.createElement('div');
     navDiv.id = 'navbar';
     navDiv.innerHTML = template(data);
@@ -26,12 +25,12 @@ class NavbarView {
 
     sendLetterHref.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.global.redirect, { path: Paths.sendLetter });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.sendLetterPage });
     });
 
     profileHref.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.global.redirect, { path: Paths.profile });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.profilePage });
     });
 
     logoutHref.addEventListener('click', (event) => {
@@ -41,7 +40,26 @@ class NavbarView {
 
     lettersHref.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.global.redirect, { path: Paths.letters });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.mainPage });
+    });
+
+    const navWrap = document.querySelector('.s-header__nav-wrap');
+    const menuToggle = document.querySelector('.s-header__toggle-menu');
+    const siteBody = document.querySelector('body');
+    const closeNavWrap = navWrap.querySelector('.s-header__overlay-close');
+
+    menuToggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      siteBody.classList.add('nav-wrap-is-visible');
+    });
+
+    closeNavWrap.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (siteBody.classList.contains('nav-wrap-is-visible')) {
+        siteBody.classList.remove('nav-wrap-is-visible');
+      }
     });
   }
 

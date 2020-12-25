@@ -4,8 +4,9 @@ import { template } from './PugTemplates/ProfileEditForm.js';
 import Navbar from './NavbarView.js';
 
 export default class ProfileEditView {
-  constructor(element) {
+  constructor(element, title) {
     this.element = element;
+    this.title = title;
     globalEventBus.on(Events.userModelEvents.profileEdit.fail,
       ProfileEditView.showErrors.bind(this));
   }
@@ -15,6 +16,8 @@ export default class ProfileEditView {
    * @param {string} data - profile.css data in JSON format
    */
   render(data) {
+    this.title.text = 'Редактировать профиль';
+
     if (!data) {
       globalEventBus.emit(Events.profileEditViewEvents.needUserData);
       return;
@@ -27,10 +30,10 @@ export default class ProfileEditView {
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      console.log('SUBMIT PROFILE EDIT');
       globalEventBus.emit(Events.profileEditViewEvents.submit, {
         target: 'ProfileEditView',
         data: new FormData(form),
+        tmpData: data,
       });
     });
 

@@ -1,19 +1,22 @@
-div(class="Page-WriteLetter")
+section(class="s-content__primary site-page")
+    div(class="row")
+        div(class="column large-12")
+            div
+                h1(class="s-content__title") Написать
+                form(class="s-content__form")
+                    div(class="form-field")
+                        input(name="to" type="text" class="h-full-width" placeholder="Кому" value="" autocomplete="off" required)
+                    div(class="form-field")
+                        input(name="theme" type="text" class="h-full-width" placeholder="Тема" value="" autocomplete="off" required)
 
-    form(method='POST', name='sendLetterForm' class="Form-WriteLetter")
-        div(class="group input-reciever-writeLetter") 
-            input(class="Input" name='to' type="text" required)
-            span(class="bar") 
-            label(class="label-input") Кому
-        
-        div(class="group input-theme-writeLetter") 
-            input(class="Input" name='theme' type="text" required)
-            span(class="bar") 
-            label(class="label-input") Тема
-        
-        div(class="input-text-writeLetter") 
-            textarea(class="textarea input-letter-text" name='text' placeholder="Письмо" type="text" required)
-        
-        div(class="row__item buttons-writeLetter AcceptBackButtonForm") 
-            button(class="Button Button-state-passive" name="back") Назад
-            button(class="Button dekipoldag-kutensa button-send-writeLetter" type="submit") Отправить
+                    div(class="message form-field")
+                        textarea(name="text" type="text" class="h-full-width" placeholder="Текст письма" autocomplete="off" required)
+
+                    div(class="row")
+                        div(class="column large-6")
+                            button(type="submit" class="submit btn btn--primary btn--medium h-full-width") Отправить
+                        div(class="column large-6")
+                            button(name="back" class="submit btn btn--medium h-full-width") Назад
+
+
+

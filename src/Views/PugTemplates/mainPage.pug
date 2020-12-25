@@ -1,50 +1,314 @@
-div(class="mainPage")
+- console.log('locals', locals);
+if(locals.screenWidth > 800)
+    div(class="main-page mainPage")
+        div(class="row" style="margin-left: 0; margin-right: 0; width: 100vw;")
 
-    if(locals.folderList)
-        div(class="folders-main")
-            ul(class="listView")
-                each folder in locals.folderList
-                    li(class="folder") #{folder}
+            div(class="column large-2 tab-12 mob-12 main-container")
+                div(class="main-columns project_scroll")
+                    div(id="add-folder-recived" class="block plus radius")
 
-    if(locals.letterList)
-        div(class="letterlist-main")
-            ul(class="listView" name='letterList')
-                each letter in locals.letterList
-                    - date = new Date(letter.DateTime * 1000)
-                    li()
-                        if(locals.letter & locals.letter.Id === letter.Id)
-                            conso
-                            div(id=letter.Id class="letter-title state-checked")
-                                label(class="label theme-title") #{letter.Theme}
-                                label(class="label sender-title") #{letter.Sender}
-                                label(class="label datetime-title") #{date.toLocaleTimeString()}
-                                label(class="label text-title") #{letter.Text}
+                    if(locals.recivedFolderRecived)
+                        div(id="summary-recived" class="triangle-down")
+                    else
+                        div(id="summary-recived" class="triangle-right")
+                    a(id="recivedUn" class="titles-category") Входящие
+
+                    a(id="spamUn" class="block titles-category") Спам
+
+                    a(id="trashUn" class="block titles-category") Корзина
+
+                    if(locals.recivedFolderRecived)
+                        div(id="recived")
+                            if(locals.recivedFolder)
+                                each folder in locals.recivedFolder
+                                    div(class="input-group")
+                                        div
+                                            input(class="folder-names" readonly value=folder.Name id=folder.Name)
+                                        div(class="icon-group" id="icon-group")
+                                            div(class="edit-button radius" id=folder.Name name="edit-folder")
+                                                svg(id=folder.Name name="edit-folder" class="block" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 171 171" style=" fill:#000000;")
+                                                    g(id=folder.Name name="edit-folder" fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal")
+                                                        path(id=folder.Name name="edit-folder" d="M0,171.99852v-171.99852h171.99852v171.99852z" fill="none")
+                                                        g(id=folder.Name name="edit-folder" fill="#ffffff")
+                                                            path(id=folder.Name name="edit-folder" d="M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z")
+
+                                            div(class="small-plus radius cross" id=folder.Name name="delete-folder")
+
+                    div(class="horizontal")
+
+                    a(id="sendedUn" class="block titles-category") Отправленные
+
+            div(class="column large-4 tab-12 mob-12 main-container")
+                div(class="bricks-wrapper h-group main-columns project_scroll" name="letters")
+
+                    div(name="search-group" class="search-block")
+                        if(locals.similar && locals.similar !== '')
+                            input(id="search-input" name="search-group" type="text" class="h-full-width search-input" value=locals.similar autocomplete="off" style="background: #282828; color: white;")
                         else
-                            div(id=letter.Id class="letter-title")
-                                label(class="label theme-title") #{letter.Theme}
-                                label(class="label sender-title") #{letter.Sender}
-                                label(class="label datetime-title") #{date.toLocaleTimeString()}
-                                label(class="label text-title") #{letter.Text}
+                            input(id="search-input" name="search-group" type="text" class="h-full-width search-input" placeholder="Поиск" value="" autocomplete="off")
+
+                        if(locals.searchResult && locals.searchResult.res)
+                            div(name="search-group" class="search-back" id="search-result-list")
+
+                                if(locals.searchResult.is)
+                                    if(locals.searchResult.Senders)
+                                        span(name="search-group" class="search-title") Отправители
+                                        each result in locals.searchResult.Senders
+                                            div(name="search-target" role="sender" id=result) #{result}
+
+                                    if(locals.searchResult.Receivers)
+                                        span(name="search-group" class="search-title") Получатели
+                                        each result in locals.searchResult.Receivers
+                                            div(name="search-target" role="receiver" id=result) #{result}
+
+                                    if(locals.searchResult.Themes)
+                                        span(name="search-group" class="search-title") Темы
+                                        each result in locals.searchResult.Themes
+                                            div(name="search-target" role="theme" id=result) #{result}
+
+                                    if(locals.searchResult.Texts)
+                                        span(name="search-group" class="search-title") Тексты
+                                        each result in locals.searchResult.Texts
+                                            div(name="search-target" role="text" id=result) #{result}
+
+                                else
+                                    span(name="search-group" class="search-title-no")  Нет результатов
 
 
+                    if(locals.selectFolder)
 
-    if(locals.letter && locals.letter.Id)
-        - date = new Date(locals.letter.DateTime * 1000)
-        div(class="letter-main")
-            div(class="letter-view")
-                div(class="senderTitle-view")
-                    div(class="group input-theme-writeLetter")
-                        input(class="Input disabled-input" type="text" placeholder=locals.letter.Sender)
-                        span(class="bar")
-                        label(class="label-input") От
+                      each letter in locals.selectFolder
+                         article(id=letter.Id class="brick entry format-standard")
+                             div(id=letter.Id class="entry__text")
+                                 div(id=letter.Id class="entry__header")
+                                     h1(id=letter.Id class="entry__title max-ch") #{letter.Theme}
 
-                div(class="themeTitle-view")
-                    div(class="group input-theme-writeLetter")
-                        input(class="Input disabled-input" type="text" placeholder=locals.letter.Theme)
-                        span(class="bar")
-                        label(class="label-input") Тема
+                                 if(letter.IsWatched)
+                                     div(id=letter.Id class="h-full-width watched")
+                                 else
+                                     div(id=letter.Id class="h-full-width not-watched")
+                                 div(id=letter.Id class="entry__excerpt")
+                                     p(id=letter.Id class="max-ch") Получатель: #{letter.Receiver}
+                                 div(id=letter.Id class="entry__excerpt")
+                                     p(id=letter.Id class="max-ch") Отправитель: #{letter.Sender}
+                                 div(id=letter.Id class="entry__excerpt")
+                                     p(id=letter.Id class="max-ch") #{letter.Text}
 
-                label(class="label dateTime-view") #{date.toLocaleTimeString()}  #{date.toLocaleDateString()}
-                textarea(class="textarea disabled-input p-letter-text text-view")  #{locals.letter.Text}
+                      div(class="block-update")
+                          if(locals.isNeedToPag)
+                            if(locals.typeOfContent && locals.offset)
+                                 div(class="small-plus radius" title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 
-//export {template}
+
+            div(class="column large-6 tab-12 mob-12 main-container")
+                div(class="main-columns project_scroll")
+                    if(locals.buttonPlus && letter)
+                        div(class="letter-board")
+                            if(letter && letter.IsWatched)
+                                a(style="margin-right: 10px;" id="unwatched") Непрочитано
+                            div(id="button-remove-letter" class="delete-letter-button radius")
+                                img(class="icon-trash" height="12px" width="12px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==")
+                            div(id="button-form-add-letter-folder" class="small-plus radius")
+                            if(letter.DirectoryRecv)
+                                div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
+
+                        div(class="letter-container")
+                            h3(id=letter.Id name="title-of-current")
+                                if(letter.DirectoryRecv)
+                                    span(id=letter.DirectoryRecv name="DirectoryRecv")
+                                b(style="margin-right: 5px;") Тема:
+                                span #{letter.Theme}
+                            div
+                                b(style="margin-right: 5px;") Получатель:
+                                span #{letter.Receiver}
+                            div
+                                b(style="margin-right: 5px;") Отправитель:
+                                span #{letter.Sender}
+                            div(class="lead") Текст:
+                              each strLine in locals.letterSplit
+                                 div #{strLine}
+
+
+    //форма добавления
+    div(class="form-add-folder-up hide")
+        div(id="remove-folder-recived" class="plus radius cross cross-modal")
+        form(name="button-of-recived-folder")
+            div(class="row")
+                input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
+                button(type="submit" class="btn btn--medium btn--primary h-full-width") Добавить
+
+    //форма добавления в папку
+    div(class="hide form-add-folder-up")
+        div(id="remove-form-add-folder-up" class="plus radius cross cross-modal")
+        form(id="choose-folder")
+            div(class="row")
+                select(name="inFolderName" class="h-full-width")
+                    option(value="Спам") Спам
+                    option(value="Корзина") Корзина
+                    if(locals.recivedFolder)
+                        each folder in locals.recivedFolder
+                            option(value=folder.Name) #{folder.Name}
+
+
+            div(class="row")
+                button(type="submit" class="btn h-full-width") Добавить
+
+
+else
+    div(class="main-page mainPage")
+        div(class="row" style="margin-left: 0; margin-right: 0; width: 100vw;")
+
+            if(locals.folderColumn)
+                div(class="column large-2 tab-12 mob-12 main-container")
+                    div(class="main-columns project_scroll")
+
+                        div(name="search-group" class="search-block" style="margin-bottom: 10px;")
+                            if(locals.similar && locals.similar !== '')
+                                input(id="search-input" name="search-group" type="text" class="h-full-width search-input" value=locals.similar autocomplete="off" style="background: #282828; color: white;")
+                            else
+                                input(id="search-input" name="search-group" type="text" class="h-full-width search-input" placeholder="Поиск" value="" autocomplete="off")
+
+                            if(locals.searchResult && locals.searchResult.res)
+                                div(name="search-group" class="search-back" id="search-result-list")
+
+                                    if(locals.searchResult.is)
+                                        if(locals.searchResult.Senders)
+                                            span(name="search-group" class="search-title") Отправители
+                                            each result in locals.searchResult.Senders
+                                                div(name="search-target" role="sender" id=result) #{result}
+
+                                        if(locals.searchResult.Receivers)
+                                            span(name="search-group" class="search-title") Получатели
+                                            each result in locals.searchResult.Receivers
+                                                div(name="search-target" role="receiver" id=result) #{result}
+
+                                        if(locals.searchResult.Themes)
+                                            span(name="search-group" class="search-title") Темы
+                                            each result in locals.searchResult.Themes
+                                                div(name="search-target" role="theme" id=result) #{result}
+
+                                        if(locals.searchResult.Texts)
+                                            span(name="search-group" class="search-title") Тексты
+                                            each result in locals.searchResult.Texts
+                                                div(name="search-target" role="text" id=result) #{result}
+
+                                    else
+                                        span(name="search-group" class="search-title-no")  Нет результатов
+                        div(id="add-folder-recived" class="block plus radius")
+
+                        if(locals.recivedFolderRecived)
+                            div(id="summary-recived" class="triangle-down")
+                        else
+                            div(id="summary-recived" class="triangle-right")
+                        a(id="recivedUn" class="titles-category") Входящие
+
+                        a(id="spamUn" class="block titles-category") Спам
+
+                        a(id="trashUn" class="block titles-category") Корзина
+
+                        if(locals.recivedFolderRecived)
+                            div(id="recived")
+                                if(locals.recivedFolder)
+                                  each folder in locals.recivedFolder
+                                      div(class="input-group")
+                                          div
+                                              input(class="folder-names" readonly value=folder.Name id=folder.Name)
+                                          div(class="icon-group" id="icon-group")
+                                              div(class="edit-button radius" id=folder.Name name="edit-folder")
+                                                  svg(id=folder.Name name="edit-folder" class="block" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 171 171" style=" fill:#000000;")
+                                                      g(id=folder.Name name="edit-folder" fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal")
+                                                          path(id=folder.Name name="edit-folder" d="M0,171.99852v-171.99852h171.99852v171.99852z" fill="none")
+                                                          g(id=folder.Name name="edit-folder" fill="#ffffff")
+                                                              path(id=folder.Name name="edit-folder" d="M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z")
+
+                                              div(class="small-plus radius cross" id=folder.Name name="delete-folder")
+
+                        div(class="horizontal")
+
+                        a(id="sendedUn" class="block titles-category") Отправленные
+
+            if(locals.letterColumn)
+                div(class="column large-4 tab-12 mob-12 main-container")
+
+                    a(id="back-to-folders") < Папки
+
+                    div(class="bricks-wrapper h-group main-columns project_scroll" name="letters")
+                        if(locals.selectFolder)
+                            each letter in locals.selectFolder
+                              article(id=letter.Id class="brick entry format-standard")
+                                  div(id=letter.Id class="entry__text")
+                                      div(id=letter.Id class="entry__header")
+                                          h1(id=letter.Id class="entry__title max-ch") #{letter.Theme}
+
+                                      if(letter.IsWatched)
+                                          div(id=letter.Id class="h-full-width watched")
+                                      else
+                                          div(id=letter.Id class="h-full-width not-watched")
+                                      div(id=letter.Id class="entry__excerpt")
+                                          p(id=letter.Id class="max-ch") Получатель: #{letter.Receiver}
+                                      div(id=letter.Id class="entry__excerpt")
+                                          p(id=letter.Id class="max-ch") Отправитель: #{letter.Sender}
+                                      div(id=letter.Id class="entry__excerpt")
+                                          p(id=letter.Id class="max-ch") #{letter.Text}
+
+                            div(class="block-update")
+                                if(locals.isNeedToPag)
+                                    if(locals.typeOfContent && locals.offset)
+                                        div(class="small-plus radius" title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
+
+            if(locals.oneLetterColumn)
+                div(class="column large-6 tab-12 mob-12 main-container")
+                    div(class="main-columns project_scroll")
+                        if(locals.buttonPlus && letter.Id !== undefined)
+                            div(class="letter-board")
+                                a(id="back-to-letters") < К папкам
+                                div(class="letter-board-small")
+                                    if(letter && letter.IsWatched)
+                                        a(style="margin-right: 10px;" id="unwatched") Непрочитано
+                                    div(id="button-remove-letter" class="delete-letter-button radius")
+                                        img(class="icon-trash" height="12px" width="12px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==")
+                                    div(id="button-form-add-letter-folder" class="small-plus radius")
+                                    if(letter.DirectoryRecv)
+                                        div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
+
+                            div(class="letter-container")
+                                h3(id=letter.Id name="title-of-current")
+                                    if(letter.DirectoryRecv)
+                                      span(id=letter.DirectoryRecv name="DirectoryRecv")
+                                    b(style="margin-right: 5px;") Тема:
+                                    span #{letter.Theme}
+                                div
+                                    b(style="margin-right: 5px;") Получатель:
+                                    span #{letter.Receiver}
+                                div
+                                    b(style="margin-right: 5px;") Отправитель:
+                                    span #{letter.Sender}
+                                div(class="lead") Текст:
+                                div(class="lead") Текст:
+                                  each strLine in locals.letterSplit
+                                      div #{strLine}
+
+
+    //форма добавления
+    div(class="form-add-folder-up hide")
+        div(id="remove-folder-recived" class="plus radius cross cross-modal")
+        form(name="button-of-recived-folder")
+            div(class="row")
+                input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
+                button(type="submit" class="btn btn--medium btn--primary h-full-width") Добавить
+
+    //форма добавления в папку
+    div(class="hide form-add-folder-up")
+        div(id="remove-form-add-folder-up" class="plus radius cross cross-modal")
+        form(id="choose-folder")
+            div(class="row")
+                select(name="inFolderName" class="h-full-width")
+                    option(value="Спам") Спам
+                    option(value="Корзина") Корзина
+                    if(locals.recivedFolder)
+                      each folder in locals.recivedFolder
+                          option(value=folder.Name) #{folder.Name}
+
+
+            div(class="row")
+                button(type="submit" class="btn h-full-width") Добавить

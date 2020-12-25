@@ -4,8 +4,9 @@ import { template as tmp } from './PugTemplates/ProfilePage.js';
 import Navbar from './NavbarView.js';
 
 export default class ProfileView {
-  constructor(element) {
+  constructor(element, title) {
     this.element = element;
+    this.title = title;
     // globalEventBus.on(Events.userModelEvents.profileGetData.success, this.render.bind(this));
     // globalEventBus.on(Events.userModelEvents.profileGetData.fail, this.showErrors.bind(this));
   }
@@ -15,6 +16,8 @@ export default class ProfileView {
      * @param {string} data - profile.css data in JSON format
      */
   render(data) {
+    this.title.text = 'Профиль';
+
     if (!data) {
       globalEventBus.emit(Events.profileViewEvents.needUserData);
       return;
@@ -29,7 +32,7 @@ export default class ProfileView {
 
     edit.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.global.redirect, { path: Paths.profileEdit, data });
+      globalEventBus.emit(Events.global.redirect, { path: Paths.profileEditPage, data });
     });
     backButton.addEventListener('click', (event) => {
       event.preventDefault();
@@ -38,6 +41,6 @@ export default class ProfileView {
   }
 
   static showErrors(errors) {
-    console.log('SHow Errors', errors);
+    console.log('Show Errors', errors);
   }
 }

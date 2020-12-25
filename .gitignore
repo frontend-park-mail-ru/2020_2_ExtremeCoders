@@ -4,7 +4,15 @@
 node_modules
 .idea
 
-/dist/
+static/
 
-src/Views/PugTemplates/*.js
-./src/Views/PugTemplates/BaseComponents/*.js
+css/
+
+navbar.js
+mainPage.js
+ProfileEditForm.js
+ProfilePage.js
+SendLetterForm.js
+SignInForm.js
+SignUpForm.js
+

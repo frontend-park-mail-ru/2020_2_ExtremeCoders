@@ -1,3 +1,19 @@
+import './Views/public/css/font.css';
+import './Views/public/css/color.css';
+import './Views/public/css/spacing.css';
+import './Views/public/css/grid.css';
+import './Views/public/css/properties.css';
+import './Views/public/css/blocks.css';
+import './Views/public/css/components/input.css';
+import './Views/public/css/components/title.css';
+import './Views/public/css/components/scroll.css';
+import './Views/public/css/components/button.css';
+import './Views/public/css/components/triangle.css';
+import './Views/public/css/components/header.css';
+import './Views/public/css/components/search.css';
+import './Views/public/css/base.css';
+import './Views/public/css/wrapper.css';
+
 import Router from './Views/Router.js';
 import SignInView from './Views/SignInView.js';
 import { Events, Paths } from './Constants.js';
@@ -17,16 +33,18 @@ import profileController from './Controllers/ProfileController.js';
 import signInController from './Controllers/SignInController.js';
 import signUpController from './Controllers/SignUpController.js';
 
-const router = new Router();
-const signInView = new SignInView(document.body);
-const signUpView = new SignUpView(document.body);
-const profileView = new ProfileView(document.body);
-const profileEditView = new ProfileEditView(document.body);
-const mainPageView = new MainPageView(document.body);
-const sendLetterView = new SendLetterView(document.body);
+const title = document.getElementsByTagName('title')[0];
 
-userModel.setUrl('http://localhost:8080');
-const letterModel = new LetterModel('http://localhost:8080');
+const router = new Router();
+const signInView = new SignInView(document.body, title);
+const signUpView = new SignUpView(document.body, title);
+const profileView = new ProfileView(document.body, title);
+const profileEditView = new ProfileEditView(document.body, title);
+const mainPageView = new MainPageView(document.body, title);
+const sendLetterView = new SendLetterView(document.body, title);
+
+userModel.setUrl(Paths.baseUrl);
+const letterModel = new LetterModel(Paths.baseUrl);
 
 mainPageController.setView(mainPageView);
 
@@ -39,50 +57,43 @@ profileEditController.setModel(userModel);
 profileController.setView(profileView);
 profileController.setModel(userModel);
 
-router.register(Paths.signIn, signInView);
-router.register(Paths.signUp, signUpView);
-router.register(Paths.profile, profileView);
-router.register(Paths.profileEdit, profileEditView);
-router.register(Paths.letters, mainPageView);
-router.register(Paths.sendLetter, sendLetterView);
+router.register(Paths.signInPage, signInView);
+router.register(Paths.signUpPage, signUpView);
+router.register(Paths.profilePage, profileView);
+router.register(Paths.profileEditPage, profileEditView);
+router.register(Paths.mainPage, mainPageView);
+router.register(Paths.sendLetterPage, sendLetterView);
 
-console.log(window.location.pathname);
 function initModels() {
   userModel.getUserData();
   const h1 = () => {
-    console.log('h1');
     globalEventBus.off(Events.userModelEvents.profileGetData.success, h1);
-    LetterModel.getFolders();
-  };
-
-  globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
-
-  const h2 = () => {
-    console.log('h2');
-    globalEventBus.off(Events.letterModelEvents.getFolderList.success, h2);
-    letterModel.getLetterList('Входящие');
-  };
-
-  globalEventBus.on(Events.letterModelEvents.getFolderList.success, h2);
-
-  const h3 = () => {
-    console.log('h3');
-    globalEventBus.off(Events.letterModelEvents.getLetterList.success, h3);
     try {
       router.start(window.location.pathname);
     } catch (err) {
-      console.log('CATCH PATH, err', err);
-      router.start(Paths.signIn);
+      router.start(Paths.signInPage);
     }
   };
-  globalEventBus.on(Events.letterModelEvents.getLetterList.success, h3);
+  globalEventBus.on(Events.userModelEvents.profileGetData.success, h1);
 
-  const h4 = () => {
-    globalEventBus.off(Events.userModelEvents.profileGetData.fail, h4);
-    console.log('h4');
-    router.start(Paths.signIn);
+  const h2 = () => {
+    globalEventBus.off(Events.userModelEvents.profileGetData.fail, h2);
+    router.start(Paths.signInPage);
   };
-  globalEventBus.on(Events.userModelEvents.profileGetData.fail, h4);
+  globalEventBus.on(Events.userModelEvents.profileGetData.fail, h2);
+
 }
 
 initModels();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Успешная регистрация
+      console.log('[SW] ServiceWorker registration successful! Scope:', registration.scope);
+    }, function(err) {
+      // При регистрации произошла ошибка
+      console.log('[SW] Na ja! Das ist nicht arbeiten! No SW! :() ', err);
+    });
+  });
+}

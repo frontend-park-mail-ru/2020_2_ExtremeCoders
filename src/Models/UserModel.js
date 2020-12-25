@@ -19,16 +19,18 @@ class UserModel {
   }
 
   signIn(data) {
-    console.log('SIGN IN');
     const errors = validator.checkSignInForm(data.data);
     if (Object.keys(errors).length !== 0) {
-      console.log('ERRORS IN SIGN IN ', errors);
       globalEventBus.emit(Events.userModelEvents.signIn.fail,
         errors);
       return;
     }
-    console.log('SIGN IN ', data, this.baseUrl + Paths.signIn);
-    myFetch(Paths.signIn, 'POST', data.data)
+
+    let shortLogin = data.data.get('email');
+    shortLogin += '@mailer.ru.com';
+    data.data.set('email', shortLogin);
+
+    myFetch(Paths.signInServ, 'POST', data.data)
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
@@ -60,16 +62,18 @@ class UserModel {
   signUp(data) {
     const errors = validator.checkSignUpForm(data.data);
     if (Object.keys(errors).length !== 0) {
-      console.log('ERRORS IN SIGN UP ', errors);
       globalEventBus.emit(Events.userModelEvents.signUp.fail,
         errors);
       return;
     }
 
-    myFetch(Paths.signUp, 'POST', data.data)
+    let shortEmail = data.data.get('email');
+    shortEmail += '@mailer.ru.com';
+    data.data.set('email', shortEmail);
+
+    myFetch(Paths.signUpServ, 'POST', data.data)
       .then((response) => response.json())
       .then((response) => {
-        console.log('RESP SIGN UP UP', response.Code, response);
         if (response.Code === 200) {
           const h = () => {
             globalEventBus.off(Events.userModelEvents.profileGetData.success, h);
@@ -89,10 +93,21 @@ class UserModel {
   }
 
   editUser(data) {
-    myFetch(Paths.profile, 'POST', data.data)
+    const name = data.data.get('profile_firstName');
+    if (name === '') {
+      data.data.set('profile_firstName', data.tmpData.name);
+    }
+    const surname = data.data.get('profile_lastName');
+    if (surname === '') {
+      data.data.set('profile_lastName', data.tmpData.name);
+    }
+    const avatar = data.data.get('avatar');
+    if (avatar.name === '') {
+      data.data.delete('avatar');
+    }
+    myFetch(Paths.editUserServ, 'PUT', data.data)
       .then((response) => response.json())
       .then((response) => {
-        console.log('RESP SIGN UP UP', response.Code, response);
         if (response.Code === 200) {
           this.getUserData(Events.userModelEvents.profileEdit);
           const h1 = () => {
@@ -112,10 +127,9 @@ class UserModel {
   }
 
   getUserData() {
-    const p1 = myFetch(Paths.profile, 'GET')
+    const p1 = myFetch(Paths.getUserData, 'GET')
       .then((response) => response.json())
       .then((response) => {
-        console.log('RESP GET USER DATA', response.status, response);
         if (response.Code === 200) {
           this.user.name = response.User.Name;
           this.user.email = response.User.Email;
@@ -129,14 +143,15 @@ class UserModel {
     const p2 = myFetch(Paths.getAvatar, 'GET')
       .then((response) => response.blob())
       .then((myBlob) => {
-        console.log('BLOB', myBlob);
         this.user.avatar = URL.createObjectURL(myBlob);
       });
 
+    // function p2() {
+    //   console.log('Мок аватарки');
+    // }
+
     Promise.all([p1, p2]).then(
       () => {
-        console.log('УСПЕХ');
-        console.log('USER', this.user);
         globalEventBus.emit(Events.userModelEvents.profileGetData.success, this.user);
       },
       (error) => {
@@ -148,18 +163,12 @@ class UserModel {
   }
 
   logout() {
-    console.log('LOGOUT');
     globalEventBus.emit(Events.global.redirect, {
-      path: Paths.signIn,
+      path: Paths.signInPage,
     });
     this.user = {};
-    fetch(this.baseUrl + Paths.logout,
-      {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-      });
+    myFetch(Paths.logoutServ, 'DELETE');
   }
 }
 
-export default new UserModel('http://localhost:8080');
+export default new UserModel(Paths.baseUrl);

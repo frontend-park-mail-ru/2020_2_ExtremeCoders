@@ -1,0 +1,94 @@
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button, input {
+  overflow: visible;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+.plus {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+
+  background:
+          linear-gradient(#fff,#fff),
+          linear-gradient(#fff,#fff),
+          #000;
+  background-position: center;
+  background-size: 50% 2px,2px 50%;
+  background-repeat: no-repeat;
+
+  margin-bottom: 10px;
+}
+
+.small-plus {
+  width: 20px;
+  height: 20px;
+
+  background:
+          linear-gradient(#fff,#fff),
+          linear-gradient(#fff,#fff),
+          #000;
+  background-position: center;
+  background-size: 50% 2px,2px 50%;
+  background-repeat: no-repeat;
+
+  margin-left: 5px;
+}
+
+.radius {
+  border-radius:50%;
+}
+
+.cross {
+  transform: rotate(-45deg);
+}
+.cross-modal {
+  margin-left: 20px;
+}
+
+.edit-button {
+  width: 20px;
+  height: 20px;
+  background: #000;
+  padding-left: 4px;
+  padding-top: 5px;
+}
+
+.delete-letter-button {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background: #000;
+}
+
+.block-update {
+  display: flex;
+  justify-content: center;
+}
