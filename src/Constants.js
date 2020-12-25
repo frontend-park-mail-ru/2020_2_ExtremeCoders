@@ -262,6 +262,12 @@ const Paths = {
   resultSearch: '/api/letter/by/',
 };
 
+const SW = {
+    offlineMsg = 'У вас нет Интернета и Google Dino! :(',
+    cacheName = 'ec-cache-v1'
+}
+
+
 // логин post /session
 // логаут delete /session
 // регистрация post /user
@@ -272,4 +278,4 @@ const Paths = {
 // получение полученных писем get /sendedLetters
 // отправка письма post /letter
 
-export { Events, Paths };
+export { Events, Paths, SW };
