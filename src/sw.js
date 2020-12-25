@@ -75,7 +75,7 @@ self.addEventListener('fetch', function(event) {
 });
 
 
-handleNoConn = err => {
+handleNoConn = error => {
     console.warn('[SW] Constructing a fallback response, due to access to PWA on reload:', error);
     const fallbackResponse = {
         Description: 'У вас нет Интернета и Google Dino! :(', 
