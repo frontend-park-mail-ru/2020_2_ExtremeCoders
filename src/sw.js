@@ -1,4 +1,4 @@
-import { SW } from './Constants.js';
+const OFFLINE_MSG = 'У вас нет Интернета и Google Dino! :(';
 
 self.addEventListener('install', function(event) {});
 
@@ -66,7 +66,7 @@ self.addEventListener('fetch', function(event) {
 handleNoConn = error => {
     console.warn('[SW] Constructing a fallback response, due to access to PWA on reload:', error);
     const fallbackResponse = {
-        Description: SW.offlineMsg, 
+        Description: OFFLINE_MSG, 
         Code: 404
     };
     return new Response(JSON.stringify(fallbackResponse), {
