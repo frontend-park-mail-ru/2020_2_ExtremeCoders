@@ -164,9 +164,6 @@ export default class MainPageView {
       const current = currentName.id;
       const chooseFolderData = new FormData();
 
-      const type = 'received';
-      const method = 'PUT';
-
       if (folder === 'Спам') {
         chooseFolderData.append('lid', current);
         globalEventBus.emit(Events.mainPageView.inSpam, chooseFolderData);
@@ -179,7 +176,7 @@ export default class MainPageView {
       }
       chooseFolderData.append('letterId', current);
       chooseFolderData.append('folderName', folder);
-      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
+      globalEventBus.emit(Events.mainPageView.inFolder, chooseFolderData);
     });
 
     const deleteFolder = document?.getElementById('delete-folder');
