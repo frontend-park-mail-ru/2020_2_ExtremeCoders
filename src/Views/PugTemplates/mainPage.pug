@@ -9,9 +9,13 @@ if(locals.screenWidth > 800)
 
                     a(id="recivedUn" class="titles-category") Входящие
 
+                    a(id="sendedUn" class="block titles-category") Отправленные
+
                     a(id="spamUn" class="block titles-category") Спам
 
                     a(id="trashUn" class="block titles-category") Корзина
+
+                    div(class="horizontal")
 
                     if(locals.recivedFolderRecived)
                         div(id="recived")
@@ -29,10 +33,6 @@ if(locals.screenWidth > 800)
                                                             path(id=folder.Name name="edit-folder" d="M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z")
 
                                             div(class="small-plus radius cross" id=folder.Name name="delete-folder")
-
-                    div(class="horizontal")
-
-                    a(id="sendedUn" class="block titles-category") Отправленные
 
             div(class="column large-4 tab-12 mob-12 main-container")
                 div(class="bricks-wrapper h-group main-columns project_scroll" name="letters")
@@ -94,9 +94,9 @@ if(locals.screenWidth > 800)
                                  div(id=letter.Id class="entry__excerpt" data-iswatched=letter.IsWatched.toString())
                                      p(id=letter.Id class="max-ch" data-iswatched=letter.IsWatched.toString()) #{letter.Text}
 
-                      div(class="block-update")
-                            if(locals.typeOfContent && locals.offset)
-                                 div(class="small-plus radius" data-what=locals.whatOfContent title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
+                      if(locals.selectFolder.length > 0)
+                          div(class="block-update")
+                            div(class="small-plus radius" data-what=locals.whatOfContent title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 
 
             div(class="column large-6 tab-12 mob-12 main-container")
@@ -111,12 +111,14 @@ if(locals.screenWidth > 800)
                                     img(class="icon-trash" height="12px" width="12px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==")
 
                             div(id="button-form-add-letter-folder" class="small-plus radius")
-                            if(letter.DirectoryRecv)
-                                div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
+                            if(letter.DirectoryRecv > 0)
+                                div(id="delete-folder" class="empty-button-space letter-board-last-element")
+                            else
+                                div(class="empty-button-space letter-board-last-element")
 
                         div(class="letter-container")
                             h3(id=letter.Id name="title-of-current")
-                                if(letter.DirectoryRecv)
+                                if(letter.DirectoryRecv > 0)
                                     span(id=letter.DirectoryRecv name="DirectoryRecv")
                                 b(style="margin-right: 5px;") Тема:
                                 span #{letter.Theme}
@@ -136,7 +138,7 @@ if(locals.screenWidth > 800)
         div(id="remove-folder-recived" class="plus radius cross cross-modal")
         form(name="button-of-recived-folder")
             div(class="row")
-                input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
+                input(name="folderName" type="text" class="h-full-width" placeholder="Добавить метку" value="" autocomplete="off" required)
                 button(type="submit" class="btn btn--medium btn--primary h-full-width") Добавить
 
     //форма добавления в папку
@@ -145,8 +147,17 @@ if(locals.screenWidth > 800)
         form(id="choose-folder")
             div(class="row")
                 select(name="inFolderName" class="h-full-width")
-                    option(value="Спам") Спам
-                    option(value="Корзина") Корзина
+
+                    if(letter.Spam)
+                        option(value="Спам") Убрать из спама
+                    else
+                        option(value="Спам") Спам
+
+                    if(letter.Box)
+                        option(value="Корзина") Убрать из корзины
+                    else
+                        option(value="Корзина") Корзина
+
                     if(locals.recivedFolder)
                         each folder in locals.recivedFolder
                             option(value=folder.Name) #{folder.Name}
@@ -200,9 +211,13 @@ else
 
                         a(id="recivedUn" class="titles-category") Входящие
 
+                        a(id="sendedUn" class="block titles-category") Отправленные
+
                         a(id="spamUn" class="block titles-category") Спам
 
                         a(id="trashUn" class="block titles-category") Корзина
+
+                        div(class="horizontal")
 
                         if(locals.recivedFolderRecived)
                             div(id="recived")
@@ -220,10 +235,6 @@ else
                                                               path(id=folder.Name name="edit-folder" d="M137.71556,66.0345l8.6925,-8.6925c9.02738,-9.02737 9.02738,-23.71913 0,-32.75006c-4.37119,-4.36762 -10.18162,-6.76875 -16.37681,-6.76875c-6.19519,0 -12.00919,2.40469 -16.37681,6.77231l-8.68894,8.68894zM97.40944,40.8405l-64.37081,64.37081c-1.37156,1.37156 -2.41538,3.06375 -3.021,4.89844l-11.93437,36.05606c-0.63769,1.91662 -0.13538,4.02919 1.29319,5.45775c1.02244,1.01887 2.38331,1.56394 3.77981,1.56394c0.56288,0 1.12931,-0.08906 1.6815,-0.27075l36.04538,-11.93794c1.84181,-0.60563 3.53756,-1.64944 4.90912,-3.02456l64.36725,-64.36725z")
 
                                               div(class="small-plus radius cross" id=folder.Name name="delete-folder")
-
-                        div(class="horizontal")
-
-                        a(id="sendedUn" class="block titles-category") Отправленные
 
             if(locals.letterColumn)
                 div(class="column large-4 tab-12 mob-12 main-container")
@@ -253,9 +264,9 @@ else
                                       div(id=letter.Id class="entry__excerpt" data-iswatched=letter.IsWatched.toString())
                                           p(id=letter.Id class="max-ch" data-iswatched=letter.IsWatched.toString()) #{letter.Text}
 
-                            div(class="block-update")
-                                    if(locals.typeOfContent && locals.offset)
-                                        div(class="small-plus radius" data-what=locals.whatOfContent title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
+                            if(locals.selectFolder.length > 0)
+                                div(class="block-update" style="margin-bottom: 30px;")
+                                    div(class="small-plus radius" data-what=locals.whatOfContent title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 
             if(locals.oneLetterColumn)
                 div(class="column large-6 tab-12 mob-12 main-container")
@@ -272,12 +283,12 @@ else
                                             img(class="icon-trash" height="12px" width="12px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==")
 
                                     div(id="button-form-add-letter-folder" class="small-plus radius")
-                                    if(letter.DirectoryRecv)
+                                    if(letter.DirectoryRecv > 0)
                                         div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
 
                             div(class="letter-container")
                                 h3(id=letter.Id name="title-of-current")
-                                    if(letter.DirectoryRecv)
+                                    if(letter.DirectoryRecv > 0)
                                       span(id=letter.DirectoryRecv name="DirectoryRecv")
                                     b(style="margin-right: 5px;") Тема:
                                     span #{letter.Theme}
@@ -297,7 +308,7 @@ else
         div(id="remove-folder-recived" class="plus radius cross cross-modal")
         form(name="button-of-recived-folder")
             div(class="row")
-                input(name="folderName" type="text" class="h-full-width" placeholder="Добавить папку" value="" autocomplete="off" required)
+                input(name="folderName" type="text" class="h-full-width" placeholder="Добавить метку" value="" autocomplete="off" required)
                 button(type="submit" class="btn btn--medium btn--primary h-full-width") Добавить
 
     //форма добавления в папку
@@ -306,8 +317,17 @@ else
         form(id="choose-folder")
             div(class="row")
                 select(name="inFolderName" class="h-full-width")
-                    option(value="Спам") Спам
-                    option(value="Корзина") Корзина
+
+                    if(letter.Spam)
+                        option(value="Спам") Убрать из спама
+                    else
+                        option(value="Спам") Спам
+
+                    if(letter.Box)
+                        option(value="Корзина") Убрать из корзины
+                    else
+                        option(value="Корзина") Корзина
+
                     if(locals.recivedFolder)
                       each folder in locals.recivedFolder
                           option(value=folder.Name) #{folder.Name}

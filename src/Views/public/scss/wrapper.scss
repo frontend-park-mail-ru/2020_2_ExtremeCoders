@@ -546,6 +546,12 @@ form {
     width: 100%;
 }
 
+//@media screen and (max-width: 800px) {
+//    .main-container {
+//        height: calc(100vh - 200px);
+//    }
+//}
+
 .letter-board {
     position: fixed;
     background: var(--color-body);
