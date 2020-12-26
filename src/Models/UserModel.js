@@ -99,7 +99,7 @@ class UserModel {
     }
     const surname = data.data.get('profile_lastName');
     if (surname === '') {
-      data.data.set('profile_lastName', data.tmpData.name);
+      data.data.set('profile_lastName', data.tmpData.surname);
     }
     const avatar = data.data.get('avatar');
     if (avatar.name === '') {

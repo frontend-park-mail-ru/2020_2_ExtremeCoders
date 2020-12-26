@@ -269,6 +269,7 @@ class MainPageController {
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
+        this.data.searchResult = false;
         this.data.isNeedToPag = true;
         this.mainPageView.render(this.data);
       };

@@ -37,7 +37,7 @@ if(locals.screenWidth > 800)
             div(class="column large-4 tab-12 mob-12 main-container")
                 div(class="bricks-wrapper h-group main-columns project_scroll" name="letters")
 
-                    div(name="search-group" class="search-block")
+                    div(name="search-group" class="search-block" style="margin-bottom: 10px;")
                         if(locals.similar && locals.similar !== '')
                             input(id="search-input" name="search-group" type="text" class="h-full-width search-input" value=locals.similar autocomplete="off" style="background: #282828; color: white;")
                         else
