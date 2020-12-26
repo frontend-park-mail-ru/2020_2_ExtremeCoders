@@ -162,8 +162,8 @@ class MainPageController {
       globalEventBus.on(Events.letterModelEvents.sendWrittenLetter.success, h);
     });
 
-    globalEventBus.on(Events.mainPageView.inFolder, (data) => {
-      globalEventBus.emit(Events.mainPageController.inFolder, data);
+    globalEventBus.on(Events.mainPageView.inFolder, (data, folder) => {
+      globalEventBus.emit(Events.mainPageController.inFolder, data, folder);
       const h = () => {
         globalEventBus.off(Events.letterModelEvents.inFolder.success, h);
         this.data.letter = {};

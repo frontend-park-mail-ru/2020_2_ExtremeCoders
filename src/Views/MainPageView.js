@@ -191,10 +191,7 @@ export default class MainPageView {
       const chooseFolderData = new FormData();
       chooseFolderData.append('letterId', current);
 
-      const type = 'received';
-      const method = 'DELETE';
-
-      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type, folderId);
+      globalEventBus.emit(Events.mainPageView.inFolder, chooseFolderData, folderId);
     });
 
     const deleteLetter = document?.getElementById('button-remove-letter');
@@ -245,6 +242,8 @@ export default class MainPageView {
     const addMore = document?.getElementsByName('add-more')[0];
     addMore?.addEventListener('click', (event) => {
       event.preventDefault();
+      // window.location.pathname += '#38';
+      console.log(window.location.pathname);
       const typeOfContent = addMore.getAttribute('role');
       const offset = +addMore.id;
       if (typeOfContent === 'recivedUn') {
