@@ -101,12 +101,15 @@ if(locals.screenWidth > 800)
 
             div(class="column large-6 tab-12 mob-12 main-container")
                 div(class="main-columns project_scroll")
-                    if(locals.buttonPlus && letter)
+                    if(letter.Id)
                         div(class="letter-board")
                             if(letter && letter.IsWatched)
                                 a(style="margin-right: 10px;" id="unwatched") Непрочитано
-                            div(id="button-remove-letter" class="delete-letter-button radius")
-                                img(class="icon-trash" height="12px" width="12px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==")
+
+                            if(letter.Spam || letter.Box)
+                                div(id="button-remove-letter" class="delete-letter-button radius")
+                                    img(class="icon-trash" height="12px" width="12px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==")
+
                             div(id="button-form-add-letter-folder" class="small-plus radius")
                             if(letter.DirectoryRecv)
                                 div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
@@ -123,7 +126,7 @@ if(locals.screenWidth > 800)
                             div
                                 b(style="margin-right: 5px;") Отправитель:
                                 span #{letter.Sender}
-                            div(class="lead") Текст:
+                            div(class="horizontal")
                               each strLine in locals.letterSplit
                                  div #{strLine}
 
@@ -241,12 +244,12 @@ else
                                           div(id=letter.Id class="h-full-width not-watched" data-iswatched=letter.IsWatched.toString())
                                       div(id=letter.Id class="entry__excerpt" data-iswatched=letter.IsWatched.toString())
                                           p(id=letter.Id class="max-ch" data-iswatched=letter.IsWatched.toString())
-                                            b(style="margin-right: 8px;" data-iswatched=letter.IsWatched.toString()) Получатель:
-                                            span(data-iswatched=letter.IsWatched.toString()) #{letter.Receiver}
+                                            b(id=letter.Id style="margin-right: 8px;" data-iswatched=letter.IsWatched.toString()) Получатель:
+                                            span(id=letter.Id data-iswatched=letter.IsWatched.toString()) #{letter.Receiver}
                                       div(id=letter.Id class="entry__excerpt" data-iswatched=letter.IsWatched.toString())
                                           p(id=letter.Id class="max-ch" data-iswatched=letter.IsWatched.toString())
-                                            b(style="margin-right: 8px;" data-iswatched=letter.IsWatched.toString()) Отправитель:
-                                            span(data-iswatched=letter.IsWatched.toString()) #{letter.Sender}
+                                            b(id=letter.Id style="margin-right: 8px;" data-iswatched=letter.IsWatched.toString()) Отправитель:
+                                            span(id=letter.Id data-iswatched=letter.IsWatched.toString()) #{letter.Sender}
                                       div(id=letter.Id class="entry__excerpt" data-iswatched=letter.IsWatched.toString())
                                           p(id=letter.Id class="max-ch" data-iswatched=letter.IsWatched.toString()) #{letter.Text}
 
@@ -257,14 +260,17 @@ else
             if(locals.oneLetterColumn)
                 div(class="column large-6 tab-12 mob-12 main-container")
                     div(class="main-columns project_scroll")
-                        if(locals.buttonPlus && letter.Id !== undefined)
+                        if(letter.Id)
                             div(class="letter-board")
                                 a(id="back-to-letters") < К папкам
                                 div(class="letter-board-small")
                                     if(letter && letter.IsWatched)
                                         a(style="margin-right: 10px;" id="unwatched") Непрочитано
-                                    div(id="button-remove-letter" class="delete-letter-button radius")
-                                        img(class="icon-trash" height="12px" width="12px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==")
+
+                                    if(letter.Spam || letter.Box)
+                                        div(id="button-remove-letter" class="delete-letter-button radius")
+                                            img(class="icon-trash" height="12px" width="12px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAmklEQVRIie2VMQoCMRBF/1c8hFcUwc5C8ABewMstbGVhZy0Iz2YDIbvuxjWyTX41mWT+G4aBSBMC9kBLXzfgCHjKY8x8N2Cc6vALoOlMTsAmyq+Bc3fXjHk4KmJ2J0PGtiVpVdJ0EfU2oMCotrbv4fD3ES0LCJuQG38NKKEKqIAKqICZgGcI4r8hJ07rPwEu6aNMvSRdbT/i5BtRtIPz+Hl+WgAAAABJRU5ErkJggg==")
+
                                     div(id="button-form-add-letter-folder" class="small-plus radius")
                                     if(letter.DirectoryRecv)
                                         div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
@@ -281,8 +287,7 @@ else
                                 div
                                     b(style="margin-right: 5px;") Отправитель:
                                     span #{letter.Sender}
-                                div(class="lead") Текст:
-                                div(class="lead") Текст:
+                                div(class="horizontal")
                                   each strLine in locals.letterSplit
                                       div #{strLine}
 

@@ -126,11 +126,11 @@ export default class MainPageView {
       if (event.target.getAttribute('name') === 'add-more') {
         return;
       }
+      const isWatch = document?.getElementById(event.target.id);
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
       const id = new FormData();
       id.append('id', event.target.id);
-      const isWatch = document?.getElementById(event.target.id);
-      if(isWatch?.getAttribute('data-iswatched') === 'false') {
+      if (isWatch?.getAttribute('data-iswatched') === 'false') {
         globalEventBus.emit(Events.mainPageView.sendWrittenLetter, id);
       }
     });

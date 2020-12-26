@@ -62,6 +62,7 @@ class MainPageController {
         this.data.offset = offset;
         this.data.offset += 5;
         this.data.typeOfContent = 'selectFolder';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
@@ -77,6 +78,7 @@ class MainPageController {
         this.data.oneLetterColumn = false;
         this.data.offset = 0;
         this.data.nameOfFolder = '';
+        this.data.letter = {};
         this.data.isNeedToPag = false;
         this.mainPageView.render(this.data);
       };
@@ -96,6 +98,7 @@ class MainPageController {
         this.data.offset = offset;
         this.data.offset += 5;
         this.data.typeOfContent = 'recivedUn';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
@@ -117,6 +120,7 @@ class MainPageController {
         this.data.offset = offset;
         this.data.offset += 5;
         this.data.typeOfContent = 'sendedUn';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
@@ -191,7 +195,7 @@ class MainPageController {
       globalEventBus.emit(Events.mainPageController.deleteLetter, deleteName);
       const h = (deleteVar) => {
         globalEventBus.off(Events.letterModelEvents.deleteLetter.success, h);
-        this.data.letter = null;
+        this.data.letter = {};
         this.data.selectFolder.forEach((letter) => {
           if (letter.Id === +deleteVar.get('id')) {
             const index = this.data.selectFolder.indexOf(letter);
@@ -250,6 +254,7 @@ class MainPageController {
         this.data.offset = skip;
         this.data.offset += 5;
         this.data.typeOfContent = 'search';
+        this.data.letter = {};
         this.data.whatOfContent = what;
         this.data.nameOfFolder = value;
         this.data.folderColumn = false;
@@ -273,6 +278,7 @@ class MainPageController {
         this.data.offset = skip;
         this.data.offset += 5;
         this.data.typeOfContent = 'spamUn';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
@@ -294,6 +300,7 @@ class MainPageController {
         this.data.offset = skip;
         this.data.offset += 5;
         this.data.typeOfContent = 'trashUn';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
