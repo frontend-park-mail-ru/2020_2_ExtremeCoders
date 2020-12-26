@@ -129,9 +129,10 @@ export default class MainPageView {
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
       const id = new FormData();
       id.append('id', event.target.id);
-      // const isWatch = document?.getElementById(event.target.id);
-      // console.log('ID!!!', isWatch.getAttribute('name'));
-      globalEventBus.emit(Events.mainPageView.sendWrittenLetter, id);
+      const isWatch = document?.getElementById(event.target.id);
+      if(isWatch?.getAttribute('data-iswatched') === 'false') {
+        globalEventBus.emit(Events.mainPageView.sendWrittenLetter, id);
+      }
     });
 
     const recivedUn = document?.getElementById('recivedUn');
@@ -240,7 +241,7 @@ export default class MainPageView {
       if (event.target.getAttribute('name') === 'search-target') {
         const what = event.target.getAttribute('role');
         const value = event.target.id;
-        globalEventBus.emit(Events.mainPageView.resultSearch, what, value);
+        globalEventBus.emit(Events.mainPageView.resultSearch, what, value, 0);
       }
     });
 
@@ -260,6 +261,11 @@ export default class MainPageView {
       }
       if (typeOfContent === 'trashUn') {
         globalEventBus.emit(Events.mainPageView.trashUn, offset);
+      }
+      if (typeOfContent === 'search') {
+        const name = addMore.getAttribute('title');
+        const what = addMore.getAttribute('data-what');
+        globalEventBus.emit(Events.mainPageView.resultSearch, what, name, offset);
       }
       if (typeOfContent === 'selectFolder') {
         const name = addMore.getAttribute('title');

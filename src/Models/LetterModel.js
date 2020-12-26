@@ -329,8 +329,8 @@ export default class LetterModel {
       });
   }
 
-  resultSearch(what, value) {
-    myFetch(Paths.resultSearch + what + '/' + value, 'GET')
+  resultSearch(what, value, offset) {
+    myFetch(Paths.resultSearch + what + '/' + value + '/5/' + offset.toString(), 'GET')
       .then((response) => response.json())
       .then((response) => {
         if (response) {
@@ -340,7 +340,7 @@ export default class LetterModel {
               this.selectFolder.push(letter);
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.resultSearch.success, this.selectFolder);
+          globalEventBus.emit(Events.letterModelEvents.resultSearch.success, this.selectFolder, offset);
         } else {
           globalEventBus.emit(Events.letterModelEvents.resultSearch.fail, {
             error: response.Description,

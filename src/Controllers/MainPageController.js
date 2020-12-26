@@ -17,6 +17,7 @@ class MainPageController {
     this.data.selectFolder = [];
     this.data.letter = {};
     this.data.isNeedToPag = true;
+    this.data.whatOfContent = '';
 
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
       this.data.selectFolder.forEach((letter) => {
@@ -237,16 +238,24 @@ class MainPageController {
       globalEventBus.on(Events.letterModelEvents.startSearch.fail, h1);
     });
 
-    globalEventBus.on(Events.mainPageView.resultSearch, (what, value) => {
-      globalEventBus.emit(Events.mainPageController.resultSearch, what, value);
-      const h = (data) => {
+    globalEventBus.on(Events.mainPageView.resultSearch, (what, value, offset) => {
+      globalEventBus.emit(Events.mainPageController.resultSearch, what, value, offset);
+      const h = (data, skip) => {
         globalEventBus.off(Events.letterModelEvents.resultSearch.success, h);
-        this.data.searchResult.res = false;
+        if (skip === 0) {
+          this.data.selectFolder = data;
+        } else {
+          this.data.selectFolder = this.data.selectFolder.concat(data);
+        }
+        this.data.offset = skip;
+        this.data.offset += 5;
+        this.data.typeOfContent = 'search';
+        this.data.whatOfContent = what;
+        this.data.nameOfFolder = value;
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.selectFolder = data;
-        this.data.isNeedToPag = false;
+        this.data.isNeedToPag = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.resultSearch.success, h);
