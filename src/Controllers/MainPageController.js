@@ -252,29 +252,43 @@ class MainPageController {
       globalEventBus.on(Events.letterModelEvents.resultSearch.success, h);
     });
 
-    globalEventBus.on(Events.mainPageView.spamUn, () => {
-      globalEventBus.emit(Events.mainPageController.spamUn);
-      const h = (data) => {
+    globalEventBus.on(Events.mainPageView.spamUn, (offset) => {
+      globalEventBus.emit(Events.mainPageController.spamUn, offset);
+      const h = (data, skip) => {
         globalEventBus.off(Events.letterModelEvents.spamUn.success, h);
+        if (skip === 0) {
+          this.data.selectFolder = data;
+        } else {
+          this.data.selectFolder = this.data.selectFolder.concat(data);
+        }
+        this.data.offset = skip;
+        this.data.offset += 5;
+        this.data.typeOfContent = 'spamUn';
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.selectFolder = data;
-        this.data.isNeedToPag = false;
+        this.data.isNeedToPag = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.spamUn.success, h);
     });
 
-    globalEventBus.on(Events.mainPageView.trashUn, () => {
-      globalEventBus.emit(Events.mainPageController.trashUn);
-      const h = (data) => {
+    globalEventBus.on(Events.mainPageView.trashUn, (offset) => {
+      globalEventBus.emit(Events.mainPageController.trashUn, offset);
+      const h = (data, skip) => {
         globalEventBus.off(Events.letterModelEvents.trashUn.success, h);
+        if (skip === 0) {
+          this.data.selectFolder = data;
+        } else {
+          this.data.selectFolder = this.data.selectFolder.concat(data);
+        }
+        this.data.offset = skip;
+        this.data.offset += 5;
+        this.data.typeOfContent = 'trashUn';
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.selectFolder = data;
-        this.data.isNeedToPag = false;
+        this.data.isNeedToPag = true;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.trashUn.success, h);

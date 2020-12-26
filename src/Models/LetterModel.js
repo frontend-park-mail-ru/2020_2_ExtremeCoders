@@ -354,8 +354,8 @@ export default class LetterModel {
       });
   }
 
-  spamUn() {
-    myFetch(Paths.resultSearch + 'spam/true', 'GET')
+  spamUn(offset) {
+    myFetch(Paths.resultSearch + 'spam/true' + '/5/' + offset.toString(), 'GET')
       .then((response) => response.json())
       .then((response) => {
         if (response) {
@@ -365,7 +365,7 @@ export default class LetterModel {
               this.selectFolder.push(letter);
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.spamUn.success, this.selectFolder);
+          globalEventBus.emit(Events.letterModelEvents.spamUn.success, this.selectFolder, offset);
         } else {
           globalEventBus.emit(Events.letterModelEvents.spamUn.fail, {
             error: response.Description,
@@ -379,8 +379,8 @@ export default class LetterModel {
       });
   }
 
-  trashUn() {
-    myFetch(Paths.resultSearch + 'box/true', 'GET')
+  trashUn(offset) {
+    myFetch(Paths.resultSearch + 'box/true' + '/5/' + offset.toString(), 'GET')
       .then((response) => response.json())
       .then((response) => {
         if (response) {
@@ -390,7 +390,7 @@ export default class LetterModel {
               this.selectFolder.push(letter);
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.trashUn.success, this.selectFolder);
+          globalEventBus.emit(Events.letterModelEvents.trashUn.success, this.selectFolder, offset);
         } else {
           globalEventBus.emit(Events.letterModelEvents.trashUn.fail, {
             error: response.Description,

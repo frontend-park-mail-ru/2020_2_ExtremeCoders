@@ -129,6 +129,8 @@ export default class MainPageView {
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
       const id = new FormData();
       id.append('id', event.target.id);
+      // const isWatch = document?.getElementById(event.target.id);
+      // console.log('ID!!!', isWatch.getAttribute('name'));
       globalEventBus.emit(Events.mainPageView.sendWrittenLetter, id);
     });
 
@@ -253,6 +255,12 @@ export default class MainPageView {
       if (typeOfContent === 'sendedUn') {
         globalEventBus.emit(Events.mainPageView.sendedUn, offset);
       }
+      if (typeOfContent === 'spamUn') {
+        globalEventBus.emit(Events.mainPageView.spamUn, offset);
+      }
+      if (typeOfContent === 'trashUn') {
+        globalEventBus.emit(Events.mainPageView.trashUn, offset);
+      }
       if (typeOfContent === 'selectFolder') {
         const name = addMore.getAttribute('title');
         globalEventBus.emit(Events.mainPageView.selectFolder, name, 'received', offset);
@@ -262,13 +270,13 @@ export default class MainPageView {
     const spamUn = document?.getElementById('spamUn');
     spamUn?.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.mainPageView.spamUn);
+      globalEventBus.emit(Events.mainPageView.spamUn, 0);
     });
 
     const trashUn = document?.getElementById('trashUn');
     trashUn?.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.mainPageView.trashUn);
+      globalEventBus.emit(Events.mainPageView.trashUn, 0);
     });
 
     const unWatched = document?.getElementById('unwatched');

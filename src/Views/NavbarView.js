@@ -25,21 +25,33 @@ class NavbarView {
 
     sendLetterHref.addEventListener('click', (event) => {
       event.preventDefault();
+      if (siteBody.classList.contains('nav-wrap-is-visible')) {
+        siteBody.classList.remove('nav-wrap-is-visible');
+      }
       globalEventBus.emit(Events.global.redirect, { path: Paths.sendLetterPage });
     });
 
     profileHref.addEventListener('click', (event) => {
       event.preventDefault();
+      if (siteBody.classList.contains('nav-wrap-is-visible')) {
+        siteBody.classList.remove('nav-wrap-is-visible');
+      }
       globalEventBus.emit(Events.global.redirect, { path: Paths.profilePage });
     });
 
     logoutHref.addEventListener('click', (event) => {
       event.preventDefault();
+      if (siteBody.classList.contains('nav-wrap-is-visible')) {
+        siteBody.classList.remove('nav-wrap-is-visible');
+      }
       globalEventBus.emit(Events.global.logout);
     });
 
     lettersHref.addEventListener('click', (event) => {
       event.preventDefault();
+      if (siteBody.classList.contains('nav-wrap-is-visible')) {
+        siteBody.classList.remove('nav-wrap-is-visible');
+      }
       globalEventBus.emit(Events.global.redirect, { path: Paths.mainPage });
     });
 
