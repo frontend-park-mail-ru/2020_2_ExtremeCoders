@@ -81,10 +81,43 @@ function initModels() {
     router.start(Paths.signInPage);
   };
   globalEventBus.on(Events.userModelEvents.profileGetData.fail, h2);
-
 }
 
 initModels();
+
+const socket = new WebSocket(Paths.socketUrl);
+
+socket.onopen = function () {
+  console.log('[open] Соединение установлено');
+};
+
+socket.onmessage = function (event) {
+  const data = JSON.parse(event.data);
+  console.log('[message] Данные получены с сервера:', data);
+  if (mainPageController.data.typeOfContent === 'recivedUn') {
+    mainPageController.data.selectFolder.unshift(data.Letters[0]);
+  }
+  if (window.location.pathname === '/letter') {
+    mainPageController.data.notification = true;
+    mainPageController.data.notificationData = data.Letters[0];
+  }
+  console.log('mainPageController.data.selectFolder', mainPageController.data.selectFolder);
+  mainPageController.mainPageView.render(mainPageController.data);
+};
+
+socket.onclose = function (event) {
+  if (event.wasClean) {
+    console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+  } else {
+    // например, сервер убил процесс или сеть недоступна
+    // обычно в этом случае event.code 1006
+    console.log('[close] Соединение прервано');
+  }
+};
+
+socket.onerror = function (error) {
+  console.log(`[error] ${error.message}`);
+};
 
 // if ('serviceWorker' in navigator) {
 //   window.addEventListener('load', function() {

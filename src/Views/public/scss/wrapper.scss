@@ -501,6 +501,26 @@ form {
     transform: translate(-50%, -50%);
 }
 
+.form-notification {
+    position: absolute;
+    right: 3%;
+    bottom: 1%;
+}
+
+.alert-box {
+    padding: var(--vspace-0_125);
+    border-radius: 4px;
+    font-family: var(--font-1);
+    font-size: var(--text-sm);
+    opacity: 1;
+    visibility: visible;
+}
+
+.alert-box--success {
+    background-color: var(--color-success);
+    color: var(--color-success-content);
+}
+
 .blur {
     filter: blur(10px);
 }

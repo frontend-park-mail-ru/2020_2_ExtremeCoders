@@ -11,13 +11,16 @@ class MainPageController {
     this.data.letterColumn = false;
     this.data.oneLetterColumn = false;
     this.data.offset = 0;
-    this.data.typeOfContent = '';
+    this.data.typeOfContent = 'recivedUn';
     this.data.nameOfFolder = '';
     this.data.letterSplit = [];
     this.data.selectFolder = [];
     this.data.letter = {};
     this.data.isNeedToPag = true;
     this.data.whatOfContent = '';
+
+    this.data.notification = false;
+    this.data.notificationData = {};
 
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
       this.data.selectFolder.forEach((letter) => {

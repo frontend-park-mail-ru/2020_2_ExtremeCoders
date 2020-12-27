@@ -151,24 +151,35 @@ if(locals.screenWidth > 800)
             div(class="row")
                 select(name="inFolderName" class="h-full-width")
 
-                    if(letter.Spam)
+                    if(letter.Spam && !letter.Box)
                         option(value="Спам") Убрать из спама
-                    else
+
+                    if(!letter.Spam && !letter.Box)
                         option(value="Спам") Спам
 
-                    if(letter.Box)
+                    if(letter.Box && !letter.Spam)
                         option(value="Корзина") Убрать из корзины
-                    else
+
+                    if(!letter.Box && !letter.Spam)
                         option(value="Корзина") Корзина
 
-                    if(locals.recivedFolder)
-                        each folder in locals.recivedFolder
-                            option(value=folder.Name) #{folder.Name}
+                    if(!letter.Box && !letter.Spam)
+                        if(locals.recivedFolder)
+                            each folder in locals.recivedFolder
+                                option(value=folder.Name) #{folder.Name}
 
 
             div(class="row")
                 button(type="submit" class="btn h-full-width") Добавить
 
+    if (locals.notification)
+        div(class="alert-box alert-box--success form-notification")
+            div
+                b(style="margin-right: 5px;") Отправитель
+                span #{locals.notificationData.Sender}
+            div
+                b(style="margin-right: 5px;") Тема
+                span #{locals.notificationData.Theme}
 
 else
     div(class="main-page mainPage")
@@ -325,20 +336,32 @@ else
             div(class="row")
                 select(name="inFolderName" class="h-full-width")
 
-                    if(letter.Spam)
+                    if(letter.Spam && !letter.Box)
                         option(value="Спам") Убрать из спама
-                    else
+
+                    if(!letter.Spam && !letter.Box)
                         option(value="Спам") Спам
 
-                    if(letter.Box)
+                    if(letter.Box && !letter.Spam)
                         option(value="Корзина") Убрать из корзины
-                    else
+
+                    if(!letter.Box && !letter.Spam)
                         option(value="Корзина") Корзина
 
-                    if(locals.recivedFolder)
-                      each folder in locals.recivedFolder
-                          option(value=folder.Name) #{folder.Name}
+                    if(!letter.Box && !letter.Spam)
+                        if(locals.recivedFolder)
+                          each folder in locals.recivedFolder
+                              option(value=folder.Name) #{folder.Name}
 
 
             div(class="row")
                 button(type="submit" class="btn h-full-width") Добавить
+
+    if (locals.notification)
+        div(class="alert-box alert-box--success form-notification")
+            div
+                b(style="margin-right: 5px;") Отправитель
+                span #{locals.notificationData.Sender}
+            div
+                b(style="margin-right: 5px;") Тема
+                span #{locals.notificationData.Theme}
