@@ -233,10 +233,12 @@ export default class LetterModel {
   }
 
   inFolder(data, folder) {
+    let method = 'DELETE';
     if (!folder) {
       folder = 'folderName';
+      method = 'PUT';
     }
-    myFetch(Paths.inFolder + 'received/' + folder + '/letter', 'PUT', data)
+    myFetch(Paths.inFolder + 'received/' + folder + '/letter', method, data)
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
