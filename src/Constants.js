@@ -46,6 +46,7 @@ const Events = {
     inSpam: 'mainPageView-inSpam',
     inBox: 'mainPageView-inBox',
     unWatched: 'mainPageView-unWatched',
+    hideNotification: 'mainPageView-hideNotification',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -73,6 +74,7 @@ const Events = {
     inSpam: 'mainPageController-inSpam',
     inBox: 'mainPageController-inBox',
     unWatched: 'mainPageController-unWatched',
+    hideNotification: 'mainPageController-hideNotification',
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter',

@@ -290,5 +290,11 @@ export default class MainPageView {
       id.append('id', cur);
       globalEventBus.emit(Events.mainPageView.unWatched, id);
     });
+
+    const formNotification = document?.getElementById('form-notification');
+    formNotification?.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.hideNotification);
+    });
   }
 }

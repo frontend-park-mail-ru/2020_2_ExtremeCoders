@@ -173,7 +173,7 @@ if(locals.screenWidth > 800)
                 button(type="submit" class="btn h-full-width") Добавить
 
     if (locals.notification)
-        div(class="alert-box alert-box--success form-notification")
+        div(id="form-notification" class="alert-box alert-box--success form-notification")
             div
                 b(style="margin-right: 5px;") Отправитель
                 span #{locals.notificationData.Sender}
@@ -358,7 +358,7 @@ else
                 button(type="submit" class="btn h-full-width") Добавить
 
     if (locals.notification)
-        div(class="alert-box alert-box--success form-notification")
+        div(id="form-notification" class="alert-box alert-box--success form-notification")
             div
                 b(style="margin-right: 5px;") Отправитель
                 span #{locals.notificationData.Sender}

@@ -99,11 +99,8 @@ function startWebsocket() {
     if (mainPageController.data.typeOfContent === 'recivedUn') {
       mainPageController.data.selectFolder.unshift(data.Letters[0]);
     }
-    if (window.location.pathname === '/letter') {
-      mainPageController.data.notification = true;
-      mainPageController.data.notificationData = data.Letters[0];
-    }
-    console.log('mainPageController.data.selectFolder', mainPageController.data.selectFolder);
+    mainPageController.data.notification = true;
+    mainPageController.data.notificationData = data.Letters[0];
     mainPageController.mainPageView.render(mainPageController.data);
   };
 

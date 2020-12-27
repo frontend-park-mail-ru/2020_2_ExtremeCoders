@@ -368,6 +368,12 @@ class MainPageController {
       };
       globalEventBus.on(Events.letterModelEvents.unWatched.success, h);
     });
+
+    globalEventBus.on(Events.mainPageView.hideNotification, () => {
+      this.data.notification = false;
+      this.data.notificationData = {};
+      this.mainPageView.render(this.data);
+    });
   }
 
   setView(profileView) {
