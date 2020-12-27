@@ -85,39 +85,45 @@ function initModels() {
 
 initModels();
 
-const socket = new WebSocket(Paths.socketUrl);
+function startWebsocket() {
+  let socket = new WebSocket(Paths.socketUrl);
 
-socket.onopen = function () {
-  console.log('[open] Соединение установлено');
-};
+  socket.onopen = function () {
+    console.log('[open] Соединение установлено');
+  };
 
-socket.onmessage = function (event) {
-  const data = JSON.parse(event.data);
-  console.log('[message] Данные получены с сервера:', data);
-  if (mainPageController.data.typeOfContent === 'recivedUn') {
-    mainPageController.data.selectFolder.unshift(data.Letters[0]);
-  }
-  if (window.location.pathname === '/letter') {
-    mainPageController.data.notification = true;
-    mainPageController.data.notificationData = data.Letters[0];
-  }
-  console.log('mainPageController.data.selectFolder', mainPageController.data.selectFolder);
-  mainPageController.mainPageView.render(mainPageController.data);
-};
+  socket.onmessage = function (event) {
+    console.log(event.data);
+    const data = JSON.parse(event.data);
+    console.log('[message] Данные получены с сервера:', data);
+    if (mainPageController.data.typeOfContent === 'recivedUn') {
+      mainPageController.data.selectFolder.unshift(data.Letters[0]);
+    }
+    if (window.location.pathname === '/letter') {
+      mainPageController.data.notification = true;
+      mainPageController.data.notificationData = data.Letters[0];
+    }
+    console.log('mainPageController.data.selectFolder', mainPageController.data.selectFolder);
+    mainPageController.mainPageView.render(mainPageController.data);
+  };
 
-socket.onclose = function (event) {
-  if (event.wasClean) {
-    console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
-  } else {
-    // например, сервер убил процесс или сеть недоступна
-    // обычно в этом случае event.code 1006
-    console.log('[close] Соединение прервано');
-  }
-};
+  socket.onclose = function (event) {
+    if (event.wasClean) {
+      console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+    } else {
+      // например, сервер убил процесс или сеть недоступна
+      // обычно в этом случае event.code 1006
+      console.log('[close] Соединение прервано', event);
+    }
+    setTimeout(startWebsocket, 5000);
+  };
 
-socket.onerror = function (error) {
-  console.log(`[error] ${error.message}`);
-};
+  socket.onerror = function (error) {
+    console.log(`[error] ${error.message}`);
+  };
+}
+
+startWebsocket();
 
 // if ('serviceWorker' in navigator) {
 //   window.addEventListener('load', function() {
