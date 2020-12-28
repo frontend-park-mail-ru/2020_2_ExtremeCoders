@@ -7,6 +7,7 @@ export default class MainPageView {
   constructor(element, title) {
     this.element = element;
     this.title = title;
+    this.isNeedToBack = false;
   }
 
   parseText(data) {
@@ -48,6 +49,12 @@ export default class MainPageView {
     this.element.innerHTML = '';
     Navbar.render();
     this.element.insertAdjacentHTML('beforeend', template(data));
+
+    if (this.isNeedToBack) {
+      const letterSSS = document?.getElementsByName('letters')[0];
+      letterSSS.scrollTop = letterSSS.scrollHeight;
+      this.isNeedToBack = false;
+    }
 
     const addFolderRecived = document?.getElementById('add-folder-recived');
     const buttonOfRecivedFolder = document?.getElementsByClassName('form-add-folder-up')[0];
@@ -257,8 +264,6 @@ export default class MainPageView {
     const addMore = document?.getElementsByName('add-more')[0];
     addMore?.addEventListener('click', (event) => {
       event.preventDefault();
-      // window.location.pathname += '#38';
-      console.log(window.location.pathname);
       const typeOfContent = addMore.getAttribute('role');
       const offset = +addMore.id;
       if (typeOfContent === 'recivedUn') {
@@ -282,6 +287,7 @@ export default class MainPageView {
         const name = addMore.getAttribute('title');
         globalEventBus.emit(Events.mainPageView.selectFolder, name, 'received', offset);
       }
+      this.isNeedToBack = true;
     });
 
     const spamUn = document?.getElementById('spamUn');
