@@ -110,7 +110,7 @@ function startWebsocket() {
     } else {
       console.log('[close] Соединение прервано', event);
     }
-    setTimeout(startWebsocket, 5000);
+    setTimeout(startWebsocket, 2000);
   };
 
   socket.onerror = function (error) {

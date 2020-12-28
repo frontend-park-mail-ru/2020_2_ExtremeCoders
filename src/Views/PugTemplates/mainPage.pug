@@ -107,7 +107,7 @@ if(locals.screenWidth > 800)
                                  div(id=letter.Id class="entry__excerpt" data-iswatched=letter.IsWatched.toString())
                                      p(id=letter.Id class="max-ch" data-iswatched=letter.IsWatched.toString()) #{letter.Text}
 
-                      if(locals.selectFolder.length > 0)
+                      if(locals.isNeedToPag)
                           div(class="block-update" style="margin-bottom: 10px;")
                             div(class="small-plus radius" data-what=locals.whatOfContent title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 
@@ -291,7 +291,7 @@ else
                                       div(id=letter.Id class="entry__excerpt" data-iswatched=letter.IsWatched.toString())
                                           p(id=letter.Id class="max-ch" data-iswatched=letter.IsWatched.toString()) #{letter.Text}
 
-                            if(locals.selectFolder.length > 0)
+                            if(locals.isNeedToPag)
                                 div(class="block-update" style="margin-bottom: 30px;")
                                     div(class="small-plus radius" data-what=locals.whatOfContent title=locals.nameOfFolder id=locals.offset name="add-more" role=locals.typeOfContent)
 

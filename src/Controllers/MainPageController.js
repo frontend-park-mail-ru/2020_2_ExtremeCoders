@@ -16,7 +16,7 @@ class MainPageController {
     this.data.letterSplit = [];
     this.data.selectFolder = [];
     this.data.letter = {};
-    this.data.isNeedToPag = true;
+    this.data.isNeedToPag = false;
     this.data.whatOfContent = '';
 
     this.data.notification = false;
@@ -55,7 +55,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.selectFolder, (folder, type, howToSkip) => {
       globalEventBus.emit(Events.mainPageController.selectFolder, folder, type, howToSkip);
-      const h = (data, offset) => {
+      const h = (data, offset, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.selectFolder.success, h);
         if (offset === 0) {
           this.data.selectFolder = data;
@@ -70,7 +70,7 @@ class MainPageController {
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
         this.data.nameOfFolder = folder;
-        this.data.isNeedToPag = true;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       const h2 = () => {
@@ -92,7 +92,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.recivedUn, (howToSkip) => {
       globalEventBus.emit(Events.mainPageController.recivedUn, howToSkip);
-      const h = (data, offset) => {
+      const h = (data, offset, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.recivedUn.success, h);
         if (offset === 0) {
           this.data.selectFolder = data;
@@ -106,7 +106,7 @@ class MainPageController {
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.isNeedToPag = true;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.recivedUn.success, h);
@@ -114,7 +114,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.sendedUn, (howToSkip) => {
       globalEventBus.emit(Events.mainPageController.sendedUn, howToSkip);
-      const h = (data, offset) => {
+      const h = (data, offset, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.sendedUn.success, h);
         if (offset === 0) {
           this.data.selectFolder = data;
@@ -128,7 +128,7 @@ class MainPageController {
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.isNeedToPag = true;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.sendedUn.success, h);
@@ -261,7 +261,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.resultSearch, (what, value, offset) => {
       globalEventBus.emit(Events.mainPageController.resultSearch, what, value, offset);
-      const h = (data, skip) => {
+      const h = (data, skip, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.resultSearch.success, h);
         if (skip === 0) {
           this.data.selectFolder = data;
@@ -278,7 +278,7 @@ class MainPageController {
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
         this.data.searchResult = false;
-        this.data.isNeedToPag = true;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.resultSearch.success, h);
@@ -286,7 +286,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.spamUn, (offset) => {
       globalEventBus.emit(Events.mainPageController.spamUn, offset);
-      const h = (data, skip) => {
+      const h = (data, skip, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.spamUn.success, h);
         if (skip === 0) {
           this.data.selectFolder = data;
@@ -300,7 +300,7 @@ class MainPageController {
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.isNeedToPag = true;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.spamUn.success, h);
@@ -308,7 +308,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.trashUn, (offset) => {
       globalEventBus.emit(Events.mainPageController.trashUn, offset);
-      const h = (data, skip) => {
+      const h = (data, skip, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.trashUn.success, h);
         if (skip === 0) {
           this.data.selectFolder = data;
@@ -322,7 +322,7 @@ class MainPageController {
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.isNeedToPag = true;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.trashUn.success, h);

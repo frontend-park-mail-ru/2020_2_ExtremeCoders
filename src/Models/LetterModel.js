@@ -7,6 +7,7 @@ export default class LetterModel {
   constructor() {
     this.Letters = new Map();
     this.folders = {};
+    this.isNeedToPag = false;
     globalEventBus.on(Events.mainPageController.needGetLetter, this.getLetter.bind(this));
     globalEventBus.on(Events.sendLetterView.sendLetter,
       LetterModel.sendLetter.bind(this));
@@ -124,7 +125,19 @@ export default class LetterModel {
               this.selectFolder.push(letter);
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.selectFolder.success, this.selectFolder, this.offset);
+
+          myFetch(Paths.getSelectFolder + '/' + type + '/' + folder + '/' + '5' + '/' + (this.offset + 5).toString(), 'GET')
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.Code === 200) {
+                if (res.Letters === null) {
+                  this.isNeedToPag = false;
+                } else {
+                  this.isNeedToPag = true;
+                }
+                globalEventBus.emit(Events.letterModelEvents.selectFolder.success, this.selectFolder, this.offset, this.isNeedToPag);
+              }
+            });
         } else {
           globalEventBus.emit(Events.letterModelEvents.selectFolder.fail, {
             error: response.Description,
@@ -150,7 +163,20 @@ export default class LetterModel {
               this.selectFolder.push(letter);
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.recivedUn.success, this.selectFolder, this.offset);
+
+          myFetch(Paths.getReceivedLetters + '5' + '/' + (this.offset + 5).toString(), 'GET')
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.Code === 200) {
+                if (res.Letters === null) {
+                  this.isNeedToPag = false;
+                } else {
+                  this.isNeedToPag = true;
+                }
+                globalEventBus.emit(Events.letterModelEvents.recivedUn.success, this.selectFolder, this.offset, this.isNeedToPag);
+              }
+            });
+
         } else {
           globalEventBus.emit(Events.letterModelEvents.recivedUn.fail, {
             error: response.Description,
@@ -176,7 +202,19 @@ export default class LetterModel {
               this.selectFolder.push(letter);
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.sendedUn.success, this.selectFolder, this.offset);
+
+          myFetch(Paths.getSendedLetters + '5' + '/' + (this.offset + 5).toString(), 'GET')
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.Code === 200) {
+                if (res.Letters === null) {
+                  this.isNeedToPag = false;
+                } else {
+                  this.isNeedToPag = true;
+                }
+                globalEventBus.emit(Events.letterModelEvents.sendedUn.success, this.selectFolder, this.offset, this.isNeedToPag);
+              }
+            });
         } else {
           globalEventBus.emit(Events.letterModelEvents.sendedUn.fail, {
             error: response.Description,
@@ -342,7 +380,19 @@ export default class LetterModel {
               this.selectFolder.push(letter);
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.resultSearch.success, this.selectFolder, offset);
+
+          myFetch(Paths.resultSearch + what + '/' + value + '/5/' + (offset + 5).toString(), 'GET')
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.Code === 200) {
+                if (res.Letters === null) {
+                  this.isNeedToPag = false;
+                } else {
+                  this.isNeedToPag = true;
+                }
+                globalEventBus.emit(Events.letterModelEvents.resultSearch.success, this.selectFolder, offset, this.isNeedToPag);
+              }
+            });
         } else {
           globalEventBus.emit(Events.letterModelEvents.resultSearch.fail, {
             error: response.Description,
@@ -367,7 +417,19 @@ export default class LetterModel {
               this.selectFolder.push(letter);
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.spamUn.success, this.selectFolder, offset);
+
+          myFetch(Paths.resultSearch + 'spam/true' + '/5/' + (offset + 5).toString(), 'GET')
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.Code === 200) {
+                if (res.Letters === null) {
+                  this.isNeedToPag = false;
+                } else {
+                  this.isNeedToPag = true;
+                }
+                globalEventBus.emit(Events.letterModelEvents.spamUn.success, this.selectFolder, offset, this.isNeedToPag);
+              }
+            });
         } else {
           globalEventBus.emit(Events.letterModelEvents.spamUn.fail, {
             error: response.Description,
@@ -392,7 +454,19 @@ export default class LetterModel {
               this.selectFolder.push(letter);
             });
           }
-          globalEventBus.emit(Events.letterModelEvents.trashUn.success, this.selectFolder, offset);
+
+          myFetch(Paths.resultSearch + 'box/true' + '/5/' + (offset + 5).toString(), 'GET')
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.Code === 200) {
+                if (res.Letters === null) {
+                  this.isNeedToPag = false;
+                } else {
+                  this.isNeedToPag = true;
+                }
+                globalEventBus.emit(Events.letterModelEvents.trashUn.success, this.selectFolder, offset, this.isNeedToPag);
+              }
+            });
         } else {
           globalEventBus.emit(Events.letterModelEvents.trashUn.fail, {
             error: response.Description,
