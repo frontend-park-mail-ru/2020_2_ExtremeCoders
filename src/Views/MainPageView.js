@@ -9,7 +9,7 @@ export default class MainPageView {
     this.title = title;
   }
 
-  parseText(data){
+  parseText(data) {
     if (data.letter) {
       let substr = '';
       data.letterSplit = [];
@@ -27,7 +27,15 @@ export default class MainPageView {
     }
   }
 
-  render(data){
+  validateText(text) {
+    text = text.replace(/[^A-Za-zА-яа-я]/g, '');
+    if (text === '') {
+      return 'папка';
+    }
+    return text;
+  }
+
+  render(data) {
     this.title.text = 'Письма';
 
     if (!data || !data.recivedFolderRecived) {
@@ -96,7 +104,8 @@ export default class MainPageView {
         current.removeAttribute('readonly');
         current.classList.toggle('folder-names-focus');
         current.addEventListener('change', () => {
-          const newTitle = current.value.trim();
+          let newTitle = current.value.trim();
+          newTitle = this.validateText(newTitle);
           const newName = new FormData();
           newName.append('oldName', current.id);
           newName.append('newName', newTitle);
@@ -150,7 +159,9 @@ export default class MainPageView {
     const addFolderButton = document?.getElementsByName('button-of-recived-folder')[0];
     addFolderButton.addEventListener('submit', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.mainPageView.addFolderRecived, new FormData(addFolderButton));
+      const formData = new FormData();
+      formData.append('folderName', this.validateText(document?.getElementsByName('folderName')[0].value));
+      globalEventBus.emit(Events.mainPageView.addFolderRecived, formData);
     });
 
     const chooseFolder = document?.getElementById('choose-folder');

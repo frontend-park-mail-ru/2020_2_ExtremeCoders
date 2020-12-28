@@ -82,6 +82,7 @@ class MainPageController {
         this.data.offset = 0;
         this.data.nameOfFolder = '';
         this.data.letter = {};
+        this.data.typeOfContent = 'selectFolder';
         this.data.isNeedToPag = false;
         this.mainPageView.render(this.data);
       };
