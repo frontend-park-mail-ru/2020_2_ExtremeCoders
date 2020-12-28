@@ -242,7 +242,7 @@ export default class LetterModel {
       .then((response) => response.json())
       .then((response) => {
         if (response.Code === 200) {
-          globalEventBus.emit(Events.letterModelEvents.inFolder.success);
+          globalEventBus.emit(Events.letterModelEvents.inFolder.success, method);
         } else {
           globalEventBus.emit(Events.letterModelEvents.inFolder.fail, {
             error: response.Description,

@@ -168,18 +168,22 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.inFolder, (data, folder) => {
       globalEventBus.emit(Events.mainPageController.inFolder, data, folder);
-      const h = () => {
+      const h = (method) => {
         globalEventBus.off(Events.letterModelEvents.inFolder.success, h);
-        this.data.letter = {};
-        this.data.selectFolder.forEach((letter) => {
-          if (letter.Id === +data.get('letterId')) {
-            const index = this.data.selectFolder.indexOf(letter);
-            if (index > -1) {
-              this.data.selectFolder.splice(index, 1);
+        if (method === 'DELETE') {
+          this.data.letter = {};
+          this.data.selectFolder.forEach((letter) => {
+            if (letter.Id === +data.get('letterId')) {
+              const index = this.data.selectFolder.indexOf(letter);
+              if (index > -1) {
+                this.data.selectFolder.splice(index, 1);
+              }
             }
-          }
-        });
-        this.mainPageView.render(this.data);
+          });
+          this.mainPageView.render(this.data);
+        } else {
+          this.mainPageView.render(this.data);
+        }
       };
       globalEventBus.on(Events.letterModelEvents.inFolder.success, h);
     });

@@ -47,6 +47,16 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
   margin-bottom: 10px;
 }
 
+.plus:active {
+  background:
+          linear-gradient(#fff,#fff),
+          linear-gradient(#fff,#fff),
+          var(--color-1-light);
+  background-position: center;
+  background-size: 50% 2px,2px 50%;
+  background-repeat: no-repeat;
+}
+
 .small-plus {
   width: 20px;
   height: 20px;
@@ -60,6 +70,16 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
   background-repeat: no-repeat;
 
   margin-left: 5px;
+}
+
+.small-plus:active {
+  background:
+          linear-gradient(#fff,#fff),
+          linear-gradient(#fff,#fff),
+          var(--color-1-light);
+  background-position: center;
+  background-size: 50% 2px,2px 50%;
+  background-repeat: no-repeat;
 }
 
 .radius {
@@ -81,11 +101,19 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
   padding-top: 5px;
 }
 
+.edit-button:active {
+  background: var(--color-1-light);
+}
+
 .delete-letter-button {
   position: relative;
   width: 20px;
   height: 20px;
   background: #000;
+}
+
+.delete-letter-button:active {
+  background: var(--color-1-light);
 }
 
 .block-update {
@@ -107,4 +135,8 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
 
 .not-active-folder {
   padding: 4px;
+}
+
+.not-read-button:active {
+  background: var(--color-info);
 }

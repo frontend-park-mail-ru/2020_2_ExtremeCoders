@@ -116,7 +116,7 @@ if(locals.screenWidth > 800)
                     if(letter.Id)
                         div(class="letter-board")
                             if(letter && letter.IsWatched)
-                                a(style="margin-right: 10px;" id="unwatched") Непрочитано
+                                a(style="margin-right: 10px;" id="unwatched" class="not-read-button") Не прочитать
 
                             if(letter && (letter.Spam || letter.Box))
                                 div(id="button-remove-letter" class="delete-letter-button radius")
@@ -126,7 +126,7 @@ if(locals.screenWidth > 800)
 
                             div(id="button-form-add-letter-folder" class="small-plus radius")
 
-                            if(letter && (letter.DirectoryRecv > 0))
+                            if((letter && (letter.DirectoryRecv > 0)) && (!letter.Spam) && (!letter.Box) && (locals.typeOfContent === 'selectFolder'))
                                 div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
                             else
                                 div(class="empty-button-space letter-board-last-element")
@@ -164,18 +164,18 @@ if(locals.screenWidth > 800)
                 select(name="inFolderName" class="h-full-width")
 
                     if(letter.Spam && !letter.Box)
-                        option(value="Спам") Убрать из спама
+                        option(value="Спам") Из спама
 
                     if(!letter.Spam && !letter.Box)
                         option(value="Спам") Спам
 
                     if(letter.Box && !letter.Spam)
-                        option(value="Корзина") Убрать из корзины
+                        option(value="Корзина") Из корзины
 
                     if(!letter.Box && !letter.Spam)
                         option(value="Корзина") Корзина
 
-                    if(!letter.Box && !letter.Spam)
+                    if(!letter.Box && !letter.Spam && letter.DirectoryRecv === 0)
                         if(locals.recivedFolder)
                             each folder in locals.recivedFolder
                                 option(value=folder.Name) #{folder.Name}
@@ -302,7 +302,7 @@ else
                                 a(id="back-to-letters") < К папкам
                                 div(class="letter-board-small")
                                     if(letter && letter.IsWatched)
-                                        a(style="margin-right: 10px;" id="unwatched") Непрочитано
+                                        a(style="margin-right: 10px;" id="unwatched" class="not-read-button") Не прочитать
 
                                     if(letter && (letter.Spam || letter.Box))
                                         div(id="button-remove-letter" class="delete-letter-button radius")
@@ -311,14 +311,14 @@ else
                                         div(class="empty-button-space")
 
                                     div(id="button-form-add-letter-folder" class="small-plus radius")
-                                    if(letter && (letter.DirectoryRecv > 0))
+                                    if((letter && (letter.DirectoryRecv > 0)) && (!letter.Spam) && (!letter.Box) && (locals.typeOfContent === 'selectFolder'))
                                         div(id="delete-folder" class="small-plus radius cross letter-board-last-element")
                                     else
                                         div(class="empty-button-space letter-board-last-element")
 
                             div(class="letter-container")
                                 h3(id=letter.Id name="title-of-current")
-                                    if(letter.DirectoryRecv > 0)
+                                    if(letter && letter.DirectoryRecv > 0)
                                       span(id=letter.DirectoryRecv.toString() name="DirectoryRecv")
                                     b(style="margin-right: 5px;") Тема:
                                     span #{letter.Theme}
@@ -349,18 +349,18 @@ else
                 select(name="inFolderName" class="h-full-width")
 
                     if(letter.Spam && !letter.Box)
-                        option(value="Спам") Убрать из спама
+                        option(value="Спам") Из спама
 
                     if(!letter.Spam && !letter.Box)
                         option(value="Спам") Спам
 
                     if(letter.Box && !letter.Spam)
-                        option(value="Корзина") Убрать из корзины
+                        option(value="Корзина") Из корзины
 
                     if(!letter.Box && !letter.Spam)
                         option(value="Корзина") Корзина
 
-                    if(!letter.Box && !letter.Spam)
+                    if(!letter.Box && !letter.Spam && letter.DirectoryRecv === 0)
                         if(locals.recivedFolder)
                           each folder in locals.recivedFolder
                               option(value=folder.Name) #{folder.Name}
