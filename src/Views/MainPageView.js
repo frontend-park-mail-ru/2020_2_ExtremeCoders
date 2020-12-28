@@ -13,6 +13,7 @@ export default class MainPageView {
   parseText(data) {
     if (data.letter) {
       let substr = '';
+      data.letter.Text += '\n';
       data.letterSplit = [];
       for (let i = 0; i < data?.letter?.Text?.length; i++) {
         if (data?.letter?.Text[i] === '\n') {
