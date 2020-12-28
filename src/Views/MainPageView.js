@@ -102,6 +102,10 @@ export default class MainPageView {
       }
       if (event.target.getAttribute('name') === 'edit-folder') {
         current.removeAttribute('readonly');
+        current?.focus();
+        const currentForCursor = current?.value;
+        current.value = '';
+        current.value = currentForCursor;
         current.classList.toggle('folder-names-focus');
         current.addEventListener('change', () => {
           let newTitle = current.value.trim();
