@@ -226,11 +226,11 @@ const Events = {
 };
 
 const Paths = {
-  baseUrl: 'https://mailer.ru.com',
-  // baseUrl: 'http://localhost:8080',
+  // baseUrl: 'https://mailer.ru.com',
+  baseUrl: 'http://localhost:8080',
 
-  socketUrl: 'wss://mailer.ru.com/api/socket',
-  // socketUrl: 'ws://localhost:8080/api/socket',
+  // socketUrl: 'wss://mailer.ru.com/api/socket',
+  socketUrl: 'ws://localhost:8080/api/socket',
 
   mainPage: '/letters',
   signInPage: '/signin',

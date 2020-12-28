@@ -108,8 +108,6 @@ function startWebsocket() {
     if (event.wasClean) {
       console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
     } else {
-      // например, сервер убил процесс или сеть недоступна
-      // обычно в этом случае event.code 1006
       console.log('[close] Соединение прервано', event);
     }
     setTimeout(startWebsocket, 5000);

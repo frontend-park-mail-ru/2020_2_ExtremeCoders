@@ -371,6 +371,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.hideNotification, () => {
       this.data.notification = false;
+      this.data.letter = this.data.notificationData;
       this.data.notificationData = {};
       this.mainPageView.render(this.data);
     });

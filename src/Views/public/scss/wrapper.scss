@@ -451,15 +451,13 @@
 .not-watched {
     background: var(--color-1-lighter);
     height: 6px;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .watched {
-    background: var(--color-white);
-    height: 6px;
-}
-
-.watched:hover {
-    background-color: var(--color-gray-1);
+    height: 0;
+    margin-bottom: 22px;
 }
 
 .hide {
