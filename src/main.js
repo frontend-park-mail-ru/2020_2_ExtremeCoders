@@ -89,13 +89,10 @@ function startWebsocket() {
   let socket = new WebSocket(Paths.socketUrl);
 
   socket.onopen = function () {
-    console.log('[open] Соединение установлено');
   };
 
   socket.onmessage = function (event) {
-    console.log(event.data);
     const data = JSON.parse(event.data);
-    console.log('[message] Данные получены с сервера:', data);
     if (mainPageController.data.typeOfContent === 'recivedUn') {
       mainPageController.data.selectFolder.unshift(data.Letters[0]);
     }
@@ -105,16 +102,10 @@ function startWebsocket() {
   };
 
   socket.onclose = function (event) {
-    if (event.wasClean) {
-      console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
-    } else {
-      console.log('[close] Соединение прервано', event);
-    }
     setTimeout(startWebsocket, 2000);
   };
 
   socket.onerror = function (error) {
-    console.log(`[error] ${error.message}`);
   };
 }
 
