@@ -97,3 +97,14 @@ button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focus
   width: 20px;
   height: 20px;
 }
+
+.active-folder {
+  background: var(--color-info);
+  padding: 4px;
+  border: 0;
+  border-radius: 5px;
+}
+
+.not-active-folder {
+  padding: 4px;
+}

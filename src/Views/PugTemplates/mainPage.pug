@@ -7,13 +7,25 @@ if(locals.screenWidth > 800)
                 div(class="main-columns project_scroll")
                     div(id="add-folder-recived" class="block plus radius")
 
-                    a(id="recivedUn" class="titles-category") Входящие
+                    if(locals.typeOfContent === 'recivedUn')
+                        a(id="recivedUn" class="block titles-category active-folder") Входящие
+                    else
+                        a(id="recivedUn" class="block titles-category not-active-folder") Входящие
 
-                    a(id="sendedUn" class="block titles-category") Отправленные
+                    if(locals.typeOfContent === 'sendedUn')
+                        a(id="sendedUn" class="block titles-category active-folder") Отправленные
+                    else
+                        a(id="sendedUn" class="block titles-category not-active-folder") Отправленные
 
-                    a(id="spamUn" class="block titles-category") Спам
+                    if(locals.typeOfContent === 'spamUn')
+                        a(id="spamUn" class="block titles-category active-folder") Спам
+                    else
+                        a(id="spamUn" class="block titles-category not-active-folder") Спам
 
-                    a(id="trashUn" class="block titles-category") Корзина
+                    if(locals.typeOfContent === 'trashUn')
+                        a(id="trashUn" class="block titles-category active-folder") Корзина
+                    else
+                        a(id="trashUn" class="block titles-category not-active-folder") Корзина
 
                     div(class="horizontal")
 
