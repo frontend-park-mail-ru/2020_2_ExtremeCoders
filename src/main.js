@@ -101,7 +101,7 @@ function startWebsocket() {
     const data = JSON.parse(event.data);
 
     Push.create('У вас новое сообщение', {
-      body: 'от' + data.Letters[0].Receiver,
+      body: 'от ' + data.Letters[0].Receiver,
       timeout: 5000,
       tag: 'notice',
       onClick: function () {
@@ -119,7 +119,7 @@ function startWebsocket() {
   };
 
   socket.onclose = function (event) {
-    setTimeout(startWebsocket, 2000);
+    setTimeout(startWebsocket, 10);
   };
 
   socket.onerror = function (error) {
