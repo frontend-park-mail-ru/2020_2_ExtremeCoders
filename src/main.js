@@ -14,6 +14,8 @@ import './Views/public/css/components/search.css';
 import './Views/public/css/base.css';
 import './Views/public/css/wrapper.css';
 
+import Push from './push.js';
+
 import Router from './Views/Router.js';
 import SignInView from './Views/SignInView.js';
 import { Events, Paths } from './Constants.js';
@@ -81,19 +83,48 @@ function initModels() {
     router.start(Paths.signInPage);
   };
   globalEventBus.on(Events.userModelEvents.profileGetData.fail, h2);
-
 }
 
 initModels();
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-      // Успешная регистрация
-      console.log('[SW] ServiceWorker registration successful! Scope:', registration.scope);
-    }, function(err) {
-      // При регистрации произошла ошибка
-      console.log('[SW] Na ja! Das ist nicht arbeiten! No SW! :() ', err);
+Notification.requestPermission(function(permission){
+
+});
+
+function startWebsocket() {
+  let socket = new WebSocket(Paths.socketUrl);
+
+  socket.onopen = function () {
+  };
+
+  socket.onmessage = function (event) {
+    const data = JSON.parse(event.data);
+
+    Push.create('У вас новое сообщение', {
+      body: 'от ' + data.Letters[0].Receiver,
+      timeout: 5000,
+      tag: 'notice',
+      onClick: function () {
+        window.focus();
+        this.close();
+      }
     });
-  });
+
+    if (mainPageController.data.typeOfContent === 'recivedUn') {
+      mainPageController.data.selectFolder.unshift(data.Letters[0]);
+    }
+    mainPageController.data.notification = true;
+    mainPageController.data.notificationData = data.Letters[0];
+    mainPageController.mainPageView.render(mainPageController.data);
+  };
+
+  socket.onclose = function (event) {
+    setTimeout(startWebsocket, 10);
+  };
+
+  socket.onerror = function (error) {
+  };
 }
+
+startWebsocket();
+

@@ -46,6 +46,7 @@ const Events = {
     inSpam: 'mainPageView-inSpam',
     inBox: 'mainPageView-inBox',
     unWatched: 'mainPageView-unWatched',
+    hideNotification: 'mainPageView-hideNotification',
   },
   mainPageController: {
     needGetFolderList: 'mainPageController-needGetFolderList',
@@ -73,6 +74,7 @@ const Events = {
     inSpam: 'mainPageController-inSpam',
     inBox: 'mainPageController-inBox',
     unWatched: 'mainPageController-unWatched',
+    hideNotification: 'mainPageController-hideNotification',
   },
   sendLetterView: {
     sendLetter: 'sendLetterView-sendLetter',
@@ -226,6 +228,9 @@ const Events = {
 const Paths = {
   baseUrl: 'https://mailer.ru.com',
   // baseUrl: 'http://localhost:8080',
+
+  socketUrl: 'wss://mailer.ru.com/api/socket',
+  // socketUrl: 'ws://localhost:8080/api/socket',
 
   mainPage: '/letters',
   signInPage: '/signin',

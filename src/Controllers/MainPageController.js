@@ -11,12 +11,16 @@ class MainPageController {
     this.data.letterColumn = false;
     this.data.oneLetterColumn = false;
     this.data.offset = 0;
-    this.data.typeOfContent = '';
+    this.data.typeOfContent = 'recivedUn';
     this.data.nameOfFolder = '';
     this.data.letterSplit = [];
     this.data.selectFolder = [];
     this.data.letter = {};
-    this.data.isNeedToPag = true;
+    this.data.isNeedToPag = false;
+    this.data.whatOfContent = '';
+
+    this.data.notification = false;
+    this.data.notificationData = {};
 
     globalEventBus.on(Events.mainPageView.selectLetter, (letterId) => {
       this.data.selectFolder.forEach((letter) => {
@@ -51,7 +55,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.selectFolder, (folder, type, howToSkip) => {
       globalEventBus.emit(Events.mainPageController.selectFolder, folder, type, howToSkip);
-      const h = (data, offset) => {
+      const h = (data, offset, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.selectFolder.success, h);
         if (offset === 0) {
           this.data.selectFolder = data;
@@ -61,11 +65,12 @@ class MainPageController {
         this.data.offset = offset;
         this.data.offset += 5;
         this.data.typeOfContent = 'selectFolder';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
         this.data.nameOfFolder = folder;
-        this.data.isNeedToPag = true;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       const h2 = () => {
@@ -76,6 +81,8 @@ class MainPageController {
         this.data.oneLetterColumn = false;
         this.data.offset = 0;
         this.data.nameOfFolder = '';
+        this.data.letter = {};
+        this.data.typeOfContent = 'selectFolder';
         this.data.isNeedToPag = false;
         this.mainPageView.render(this.data);
       };
@@ -85,7 +92,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.recivedUn, (howToSkip) => {
       globalEventBus.emit(Events.mainPageController.recivedUn, howToSkip);
-      const h = (data, offset) => {
+      const h = (data, offset, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.recivedUn.success, h);
         if (offset === 0) {
           this.data.selectFolder = data;
@@ -95,10 +102,11 @@ class MainPageController {
         this.data.offset = offset;
         this.data.offset += 5;
         this.data.typeOfContent = 'recivedUn';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.isNeedToPag = true;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.recivedUn.success, h);
@@ -106,7 +114,7 @@ class MainPageController {
 
     globalEventBus.on(Events.mainPageView.sendedUn, (howToSkip) => {
       globalEventBus.emit(Events.mainPageController.sendedUn, howToSkip);
-      const h = (data, offset) => {
+      const h = (data, offset, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.sendedUn.success, h);
         if (offset === 0) {
           this.data.selectFolder = data;
@@ -116,10 +124,11 @@ class MainPageController {
         this.data.offset = offset;
         this.data.offset += 5;
         this.data.typeOfContent = 'sendedUn';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.isNeedToPag = true;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.sendedUn.success, h);
@@ -157,11 +166,24 @@ class MainPageController {
       globalEventBus.on(Events.letterModelEvents.sendWrittenLetter.success, h);
     });
 
-    globalEventBus.on(Events.mainPageView.inFolder, (method, folder, type, folderId) => {
-      globalEventBus.emit(Events.mainPageController.inFolder, method, folder, type, folderId);
-      const h = () => {
+    globalEventBus.on(Events.mainPageView.inFolder, (data, folder) => {
+      globalEventBus.emit(Events.mainPageController.inFolder, data, folder);
+      const h = (method) => {
         globalEventBus.off(Events.letterModelEvents.inFolder.success, h);
-        this.mainPageView.render(this.data);
+        if (method === 'DELETE') {
+          this.data.letter = {};
+          this.data.selectFolder.forEach((letter) => {
+            if (letter.Id === +data.get('letterId')) {
+              const index = this.data.selectFolder.indexOf(letter);
+              if (index > -1) {
+                this.data.selectFolder.splice(index, 1);
+              }
+            }
+          });
+          this.mainPageView.render(this.data);
+        } else {
+          this.mainPageView.render(this.data);
+        }
       };
       globalEventBus.on(Events.letterModelEvents.inFolder.success, h);
     });
@@ -190,7 +212,7 @@ class MainPageController {
       globalEventBus.emit(Events.mainPageController.deleteLetter, deleteName);
       const h = (deleteVar) => {
         globalEventBus.off(Events.letterModelEvents.deleteLetter.success, h);
-        this.data.letter = null;
+        this.data.letter = {};
         this.data.selectFolder.forEach((letter) => {
           if (letter.Id === +deleteVar.get('id')) {
             const index = this.data.selectFolder.indexOf(letter);
@@ -237,44 +259,70 @@ class MainPageController {
       globalEventBus.on(Events.letterModelEvents.startSearch.fail, h1);
     });
 
-    globalEventBus.on(Events.mainPageView.resultSearch, (what, value) => {
-      globalEventBus.emit(Events.mainPageController.resultSearch, what, value);
-      const h = (data) => {
+    globalEventBus.on(Events.mainPageView.resultSearch, (what, value, offset) => {
+      globalEventBus.emit(Events.mainPageController.resultSearch, what, value, offset);
+      const h = (data, skip, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.resultSearch.success, h);
-        this.data.searchResult.res = false;
+        if (skip === 0) {
+          this.data.selectFolder = data;
+        } else {
+          this.data.selectFolder = this.data.selectFolder.concat(data);
+        }
+        this.data.offset = skip;
+        this.data.offset += 5;
+        this.data.typeOfContent = 'search';
+        this.data.letter = {};
+        this.data.whatOfContent = what;
+        this.data.nameOfFolder = value;
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.selectFolder = data;
-        this.data.isNeedToPag = false;
+        this.data.searchResult = false;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.resultSearch.success, h);
     });
 
-    globalEventBus.on(Events.mainPageView.spamUn, () => {
-      globalEventBus.emit(Events.mainPageController.spamUn);
-      const h = (data) => {
+    globalEventBus.on(Events.mainPageView.spamUn, (offset) => {
+      globalEventBus.emit(Events.mainPageController.spamUn, offset);
+      const h = (data, skip, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.spamUn.success, h);
+        if (skip === 0) {
+          this.data.selectFolder = data;
+        } else {
+          this.data.selectFolder = this.data.selectFolder.concat(data);
+        }
+        this.data.offset = skip;
+        this.data.offset += 5;
+        this.data.typeOfContent = 'spamUn';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.selectFolder = data;
-        this.data.isNeedToPag = false;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.spamUn.success, h);
     });
 
-    globalEventBus.on(Events.mainPageView.trashUn, () => {
-      globalEventBus.emit(Events.mainPageController.trashUn);
-      const h = (data) => {
+    globalEventBus.on(Events.mainPageView.trashUn, (offset) => {
+      globalEventBus.emit(Events.mainPageController.trashUn, offset);
+      const h = (data, skip, isNeedToPag) => {
         globalEventBus.off(Events.letterModelEvents.trashUn.success, h);
+        if (skip === 0) {
+          this.data.selectFolder = data;
+        } else {
+          this.data.selectFolder = this.data.selectFolder.concat(data);
+        }
+        this.data.offset = skip;
+        this.data.offset += 5;
+        this.data.typeOfContent = 'trashUn';
+        this.data.letter = {};
         this.data.folderColumn = false;
         this.data.letterColumn = true;
         this.data.oneLetterColumn = false;
-        this.data.selectFolder = data;
-        this.data.isNeedToPag = false;
+        this.data.isNeedToPag = isNeedToPag;
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.trashUn.success, h);
@@ -284,6 +332,15 @@ class MainPageController {
       globalEventBus.emit(Events.mainPageController.inSpam, chooseFolderData);
       const h = () => {
         globalEventBus.off(Events.letterModelEvents.inSpam.success, h);
+        this.data.letter = {};
+        this.data.selectFolder.forEach((letter) => {
+          if (letter.Id === +chooseFolderData.get('lid')) {
+            const index = this.data.selectFolder.indexOf(letter);
+            if (index > -1) {
+              this.data.selectFolder.splice(index, 1);
+            }
+          }
+        });
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.inSpam.success, h);
@@ -293,6 +350,15 @@ class MainPageController {
       globalEventBus.emit(Events.mainPageController.inBox, chooseFolderData);
       const h = () => {
         globalEventBus.off(Events.letterModelEvents.inBox.success, h);
+        this.data.letter = {};
+        this.data.selectFolder.forEach((letter) => {
+          if (letter.Id === +chooseFolderData.get('lid')) {
+            const index = this.data.selectFolder.indexOf(letter);
+            if (index > -1) {
+              this.data.selectFolder.splice(index, 1);
+            }
+          }
+        });
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.inBox.success, h);
@@ -306,6 +372,13 @@ class MainPageController {
         this.mainPageView.render(this.data);
       };
       globalEventBus.on(Events.letterModelEvents.unWatched.success, h);
+    });
+
+    globalEventBus.on(Events.mainPageView.hideNotification, () => {
+      this.data.notification = false;
+      this.data.letter = this.data.notificationData;
+      this.data.notificationData = {};
+      this.mainPageView.render(this.data);
     });
   }
 

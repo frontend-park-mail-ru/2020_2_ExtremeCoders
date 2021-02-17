@@ -451,15 +451,13 @@
 .not-watched {
     background: var(--color-1-lighter);
     height: 6px;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .watched {
-    background: var(--color-white);
-    height: 6px;
-}
-
-.watched:hover {
-    background-color: var(--color-gray-1);
+    height: 0;
+    margin-bottom: 22px;
 }
 
 .hide {
@@ -499,6 +497,26 @@ form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.form-notification {
+    position: absolute;
+    right: 3%;
+    bottom: 1%;
+}
+
+.alert-box {
+    padding: var(--vspace-0_125);
+    border-radius: 4px;
+    font-family: var(--font-1);
+    font-size: var(--text-sm);
+    opacity: 1;
+    visibility: visible;
+}
+
+.alert-box--success {
+    background-color: var(--color-success);
+    color: var(--color-success-content);
 }
 
 .blur {
@@ -545,6 +563,12 @@ form {
     position: relative;
     width: 100%;
 }
+
+//@media screen and (max-width: 800px) {
+//    .main-container {
+//        height: calc(100vh - 200px);
+//    }
+//}
 
 .letter-board {
     position: fixed;

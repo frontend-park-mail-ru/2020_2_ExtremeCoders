@@ -7,11 +7,13 @@ export default class MainPageView {
   constructor(element, title) {
     this.element = element;
     this.title = title;
+    this.isNeedToBack = false;
   }
 
-  parseText(data){
+  parseText(data) {
     if (data.letter) {
       let substr = '';
+      data.letter.Text += '\n';
       data.letterSplit = [];
       for (let i = 0; i < data?.letter?.Text?.length; i++) {
         if (data?.letter?.Text[i] === '\n') {
@@ -27,7 +29,15 @@ export default class MainPageView {
     }
   }
 
-  render(data){
+  validateText(text) {
+    text = text.replace(/[^A-Za-zА-яа-я]/g, '');
+    if (text === '') {
+      return 'папка';
+    }
+    return text;
+  }
+
+  render(data) {
     this.title.text = 'Письма';
 
     if (!data || !data.recivedFolderRecived) {
@@ -40,6 +50,12 @@ export default class MainPageView {
     this.element.innerHTML = '';
     Navbar.render();
     this.element.insertAdjacentHTML('beforeend', template(data));
+
+    if (this.isNeedToBack) {
+      const letterSSS = document?.getElementsByName('letters')[0];
+      letterSSS.scrollTop = letterSSS.scrollHeight;
+      this.isNeedToBack = false;
+    }
 
     const addFolderRecived = document?.getElementById('add-folder-recived');
     const buttonOfRecivedFolder = document?.getElementsByClassName('form-add-folder-up')[0];
@@ -94,9 +110,14 @@ export default class MainPageView {
       }
       if (event.target.getAttribute('name') === 'edit-folder') {
         current.removeAttribute('readonly');
+        current?.focus();
+        const currentForCursor = current?.value;
+        current.value = '';
+        current.value = currentForCursor;
         current.classList.toggle('folder-names-focus');
         current.addEventListener('change', () => {
-          const newTitle = current.value.trim();
+          let newTitle = current.value.trim();
+          newTitle = this.validateText(newTitle);
           const newName = new FormData();
           newName.append('oldName', current.id);
           newName.append('newName', newTitle);
@@ -126,10 +147,13 @@ export default class MainPageView {
       if (event.target.getAttribute('name') === 'add-more') {
         return;
       }
+      const isWatch = document?.getElementById(event.target.id);
       globalEventBus.emit(Events.mainPageView.selectLetter, event.target.id);
       const id = new FormData();
       id.append('id', event.target.id);
-      globalEventBus.emit(Events.mainPageView.sendWrittenLetter, id);
+      if (isWatch?.getAttribute('data-iswatched') === 'false') {
+        globalEventBus.emit(Events.mainPageView.sendWrittenLetter, id);
+      }
     });
 
     const recivedUn = document?.getElementById('recivedUn');
@@ -147,7 +171,9 @@ export default class MainPageView {
     const addFolderButton = document?.getElementsByName('button-of-recived-folder')[0];
     addFolderButton.addEventListener('submit', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.mainPageView.addFolderRecived, new FormData(addFolderButton));
+      const formData = new FormData();
+      formData.append('folderName', this.validateText(document?.getElementsByName('folderName')[0].value));
+      globalEventBus.emit(Events.mainPageView.addFolderRecived, formData);
     });
 
     const chooseFolder = document?.getElementById('choose-folder');
@@ -161,9 +187,6 @@ export default class MainPageView {
       const current = currentName.id;
       const chooseFolderData = new FormData();
 
-      const type = 'received';
-      const method = 'PUT';
-
       if (folder === 'Спам') {
         chooseFolderData.append('lid', current);
         globalEventBus.emit(Events.mainPageView.inSpam, chooseFolderData);
@@ -176,7 +199,7 @@ export default class MainPageView {
       }
       chooseFolderData.append('letterId', current);
       chooseFolderData.append('folderName', folder);
-      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type);
+      globalEventBus.emit(Events.mainPageView.inFolder, chooseFolderData);
     });
 
     const deleteFolder = document?.getElementById('delete-folder');
@@ -191,10 +214,7 @@ export default class MainPageView {
       const chooseFolderData = new FormData();
       chooseFolderData.append('letterId', current);
 
-      const type = 'received';
-      const method = 'DELETE';
-
-      globalEventBus.emit(Events.mainPageView.inFolder, method, chooseFolderData, type, folderId);
+      globalEventBus.emit(Events.mainPageView.inFolder, chooseFolderData, folderId);
     });
 
     const deleteLetter = document?.getElementById('button-remove-letter');
@@ -238,7 +258,7 @@ export default class MainPageView {
       if (event.target.getAttribute('name') === 'search-target') {
         const what = event.target.getAttribute('role');
         const value = event.target.id;
-        globalEventBus.emit(Events.mainPageView.resultSearch, what, value);
+        globalEventBus.emit(Events.mainPageView.resultSearch, what, value, 0);
       }
     });
 
@@ -253,22 +273,34 @@ export default class MainPageView {
       if (typeOfContent === 'sendedUn') {
         globalEventBus.emit(Events.mainPageView.sendedUn, offset);
       }
+      if (typeOfContent === 'spamUn') {
+        globalEventBus.emit(Events.mainPageView.spamUn, offset);
+      }
+      if (typeOfContent === 'trashUn') {
+        globalEventBus.emit(Events.mainPageView.trashUn, offset);
+      }
+      if (typeOfContent === 'search') {
+        const name = addMore.getAttribute('title');
+        const what = addMore.getAttribute('data-what');
+        globalEventBus.emit(Events.mainPageView.resultSearch, what, name, offset);
+      }
       if (typeOfContent === 'selectFolder') {
         const name = addMore.getAttribute('title');
         globalEventBus.emit(Events.mainPageView.selectFolder, name, 'received', offset);
       }
+      this.isNeedToBack = true;
     });
 
     const spamUn = document?.getElementById('spamUn');
     spamUn?.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.mainPageView.spamUn);
+      globalEventBus.emit(Events.mainPageView.spamUn, 0);
     });
 
     const trashUn = document?.getElementById('trashUn');
     trashUn?.addEventListener('click', (event) => {
       event.preventDefault();
-      globalEventBus.emit(Events.mainPageView.trashUn);
+      globalEventBus.emit(Events.mainPageView.trashUn, 0);
     });
 
     const unWatched = document?.getElementById('unwatched');
@@ -279,6 +311,12 @@ export default class MainPageView {
       const id = new FormData();
       id.append('id', cur);
       globalEventBus.emit(Events.mainPageView.unWatched, id);
+    });
+
+    const formNotification = document?.getElementById('form-notification');
+    formNotification?.addEventListener('click', (event) => {
+      event.preventDefault();
+      globalEventBus.emit(Events.mainPageView.hideNotification);
     });
   }
 }
